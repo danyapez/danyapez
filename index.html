@@ -83,6 +83,7 @@
       display: grid;
       place-items: center;
       font-weight: 900;
+      flex: 0 0 auto;
     }
 
     .brand h1 {
@@ -97,6 +98,10 @@
       margin: 4px 0 0;
       color: var(--muted);
       font-size: 12px;
+    }
+
+    .mobile-burger {
+      display: none;
     }
 
     .nav {
@@ -652,14 +657,162 @@
       }
 
       .sidebar {
-        position: static;
+        position: sticky;
+        top: 0;
+        z-index: 100;
         height: auto;
+        max-height: 100vh;
+        overflow: hidden;
+        padding: 12px 14px;
         border-right: 0;
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1px solid #252525;
+        background: #000;
       }
 
-      .nav {
-        grid-template-columns: repeat(2, 1fr);
+      .sidebar.open {
+        overflow: auto;
+      }
+
+      .sidebar .brand {
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sidebar .brand > div:not(.mark) {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .sidebar .mark {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
+        flex: 0 0 auto;
+      }
+
+      .sidebar .brand h1 {
+        font-size: 15px;
+        line-height: 1.05;
+        letter-spacing: .06em;
+      }
+
+      .sidebar .brand p {
+        display: none;
+      }
+
+      .mobile-burger {
+        width: 42px;
+        height: 42px;
+        border: 1px solid #fff;
+        border-radius: 999px;
+        background: transparent;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        padding: 0;
+      }
+
+      .mobile-burger span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #fff;
+        border-radius: 99px;
+        position: relative;
+      }
+
+      .mobile-burger span::before,
+      .mobile-burger span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 18px;
+        height: 2px;
+        background: #fff;
+        border-radius: 99px;
+        transition: .2s;
+      }
+
+      .mobile-burger span::before {
+        top: -6px;
+      }
+
+      .mobile-burger span::after {
+        top: 6px;
+      }
+
+      .sidebar.open .mobile-burger span {
+        background: transparent;
+      }
+
+      .sidebar.open .mobile-burger span::before {
+        top: 0;
+        transform: rotate(45deg);
+      }
+
+      .sidebar.open .mobile-burger span::after {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+
+      .sidebar > .btn,
+      .sidebar > .nav,
+      .sidebar > h3,
+      .sidebar > .char-list,
+      .sidebar > .footer-note {
+        display: none;
+      }
+
+      .sidebar.open > .btn {
+        display: block;
+        margin-top: 14px;
+      }
+
+      .sidebar.open > .nav {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 7px;
+        margin: 12px 0;
+      }
+
+      .sidebar.open > h3 {
+        display: block;
+        margin: 16px 0 8px;
+        font-size: 11px;
+      }
+
+      .sidebar.open > .char-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .sidebar .nav button {
+        padding: 10px 12px;
+        font-size: 15px;
+        border-radius: 16px;
+      }
+
+      .sidebar .btn.white {
+        padding: 12px 14px;
+        font-size: 15px;
+        border-radius: 18px;
+      }
+
+      .sidebar .char-card {
+        padding: 10px 12px;
+        border-radius: 14px;
+      }
+
+      .sidebar .char-card b {
+        font-size: 14px;
+      }
+
+      .sidebar .char-card span {
+        font-size: 12px;
       }
 
       .main {
@@ -668,6 +821,7 @@
 
       .topbar {
         display: grid;
+        margin-bottom: 14px;
       }
 
       .toolbar {
@@ -695,8 +849,20 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .tabs {
+        grid-template-columns: 1fr;
+      }
+
       .title h2 {
-        font-size: 30px;
+        font-size: 28px;
+      }
+
+      .title p {
+        font-size: 14px;
+      }
+
+      .card {
+        padding: 14px;
       }
     }
 
@@ -751,6 +917,10 @@
           <h1>D&D<br>помощник</h1>
           <p>конструктор для новичка</p>
         </div>
+
+        <button class="mobile-burger" id="mobileBurger" type="button" aria-label="Открыть меню">
+          <span></span>
+        </button>
       </div>
 
       <button class="btn white" id="newCharacterBtn">+ Новый персонаж</button>
@@ -791,7 +961,7 @@
             <div class="grid two">
               <div class="field">
                 <label>Имя персонажа</label>
-                <input id="name" data-bind="name" placeholder="Например: Финн Тихая Пятка">
+                <input id="name" data-bind="name" placeholder="Например: Мускат">
                 <small>Имя можно придумать позже.</small>
               </div>
 
@@ -871,7 +1041,7 @@
         <div class="card" style="margin-top:14px;">
           <h3>Характеристики после расы</h3>
           <div class="stats" id="statsView"></div>
-          <p class="hint">Большое число — итоговая характеристика. В скобках и кружке — модификатор. Именно его чаще всего прибавляют к к20.</p>
+          <p class="hint">Большое число — итоговая характеристика. В кружке — модификатор. Именно его чаще всего прибавляют к к20.</p>
         </div>
 
         <div class="grid two" style="margin-top:14px;">
@@ -1049,7 +1219,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "dnd_newbie_builder_v1";
+    const STORAGE_KEY = "dnd_newbie_builder_v2";
 
     const ABILITIES = {
       str: ["Сила", "Сил"],
@@ -1252,7 +1422,7 @@
     function defaultCharacter() {
       return {
         id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random()),
-        name: "Финн Тихая Пятка",
+        name: "Мускат",
         player: "",
         classKey: "rogue",
         raceKey: "lightfootHalfling",
@@ -1830,6 +2000,7 @@
           state.currentId = card.dataset.id;
           save();
           render();
+          closeMobileMenu();
         });
       });
     }
@@ -1868,6 +2039,13 @@
 
       $("pageTitle").textContent = titles[id][0];
       $("pageDesc").textContent = titles[id][1];
+
+      closeMobileMenu();
+    }
+
+    function closeMobileMenu() {
+      const sidebar = document.querySelector(".sidebar");
+      if (sidebar) sidebar.classList.remove("open");
     }
 
     function autoAssign(shouldRender = true) {
@@ -1917,6 +2095,7 @@
       state.currentId = c.id;
       save();
       render();
+      closeMobileMenu();
     }
 
     function resetCharacter() {
@@ -1998,6 +2177,10 @@
     function initEvents() {
       $("nav").querySelectorAll("button").forEach(btn => {
         btn.addEventListener("click", () => showSection(btn.dataset.section));
+      });
+
+      $("mobileBurger").addEventListener("click", () => {
+        document.querySelector(".sidebar").classList.toggle("open");
       });
 
       document.querySelectorAll(".tab").forEach(tab => {
