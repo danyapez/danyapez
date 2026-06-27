@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D&D Помощник новичка</title>
+  <title>D&D помощник новичка</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,898 +11,933 @@
 
   <style>
     :root {
-      --bg: #050505;
-      --panel: #0b0b0b;
-      --panel2: #111;
-      --text: #f4f4f4;
-      --muted: #a7a7a7;
-      --line: #333;
-      --line2: #555;
-      --white: #fff;
-      --black: #000;
-      --radius: 18px;
-      --font: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --bg:#000;
+      --panel:#080808;
+      --panel2:#111;
+      --text:#fff;
+      --muted:#a6a6a6;
+      --line:#303030;
+      --line2:#555;
+      --radius:20px;
+      --font:"Roboto",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing:border-box; }
 
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 16px;
-      line-height: 1.45;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--font);
+      font-size:16px;
+      line-height:1.45;
     }
 
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
+    button,input,select,textarea { font:inherit; }
 
-    button {
-      cursor: pointer;
-    }
+    button { cursor:pointer; }
 
     .app {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 290px 1fr;
+      display:grid;
+      grid-template-columns:300px 1fr;
+      min-height:100vh;
     }
 
     .sidebar {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: auto;
-      padding: 18px;
-      border-right: 1px solid var(--line);
-      background: #020202;
+      position:sticky;
+      top:0;
+      height:100vh;
+      overflow:auto;
+      padding:18px;
+      border-right:1px solid var(--line);
+      background:#020202;
+      z-index:20;
     }
 
     .brand {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
     }
 
     .mark {
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--white);
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      flex: 0 0 auto;
+      width:46px;
+      height:46px;
+      border:1.5px solid #fff;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      flex:0 0 auto;
     }
 
     .brand h1 {
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.05;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      margin:0;
+      font-size:16px;
+      line-height:1.08;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
 
     .brand p {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 12px;
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:12px;
     }
 
-    .mobile-burger {
-      display: none;
+    .burger {
+      display:none;
     }
 
-    .nav {
-      display: grid;
-      gap: 8px;
-      margin: 18px 0;
-    }
-
-    .nav button,
     .btn,
-    .small-btn {
-      width: 100%;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--text);
-      border-radius: 999px;
-      padding: 11px 12px;
-      text-align: left;
-      transition: .15s;
+    .small-btn,
+    .nav button {
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--text);
+      border-radius:999px;
+      padding:11px 13px;
+      transition:.15s;
     }
 
-    .nav button:hover,
-    .nav button.active,
     .btn:hover,
-    .small-btn:hover {
-      background: #171717;
-      border-color: var(--white);
+    .small-btn:hover,
+    .nav button:hover,
+    .nav button.active {
+      border-color:#fff;
+      background:#171717;
+    }
+
+    .btn {
+      width:100%;
+      text-align:center;
+      font-weight:900;
     }
 
     .btn.white {
-      background: var(--white);
-      color: var(--black);
-      border-color: var(--white);
-      text-align: center;
-      font-weight: 900;
+      background:#fff;
+      color:#000;
+      border-color:#fff;
     }
 
     .btn.white:hover {
-      background: #dedede;
-      color: var(--black);
+      background:#ddd;
+      color:#000;
     }
 
     .small-btn {
-      border-radius: 12px;
-      padding: 8px 10px;
-      font-size: 13px;
-      text-align: center;
+      border-radius:12px;
+      padding:9px 11px;
+      font-size:13px;
+      text-align:center;
+    }
+
+    .nav {
+      display:grid;
+      gap:8px;
+      margin:18px 0;
+    }
+
+    .nav button {
+      width:100%;
+      text-align:left;
+    }
+
+    .side-title {
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin:20px 0 8px;
     }
 
     .char-list {
-      display: grid;
-      gap: 8px;
-      margin-top: 10px;
+      display:grid;
+      gap:8px;
     }
 
     .char-card {
-      border: 1px solid var(--line);
-      background: #090909;
-      border-radius: 14px;
-      padding: 12px;
-      cursor: pointer;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:#070707;
+      cursor:pointer;
     }
 
     .char-card.active {
-      border-color: var(--white);
+      border-color:#fff;
     }
 
     .char-card b {
-      display: block;
-      font-size: 14px;
+      display:block;
+      font-size:15px;
     }
 
     .char-card span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 2px;
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+      margin-top:2px;
+    }
+
+    .side-note {
+      color:var(--muted);
+      font-size:12px;
+      margin-top:18px;
     }
 
     .main {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 22px;
+      width:100%;
+      max-width:1280px;
+      margin:0 auto;
+      padding:22px;
     }
 
     .topbar {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: flex-start;
-      margin-bottom: 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      margin-bottom:18px;
     }
 
     .title h2 {
-      margin: 0 0 8px;
-      font-size: 34px;
-      line-height: .95;
-      letter-spacing: -.045em;
-      font-weight: 900;
+      margin:0 0 7px;
+      font-size:34px;
+      line-height:.95;
+      letter-spacing:-.04em;
+      font-weight:900;
     }
 
     .title p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 760px;
+      margin:0;
+      max-width:760px;
+      color:var(--muted);
     }
 
     .toolbar {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      min-width: 260px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      min-width:280px;
     }
 
-    .section {
-      display: none;
-    }
-
-    .section.active {
-      display: block;
-    }
+    .section { display:none; }
+    .section.active { display:block; }
 
     .grid {
-      display: grid;
-      gap: 14px;
+      display:grid;
+      gap:14px;
     }
 
-    .grid.two {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .grid.three {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .grid.four {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .grid.two { grid-template-columns:1fr 1fr; }
+    .grid.three { grid-template-columns:repeat(3,1fr); }
+    .grid.four { grid-template-columns:repeat(4,1fr); }
 
     .card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, #0b0b0b, #060606);
-      padding: 16px;
-      min-width: 0;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg,#0c0c0c,#050505);
+      padding:16px;
+      min-width:0;
     }
 
     .card h3 {
-      margin: 0 0 12px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--white);
+      margin:0 0 12px;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
     }
 
     .card h4 {
-      margin: 16px 0 8px;
-      font-size: 15px;
+      margin:14px 0 8px;
+      font-size:16px;
     }
 
     .hint {
-      color: var(--muted);
-      font-size: 13px;
-      margin: 6px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      margin:6px 0 0;
     }
 
     .field {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 12px;
+      display:grid;
+      gap:6px;
+      margin-bottom:12px;
     }
 
     .field label {
-      color: #d0d0d0;
-      font-size: 12px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
+      color:#d4d4d4;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
     }
 
     .field input,
     .field select,
     .field textarea {
-      width: 100%;
-      color: var(--white);
-      background: #000;
-      border: 1px solid var(--line2);
-      border-radius: 12px;
-      padding: 11px 12px;
-      outline: none;
+      width:100%;
+      color:#fff;
+      background:#000;
+      border:1px solid var(--line2);
+      border-radius:13px;
+      padding:11px 12px;
+      outline:none;
     }
 
     .field textarea {
-      min-height: 86px;
-      resize: vertical;
+      min-height:86px;
+      resize:vertical;
     }
 
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
-      border-color: var(--white);
+      border-color:#fff;
     }
 
     .field small {
-      color: var(--muted);
-      font-size: 12px;
+      color:var(--muted);
+      font-size:12px;
     }
 
     .inline {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
     .pillrow {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
     }
 
     .pill {
-      border: 1px solid var(--line2);
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 13px;
-      color: #ddd;
-      background: #090909;
+      border:1px solid var(--line2);
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:13px;
+      color:#ddd;
+      background:#090909;
     }
 
     .stats {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:10px;
     }
 
     .stat {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: #080808;
-      padding: 10px;
-      text-align: center;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px 8px;
+      background:#070707;
+      text-align:center;
     }
 
     .stat .name {
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: .07em;
-      text-transform: uppercase;
+      color:var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.07em;
     }
 
     .stat .score {
-      margin-top: 6px;
-      font-size: 30px;
-      line-height: 1;
-      font-weight: 900;
+      font-size:32px;
+      font-weight:900;
+      line-height:1;
+      margin-top:7px;
     }
 
     .stat .mod {
-      display: inline-block;
-      margin-top: 8px;
-      border: 1px solid var(--line2);
-      border-radius: 999px;
-      padding: 3px 10px;
-      background: #000;
-      font-weight: 700;
+      display:inline-block;
+      margin-top:8px;
+      border:1px solid var(--line2);
+      border-radius:999px;
+      padding:3px 10px;
+      background:#000;
+      font-weight:900;
     }
 
     .stat .base {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 5px;
+      color:var(--muted);
+      font-size:12px;
+      margin-top:5px;
     }
 
     .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
     }
 
     .mini {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #080808;
-      padding: 12px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background:#070707;
     }
 
     .mini span {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: .07em;
-      text-transform: uppercase;
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.07em;
     }
 
     .mini b {
-      display: block;
-      margin-top: 4px;
-      font-size: 26px;
-      line-height: 1;
+      display:block;
+      font-size:30px;
+      line-height:1;
+      margin-top:5px;
+      font-weight:900;
     }
 
     .skill-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;
     }
 
     .skill {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px;
-      align-items: center;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #080808;
-      padding: 8px;
-      min-width: 0;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      align-items:center;
+      border:1px solid var(--line);
+      border-radius:13px;
+      background:#080808;
+      padding:9px;
+      min-width:0;
     }
 
     .skill span {
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-size: 13px;
+      overflow:hidden;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      font-size:13px;
     }
 
     .skill b {
-      font-weight: 900;
+      font-weight:900;
     }
 
     .tabs {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin: 12px 0 16px;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin:12px 0 16px;
     }
 
     .tab {
-      border: 1px solid var(--line2);
-      border-radius: 18px;
-      background: #090909;
-      color: var(--white);
-      padding: 16px;
-      text-align: left;
+      border:1px solid var(--line2);
+      border-radius:18px;
+      background:#090909;
+      color:#fff;
+      padding:15px;
+      text-align:left;
     }
 
     .tab.active {
-      background: var(--white);
-      color: var(--black);
-      border-color: var(--white);
+      background:#fff;
+      color:#000;
+      border-color:#fff;
     }
 
     .tab b {
-      display: block;
-      font-size: 20px;
+      display:block;
+      font-size:20px;
     }
 
     .tab span {
-      display: block;
-      margin-top: 2px;
-      font-size: 13px;
-      opacity: .72;
+      display:block;
+      font-size:13px;
+      margin-top:2px;
+      opacity:.72;
     }
 
-    .mode {
-      display: none;
-    }
-
-    .mode.active {
-      display: block;
-    }
+    .mode { display:none; }
+    .mode.active { display:block; }
 
     details.tip {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: #080808;
-      padding: 14px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#080808;
+      padding:14px;
     }
 
     details.tip + details.tip {
-      margin-top: 10px;
+      margin-top:10px;
     }
 
     details.tip summary {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      cursor: pointer;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      cursor:pointer;
+      font-weight:900;
     }
 
-    details.tip summary::-webkit-details-marker {
-      display: none;
-    }
+    details.tip summary::-webkit-details-marker { display:none; }
 
     details.tip p {
-      margin: 10px 0 0;
-      color: #ddd;
+      margin:10px 0 0;
+      color:#ddd;
     }
 
     .formula {
-      margin-top: 10px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 9px;
-      background: #000;
-      color: var(--white);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      overflow: auto;
+      margin-top:10px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#000;
+      padding:10px;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      overflow:auto;
     }
 
     .weapon-row {
-      display: grid;
-      grid-template-columns: 1.1fr .7fr 1fr;
-      gap: 8px;
-      align-items: center;
-      border-bottom: 1px solid var(--line);
-      padding: 8px 0;
-      font-size: 14px;
+      display:grid;
+      grid-template-columns:1.1fr .7fr 1fr;
+      gap:8px;
+      align-items:center;
+      border-bottom:1px solid var(--line);
+      padding:8px 0;
+      font-size:14px;
     }
 
     .weapon-row.head {
-      color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .07em;
+      color:var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+
+    .tracker-hp {
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:14px;
+    }
+
+    .hp-big {
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:#050505;
+      padding:18px;
+      text-align:center;
+    }
+
+    .hp-big span {
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .hp-big b {
+      display:block;
+      font-size:62px;
+      line-height:.95;
+      letter-spacing:-.06em;
+      margin-top:8px;
+    }
+
+    .hp-bar {
+      height:10px;
+      border:1px solid var(--line2);
+      border-radius:999px;
+      overflow:hidden;
+      margin-top:14px;
+      background:#000;
+    }
+
+    .hp-fill {
+      height:100%;
+      background:#fff;
+      width:50%;
+    }
+
+    .money-grid {
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:8px;
+    }
+
+    .money {
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px;
+      background:#070707;
+      text-align:center;
+    }
+
+    .money span {
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+    }
+
+    .money b {
+      display:block;
+      font-size:24px;
+      margin-top:4px;
+    }
+
+    .item-row {
+      display:grid;
+      grid-template-columns:1fr 70px 1fr auto;
+      gap:8px;
+      align-items:center;
+      margin-bottom:8px;
+    }
+
+    .item-row input {
+      width:100%;
+      color:#fff;
+      background:#000;
+      border:1px solid var(--line2);
+      border-radius:12px;
+      padding:10px;
+    }
+
+    .condition-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+    }
+
+    .condition {
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:9px 10px;
+      background:#060606;
+      color:#fff;
+      text-align:center;
+      font-size:13px;
+    }
+
+    .condition.active {
+      background:#fff;
+      color:#000;
+      border-color:#fff;
+      font-weight:900;
     }
 
     .dice-result {
-      margin: 8px 0;
-      font-size: 44px;
-      line-height: 1;
-      font-weight: 900;
-      letter-spacing: -.05em;
+      margin:8px 0;
+      font-size:46px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-.05em;
     }
 
     .sheet {
-      background: #fff;
-      color: #000;
-      border-radius: 18px;
-      padding: 18px;
+      background:#fff;
+      color:#000;
+      border-radius:18px;
+      padding:18px;
     }
 
-    .sheet-top {
-      display: grid;
-      grid-template-columns: 1.2fr 2fr;
-      gap: 10px;
-      margin-bottom: 10px;
+    .sheet-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr 1.2fr;
+      gap:10px;
     }
 
     .paper-box {
-      border: 1.5px solid #111;
-      border-radius: 12px;
-      padding: 10px;
-      min-height: 60px;
-    }
-
-    .paper-title b {
-      display: block;
-      font-size: 24px;
-    }
-
-    .paper-title span {
-      font-size: 10px;
-      text-transform: uppercase;
-    }
-
-    .paper-meta {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-    }
-
-    .paper-meta div {
-      border-bottom: 1px solid #aaa;
-      padding: 3px;
-      font-size: 12px;
-    }
-
-    .paper-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 1.1fr 1.2fr;
-      gap: 10px;
+      border:1.5px solid #111;
+      border-radius:12px;
+      padding:10px;
+      margin-bottom:8px;
+      min-height:58px;
     }
 
     .paper-box h4 {
-      margin: 0 0 8px;
-      padding-bottom: 4px;
-      border-bottom: 1px solid #111;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .06em;
+      margin:0 0 8px;
+      padding-bottom:4px;
+      border-bottom:1px solid #111;
+      font-size:11px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    .paper-title b {
+      display:block;
+      font-size:25px;
+    }
+
+    .paper-title span {
+      font-size:10px;
+      text-transform:uppercase;
     }
 
     .paper-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 6px;
-      border-bottom: 1px solid #ddd;
-      padding: 4px 0;
-      font-size: 12px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:6px;
+      border-bottom:1px solid #ddd;
+      padding:4px 0;
+      font-size:12px;
     }
 
     .paper-row b {
-      font-size: 16px;
+      font-size:15px;
     }
 
     .paper-chips {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      margin-bottom: 8px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:6px;
+      margin-bottom:8px;
     }
 
     .paper-chip {
-      border: 1.5px solid #111;
-      border-radius: 10px;
-      padding: 8px;
-      text-align: center;
+      border:1.5px solid #111;
+      border-radius:10px;
+      padding:8px;
+      text-align:center;
     }
 
     .paper-chip span {
-      display: block;
-      font-size: 9px;
-      text-transform: uppercase;
+      display:block;
+      font-size:9px;
+      text-transform:uppercase;
     }
 
     .paper-chip b {
-      font-size: 18px;
+      font-size:17px;
     }
 
     .empty {
-      border: 1px dashed var(--line2);
-      border-radius: 14px;
-      padding: 14px;
-      color: var(--muted);
-      font-size: 14px;
+      border:1px dashed var(--line2);
+      border-radius:14px;
+      padding:14px;
+      color:var(--muted);
     }
 
-    .footer-note {
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    @media (max-width: 980px) {
-      .app {
-        display: block;
-      }
+    @media (max-width:980px) {
+      .app { display:block; }
 
       .sidebar {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        height: auto;
-        max-height: 100vh;
-        overflow: hidden;
-        padding: 12px 14px;
-        border-right: 0;
-        border-bottom: 1px solid #252525;
-        background: #000;
+        position:sticky;
+        top:0;
+        height:auto;
+        max-height:100vh;
+        overflow:hidden;
+        padding:12px 14px;
+        border-right:0;
+        border-bottom:1px solid #252525;
+        background:#000;
       }
 
       .sidebar.open {
-        overflow: auto;
+        overflow:auto;
       }
 
-      .sidebar .brand {
-        margin: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
+      .brand {
+        margin:0;
+        justify-content:space-between;
       }
 
-      .sidebar .brand > div:not(.mark) {
-        flex: 1;
-        min-width: 0;
+      .brand > div:not(.mark) {
+        flex:1;
+        min-width:0;
       }
 
-      .sidebar .mark {
-        width: 38px;
-        height: 38px;
-        font-size: 15px;
-        flex: 0 0 auto;
+      .brand p { display:none; }
+
+      .mark {
+        width:38px;
+        height:38px;
+        font-size:14px;
       }
 
-      .sidebar .brand h1 {
-        font-size: 15px;
-        line-height: 1.05;
-        letter-spacing: .06em;
+      .brand h1 {
+        font-size:15px;
       }
 
-      .sidebar .brand p {
-        display: none;
+      .burger {
+        width:42px;
+        height:42px;
+        display:grid;
+        place-items:center;
+        border:1px solid #fff;
+        border-radius:999px;
+        background:transparent;
+        color:#fff;
+        padding:0;
+        flex:0 0 auto;
       }
 
-      .mobile-burger {
-        width: 42px;
-        height: 42px;
-        border: 1px solid #fff;
-        border-radius: 999px;
-        background: transparent;
-        color: #fff;
-        display: grid;
-        place-items: center;
-        flex: 0 0 auto;
-        padding: 0;
+      .burger span,
+      .burger span::before,
+      .burger span::after {
+        display:block;
+        width:18px;
+        height:2px;
+        background:#fff;
+        border-radius:99px;
+        position:relative;
+        content:"";
+        transition:.2s;
       }
 
-      .mobile-burger span {
-        display: block;
-        width: 18px;
-        height: 2px;
-        background: #fff;
-        border-radius: 99px;
-        position: relative;
+      .burger span::before {
+        position:absolute;
+        top:-6px;
       }
 
-      .mobile-burger span::before,
-      .mobile-burger span::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        width: 18px;
-        height: 2px;
-        background: #fff;
-        border-radius: 99px;
-        transition: .2s;
+      .burger span::after {
+        position:absolute;
+        top:6px;
       }
 
-      .mobile-burger span::before {
-        top: -6px;
+      .sidebar.open .burger span {
+        background:transparent;
       }
 
-      .mobile-burger span::after {
-        top: 6px;
+      .sidebar.open .burger span::before {
+        top:0;
+        transform:rotate(45deg);
       }
 
-      .sidebar.open .mobile-burger span {
-        background: transparent;
-      }
-
-      .sidebar.open .mobile-burger span::before {
-        top: 0;
-        transform: rotate(45deg);
-      }
-
-      .sidebar.open .mobile-burger span::after {
-        top: 0;
-        transform: rotate(-45deg);
+      .sidebar.open .burger span::after {
+        top:0;
+        transform:rotate(-45deg);
       }
 
       .sidebar > .btn,
       .sidebar > .nav,
-      .sidebar > h3,
+      .sidebar > .side-title,
       .sidebar > .char-list,
-      .sidebar > .footer-note {
-        display: none;
+      .sidebar > .side-note {
+        display:none;
       }
 
       .sidebar.open > .btn {
-        display: block;
-        margin-top: 14px;
+        display:block;
+        margin-top:14px;
       }
 
       .sidebar.open > .nav {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 7px;
-        margin: 12px 0;
+        display:grid;
+        gap:7px;
+        margin:12px 0;
       }
 
-      .sidebar.open > h3 {
-        display: block;
-        margin: 16px 0 8px;
-        font-size: 11px;
+      .sidebar.open > .side-title {
+        display:block;
+        margin:16px 0 8px;
       }
 
       .sidebar.open > .char-list {
-        display: grid;
-        gap: 8px;
-      }
-
-      .sidebar .nav button {
-        padding: 10px 12px;
-        font-size: 15px;
-        border-radius: 16px;
-      }
-
-      .sidebar .btn.white {
-        padding: 12px 14px;
-        font-size: 15px;
-        border-radius: 18px;
-      }
-
-      .sidebar .char-card {
-        padding: 10px 12px;
-        border-radius: 14px;
-      }
-
-      .sidebar .char-card b {
-        font-size: 14px;
-      }
-
-      .sidebar .char-card span {
-        font-size: 12px;
+        display:grid;
       }
 
       .main {
-        padding: 14px;
+        padding:14px;
       }
 
       .topbar {
-        display: grid;
-        margin-bottom: 14px;
+        display:grid;
+        margin-bottom:14px;
       }
 
       .toolbar {
-        justify-content: stretch;
-        min-width: 0;
+        justify-content:stretch;
+        min-width:0;
       }
 
-      .toolbar .small-btn,
-      .toolbar .btn {
-        flex: 1;
+      .toolbar .small-btn {
+        flex:1;
       }
 
       .grid.two,
       .grid.three,
       .grid.four,
-      .stats,
       .mini-grid,
-      .skill-list,
-      .paper-grid,
-      .sheet-top {
-        grid-template-columns: 1fr;
+      .tracker-hp,
+      .sheet-grid,
+      .skill-list {
+        grid-template-columns:1fr;
       }
 
       .stats {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:repeat(2,1fr);
       }
 
       .tabs {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
+      }
+
+      .money-grid {
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .condition-grid {
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .item-row {
+        grid-template-columns:1fr 64px;
+      }
+
+      .item-row input:nth-child(3) {
+        grid-column:1 / -1;
       }
 
       .title h2 {
-        font-size: 28px;
+        font-size:28px;
       }
 
       .title p {
-        font-size: 14px;
-      }
-
-      .card {
-        padding: 14px;
+        font-size:14px;
       }
     }
 
     @media print {
       body {
-        background: #fff;
-        color: #000;
+        background:#fff;
+        color:#000;
       }
 
       .sidebar,
       .topbar,
       .no-print,
       .section:not(#sheetSection) {
-        display: none !important;
+        display:none !important;
       }
 
       .app,
       .main {
-        display: block;
-        padding: 0;
-        max-width: none;
+        display:block;
+        padding:0;
+        max-width:none;
       }
 
       #sheetSection {
-        display: block !important;
-      }
-
-      .sheet {
-        border-radius: 0;
-        padding: 0;
+        display:block !important;
       }
 
       .card {
-        border: 0;
-        padding: 0;
+        border:0;
+        padding:0;
+      }
+
+      .sheet {
+        border-radius:0;
+        padding:0;
       }
 
       @page {
-        size: A4;
-        margin: 12mm;
+        size:A4;
+        margin:12mm;
       }
     }
   </style>
@@ -917,10 +952,7 @@
           <h1>D&D<br>помощник</h1>
           <p>конструктор для новичка</p>
         </div>
-
-        <button class="mobile-burger" id="mobileBurger" type="button" aria-label="Открыть меню">
-          <span></span>
-        </button>
+        <button class="burger" id="burger" type="button" aria-label="Меню"><span></span></button>
       </div>
 
       <button class="btn white" id="newCharacterBtn">+ Новый персонаж</button>
@@ -928,21 +960,22 @@
       <div class="nav" id="nav">
         <button class="active" data-section="builderSection">01 Конструктор</button>
         <button data-section="playSection">02 Игра</button>
-        <button data-section="sheetSection">03 Лист A4</button>
-        <button data-section="librarySection">04 Персонажи</button>
+        <button data-section="trackerSection">03 Трекер</button>
+        <button data-section="sheetSection">04 Лист A4</button>
+        <button data-section="librarySection">05 Персонажи</button>
       </div>
 
-      <h3 style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#aaa;margin:18px 0 8px;">Сохранённые</h3>
+      <h3 class="side-title">Сохранённые</h3>
       <div class="char-list" id="characterList"></div>
 
-      <p class="footer-note">Данные хранятся в браузере. Можно экспортировать JSON и потом импортировать обратно.</p>
+      <p class="side-note">Данные хранятся в браузере. Можно экспортировать JSON и потом импортировать обратно.</p>
     </aside>
 
     <main class="main">
       <div class="topbar no-print">
         <div class="title">
           <h2 id="pageTitle">Конструктор персонажа</h2>
-          <p id="pageDesc">Заполни броски, выбери расу, класс и снаряжение. Всё важное для боя и игры пересчитается автоматически.</p>
+          <p id="pageDesc">Создай персонажа. Потом во время игры используй экран “Игра” и “Трекер”.</p>
         </div>
 
         <div class="toolbar">
@@ -962,7 +995,7 @@
               <div class="field">
                 <label>Имя персонажа</label>
                 <input id="name" data-bind="name" placeholder="Например: Мускат">
-                <small>Имя можно придумать позже.</small>
+                <small>Имя можно поменять в любой момент.</small>
               </div>
 
               <div class="field">
@@ -975,7 +1008,7 @@
               <div class="field">
                 <label>Класс</label>
                 <select id="classKey" data-bind="classKey"></select>
-                <small>Плут хорош в скрытности, обмане, взломе и точных ударах.</small>
+                <small>По умолчанию стоит плут.</small>
               </div>
 
               <div class="field">
@@ -987,7 +1020,7 @@
                   <option value="4">4 уровень</option>
                   <option value="5">5 уровень</option>
                 </select>
-                <small>Пока лучше играть 1 уровнем.</small>
+                <small>Для новичка лучше начать с 1 уровня.</small>
               </div>
             </div>
 
@@ -995,13 +1028,13 @@
               <div class="field">
                 <label>Раса</label>
                 <select id="raceKey" data-bind="raceKey"></select>
-                <small>По умолчанию стоит легконогий полурослик.</small>
+                <small>По умолчанию легконогий полурослик.</small>
               </div>
 
               <div class="field">
                 <label>Биография</label>
                 <select id="backgroundKey" data-bind="backgroundKey"></select>
-                <small>Это прошлое персонажа. Для плута удобно “Преступник”.</small>
+                <small>Для плута удобно “Преступник”.</small>
               </div>
             </div>
 
@@ -1009,7 +1042,7 @@
               <div class="field">
                 <label>Мировоззрение</label>
                 <select id="alignment" data-bind="alignment"></select>
-                <small id="alignmentHint">Подсказка появится после выбора.</small>
+                <small id="alignmentHint"></small>
               </div>
 
               <div class="field">
@@ -1023,31 +1056,30 @@
 
           <div class="card">
             <h3>Броски характеристик</h3>
-
-            <p class="hint">Когда мастер говорит “киньте характеристики”, часто кидают 6 раз. Каждый результат впиши в поле. Обычно бросают 4к6 и убирают самый маленький кубик, но уточни у мастера.</p>
+            <p class="hint">Мастер говорит: “Киньте характеристики”. Обычно ты получаешь 6 чисел. Впиши их сюда. Потом нажми “Авто-раскидать под класс”.</p>
 
             <div class="grid three" id="rollFields"></div>
 
             <div class="inline">
-              <button class="small-btn" id="autoAssignBtn">Авто-раскидать под класс</button>
+              <button class="small-btn" id="autoAssignBtn">Авто-раскидать</button>
               <button class="small-btn" id="randomRollBtn">Кинуть случайно</button>
               <button class="small-btn" id="clearRollsBtn">Очистить</button>
             </div>
 
-            <p class="hint">Для плута главная характеристика — Ловкость. Потом полезны Харизма и Телосложение.</p>
+            <p class="hint">Для плута главное: Ловкость. Потом Харизма и Телосложение.</p>
           </div>
         </div>
 
         <div class="card" style="margin-top:14px;">
-          <h3>Характеристики после расы</h3>
+          <h3>Характеристики после бонусов расы</h3>
           <div class="stats" id="statsView"></div>
-          <p class="hint">Большое число — итоговая характеристика. В кружке — модификатор. Именно его чаще всего прибавляют к к20.</p>
+          <p class="hint">В кружке указан модификатор. Обычно именно его прибавляют к к20.</p>
         </div>
 
         <div class="grid two" style="margin-top:14px;">
           <div class="card">
-            <h3>Навыки и экспертиза</h3>
-            <p class="hint">У плута два навыка с Экспертизой. Это значит, что бонус мастерства удваивается. По умолчанию: Скрытность и Ловкость рук.</p>
+            <h3>Навыки</h3>
+            <p class="hint">★ — экспертиза. ● — владение. У плута по умолчанию сильные Скрытность и Ловкость рук.</p>
             <div class="skill-list" id="skillsView"></div>
           </div>
 
@@ -1073,8 +1105,8 @@
 
             <div class="field">
               <label>Снаряжение</label>
-              <textarea id="equipment" data-bind="equipment" placeholder="Кожаный доспех, рапира, кинжалы..."></textarea>
-              <small>Можно писать вручную, как в обычном листе персонажа.</small>
+              <textarea id="equipment" data-bind="equipment"></textarea>
+              <small>Общий список вещей персонажа.</small>
             </div>
 
             <div id="weaponsView"></div>
@@ -1094,7 +1126,7 @@
             <div class="field">
               <label>Идеалы</label>
               <textarea id="ideals" data-bind="ideals"></textarea>
-              <small>Например: “Свобода важнее законов”.</small>
+              <small>Например: “Свобода важнее правил”.</small>
             </div>
           </div>
 
@@ -1104,7 +1136,7 @@
             <div class="field">
               <label>Кредо / привязанности</label>
               <textarea id="bonds" data-bind="bonds"></textarea>
-              <small>Например: “Я защищаю тех, кто однажды помог мне”.</small>
+              <small>Например: “Я защищаю тех, кто помог мне”.</small>
             </div>
 
             <div class="field">
@@ -1118,19 +1150,19 @@
 
       <section class="section" id="playSection">
         <div class="card">
-          <h3>Минимальный экран игрока</h3>
+          <h3>Игровой экран</h3>
 
           <div class="mini-grid" id="quickStats"></div>
 
           <div class="tabs">
             <button class="tab active" data-mode="combatMode">
               <b>Бой</b>
-              <span>Атака, урон, скрытая атака, защита</span>
+              <span>что кидать, атаки, урон</span>
             </button>
 
             <button class="tab" data-mode="exploreMode">
               <b>Вне боя</b>
-              <span>Общение, скрытность, взлом, проверки</span>
+              <span>общение, скрытность, взлом</span>
             </button>
           </div>
 
@@ -1143,23 +1175,22 @@
 
               <div>
                 <h4>Быстрый кубик</h4>
-
                 <div class="card">
                   <div class="field">
-                    <label>Выбери кубик</label>
+                    <label>Кубик</label>
                     <select id="diceSelect">
-                      <option value="20">к20 — проверки, атака, спасброски</option>
+                      <option value="20">к20 — атака, проверки, спасброски</option>
                       <option value="12">к12</option>
                       <option value="10">к10</option>
                       <option value="8">к8 — рапира</option>
-                      <option value="6">к6 — скрытая атака, короткий лук</option>
+                      <option value="6">к6 — скрытая атака / лук</option>
                       <option value="4">к4 — кинжал</option>
                     </select>
                   </div>
 
                   <button class="btn white" id="rollDiceBtn">Кинуть</button>
                   <div class="dice-result" id="diceResult">—</div>
-                  <p class="hint">На настоящей игре можно кидать физические кубики. Этот блок просто для тренировки.</p>
+                  <p class="hint">На игре можно кидать физические кубики. Это просто быстрый помощник.</p>
                 </div>
               </div>
             </div>
@@ -1181,10 +1212,186 @@
         </div>
       </section>
 
+      <section class="section" id="trackerSection">
+        <div class="grid two">
+          <div class="card">
+            <h3>Здоровье во время игры</h3>
+
+            <div class="tracker-hp">
+              <div class="hp-big">
+                <span>Текущие хиты</span>
+                <b id="currentHpView">0</b>
+                <div class="hp-bar"><div class="hp-fill" id="hpFill"></div></div>
+                <p class="hint" id="hpText"></p>
+              </div>
+
+              <div>
+                <div class="grid two">
+                  <div class="field">
+                    <label>Получил урон</label>
+                    <input id="damageInput" type="number" min="0" placeholder="например 5">
+                  </div>
+
+                  <div class="field">
+                    <label>Вылечился</label>
+                    <input id="healInput" type="number" min="0" placeholder="например 4">
+                  </div>
+                </div>
+
+                <div class="inline">
+                  <button class="small-btn" id="damageBtn">Применить урон</button>
+                  <button class="small-btn" id="healBtn">Применить лечение</button>
+                </div>
+
+                <div class="grid two" style="margin-top:12px;">
+                  <div class="field">
+                    <label>Временные хиты</label>
+                    <input id="tempHp" type="number" min="0">
+                    <small>Сначала урон снимается с временных хитов.</small>
+                  </div>
+
+                  <div class="field">
+                    <label>Использовано костей хитов</label>
+                    <input id="hitDiceUsed" type="number" min="0">
+                    <small>На коротком отдыхе можно тратить кости хитов.</small>
+                  </div>
+                </div>
+
+                <div class="inline">
+                  <button class="small-btn" id="shortRestBtn">Короткий отдых</button>
+                  <button class="small-btn" id="longRestBtn">Долгий отдых</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Спасброски от смерти</h3>
+
+            <p class="hint">Используется, если здоровье стало 0. На своём ходу кидаешь к20. 10 или выше — успех. 9 или ниже — неудача.</p>
+
+            <div class="grid two" style="margin-top:12px;">
+              <div>
+                <h4>Успехи</h4>
+                <div class="inline" id="deathSuccessBtns"></div>
+              </div>
+
+              <div>
+                <h4>Неудачи</h4>
+                <div class="inline" id="deathFailBtns"></div>
+              </div>
+            </div>
+
+            <button class="small-btn" id="resetDeathBtn" style="margin-top:12px;">Сбросить спасброски смерти</button>
+
+            <div class="field" style="margin-top:14px;">
+              <label>Вдохновение</label>
+              <select id="inspiration">
+                <option value="false">Нет</option>
+                <option value="true">Есть</option>
+              </select>
+              <small>Мастер может дать вдохновение за хорошую роль.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid two" style="margin-top:14px;">
+          <div class="card">
+            <h3>Деньги</h3>
+
+            <div class="money-grid" id="coinsView"></div>
+
+            <div class="grid three" style="margin-top:14px;">
+              <div class="field">
+                <label>Монета</label>
+                <select id="coinType">
+                  <option value="cp">Медь</option>
+                  <option value="sp">Серебро</option>
+                  <option value="ep">Электрум</option>
+                  <option value="gp">Золото</option>
+                  <option value="pp">Платина</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Количество</label>
+                <input id="coinAmount" type="number" min="0" placeholder="например 10">
+              </div>
+
+              <div class="field">
+                <label>Действие</label>
+                <div class="inline">
+                  <button class="small-btn" id="addCoinsBtn">+</button>
+                  <button class="small-btn" id="spendCoinsBtn">−</button>
+                </div>
+              </div>
+            </div>
+
+            <p class="hint">Когда получил награду — добавь монеты. Когда купил предмет — вычти.</p>
+          </div>
+
+          <div class="card">
+            <h3>Боеприпасы и расходники</h3>
+
+            <div class="grid two">
+              <div class="field">
+                <label>Стрелы</label>
+                <input id="arrows" type="number" min="0">
+              </div>
+
+              <div class="field">
+                <label>Болты</label>
+                <input id="bolts" type="number" min="0">
+              </div>
+            </div>
+
+            <div class="inline">
+              <button class="small-btn" id="useArrowBtn">−1 стрела</button>
+              <button class="small-btn" id="addArrowBtn">+1 стрела</button>
+              <button class="small-btn" id="useBoltBtn">−1 болт</button>
+              <button class="small-btn" id="addBoltBtn">+1 болт</button>
+            </div>
+
+            <div class="field" style="margin-top:14px;">
+              <label>Зелья / расходники</label>
+              <textarea id="consumables"></textarea>
+              <small>Например: Зелье лечения 1 шт, факелы 3 шт.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid two" style="margin-top:14px;">
+          <div class="card">
+            <h3>Инвентарь</h3>
+
+            <div id="inventoryView"></div>
+
+            <div class="item-row" style="margin-top:12px;">
+              <input id="newItemName" placeholder="Предмет">
+              <input id="newItemQty" type="number" min="1" value="1">
+              <input id="newItemNote" placeholder="Заметка">
+              <button class="small-btn" id="addItemBtn">+</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Состояния и заметки</h3>
+
+            <div class="condition-grid" id="conditionsView"></div>
+
+            <div class="field" style="margin-top:14px;">
+              <label>Заметки по игре</label>
+              <textarea id="sessionNotes"></textarea>
+              <small>NPC, квесты, места, долги, что нашли, куда идти дальше.</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="sheetSection">
         <div class="card">
           <h3>Лист персонажа A4</h3>
-          <p class="hint no-print">Это упрощённый лист на печать. Нажми “Печать A4” и выбери “Сохранить в PDF” или печать на принтере.</p>
+          <p class="hint no-print">Нажми “Печать A4”. В печати можно выбрать “Сохранить в PDF”.</p>
           <div class="sheet" id="printSheet"></div>
         </div>
       </section>
@@ -1207,6 +1414,7 @@
 
             <div class="inline" style="margin-top:12px;">
               <button class="small-btn" id="exportAllBtn">Скачать всех персонажей</button>
+
               <label class="small-btn" style="display:block;">
                 Импорт JSON
                 <input id="importFile" type="file" accept="application/json" style="display:none;">
@@ -1219,7 +1427,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "dnd_newbie_builder_v2";
+    const STORAGE_KEY = "dnd_newbie_builder_v3_runtime";
 
     const ABILITIES = {
       str: ["Сила", "Сил"],
@@ -1261,7 +1469,7 @@
         bonuses: { dex: 2, cha: 1 },
         languages: ["Общий", "Полуросликов"],
         features: [
-          ["Удача", "Если на к20 выпала 1, можешь перебросить этот кубик. Новый результат нужно принять."],
+          ["Удача", "Если на к20 выпала 1, можешь перебросить кубик. Новый результат нужно принять."],
           ["Храбрый", "Спасброски от испуга совершаешь с преимуществом."],
           ["Проворство полуросликов", "Можешь проходить через пространство существ, которые больше тебя."],
           ["Естественная скрытность", "Можешь пытаться спрятаться за существом, которое больше тебя хотя бы на 1 размер."]
@@ -1311,7 +1519,6 @@
       rogue: {
         name: "Плут",
         hitDie: 8,
-        main: ["dex"],
         saves: ["dex", "int"],
         armor: "Лёгкие доспехи",
         prof: "Лёгкие доспехи, простое оружие, рапиры, короткие мечи, ручные арбалеты, воровские инструменты",
@@ -1322,13 +1529,11 @@
           ["Скрытая атака", "1 раз за ход добавь +1к6 урона, если есть преимущество на атаку или союзник стоит рядом с целью."],
           ["Экспертиза", "Два навыка получают удвоенный бонус мастерства. Удобно взять Скрытность и Ловкость рук."],
           ["Воровской жаргон", "Ты понимаешь тайные знаки, намёки и шифры преступников."]
-        ],
-        newbie: "Плут играет не как танк. Он ищет момент, бьёт точно, прячется, вскрывает замки, обманывает и замечает детали."
+        ]
       },
       fighter: {
         name: "Воин",
         hitDie: 10,
-        main: ["str", "dex", "con"],
         saves: ["str", "con"],
         armor: "Все доспехи и щиты",
         prof: "Все доспехи, щиты, простое и воинское оружие",
@@ -1336,15 +1541,13 @@
         expertise: [],
         order: ["str", "con", "dex", "wis", "cha", "int"],
         features: [
-          ["Боевой стиль", "Выбирается отдельно. Воин хорошо работает с оружием и бронёй."],
-          ["Второе дыхание", "Можно немного восстановить здоровье в бою."]
-        ],
-        newbie: "Воин проще всего в бою: держит линию, принимает удары, атакует оружием."
+          ["Второе дыхание", "Можно немного восстановить здоровье в бою."],
+          ["Боевой стиль", "Выбирается отдельно и задаёт стиль боя."]
+        ]
       },
       wizard: {
         name: "Волшебник",
         hitDie: 6,
-        main: ["int"],
         saves: ["int", "wis"],
         armor: "Нет",
         prof: "Кинжалы, посохи, дротики, пращи, лёгкие арбалеты",
@@ -1354,13 +1557,11 @@
         features: [
           ["Заклинания", "Основная сила волшебника. Нужно выбрать заклинания отдельно."],
           ["Книга заклинаний", "В ней записаны доступные заклинания."]
-        ],
-        newbie: "Волшебник сильный, но хрупкий. Лучше держаться сзади и использовать заклинания."
+        ]
       },
       cleric: {
         name: "Жрец",
         hitDie: 8,
-        main: ["wis"],
         saves: ["wis", "cha"],
         armor: "Лёгкие и средние доспехи, щиты",
         prof: "Простое оружие, лёгкие и средние доспехи, щиты",
@@ -1370,8 +1571,7 @@
         features: [
           ["Заклинания", "Жрец умеет лечить, защищать и наносить урон магией."],
           ["Божественный домен", "Выбирается отдельно и задаёт стиль жреца."]
-        ],
-        newbie: "Жрец помогает группе, лечит, защищает и может стоять ближе к бою."
+        ]
       }
     };
 
@@ -1379,7 +1579,7 @@
       criminal: {
         name: "Преступник",
         skills: ["deception", "stealth"],
-        text: "Ты знаешь криминальный мир: тайные встречи, осторожные фразы, подозрительных людей и обходные пути."
+        text: "Ты знаешь криминальный мир, тайные встречи, осторожные фразы и обходные пути."
       },
       charlatan: {
         name: "Шарлатан",
@@ -1399,25 +1599,59 @@
     };
 
     const ALIGNMENTS = {
-      lg: ["Законно-добрый", "Делает добро и уважает правила. Пример: рыцарь, который защищает слабых по кодексу."],
+      lg: ["Законно-добрый", "Делает добро и уважает правила."],
       ng: ["Нейтрально-добрый", "Старается делать добро, даже если правила мешают."],
       cg: ["Хаотично-добрый", "Добрый, но свободолюбивый. Может нарушить закон ради правильного дела."],
-      ln: ["Законно-нейтральный", "Для него важны порядок, договоры, традиции или кодекс."],
-      n: ["Истинно-нейтральный", "Не герой и не злодей. Действует по ситуации и личной логике."],
+      ln: ["Законно-нейтральный", "Важны порядок, договоры, традиции или кодекс."],
+      n: ["Истинно-нейтральный", "Действует по ситуации и личной логике."],
       cn: ["Хаотично-нейтральный", "Любит свободу, действует непредсказуемо, не любит контроль."],
       le: ["Законно-злой", "Злодей с правилами. Использует закон, власть или договоры ради себя."],
-      ne: ["Нейтрально-злой", "Думает о выгоде и себе. Может вредить без лишней идеологии."],
-      ce: ["Хаотично-злой", "Опасный, жестокий, разрушительный. Для новичка лучше не брать без согласия мастера."]
+      ne: ["Нейтрально-злой", "Думает о выгоде и себе."],
+      ce: ["Хаотично-злой", "Опасный и разрушительный. Для новичка лучше не брать без согласия мастера."]
     };
 
     const WEAPONS = {
-      rapier: { name: "Рапира", die: "1к8", damageDie: 8, stat: "dex", type: "колющий", finesse: true },
-      dagger: { name: "Кинжал", die: "1к4", damageDie: 4, stat: "dex", type: "колющий", finesse: true, note: "можно метать 20/60 футов" },
-      shortbow: { name: "Короткий лук", die: "1к6", damageDie: 6, stat: "dex", type: "колющий", ranged: true, note: "дистанция 80/320 футов" },
-      shortsword: { name: "Короткий меч", die: "1к6", damageDie: 6, stat: "dex", type: "колющий", finesse: true },
-      club: { name: "Дубинка", die: "1к4", damageDie: 4, stat: "str", type: "дробящий" },
-      staff: { name: "Посох", die: "1к6", damageDie: 6, stat: "str", type: "дробящий" }
+      rapier: { name: "Рапира", die: "1к8", stat: "dex", type: "колющий" },
+      dagger: { name: "Кинжал", die: "1к4", stat: "dex", type: "колющий", note: "можно метать 20/60 футов" },
+      shortbow: { name: "Короткий лук", die: "1к6", stat: "dex", type: "колющий", note: "дистанция 80/320 футов" },
+      shortsword: { name: "Короткий меч", die: "1к6", stat: "dex", type: "колющий" },
+      club: { name: "Дубинка", die: "1к4", stat: "str", type: "дробящий" },
+      staff: { name: "Посох", die: "1к6", stat: "str", type: "дробящий" }
     };
+
+    const CONDITIONS = [
+      "Испуган",
+      "Отравлен",
+      "Сбит с ног",
+      "Ослеплён",
+      "Оглушён",
+      "Парализован",
+      "Невидим",
+      "Опутан",
+      "Очарован",
+      "Без сознания",
+      "Ошеломлён",
+      "Недееспособен"
+    ];
+
+    function defaultRuntime() {
+      return {
+        currentHp: 9,
+        tempHp: 0,
+        hitDiceUsed: 0,
+        inspiration: false,
+        deathSaves: { success: 0, fail: 0 },
+        ammo: { arrows: 20, bolts: 0 },
+        coins: { cp: 0, sp: 0, ep: 0, gp: 15, pp: 0 },
+        consumables: "Зелье лечения — 1 шт.",
+        inventory: [
+          { name: "Воровские инструменты", qty: 1, note: "вскрытие замков и ловушек" },
+          { name: "Тёмная одежда с капюшоном", qty: 1, note: "для скрытности" }
+        ],
+        conditions: [],
+        notes: ""
+      };
+    }
 
     function defaultCharacter() {
       return {
@@ -1431,14 +1665,7 @@
         xp: 0,
         alignment: "cg",
         rolls: [15, 14, 13, 12, 10, 8],
-        base: {
-          str: 8,
-          dex: 15,
-          con: 13,
-          int: 10,
-          wis: 12,
-          cha: 14
-        },
+        base: { str: 8, dex: 15, con: 13, int: 10, wis: 12, cha: 14 },
         weapon1: "rapier",
         weapon2: "dagger",
         weapon3: "shortbow",
@@ -1446,34 +1673,47 @@
         personality: "Я говорю спокойно, но всегда смотрю, где выход и кто за мной наблюдает.",
         ideals: "Свобода важнее правил. Иногда закон мешает сделать правильно.",
         bonds: "Я защищаю тех, кто однажды помог мне.",
-        flaws: "Не могу пройти мимо лёгкой наживы."
+        flaws: "Не могу пройти мимо лёгкой наживы.",
+        runtime: defaultRuntime()
       };
     }
 
-    let state = {
-      currentId: null,
-      characters: []
-    };
+    let state = { currentId: null, characters: [] };
 
-    const $ = (id) => document.getElementById(id);
+    const $ = id => document.getElementById(id);
+
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
 
     function load() {
       try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
         if (saved && saved.characters && saved.characters.length) {
           state = saved;
+          state.characters.forEach(normalizeCharacter);
+          if (!state.currentId) state.currentId = state.characters[0].id;
+          save();
           return;
         }
-      } catch (e) {}
+      } catch(e) {}
 
       const c = defaultCharacter();
-      state.characters = [c];
-      state.currentId = c.id;
+      state = { currentId: c.id, characters: [c] };
       save();
     }
 
-    function save() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    function normalizeCharacter(c) {
+      const d = defaultCharacter();
+
+      c.base = { ...d.base, ...(c.base || {}) };
+      c.rolls = c.rolls || d.rolls;
+      c.runtime = { ...defaultRuntime(), ...(c.runtime || {}) };
+      c.runtime.deathSaves = { ...defaultRuntime().deathSaves, ...(c.runtime.deathSaves || {}) };
+      c.runtime.ammo = { ...defaultRuntime().ammo, ...(c.runtime.ammo || {}) };
+      c.runtime.coins = { ...defaultRuntime().coins, ...(c.runtime.coins || {}) };
+      c.runtime.inventory = c.runtime.inventory || [];
+      c.runtime.conditions = c.runtime.conditions || [];
     }
 
     function current() {
@@ -1482,22 +1722,15 @@
         c = state.characters[0] || defaultCharacter();
         state.currentId = c.id;
       }
+      normalizeCharacter(c);
       return c;
     }
 
-    function cls(c = current()) {
-      return CLASSES[c.classKey] || CLASSES.rogue;
-    }
+    function cls(c=current()) { return CLASSES[c.classKey] || CLASSES.rogue; }
+    function race(c=current()) { return RACES[c.raceKey] || RACES.lightfootHalfling; }
+    function bg(c=current()) { return BACKGROUNDS[c.backgroundKey] || BACKGROUNDS.criminal; }
 
-    function race(c = current()) {
-      return RACES[c.raceKey] || RACES.lightfootHalfling;
-    }
-
-    function bg(c = current()) {
-      return BACKGROUNDS[c.backgroundKey] || BACKGROUNDS.criminal;
-    }
-
-    function pb(c = current()) {
+    function pb(c=current()) {
       const lvl = Number(c.level || 1);
       if (lvl >= 17) return 6;
       if (lvl >= 13) return 5;
@@ -1515,50 +1748,40 @@
       return n >= 0 ? "+" + n : String(n);
     }
 
-    function totalAbility(c, key) {
+    function totalAbility(c,key) {
       return Number(c.base[key] || 0) + Number(race(c).bonuses[key] || 0);
     }
 
-    function abilityMod(c, key) {
-      return mod(totalAbility(c, key));
+    function abilityMod(c,key) {
+      return mod(totalAbility(c,key));
     }
 
     function profSkills(c) {
-      const set = new Set();
-      cls(c).defaultSkills.forEach(x => set.add(x));
-      bg(c).skills.forEach(x => set.add(x));
-      return [...set];
+      const s = new Set();
+      cls(c).defaultSkills.forEach(x => s.add(x));
+      bg(c).skills.forEach(x => s.add(x));
+      return [...s];
     }
 
-    function skillBonus(c, key) {
+    function skillBonus(c,key) {
       const ability = SKILLS[key][1];
-      let value = abilityMod(c, ability);
+      let value = abilityMod(c,ability);
 
-      if (profSkills(c).includes(key)) {
-        value += pb(c);
-      }
-
-      if (cls(c).expertise.includes(key)) {
-        value += pb(c);
-      }
+      if (profSkills(c).includes(key)) value += pb(c);
+      if (cls(c).expertise.includes(key)) value += pb(c);
 
       return value;
     }
 
-    function computed(c = current()) {
+    function computed(c=current()) {
       const cl = cls(c);
-      const r = race(c);
-      const proficiency = pb(c);
-      const dex = abilityMod(c, "dex");
-      const con = abilityMod(c, "con");
-
+      const dex = abilityMod(c,"dex");
+      const con = abilityMod(c,"con");
       const skills = {};
-      Object.keys(SKILLS).forEach(k => skills[k] = skillBonus(c, k));
-
       const saves = {};
-      Object.keys(ABILITIES).forEach(k => {
-        saves[k] = abilityMod(c, k) + (cl.saves.includes(k) ? proficiency : 0);
-      });
+
+      Object.keys(SKILLS).forEach(k => skills[k] = skillBonus(c,k));
+      Object.keys(ABILITIES).forEach(k => saves[k] = abilityMod(c,k) + (cl.saves.includes(k) ? pb(c) : 0));
 
       let ac = 10 + dex;
       if (c.classKey === "rogue") ac = 11 + dex;
@@ -1566,48 +1789,48 @@
       if (c.classKey === "cleric") ac = 16;
 
       return {
-        pb: proficiency,
+        pb: pb(c),
         ac,
-        hp: cl.hitDie + con,
+        maxHp: Math.max(1, cl.hitDie + con),
+        hitDie: cl.hitDie,
         initiative: dex,
-        speed: r.speed,
+        speed: race(c).speed,
         passivePerception: 10 + skills.perception,
         skills,
         saves
       };
     }
 
-    function weaponCalc(c, key) {
+    function weaponCalc(c,key) {
       const w = WEAPONS[key] || WEAPONS.rapier;
       const co = computed(c);
-      const stat = w.stat || "dex";
-      const m = abilityMod(c, stat);
+      const m = abilityMod(c,w.stat);
       const attack = m + co.pb;
       const damage = `${w.die}${fmt(m)} ${w.type}`;
-      const sneak = c.classKey === "rogue" ? ` + 1к6 скрытая атака` : "";
+      const sneak = c.classKey === "rogue" ? " + 1к6 скрытая атака" : "";
       return { w, attack, damage, sneak };
     }
 
     function escapeHTML(str) {
-      return String(str ?? "").replace(/[&<>"']/g, (m) => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
+      return String(str ?? "").replace(/[&<>"']/g, m => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
       }[m]));
     }
 
     function setupSelects() {
-      $("classKey").innerHTML = Object.entries(CLASSES).map(([k, v]) => `<option value="${k}">${v.name}</option>`).join("");
-      $("raceKey").innerHTML = Object.entries(RACES).map(([k, v]) => `<option value="${k}">${v.name}</option>`).join("");
-      $("backgroundKey").innerHTML = Object.entries(BACKGROUNDS).map(([k, v]) => `<option value="${k}">${v.name}</option>`).join("");
-      $("alignment").innerHTML = Object.entries(ALIGNMENTS).map(([k, v]) => `<option value="${k}">${v[0]}</option>`).join("");
+      $("classKey").innerHTML = Object.entries(CLASSES).map(([k,v]) => `<option value="${k}">${v.name}</option>`).join("");
+      $("raceKey").innerHTML = Object.entries(RACES).map(([k,v]) => `<option value="${k}">${v.name}</option>`).join("");
+      $("backgroundKey").innerHTML = Object.entries(BACKGROUNDS).map(([k,v]) => `<option value="${k}">${v.name}</option>`).join("");
+      $("alignment").innerHTML = Object.entries(ALIGNMENTS).map(([k,v]) => `<option value="${k}">${v[0]}</option>`).join("");
 
-      const weaponOptions = Object.entries(WEAPONS).map(([k, v]) => `<option value="${k}">${v.name}</option>`).join("");
-      $("weapon1").innerHTML = weaponOptions;
-      $("weapon2").innerHTML = weaponOptions;
-      $("weapon3").innerHTML = weaponOptions;
+      const weapons = Object.entries(WEAPONS).map(([k,v]) => `<option value="${k}">${v.name}</option>`).join("");
+      $("weapon1").innerHTML = weapons;
+      $("weapon2").innerHTML = weapons;
+      $("weapon3").innerHTML = weapons;
     }
 
     function hydrateInputs() {
@@ -1617,30 +1840,8 @@
           const key = el.dataset.bind;
           c[key] = el.type === "number" ? Number(el.value) : el.value;
 
-          if (key === "classKey") {
-            autoAssign(false);
-          }
+          if (key === "classKey") autoAssign(false);
 
-          save();
-          render();
-        });
-      });
-    }
-
-    function renderRolls(c) {
-      const labels = ["Бросок 1", "Бросок 2", "Бросок 3", "Бросок 4", "Бросок 5", "Бросок 6"];
-      $("rollFields").innerHTML = labels.map((label, i) => `
-        <div class="field">
-          <label>${label}</label>
-          <input type="number" min="3" max="18" value="${c.rolls[i] || ""}" data-roll="${i}" placeholder="например 15">
-          <small>Впиши число, которое выпало.</small>
-        </div>
-      `).join("");
-
-      document.querySelectorAll("[data-roll]").forEach(input => {
-        input.addEventListener("input", () => {
-          const c = current();
-          c.rolls[Number(input.dataset.roll)] = Number(input.value || 0);
           save();
           render();
         });
@@ -1656,34 +1857,55 @@
       $("alignmentHint").textContent = ALIGNMENTS[c.alignment]?.[1] || "";
     }
 
+    function renderRolls(c) {
+      const labels = ["Бросок 1","Бросок 2","Бросок 3","Бросок 4","Бросок 5","Бросок 6"];
+
+      $("rollFields").innerHTML = labels.map((label,i) => `
+        <div class="field">
+          <label>${label}</label>
+          <input type="number" min="3" max="18" value="${c.rolls[i] || ""}" data-roll="${i}" placeholder="например 15">
+          <small>Впиши число с кубиков.</small>
+        </div>
+      `).join("");
+
+      document.querySelectorAll("[data-roll]").forEach(input => {
+        input.addEventListener("input", () => {
+          const c = current();
+          c.rolls[Number(input.dataset.roll)] = Number(input.value || 0);
+          save();
+          render();
+        });
+      });
+    }
+
     function renderPills(c) {
       const r = race(c);
       const cl = cls(c);
-      const bonuses = Object.entries(r.bonuses).map(([k, v]) => `${ABILITIES[k][0]} +${v}`).join(", ");
+      const bonuses = Object.entries(r.bonuses).map(([k,v]) => `${ABILITIES[k][0]} +${v}`).join(", ");
 
       $("raceClassPills").innerHTML = `
         <span class="pill">Раса: ${r.name}</span>
+        <span class="pill">Класс: ${cl.name}</span>
         <span class="pill">Размер: ${r.size}</span>
         <span class="pill">Скорость: ${r.speed} футов</span>
-        <span class="pill">Бонусы: ${bonuses}</span>
-        <span class="pill">Класс: ${cl.name}</span>
+        <span class="pill">Бонусы: ${bonuses || "нет"}</span>
         <span class="pill">Бонус мастерства: ${fmt(pb(c))}</span>
       `;
     }
 
     function renderStats(c) {
-      $("statsView").innerHTML = Object.entries(ABILITIES).map(([k, v]) => {
+      $("statsView").innerHTML = Object.entries(ABILITIES).map(([k,v]) => {
         const base = Number(c.base[k] || 0);
-        const raceBonus = Number(race(c).bonuses[k] || 0);
-        const total = totalAbility(c, k);
-        const m = abilityMod(c, k);
+        const rb = Number(race(c).bonuses[k] || 0);
+        const total = totalAbility(c,k);
+        const m = abilityMod(c,k);
 
         return `
           <div class="stat">
             <div class="name">${v[0]}</div>
             <div class="score">${total}</div>
             <div class="mod">${fmt(m)}</div>
-            <div class="base">база ${base}${raceBonus ? ` + раса ${raceBonus}` : ""}</div>
+            <div class="base">база ${base}${rb ? ` + раса ${rb}` : ""}</div>
           </div>
         `;
       }).join("");
@@ -1691,27 +1913,24 @@
 
     function renderSkills(c) {
       const prof = profSkills(c);
-      const expertise = cls(c).expertise;
+      const exp = cls(c).expertise;
 
-      $("skillsView").innerHTML = Object.entries(SKILLS).map(([k, v]) => {
-        const isProf = prof.includes(k);
-        const isExpert = expertise.includes(k);
-
+      $("skillsView").innerHTML = Object.entries(SKILLS).map(([k,v]) => {
         let mark = "○";
-        if (isProf) mark = "●";
-        if (isExpert) mark = "★";
+        if (prof.includes(k)) mark = "●";
+        if (exp.includes(k)) mark = "★";
 
         return `
           <div class="skill">
             <span>${mark} ${v[0]} <small style="color:#888;">(${ABILITIES[v[1]][1]})</small></span>
-            <b>${fmt(skillBonus(c, k))}</b>
+            <b>${fmt(skillBonus(c,k))}</b>
           </div>
         `;
       }).join("");
     }
 
     function renderWeapons(c) {
-      const weapons = [c.weapon1, c.weapon2, c.weapon3].map(k => weaponCalc(c, k));
+      const list = [c.weapon1,c.weapon2,c.weapon3].map(k => weaponCalc(c,k));
 
       $("weaponsView").innerHTML = `
         <div class="weapon-row head">
@@ -1719,8 +1938,7 @@
           <div>Атака</div>
           <div>Урон</div>
         </div>
-
-        ${weapons.map(({ w, attack, damage, sneak }) => `
+        ${list.map(({w,attack,damage,sneak}) => `
           <div class="weapon-row">
             <div>
               <b>${w.name}</b>
@@ -1735,64 +1953,60 @@
 
     function renderQuick(c) {
       const co = computed(c);
+      const rt = c.runtime;
 
       $("quickStats").innerHTML = `
-        <div class="mini"><span>Класс брони</span><b>${co.ac}</b></div>
+        <div class="mini"><span>КД</span><b>${co.ac}</b></div>
+        <div class="mini"><span>Хиты</span><b>${rt.currentHp}/${co.maxHp}</b></div>
         <div class="mini"><span>Инициатива</span><b>${fmt(co.initiative)}</b></div>
         <div class="mini"><span>Скорость</span><b>${co.speed}</b></div>
-        <div class="mini"><span>Хиты</span><b>${co.hp}</b></div>
       `;
     }
 
     function renderCombatTips(c) {
       const co = computed(c);
-      const mainWeapon = weaponCalc(c, c.weapon1);
+      const rt = c.runtime;
+      const main = weaponCalc(c,c.weapon1);
 
       $("combatTips").innerHTML = `
         <details class="tip" open>
           <summary>1. Начался бой <span>${fmt(co.initiative)}</span></summary>
           <p>Мастер говорит: “Кидайте инициативу”.</p>
           <div class="formula">Кинь к20 ${fmt(co.initiative)}</div>
-          <p>Результат показывает, когда ты ходишь.</p>
         </details>
 
         <details class="tip" open>
-          <summary>2. Атака оружием <span>${fmt(mainWeapon.attack)}</span></summary>
-          <p>Ты выбираешь цель и говоришь, чем атакуешь. Например: “Бью рапирой”.</p>
-          <div class="formula">Атака: к20 ${fmt(mainWeapon.attack)}</div>
+          <summary>2. Атака оружием <span>${fmt(main.attack)}</span></summary>
+          <p>Скажи, кого и чем атакуешь. Например: “Бью рапирой”.</p>
+          <div class="formula">Атака: к20 ${fmt(main.attack)}</div>
           <p>Если результат равен или выше КД врага, ты попал.</p>
         </details>
 
         <details class="tip" open>
-          <summary>3. Урон <span>${mainWeapon.w.die}</span></summary>
-          <p>Если попал, кидай урон оружия.</p>
-          <div class="formula">Урон: ${mainWeapon.damage}</div>
+          <summary>3. Урон <span>${main.w.die}</span></summary>
+          <p>Если попал, кидай урон.</p>
+          <div class="formula">Урон: ${main.damage}</div>
         </details>
 
         <details class="tip" open>
           <summary>4. Скрытая атака <span>+1к6</span></summary>
-          <p>Для плута это главное. Добавь +1к6 урона один раз за ход, если есть условие.</p>
-          <div class="formula">Урон плута: ${mainWeapon.damage} + 1к6</div>
+          <p>Главная штука плута. Добавь +1к6 урона один раз за ход, если есть условие.</p>
+          <div class="formula">Урон плута: ${main.damage} + 1к6</div>
           <p><b>Условие 1:</b> рядом с врагом стоит твой союзник.</p>
           <p><b>Условие 2:</b> ты атаковал с преимуществом.</p>
           <p>Фраза за столом: “Могу ли я добавить скрытую атаку?”</p>
         </details>
 
         <details class="tip">
-          <summary>5. Если тебя атакуют <span>КД ${co.ac}</span></summary>
-          <p>Враг кидает атаку против твоего Класса брони.</p>
-          <div class="formula">Если враг выбросил ${co.ac} или больше — он попал.</div>
+          <summary>5. Если тебя ударили <span>трекер</span></summary>
+          <p>Открой “Трекер” и введи, сколько урона нанёс враг.</p>
+          <div class="formula">Текущие хиты: ${rt.currentHp}/${co.maxHp}</div>
         </details>
 
         <details class="tip">
-          <summary>6. Если мастер говорит “спасбросок” <span>к20</span></summary>
-          <p>Смотри нужный спасбросок. Плут хорошо спасается Ловкостью и Интеллектом.</p>
+          <summary>6. Спасброски <span>к20</span></summary>
+          <p>Если мастер говорит “спасбросок Ловкости”, смотри бонус ниже.</p>
           <div class="formula">Ловкость: к20 ${fmt(co.saves.dex)} · Интеллект: к20 ${fmt(co.saves.int)}</div>
-        </details>
-
-        <details class="tip">
-          <summary>7. Что плуту лучше делать в бою <span>тактика</span></summary>
-          <p>Не стой первым в толпе. Лучше держись рядом с союзником, бей врага, рядом с которым уже стоит союзник, или прячься и стреляй.</p>
         </details>
       `;
     }
@@ -1803,43 +2017,37 @@
       $("exploreTips").innerHTML = `
         <details class="tip" open>
           <summary>Скрытно пройти <span>${fmt(co.skills.stealth)}</span></summary>
-          <p>Когда хочешь пройти тихо, спрятаться или следить за кем-то.</p>
+          <p>Красться, спрятаться, следить за кем-то, пройти незаметно.</p>
           <div class="formula">Скрытность: к20 ${fmt(co.skills.stealth)}</div>
         </details>
 
         <details class="tip" open>
           <summary>Украсть / спрятать предмет <span>${fmt(co.skills.sleight)}</span></summary>
-          <p>Когда хочешь незаметно взять ключ, спрятать кинжал, подменить предмет.</p>
+          <p>Незаметно взять ключ, спрятать кинжал, подменить предмет.</p>
           <div class="formula">Ловкость рук: к20 ${fmt(co.skills.sleight)}</div>
         </details>
 
         <details class="tip" open>
-          <summary>Вскрыть замок <span>${fmt(abilityMod(c, "dex") + co.pb)}</span></summary>
-          <p>Используй воровские инструменты. Скажи мастеру: “Пробую вскрыть замок”.</p>
-          <div class="formula">Воровские инструменты: к20 ${fmt(abilityMod(c, "dex") + co.pb)}</div>
+          <summary>Вскрыть замок <span>${fmt(abilityMod(c,"dex") + co.pb)}</span></summary>
+          <p>Скажи мастеру: “Пробую вскрыть замок воровскими инструментами”.</p>
+          <div class="formula">Воровские инструменты: к20 ${fmt(abilityMod(c,"dex") + co.pb)}</div>
         </details>
 
         <details class="tip">
           <summary>Соврать или притвориться <span>${fmt(co.skills.deception)}</span></summary>
-          <p>Когда хочешь обмануть стражника, сыграть роль, придумать убедительную ложь.</p>
+          <p>Обмануть стражника, сыграть роль, придумать легенду.</p>
           <div class="formula">Обман: к20 ${fmt(co.skills.deception)}</div>
         </details>
 
         <details class="tip">
           <summary>Заметить опасность <span>${fmt(co.skills.perception)}</span></summary>
-          <p>Когда слушаешь за дверью, ищешь ловушку, замечаешь слежку или движение.</p>
+          <p>Услышать шаги, увидеть ловушку, заметить слежку.</p>
           <div class="formula">Восприятие: к20 ${fmt(co.skills.perception)}</div>
         </details>
 
         <details class="tip">
-          <summary>Разобраться в механизме <span>${fmt(co.skills.investigation)}</span></summary>
-          <p>Когда ищешь тайный рычаг, изучаешь ловушку, анализируешь следы.</p>
-          <div class="formula">Расследование: к20 ${fmt(co.skills.investigation)}</div>
-        </details>
-
-        <details class="tip">
-          <summary>Маленький рост полурослика <span>${race(c).size}</span></summary>
-          <p>Можешь просить мастера использовать размер: пролезть в узкое место, спрятаться за большим союзником, пройти под столом или затеряться в толпе.</p>
+          <summary>Маленький рост <span>${race(c).size}</span></summary>
+          <p>Можно просить мастера использовать размер: пролезть в щель, спрятаться за союзником, пройти под столом.</p>
         </details>
       `;
     }
@@ -1848,7 +2056,7 @@
       const co = computed(c);
 
       const rows = [
-        ["Меня спрашивает стражник, я вру", "Обман", co.skills.deception],
+        ["Стражник спрашивает, я вру", "Обман", co.skills.deception],
         ["Хочу договориться честно", "Убеждение", co.skills.persuasion],
         ["Хочу понять, врёт ли персонаж", "Проницательность", co.skills.insight],
         ["Хочу пройти по карнизу", "Акробатика", co.skills.acrobatics],
@@ -1858,7 +2066,7 @@
         ["Хочу запугать бандита", "Запугивание", co.skills.intimidation]
       ];
 
-      $("situationTips").innerHTML = rows.map(([text, skill, bonus]) => `
+      $("situationTips").innerHTML = rows.map(([text,skill,bonus]) => `
         <details class="tip">
           <summary>${text} <span>${fmt(bonus)}</span></summary>
           <div class="formula">${skill}: к20 ${fmt(bonus)}</div>
@@ -1866,118 +2074,204 @@
       `).join("");
     }
 
+    function renderTracker(c) {
+      const co = computed(c);
+      const rt = c.runtime;
+
+      rt.currentHp = Math.max(0, Math.min(Number(rt.currentHp || 0), co.maxHp));
+      rt.tempHp = Math.max(0, Number(rt.tempHp || 0));
+
+      $("currentHpView").textContent = rt.currentHp;
+      $("hpText").textContent = `Максимум: ${co.maxHp}. Временные хиты: ${rt.tempHp}.`;
+      $("hpFill").style.width = `${Math.max(0, Math.min(100, (rt.currentHp / co.maxHp) * 100))}%`;
+
+      $("tempHp").value = rt.tempHp;
+      $("hitDiceUsed").value = rt.hitDiceUsed || 0;
+      $("inspiration").value = String(Boolean(rt.inspiration));
+      $("arrows").value = rt.ammo.arrows || 0;
+      $("bolts").value = rt.ammo.bolts || 0;
+      $("consumables").value = rt.consumables || "";
+      $("sessionNotes").value = rt.notes || "";
+
+      const coinNames = {
+        cp: "медь",
+        sp: "серебро",
+        ep: "электрум",
+        gp: "золото",
+        pp: "платина"
+      };
+
+      $("coinsView").innerHTML = Object.entries(coinNames).map(([k,name]) => `
+        <div class="money">
+          <span>${name}</span>
+          <b>${rt.coins[k] || 0}</b>
+        </div>
+      `).join("");
+
+      renderDeathButtons();
+      renderInventory();
+      renderConditions();
+
+      save();
+    }
+
+    function renderDeathButtons() {
+      const c = current();
+      const ds = c.runtime.deathSaves;
+
+      $("deathSuccessBtns").innerHTML = [1,2,3].map(n => `
+        <button class="small-btn ${ds.success >= n ? "white" : ""}" data-death-success="${n}">${n}</button>
+      `).join("");
+
+      $("deathFailBtns").innerHTML = [1,2,3].map(n => `
+        <button class="small-btn ${ds.fail >= n ? "white" : ""}" data-death-fail="${n}">${n}</button>
+      `).join("");
+
+      document.querySelectorAll("[data-death-success]").forEach(btn => {
+        btn.onclick = () => {
+          current().runtime.deathSaves.success = Number(btn.dataset.deathSuccess);
+          save();
+          render();
+        };
+      });
+
+      document.querySelectorAll("[data-death-fail]").forEach(btn => {
+        btn.onclick = () => {
+          current().runtime.deathSaves.fail = Number(btn.dataset.deathFail);
+          save();
+          render();
+        };
+      });
+    }
+
+    function renderInventory() {
+      const c = current();
+      const inv = c.runtime.inventory || [];
+
+      $("inventoryView").innerHTML = inv.length ? inv.map((item,i) => `
+        <div class="item-row">
+          <input value="${escapeHTML(item.name)}" data-item-name="${i}">
+          <input type="number" min="0" value="${Number(item.qty || 1)}" data-item-qty="${i}">
+          <input value="${escapeHTML(item.note || "")}" data-item-note="${i}">
+          <button class="small-btn" data-item-delete="${i}">×</button>
+        </div>
+      `).join("") : `<div class="empty">Пока нет предметов.</div>`;
+
+      document.querySelectorAll("[data-item-name]").forEach(input => {
+        input.oninput = () => {
+          c.runtime.inventory[Number(input.dataset.itemName)].name = input.value;
+          save();
+        };
+      });
+
+      document.querySelectorAll("[data-item-qty]").forEach(input => {
+        input.oninput = () => {
+          c.runtime.inventory[Number(input.dataset.itemQty)].qty = Number(input.value || 0);
+          save();
+          renderSheet(c);
+        };
+      });
+
+      document.querySelectorAll("[data-item-note]").forEach(input => {
+        input.oninput = () => {
+          c.runtime.inventory[Number(input.dataset.itemNote)].note = input.value;
+          save();
+        };
+      });
+
+      document.querySelectorAll("[data-item-delete]").forEach(btn => {
+        btn.onclick = () => {
+          c.runtime.inventory.splice(Number(btn.dataset.itemDelete),1);
+          save();
+          render();
+        };
+      });
+    }
+
+    function renderConditions() {
+      const c = current();
+
+      $("conditionsView").innerHTML = CONDITIONS.map(name => {
+        const active = c.runtime.conditions.includes(name);
+        return `<button class="condition ${active ? "active" : ""}" data-condition="${name}">${name}</button>`;
+      }).join("");
+
+      document.querySelectorAll("[data-condition]").forEach(btn => {
+        btn.onclick = () => {
+          const name = btn.dataset.condition;
+          const arr = c.runtime.conditions;
+
+          if (arr.includes(name)) {
+            c.runtime.conditions = arr.filter(x => x !== name);
+          } else {
+            c.runtime.conditions.push(name);
+          }
+
+          save();
+          render();
+        };
+      });
+    }
+
     function renderSheet(c) {
       const co = computed(c);
+      const rt = c.runtime;
       const r = race(c);
       const cl = cls(c);
       const b = bg(c);
-      const weapons = [c.weapon1, c.weapon2, c.weapon3].map(k => weaponCalc(c, k));
+      const weapons = [c.weapon1,c.weapon2,c.weapon3].map(k => weaponCalc(c,k));
 
-      const statsHTML = Object.entries(ABILITIES).map(([k, v]) => `
-        <div class="paper-row"><span>${v[0]}</span><b>${totalAbility(c, k)} (${fmt(abilityMod(c, k))})</b></div>
+      const stats = Object.entries(ABILITIES).map(([k,v]) => `
+        <div class="paper-row"><span>${v[0]}</span><b>${totalAbility(c,k)} (${fmt(abilityMod(c,k))})</b></div>
       `).join("");
 
-      const savesHTML = Object.entries(ABILITIES).map(([k, v]) => `
-        <div class="paper-row"><span>${cl.saves.includes(k) ? "●" : "○"} ${v[0]}</span><b>${fmt(co.saves[k])}</b></div>
+      const skills = Object.entries(SKILLS).map(([k,v]) => `
+        <div class="paper-row"><span>${v[0]}</span><b>${fmt(co.skills[k])}</b></div>
       `).join("");
 
-      const skillsHTML = Object.entries(SKILLS).map(([k, v]) => `
-        <div class="paper-row"><span>${v[0]} (${v[1]})</span><b>${fmt(co.skills[k])}</b></div>
+      const attacks = weapons.map(({w,attack,damage}) => `
+        <div class="paper-row"><span>${w.name} · ${damage}</span><b>${fmt(attack)}</b></div>
       `).join("");
 
-      const attacksHTML = weapons.map(({ w, attack, damage }) => `
-        <div style="display:grid;grid-template-columns:1.1fr .7fr 1fr;gap:4px;border-bottom:1px solid #ddd;padding:4px 0;font-size:12px;">
-          <b>${w.name}</b>
-          <span>${fmt(attack)}</span>
-          <span>${damage}</span>
-        </div>
-      `).join("");
-
-      const featuresHTML = [...r.features, ...cl.features].map(([name, text]) => `
+      const features = [...r.features,...cl.features].map(([name,text]) => `
         <p style="margin:0 0 5px;font-size:11px;"><b>${name}:</b> ${text}</p>
       `).join("");
 
-      $("printSheet").innerHTML = `
-        <div class="sheet-top">
-          <div class="paper-box paper-title">
-            <span>Имя персонажа</span>
-            <b>${escapeHTML(c.name || "Безымянный")}</b>
-          </div>
+      const coins = `Медь ${rt.coins.cp}, Серебро ${rt.coins.sp}, Электрум ${rt.coins.ep}, Золото ${rt.coins.gp}, Платина ${rt.coins.pp}`;
 
-          <div class="paper-box paper-meta">
-            <div><b>Класс и уровень</b><br>${cl.name} ${c.level}</div>
-            <div><b>Биография</b><br>${b.name}</div>
-            <div><b>Игрок</b><br>${escapeHTML(c.player || "")}</div>
-            <div><b>Раса</b><br>${r.name}</div>
-            <div><b>Характер</b><br>${ALIGNMENTS[c.alignment]?.[0] || ""}</div>
-            <div><b>Опыт</b><br>${c.xp || 0}</div>
-          </div>
+      $("printSheet").innerHTML = `
+        <div class="paper-box paper-title">
+          <span>Имя персонажа</span>
+          <b>${escapeHTML(c.name || "Безымянный")}</b>
+          <p style="margin:6px 0 0;font-size:12px;">${cl.name} ${c.level} · ${r.name} · ${b.name}</p>
         </div>
 
-        <div class="paper-grid">
+        <div class="paper-chips">
+          <div class="paper-chip"><span>КД</span><b>${co.ac}</b></div>
+          <div class="paper-chip"><span>Хиты</span><b>${rt.currentHp}/${co.maxHp}</b></div>
+          <div class="paper-chip"><span>Иниц.</span><b>${fmt(co.initiative)}</b></div>
+          <div class="paper-chip"><span>Скорость</span><b>${co.speed}</b></div>
+        </div>
+
+        <div class="sheet-grid">
           <div>
-            <div class="paper-box">
-              <h4>Характеристики</h4>
-              ${statsHTML}
-            </div>
-
-            <div class="paper-box" style="margin-top:8px;">
-              <h4>Спасброски</h4>
-              ${savesHTML}
-            </div>
-
-            <div class="paper-box" style="margin-top:8px;">
-              <h4>Навыки</h4>
-              ${skillsHTML}
-            </div>
+            <div class="paper-box"><h4>Характеристики</h4>${stats}</div>
+            <div class="paper-box"><h4>Деньги</h4><p style="font-size:11px;margin:0;">${coins}</p></div>
           </div>
 
           <div>
-            <div class="paper-chips">
-              <div class="paper-chip"><span>КД</span><b>${co.ac}</b></div>
-              <div class="paper-chip"><span>Иниц.</span><b>${fmt(co.initiative)}</b></div>
-              <div class="paper-chip"><span>Скорость</span><b>${co.speed}</b></div>
-            </div>
-
-            <div class="paper-box">
-              <h4>Здоровье</h4>
-              <p style="margin:0;font-size:18px;"><b>${co.hp}</b> максимум</p>
-              <p style="margin:6px 0 0;font-size:12px;">Кубик здоровья: 1к${cl.hitDie}</p>
-            </div>
-
-            <div class="paper-box" style="margin-top:8px;">
-              <h4>Атаки</h4>
-              <div style="display:grid;grid-template-columns:1.1fr .7fr 1fr;gap:4px;font-size:10px;text-transform:uppercase;">
-                <b>Название</b><b>Атака</b><b>Урон</b>
-              </div>
-              ${attacksHTML}
-              <p style="font-size:11px;margin:8px 0 0;"><b>Скрытая атака:</b> 1 раз за ход +1к6, если есть преимущество или союзник рядом с целью.</p>
-            </div>
-
-            <div class="paper-box" style="margin-top:8px;">
-              <h4>Языки и умения</h4>
-              <p style="font-size:11px;margin:0;"><b>Языки:</b> ${r.languages.join(", ")}</p>
-              <p style="font-size:11px;margin:5px 0 0;"><b>Владения:</b> ${cl.prof}</p>
-              <p style="font-size:11px;margin:5px 0 0;"><b>Снаряжение:</b> ${escapeHTML(c.equipment || "")}</p>
-            </div>
+            <div class="paper-box"><h4>Навыки</h4>${skills}</div>
           </div>
 
           <div>
+            <div class="paper-box"><h4>Атаки</h4>${attacks}<p style="font-size:11px;"><b>Скрытая атака:</b> +1к6 один раз за ход при условии.</p></div>
+            <div class="paper-box"><h4>Особенности</h4>${features}</div>
             <div class="paper-box">
-              <h4>Личность</h4>
-              <p style="font-size:11px;margin:0 0 5px;"><b>Черты:</b> ${escapeHTML(c.personality || "")}</p>
-              <p style="font-size:11px;margin:0 0 5px;"><b>Идеалы:</b> ${escapeHTML(c.ideals || "")}</p>
-              <p style="font-size:11px;margin:0 0 5px;"><b>Кредо:</b> ${escapeHTML(c.bonds || "")}</p>
-              <p style="font-size:11px;margin:0;"><b>Недостатки:</b> ${escapeHTML(c.flaws || "")}</p>
-            </div>
-
-            <div class="paper-box" style="margin-top:8px;">
-              <h4>Особенности и шпаргалка</h4>
-              ${featuresHTML}
-              <hr>
-              <p style="font-size:11px;margin:0 0 4px;"><b>Бой:</b> инициатива к20${fmt(co.initiative)}. Атака оружием к20 + бонус атаки. Попал → кидай урон.</p>
-              <p style="font-size:11px;margin:0 0 4px;"><b>Вне боя:</b> скрытность ${fmt(co.skills.stealth)}, ловкость рук ${fmt(co.skills.sleight)}, обман ${fmt(co.skills.deception)}, восприятие ${fmt(co.skills.perception)}.</p>
-              <p style="font-size:11px;margin:0;"><b>Замки:</b> воровские инструменты к20${fmt(abilityMod(c, "dex") + co.pb)}.</p>
+              <h4>Трекер</h4>
+              <p style="font-size:11px;margin:0 0 5px;"><b>Временные хиты:</b> ${rt.tempHp}</p>
+              <p style="font-size:11px;margin:0 0 5px;"><b>Стрелы:</b> ${rt.ammo.arrows}, <b>болты:</b> ${rt.ammo.bolts}</p>
+              <p style="font-size:11px;margin:0 0 5px;"><b>Состояния:</b> ${rt.conditions.length ? rt.conditions.join(", ") : "нет"}</p>
+              <p style="font-size:11px;margin:0;"><b>Заметки:</b> ${escapeHTML(rt.notes || "")}</p>
             </div>
           </div>
         </div>
@@ -1996,12 +2290,12 @@
       $("bigCharacterList").innerHTML = html || `<div class="empty">Пока нет персонажей.</div>`;
 
       document.querySelectorAll(".char-card").forEach(card => {
-        card.addEventListener("click", () => {
+        card.onclick = () => {
           state.currentId = card.dataset.id;
           save();
           render();
-          closeMobileMenu();
-        });
+          closeMenu();
+        };
       });
     }
 
@@ -2018,6 +2312,7 @@
       renderCombatTips(c);
       renderExploreTips(c);
       renderSituationTips(c);
+      renderTracker(c);
       renderSheet(c);
       renderCharacters();
     }
@@ -2031,51 +2326,52 @@
       });
 
       const titles = {
-        builderSection: ["Конструктор персонажа", "Заполни броски, выбери расу, класс и снаряжение. Всё важное пересчитается автоматически."],
-        playSection: ["Игровой экран", "Открой во время игры. Здесь бой, проверки, кубики и подсказки новичку."],
-        sheetSection: ["Лист персонажа A4", "Упрощённый лист для печати или сохранения в PDF."],
-        librarySection: ["Персонажи и резервная копия", "Создавай несколько персонажей, экспортируй и импортируй JSON."]
+        builderSection: ["Конструктор персонажа", "Здесь создаёшь персонажа и считаешь постоянные характеристики."],
+        playSection: ["Игровой экран", "Открой во время партии. Здесь подсказки: что кидать, куда смотреть, что может плут."],
+        trackerSection: ["Трекер игры", "Здесь меняются хиты, деньги, стрелы, предметы, состояния и заметки."],
+        sheetSection: ["Лист персонажа A4", "Упрощённый лист для печати или PDF."],
+        librarySection: ["Персонажи", "Создавай несколько персонажей, экспортируй и импортируй JSON."]
       };
 
       $("pageTitle").textContent = titles[id][0];
       $("pageDesc").textContent = titles[id][1];
 
-      closeMobileMenu();
+      closeMenu();
     }
 
-    function closeMobileMenu() {
-      const sidebar = document.querySelector(".sidebar");
-      if (sidebar) sidebar.classList.remove("open");
+    function closeMenu() {
+      document.querySelector(".sidebar").classList.remove("open");
     }
 
-    function autoAssign(shouldRender = true) {
+    function autoAssign(shouldRender=true) {
       const c = current();
-      const nums = (c.rolls || []).map(Number).filter(n => n > 0).sort((a, b) => b - a);
+      const nums = (c.rolls || []).map(Number).filter(n => n > 0).sort((a,b) => b - a);
 
       if (nums.length < 6) {
         if (shouldRender) alert("Сначала впиши 6 бросков.");
         return;
       }
 
-      const order = cls(c).order;
-
-      order.forEach((ability, i) => {
+      cls(c).order.forEach((ability,i) => {
         c.base[ability] = nums[i];
       });
+
+      const co = computed(c);
+      if (!c.runtime.currentHp || c.runtime.currentHp > co.maxHp) c.runtime.currentHp = co.maxHp;
 
       save();
       if (shouldRender) render();
     }
 
     function roll4d6DropLowest() {
-      const rolls = Array.from({ length: 4 }, () => 1 + Math.floor(Math.random() * 6));
-      rolls.sort((a, b) => a - b);
-      return rolls.slice(1).reduce((a, b) => a + b, 0);
+      const rolls = Array.from({ length:4 }, () => 1 + Math.floor(Math.random() * 6));
+      rolls.sort((a,b) => a - b);
+      return rolls.slice(1).reduce((a,b) => a + b, 0);
     }
 
     function randomRolls() {
       const c = current();
-      c.rolls = Array.from({ length: 6 }, roll4d6DropLowest);
+      c.rolls = Array.from({ length:6 }, roll4d6DropLowest);
       autoAssign(false);
       save();
       render();
@@ -2083,7 +2379,7 @@
 
     function clearRolls() {
       const c = current();
-      c.rolls = [0, 0, 0, 0, 0, 0];
+      c.rolls = [0,0,0,0,0,0];
       save();
       render();
     }
@@ -2095,17 +2391,15 @@
       state.currentId = c.id;
       save();
       render();
-      closeMobileMenu();
+      closeMenu();
     }
 
     function resetCharacter() {
-      const oldId = state.currentId;
+      const id = state.currentId;
       const c = defaultCharacter();
-      c.id = oldId;
-
-      const index = state.characters.findIndex(x => x.id === oldId);
+      c.id = id;
+      const index = state.characters.findIndex(x => x.id === id);
       state.characters[index] = c;
-
       save();
       render();
     }
@@ -2126,23 +2420,85 @@
         return;
       }
 
-      const id = state.currentId;
-      state.characters = state.characters.filter(c => c.id !== id);
+      state.characters = state.characters.filter(c => c.id !== state.currentId);
       state.currentId = state.characters[0].id;
       save();
       render();
     }
 
-    function exportJSON(all = false) {
-      const data = all ? state : { currentId: current().id, characters: [current()] };
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
+    function takeDamage(amount) {
+      const c = current();
+      const rt = c.runtime;
+      let dmg = Math.max(0, Number(amount || 0));
 
+      if (rt.tempHp > 0) {
+        const used = Math.min(rt.tempHp, dmg);
+        rt.tempHp -= used;
+        dmg -= used;
+      }
+
+      rt.currentHp = Math.max(0, rt.currentHp - dmg);
+      save();
+      render();
+    }
+
+    function heal(amount) {
+      const c = current();
+      const rt = c.runtime;
+      const co = computed(c);
+      const val = Math.max(0, Number(amount || 0));
+
+      rt.currentHp = Math.min(co.maxHp, rt.currentHp + val);
+
+      if (rt.currentHp > 0) {
+        rt.deathSaves.success = 0;
+        rt.deathSaves.fail = 0;
+      }
+
+      save();
+      render();
+    }
+
+    function longRest() {
+      const c = current();
+      const rt = c.runtime;
+      const co = computed(c);
+
+      rt.currentHp = co.maxHp;
+      rt.tempHp = 0;
+      rt.hitDiceUsed = 0;
+      rt.deathSaves.success = 0;
+      rt.deathSaves.fail = 0;
+      rt.conditions = rt.conditions.filter(x => false);
+
+      save();
+      render();
+    }
+
+    function shortRest() {
+      const c = current();
+      c.runtime.deathSaves.success = 0;
+      c.runtime.deathSaves.fail = 0;
+      save();
+      render();
+      alert("Короткий отдых отмечен. Если тратишь кости хитов, введи их вручную в поле.");
+    }
+
+    function changeCoins(type, amount) {
+      const c = current();
+      c.runtime.coins[type] = Math.max(0, Number(c.runtime.coins[type] || 0) + Number(amount || 0));
+      save();
+      render();
+    }
+
+    function exportJSON(all=false) {
+      const data = all ? state : { currentId: current().id, characters: [current()] };
+      const blob = new Blob([JSON.stringify(data,null,2)], { type:"application/json" });
+      const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = all ? "dnd-characters.json" : `${(current().name || "character").replace(/[^a-zа-я0-9]+/gi, "-")}.json`;
+      a.download = all ? "dnd-characters.json" : `${(current().name || "character").replace(/[^a-zа-я0-9]+/gi,"-")}.json`;
       a.click();
-
       URL.revokeObjectURL(url);
     }
 
@@ -2158,15 +2514,15 @@
           if (Array.isArray(data.characters)) {
             data.characters.forEach(c => {
               if (!c.id) c.id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random());
+              normalizeCharacter(c);
             });
 
             state = data;
             if (!state.currentId && state.characters[0]) state.currentId = state.characters[0].id;
+            save();
+            render();
           }
-
-          save();
-          render();
-        } catch (e) {
+        } catch(e) {
           alert("Не получилось прочитать JSON.");
         }
       };
@@ -2175,45 +2531,159 @@
     }
 
     function initEvents() {
-      $("nav").querySelectorAll("button").forEach(btn => {
-        btn.addEventListener("click", () => showSection(btn.dataset.section));
-      });
+      $("burger").onclick = () => document.querySelector(".sidebar").classList.toggle("open");
 
-      $("mobileBurger").addEventListener("click", () => {
-        document.querySelector(".sidebar").classList.toggle("open");
+      $("nav").querySelectorAll("button").forEach(btn => {
+        btn.onclick = () => showSection(btn.dataset.section);
       });
 
       document.querySelectorAll(".tab").forEach(tab => {
-        tab.addEventListener("click", () => {
+        tab.onclick = () => {
           document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
           document.querySelectorAll(".mode").forEach(x => x.classList.remove("active"));
 
           tab.classList.add("active");
           $(tab.dataset.mode).classList.add("active");
-        });
+        };
       });
 
-      $("saveBtn").addEventListener("click", () => {
+      $("saveBtn").onclick = () => {
         save();
         alert("Сохранено в браузере.");
-      });
+      };
 
-      $("resetBtn").addEventListener("click", resetCharacter);
-      $("newCharacterBtn").addEventListener("click", newCharacter);
-      $("autoAssignBtn").addEventListener("click", () => autoAssign(true));
-      $("randomRollBtn").addEventListener("click", randomRolls);
-      $("clearRollsBtn").addEventListener("click", clearRolls);
-      $("exportBtn").addEventListener("click", () => exportJSON(false));
-      $("exportAllBtn").addEventListener("click", () => exportJSON(true));
-      $("printBtn").addEventListener("click", () => window.print());
-      $("duplicateBtn").addEventListener("click", duplicateCharacter);
-      $("deleteBtn").addEventListener("click", deleteCharacter);
-      $("importFile").addEventListener("change", e => importJSON(e.target.files[0]));
+      $("resetBtn").onclick = resetCharacter;
+      $("newCharacterBtn").onclick = newCharacter;
+      $("autoAssignBtn").onclick = () => autoAssign(true);
+      $("randomRollBtn").onclick = randomRolls;
+      $("clearRollsBtn").onclick = clearRolls;
+      $("exportBtn").onclick = () => exportJSON(false);
+      $("exportAllBtn").onclick = () => exportJSON(true);
+      $("printBtn").onclick = () => window.print();
+      $("duplicateBtn").onclick = duplicateCharacter;
+      $("deleteBtn").onclick = deleteCharacter;
+      $("importFile").onchange = e => importJSON(e.target.files[0]);
 
-      $("rollDiceBtn").addEventListener("click", () => {
+      $("rollDiceBtn").onclick = () => {
         const sides = Number($("diceSelect").value);
         $("diceResult").textContent = 1 + Math.floor(Math.random() * sides);
-      });
+      };
+
+      $("damageBtn").onclick = () => {
+        takeDamage($("damageInput").value);
+        $("damageInput").value = "";
+      };
+
+      $("healBtn").onclick = () => {
+        heal($("healInput").value);
+        $("healInput").value = "";
+      };
+
+      $("shortRestBtn").onclick = shortRest;
+      $("longRestBtn").onclick = longRest;
+
+      $("resetDeathBtn").onclick = () => {
+        const c = current();
+        c.runtime.deathSaves.success = 0;
+        c.runtime.deathSaves.fail = 0;
+        save();
+        render();
+      };
+
+      $("tempHp").oninput = () => {
+        current().runtime.tempHp = Math.max(0, Number($("tempHp").value || 0));
+        save();
+        render();
+      };
+
+      $("hitDiceUsed").oninput = () => {
+        current().runtime.hitDiceUsed = Math.max(0, Number($("hitDiceUsed").value || 0));
+        save();
+        render();
+      };
+
+      $("inspiration").oninput = () => {
+        current().runtime.inspiration = $("inspiration").value === "true";
+        save();
+        render();
+      };
+
+      $("arrows").oninput = () => {
+        current().runtime.ammo.arrows = Math.max(0, Number($("arrows").value || 0));
+        save();
+        render();
+      };
+
+      $("bolts").oninput = () => {
+        current().runtime.ammo.bolts = Math.max(0, Number($("bolts").value || 0));
+        save();
+        render();
+      };
+
+      $("useArrowBtn").onclick = () => {
+        const rt = current().runtime;
+        rt.ammo.arrows = Math.max(0, Number(rt.ammo.arrows || 0) - 1);
+        save();
+        render();
+      };
+
+      $("addArrowBtn").onclick = () => {
+        current().runtime.ammo.arrows = Number(current().runtime.ammo.arrows || 0) + 1;
+        save();
+        render();
+      };
+
+      $("useBoltBtn").onclick = () => {
+        const rt = current().runtime;
+        rt.ammo.bolts = Math.max(0, Number(rt.ammo.bolts || 0) - 1);
+        save();
+        render();
+      };
+
+      $("addBoltBtn").onclick = () => {
+        current().runtime.ammo.bolts = Number(current().runtime.ammo.bolts || 0) + 1;
+        save();
+        render();
+      };
+
+      $("consumables").oninput = () => {
+        current().runtime.consumables = $("consumables").value;
+        save();
+      };
+
+      $("sessionNotes").oninput = () => {
+        current().runtime.notes = $("sessionNotes").value;
+        save();
+        renderSheet(current());
+      };
+
+      $("addCoinsBtn").onclick = () => {
+        changeCoins($("coinType").value, Math.max(0, Number($("coinAmount").value || 0)));
+        $("coinAmount").value = "";
+      };
+
+      $("spendCoinsBtn").onclick = () => {
+        changeCoins($("coinType").value, -Math.max(0, Number($("coinAmount").value || 0)));
+        $("coinAmount").value = "";
+      };
+
+      $("addItemBtn").onclick = () => {
+        const name = $("newItemName").value.trim();
+        if (!name) return;
+
+        current().runtime.inventory.push({
+          name,
+          qty: Math.max(1, Number($("newItemQty").value || 1)),
+          note: $("newItemNote").value.trim()
+        });
+
+        $("newItemName").value = "";
+        $("newItemQty").value = 1;
+        $("newItemNote").value = "";
+
+        save();
+        render();
+      };
     }
 
     setupSelects();
