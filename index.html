@@ -13,16 +13,21 @@
     :root {
       --bg:#000;
       --panel:#080808;
-      --panel2:#111;
       --text:#fff;
-      --muted:#a6a6a6;
+      --muted:#a7a7a7;
       --line:#303030;
       --line2:#555;
-      --radius:20px;
+      --radius:22px;
       --font:"Roboto",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     }
 
-    * { box-sizing:border-box; }
+    * {
+      box-sizing:border-box;
+    }
+
+    html {
+      scroll-behavior:smooth;
+    }
 
     body {
       margin:0;
@@ -33,9 +38,16 @@
       line-height:1.45;
     }
 
-    button,input,select,textarea { font:inherit; }
+    button,
+    input,
+    select,
+    textarea {
+      font:inherit;
+    }
 
-    button { cursor:pointer; }
+    button {
+      cursor:pointer;
+    }
 
     .app {
       display:grid;
@@ -115,19 +127,22 @@
       font-weight:900;
     }
 
-    .btn.white {
+    .btn.white,
+    .small-btn.white {
       background:#fff;
       color:#000;
       border-color:#fff;
+      font-weight:900;
     }
 
-    .btn.white:hover {
+    .btn.white:hover,
+    .small-btn.white:hover {
       background:#ddd;
       color:#000;
     }
 
     .small-btn {
-      border-radius:12px;
+      border-radius:13px;
       padding:9px 11px;
       font-size:13px;
       text-align:center;
@@ -224,19 +239,93 @@
       min-width:280px;
     }
 
-    .section { display:none; }
-    .section.active { display:block; }
+    .section {
+      display:none;
+    }
+
+    .section.active {
+      display:block;
+    }
 
     .grid {
       display:grid;
       gap:14px;
     }
 
-    .grid.two { grid-template-columns:1fr 1fr; }
-    .grid.three { grid-template-columns:repeat(3,1fr); }
-    .grid.four { grid-template-columns:repeat(4,1fr); }
+    .grid.two {
+      grid-template-columns:1fr 1fr;
+    }
 
-    .card {
+    .grid.three {
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    .grid.four {
+      grid-template-columns:repeat(4,1fr);
+    }
+
+    .card,
+    details.card {
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg,#0c0c0c,#050505);
+      padding:0;
+      min-width:0;
+      overflow:hidden;
+    }
+
+    .card-inner {
+      padding:16px;
+    }
+
+    details.card > summary {
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    details.card > summary::-webkit-details-marker {
+      display:none;
+    }
+
+    .summary-title {
+      display:grid;
+      gap:3px;
+    }
+
+    .summary-title b {
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .summary-title span {
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .summary-icon {
+      width:34px;
+      height:34px;
+      border:1px solid var(--line2);
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      transition:.18s;
+    }
+
+    details[open] .summary-icon {
+      transform:rotate(45deg);
+      border-color:#fff;
+    }
+
+    .plain-card {
       border:1px solid var(--line);
       border-radius:var(--radius);
       background:linear-gradient(180deg,#0c0c0c,#050505);
@@ -244,6 +333,7 @@
       min-width:0;
     }
 
+    .plain-card h3,
     .card h3 {
       margin:0 0 12px;
       font-size:13px;
@@ -251,6 +341,7 @@
       letter-spacing:.08em;
     }
 
+    .plain-card h4,
     .card h4 {
       margin:14px 0 8px;
       font-size:16px;
@@ -461,8 +552,13 @@
       opacity:.72;
     }
 
-    .mode { display:none; }
-    .mode.active { display:block; }
+    .mode {
+      display:none;
+    }
+
+    .mode.active {
+      display:block;
+    }
 
     details.tip {
       border:1px solid var(--line);
@@ -483,7 +579,9 @@
       font-weight:900;
     }
 
-    details.tip summary::-webkit-details-marker { display:none; }
+    details.tip summary::-webkit-details-marker {
+      display:none;
+    }
 
     details.tip p {
       margin:10px 0 0;
@@ -721,8 +819,15 @@
       color:var(--muted);
     }
 
+    .stack {
+      display:grid;
+      gap:14px;
+    }
+
     @media (max-width:980px) {
-      .app { display:block; }
+      .app {
+        display:block;
+      }
 
       .sidebar {
         position:sticky;
@@ -750,7 +855,9 @@
         min-width:0;
       }
 
-      .brand p { display:none; }
+      .brand p {
+        display:none;
+      }
 
       .mark {
         width:38px;
@@ -899,6 +1006,14 @@
       .title p {
         font-size:14px;
       }
+
+      details.card > summary {
+        padding:14px;
+      }
+
+      .card-inner {
+        padding:14px;
+      }
     }
 
     @media print {
@@ -925,7 +1040,8 @@
         display:block !important;
       }
 
-      .card {
+      .plain-card,
+      details.card {
         border:0;
         padding:0;
       }
@@ -975,10 +1091,11 @@
       <div class="topbar no-print">
         <div class="title">
           <h2 id="pageTitle">Конструктор персонажа</h2>
-          <p id="pageDesc">Создай персонажа. Потом во время игры используй экран “Игра” и “Трекер”.</p>
+          <p id="pageDesc">Создай персонажа. Большие блоки можно сворачивать, чтобы экран был компактнее.</p>
         </div>
 
         <div class="toolbar">
+          <button class="small-btn" id="collapseBtn">Свернуть всё</button>
           <button class="small-btn" id="saveBtn">Сохранить</button>
           <button class="small-btn" id="resetBtn">Сбросить</button>
           <button class="small-btn" id="exportBtn">Экспорт JSON</button>
@@ -987,447 +1104,589 @@
       </div>
 
       <section class="section active" id="builderSection">
-        <div class="grid two">
-          <div class="card">
-            <h3>База персонажа</h3>
+        <div class="stack">
+          <details class="card" open>
+            <summary>
+              <div class="summary-title">
+                <b>База персонажа</b>
+                <span id="baseSummary">Имя, класс, раса, биография</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
 
-            <div class="grid two">
-              <div class="field">
-                <label>Имя персонажа</label>
-                <input id="name" data-bind="name" placeholder="Например: Мускат">
-                <small>Имя можно поменять в любой момент.</small>
+            <div class="card-inner">
+              <div class="grid two">
+                <div class="field">
+                  <label>Имя персонажа</label>
+                  <input id="name" data-bind="name" placeholder="Например: Мускат">
+                  <small>Имя можно поменять в любой момент.</small>
+                </div>
+
+                <div class="field">
+                  <label>Имя игрока</label>
+                  <input id="player" data-bind="player" placeholder="Твоё имя">
+                </div>
+              </div>
+
+              <div class="grid two">
+                <div class="field">
+                  <label>Класс</label>
+                  <select id="classKey" data-bind="classKey"></select>
+                  <small>По умолчанию стоит плут.</small>
+                </div>
+
+                <div class="field">
+                  <label>Уровень</label>
+                  <select id="level" data-bind="level">
+                    <option value="1">1 уровень</option>
+                    <option value="2">2 уровень</option>
+                    <option value="3">3 уровень</option>
+                    <option value="4">4 уровень</option>
+                    <option value="5">5 уровень</option>
+                  </select>
+                  <small>Для новичка лучше начать с 1 уровня.</small>
+                </div>
+              </div>
+
+              <div class="grid two">
+                <div class="field">
+                  <label>Раса</label>
+                  <select id="raceKey" data-bind="raceKey"></select>
+                  <small>По умолчанию легконогий полурослик.</small>
+                </div>
+
+                <div class="field">
+                  <label>Биография</label>
+                  <select id="backgroundKey" data-bind="backgroundKey"></select>
+                  <small>Для плута удобно “Преступник”.</small>
+                </div>
+              </div>
+
+              <div class="grid two">
+                <div class="field">
+                  <label>Мировоззрение</label>
+                  <select id="alignment" data-bind="alignment"></select>
+                  <small id="alignmentHint"></small>
+                </div>
+
+                <div class="field">
+                  <label>Опыт</label>
+                  <input id="xp" data-bind="xp" type="number" min="0" placeholder="0">
+                </div>
+              </div>
+
+              <div class="pillrow" id="raceClassPills"></div>
+            </div>
+          </details>
+
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Броски характеристик</b>
+                <span>Впиши 6 чисел с кубиков</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
+
+            <div class="card-inner">
+              <p class="hint">Мастер говорит: “Киньте характеристики”. Обычно ты получаешь 6 чисел. Впиши их сюда. Потом нажми “Авто-раскидать”.</p>
+
+              <div class="grid three" id="rollFields"></div>
+
+              <div class="inline">
+                <button class="small-btn" id="autoAssignBtn">Авто-раскидать</button>
+                <button class="small-btn" id="randomRollBtn">Кинуть случайно</button>
+                <button class="small-btn" id="clearRollsBtn">Очистить</button>
+              </div>
+
+              <p class="hint">Для плута главное: Ловкость. Потом Харизма и Телосложение.</p>
+            </div>
+          </details>
+
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Характеристики</b>
+                <span id="statsSummary">Ловкость, Харизма, Телосложение и другие</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
+
+            <div class="card-inner">
+              <div class="stats" id="statsView"></div>
+              <p class="hint">В кружке указан модификатор. Обычно именно его прибавляют к к20.</p>
+            </div>
+          </details>
+
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Навыки</b>
+                <span>Скрытность, Ловкость рук, Обман, Восприятие</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
+
+            <div class="card-inner">
+              <p class="hint">★ — экспертиза. ● — владение. У плута по умолчанию сильные Скрытность и Ловкость рук.</p>
+              <div class="skill-list" id="skillsView"></div>
+            </div>
+          </details>
+
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Оружие и снаряжение</b>
+                <span>Рапира, кинжал, лук, вещи</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
+
+            <div class="card-inner">
+              <div class="grid three">
+                <div class="field">
+                  <label>Оружие 1</label>
+                  <select id="weapon1" data-bind="weapon1"></select>
+                </div>
+
+                <div class="field">
+                  <label>Оружие 2</label>
+                  <select id="weapon2" data-bind="weapon2"></select>
+                </div>
+
+                <div class="field">
+                  <label>Оружие 3</label>
+                  <select id="weapon3" data-bind="weapon3"></select>
+                </div>
               </div>
 
               <div class="field">
-                <label>Имя игрока</label>
-                <input id="player" data-bind="player" placeholder="Твоё имя">
-              </div>
-            </div>
-
-            <div class="grid two">
-              <div class="field">
-                <label>Класс</label>
-                <select id="classKey" data-bind="classKey"></select>
-                <small>По умолчанию стоит плут.</small>
+                <label>Снаряжение</label>
+                <textarea id="equipment" data-bind="equipment"></textarea>
+                <small>Общий список вещей персонажа.</small>
               </div>
 
-              <div class="field">
-                <label>Уровень</label>
-                <select id="level" data-bind="level">
-                  <option value="1">1 уровень</option>
-                  <option value="2">2 уровень</option>
-                  <option value="3">3 уровень</option>
-                  <option value="4">4 уровень</option>
-                  <option value="5">5 уровень</option>
-                </select>
-                <small>Для новичка лучше начать с 1 уровня.</small>
+              <div id="weaponsView"></div>
+            </div>
+          </details>
+
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Личность</b>
+                <span>Черты, идеалы, кредо, недостатки</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
+
+            <div class="card-inner">
+              <div class="grid two">
+                <div>
+                  <div class="field">
+                    <label>Личностные черты</label>
+                    <textarea id="personality" data-bind="personality"></textarea>
+                    <small>Например: “Говорю тихо, но всё замечаю”.</small>
+                  </div>
+
+                  <div class="field">
+                    <label>Идеалы</label>
+                    <textarea id="ideals" data-bind="ideals"></textarea>
+                    <small>Например: “Свобода важнее правил”.</small>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="field">
+                    <label>Кредо / привязанности</label>
+                    <textarea id="bonds" data-bind="bonds"></textarea>
+                    <small>Например: “Я защищаю тех, кто помог мне”.</small>
+                  </div>
+
+                  <div class="field">
+                    <label>Недостатки</label>
+                    <textarea id="flaws" data-bind="flaws"></textarea>
+                    <small>Например: “Не могу пройти мимо лёгкой наживы”.</small>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <div class="grid two">
-              <div class="field">
-                <label>Раса</label>
-                <select id="raceKey" data-bind="raceKey"></select>
-                <small>По умолчанию легконогий полурослик.</small>
-              </div>
-
-              <div class="field">
-                <label>Биография</label>
-                <select id="backgroundKey" data-bind="backgroundKey"></select>
-                <small>Для плута удобно “Преступник”.</small>
-              </div>
-            </div>
-
-            <div class="grid two">
-              <div class="field">
-                <label>Мировоззрение</label>
-                <select id="alignment" data-bind="alignment"></select>
-                <small id="alignmentHint"></small>
-              </div>
-
-              <div class="field">
-                <label>Опыт</label>
-                <input id="xp" data-bind="xp" type="number" min="0" placeholder="0">
-              </div>
-            </div>
-
-            <div class="pillrow" id="raceClassPills"></div>
-          </div>
-
-          <div class="card">
-            <h3>Броски характеристик</h3>
-            <p class="hint">Мастер говорит: “Киньте характеристики”. Обычно ты получаешь 6 чисел. Впиши их сюда. Потом нажми “Авто-раскидать под класс”.</p>
-
-            <div class="grid three" id="rollFields"></div>
-
-            <div class="inline">
-              <button class="small-btn" id="autoAssignBtn">Авто-раскидать</button>
-              <button class="small-btn" id="randomRollBtn">Кинуть случайно</button>
-              <button class="small-btn" id="clearRollsBtn">Очистить</button>
-            </div>
-
-            <p class="hint">Для плута главное: Ловкость. Потом Харизма и Телосложение.</p>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:14px;">
-          <h3>Характеристики после бонусов расы</h3>
-          <div class="stats" id="statsView"></div>
-          <p class="hint">В кружке указан модификатор. Обычно именно его прибавляют к к20.</p>
-        </div>
-
-        <div class="grid two" style="margin-top:14px;">
-          <div class="card">
-            <h3>Навыки</h3>
-            <p class="hint">★ — экспертиза. ● — владение. У плута по умолчанию сильные Скрытность и Ловкость рук.</p>
-            <div class="skill-list" id="skillsView"></div>
-          </div>
-
-          <div class="card">
-            <h3>Оружие и снаряжение</h3>
-
-            <div class="grid three">
-              <div class="field">
-                <label>Оружие 1</label>
-                <select id="weapon1" data-bind="weapon1"></select>
-              </div>
-
-              <div class="field">
-                <label>Оружие 2</label>
-                <select id="weapon2" data-bind="weapon2"></select>
-              </div>
-
-              <div class="field">
-                <label>Оружие 3</label>
-                <select id="weapon3" data-bind="weapon3"></select>
-              </div>
-            </div>
-
-            <div class="field">
-              <label>Снаряжение</label>
-              <textarea id="equipment" data-bind="equipment"></textarea>
-              <small>Общий список вещей персонажа.</small>
-            </div>
-
-            <div id="weaponsView"></div>
-          </div>
-        </div>
-
-        <div class="grid two" style="margin-top:14px;">
-          <div class="card">
-            <h3>Личность</h3>
-
-            <div class="field">
-              <label>Личностные черты</label>
-              <textarea id="personality" data-bind="personality"></textarea>
-              <small>Например: “Говорю тихо, но всё замечаю”.</small>
-            </div>
-
-            <div class="field">
-              <label>Идеалы</label>
-              <textarea id="ideals" data-bind="ideals"></textarea>
-              <small>Например: “Свобода важнее правил”.</small>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Кредо и недостатки</h3>
-
-            <div class="field">
-              <label>Кредо / привязанности</label>
-              <textarea id="bonds" data-bind="bonds"></textarea>
-              <small>Например: “Я защищаю тех, кто помог мне”.</small>
-            </div>
-
-            <div class="field">
-              <label>Недостатки</label>
-              <textarea id="flaws" data-bind="flaws"></textarea>
-              <small>Например: “Не могу пройти мимо лёгкой наживы”.</small>
-            </div>
-          </div>
+          </details>
         </div>
       </section>
 
       <section class="section" id="playSection">
-        <div class="card">
-          <h3>Игровой экран</h3>
+        <div class="stack">
+          <details class="card" open>
+            <summary>
+              <div class="summary-title">
+                <b>Короткие значения</b>
+                <span>КД, хиты, инициатива, скорость</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
 
-          <div class="mini-grid" id="quickStats"></div>
+            <div class="card-inner">
+              <div class="mini-grid" id="quickStats"></div>
+            </div>
+          </details>
 
-          <div class="tabs">
-            <button class="tab active" data-mode="combatMode">
-              <b>Бой</b>
-              <span>что кидать, атаки, урон</span>
-            </button>
+          <details class="card" open>
+            <summary>
+              <div class="summary-title">
+                <b>Бой / вне боя</b>
+                <span>Подсказки, что кидать</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
 
-            <button class="tab" data-mode="exploreMode">
-              <b>Вне боя</b>
-              <span>общение, скрытность, взлом</span>
-            </button>
-          </div>
+            <div class="card-inner">
+              <div class="tabs">
+                <button class="tab active" data-mode="combatMode">
+                  <b>Бой</b>
+                  <span>что кидать, атаки, урон</span>
+                </button>
 
-          <div class="mode active" id="combatMode">
-            <div class="grid two">
-              <div>
-                <h4>Что делать в бою</h4>
-                <div id="combatTips"></div>
+                <button class="tab" data-mode="exploreMode">
+                  <b>Вне боя</b>
+                  <span>общение, скрытность, взлом</span>
+                </button>
               </div>
 
-              <div>
-                <h4>Быстрый кубик</h4>
-                <div class="card">
-                  <div class="field">
-                    <label>Кубик</label>
-                    <select id="diceSelect">
-                      <option value="20">к20 — атака, проверки, спасброски</option>
-                      <option value="12">к12</option>
-                      <option value="10">к10</option>
-                      <option value="8">к8 — рапира</option>
-                      <option value="6">к6 — скрытая атака / лук</option>
-                      <option value="4">к4 — кинжал</option>
-                    </select>
+              <div class="mode active" id="combatMode">
+                <div class="grid two">
+                  <div>
+                    <h4>Что делать в бою</h4>
+                    <div id="combatTips"></div>
                   </div>
 
-                  <button class="btn white" id="rollDiceBtn">Кинуть</button>
-                  <div class="dice-result" id="diceResult">—</div>
-                  <p class="hint">На игре можно кидать физические кубики. Это просто быстрый помощник.</p>
+                  <div>
+                    <h4>Быстрый кубик</h4>
+                    <div class="plain-card">
+                      <div class="field">
+                        <label>Кубик</label>
+                        <select id="diceSelect">
+                          <option value="20">к20 — атака, проверки, спасброски</option>
+                          <option value="12">к12</option>
+                          <option value="10">к10</option>
+                          <option value="8">к8 — рапира</option>
+                          <option value="6">к6 — скрытая атака / лук</option>
+                          <option value="4">к4 — кинжал</option>
+                        </select>
+                      </div>
+
+                      <button class="btn white" id="rollDiceBtn">Кинуть</button>
+                      <div class="dice-result" id="diceResult">—</div>
+                      <p class="hint">На игре можно кидать физические кубики. Это просто быстрый помощник.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mode" id="exploreMode">
+                <div class="grid two">
+                  <div>
+                    <h4>Что я могу делать как плут</h4>
+                    <div id="exploreTips"></div>
+                  </div>
+
+                  <div>
+                    <h4>Какая проверка нужна</h4>
+                    <div id="situationTips"></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="mode" id="exploreMode">
-            <div class="grid two">
-              <div>
-                <h4>Что я могу делать как плут</h4>
-                <div id="exploreTips"></div>
-              </div>
-
-              <div>
-                <h4>Какая проверка нужна</h4>
-                <div id="situationTips"></div>
-              </div>
-            </div>
-          </div>
+          </details>
         </div>
       </section>
 
       <section class="section" id="trackerSection">
-        <div class="grid two">
-          <div class="card">
-            <h3>Здоровье во время игры</h3>
-
-            <div class="tracker-hp">
-              <div class="hp-big">
-                <span>Текущие хиты</span>
-                <b id="currentHpView">0</b>
-                <div class="hp-bar"><div class="hp-fill" id="hpFill"></div></div>
-                <p class="hint" id="hpText"></p>
+        <div class="stack">
+          <details class="card" open>
+            <summary>
+              <div class="summary-title">
+                <b>Здоровье</b>
+                <span id="hpSummary">Урон, лечение, отдых</span>
               </div>
+              <div class="summary-icon">+</div>
+            </summary>
 
-              <div>
-                <div class="grid two">
-                  <div class="field">
-                    <label>Получил урон</label>
-                    <input id="damageInput" type="number" min="0" placeholder="например 5">
-                  </div>
-
-                  <div class="field">
-                    <label>Вылечился</label>
-                    <input id="healInput" type="number" min="0" placeholder="например 4">
-                  </div>
+            <div class="card-inner">
+              <div class="tracker-hp">
+                <div class="hp-big">
+                  <span>Текущие хиты</span>
+                  <b id="currentHpView">0</b>
+                  <div class="hp-bar"><div class="hp-fill" id="hpFill"></div></div>
+                  <p class="hint" id="hpText"></p>
                 </div>
 
-                <div class="inline">
-                  <button class="small-btn" id="damageBtn">Применить урон</button>
-                  <button class="small-btn" id="healBtn">Применить лечение</button>
-                </div>
+                <div>
+                  <div class="grid two">
+                    <div class="field">
+                      <label>Получил урон</label>
+                      <input id="damageInput" type="number" min="0" placeholder="например 5">
+                    </div>
 
-                <div class="grid two" style="margin-top:12px;">
-                  <div class="field">
-                    <label>Временные хиты</label>
-                    <input id="tempHp" type="number" min="0">
-                    <small>Сначала урон снимается с временных хитов.</small>
+                    <div class="field">
+                      <label>Вылечился</label>
+                      <input id="healInput" type="number" min="0" placeholder="например 4">
+                    </div>
                   </div>
 
-                  <div class="field">
-                    <label>Использовано костей хитов</label>
-                    <input id="hitDiceUsed" type="number" min="0">
-                    <small>На коротком отдыхе можно тратить кости хитов.</small>
+                  <div class="inline">
+                    <button class="small-btn" id="damageBtn">Применить урон</button>
+                    <button class="small-btn" id="healBtn">Применить лечение</button>
+                  </div>
+
+                  <div class="grid two" style="margin-top:12px;">
+                    <div class="field">
+                      <label>Временные хиты</label>
+                      <input id="tempHp" type="number" min="0">
+                      <small>Сначала урон снимается с временных хитов.</small>
+                    </div>
+
+                    <div class="field">
+                      <label>Использовано костей хитов</label>
+                      <input id="hitDiceUsed" type="number" min="0">
+                      <small>На коротком отдыхе можно тратить кости хитов.</small>
+                    </div>
+                  </div>
+
+                  <div class="inline">
+                    <button class="small-btn" id="shortRestBtn">Короткий отдых</button>
+                    <button class="small-btn" id="longRestBtn">Долгий отдых</button>
                   </div>
                 </div>
-
-                <div class="inline">
-                  <button class="small-btn" id="shortRestBtn">Короткий отдых</button>
-                  <button class="small-btn" id="longRestBtn">Долгий отдых</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Спасброски от смерти</h3>
-
-            <p class="hint">Используется, если здоровье стало 0. На своём ходу кидаешь к20. 10 или выше — успех. 9 или ниже — неудача.</p>
-
-            <div class="grid two" style="margin-top:12px;">
-              <div>
-                <h4>Успехи</h4>
-                <div class="inline" id="deathSuccessBtns"></div>
-              </div>
-
-              <div>
-                <h4>Неудачи</h4>
-                <div class="inline" id="deathFailBtns"></div>
               </div>
             </div>
+          </details>
 
-            <button class="small-btn" id="resetDeathBtn" style="margin-top:12px;">Сбросить спасброски смерти</button>
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Спасброски смерти</b>
+                <span>Когда хиты стали 0</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
 
-            <div class="field" style="margin-top:14px;">
-              <label>Вдохновение</label>
-              <select id="inspiration">
-                <option value="false">Нет</option>
-                <option value="true">Есть</option>
-              </select>
-              <small>Мастер может дать вдохновение за хорошую роль.</small>
-            </div>
-          </div>
-        </div>
+            <div class="card-inner">
+              <p class="hint">Если здоровье стало 0: на своём ходу кидаешь к20. 10 или выше — успех. 9 или ниже — неудача.</p>
 
-        <div class="grid two" style="margin-top:14px;">
-          <div class="card">
-            <h3>Деньги</h3>
+              <div class="grid two" style="margin-top:12px;">
+                <div>
+                  <h4>Успехи</h4>
+                  <div class="inline" id="deathSuccessBtns"></div>
+                </div>
 
-            <div class="money-grid" id="coinsView"></div>
+                <div>
+                  <h4>Неудачи</h4>
+                  <div class="inline" id="deathFailBtns"></div>
+                </div>
+              </div>
 
-            <div class="grid three" style="margin-top:14px;">
-              <div class="field">
-                <label>Монета</label>
-                <select id="coinType">
-                  <option value="cp">Медь</option>
-                  <option value="sp">Серебро</option>
-                  <option value="ep">Электрум</option>
-                  <option value="gp">Золото</option>
-                  <option value="pp">Платина</option>
+              <button class="small-btn" id="resetDeathBtn" style="margin-top:12px;">Сбросить спасброски смерти</button>
+
+              <div class="field" style="margin-top:14px;">
+                <label>Вдохновение</label>
+                <select id="inspiration">
+                  <option value="false">Нет</option>
+                  <option value="true">Есть</option>
                 </select>
+                <small>Мастер может дать вдохновение за хорошую роль.</small>
               </div>
+            </div>
+          </details>
 
-              <div class="field">
-                <label>Количество</label>
-                <input id="coinAmount" type="number" min="0" placeholder="например 10">
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Деньги</b>
+                <span id="coinsSummary">Золото и другие монеты</span>
               </div>
+              <div class="summary-icon">+</div>
+            </summary>
 
-              <div class="field">
-                <label>Действие</label>
-                <div class="inline">
-                  <button class="small-btn" id="addCoinsBtn">+</button>
-                  <button class="small-btn" id="spendCoinsBtn">−</button>
+            <div class="card-inner">
+              <div class="money-grid" id="coinsView"></div>
+
+              <div class="grid three" style="margin-top:14px;">
+                <div class="field">
+                  <label>Монета</label>
+                  <select id="coinType">
+                    <option value="cp">Медь</option>
+                    <option value="sp">Серебро</option>
+                    <option value="ep">Электрум</option>
+                    <option value="gp">Золото</option>
+                    <option value="pp">Платина</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label>Количество</label>
+                  <input id="coinAmount" type="number" min="0" placeholder="например 10">
+                </div>
+
+                <div class="field">
+                  <label>Действие</label>
+                  <div class="inline">
+                    <button class="small-btn" id="addCoinsBtn">+</button>
+                    <button class="small-btn" id="spendCoinsBtn">−</button>
+                  </div>
                 </div>
               </div>
+
+              <p class="hint">Когда получил награду — добавь монеты. Когда купил предмет — вычти.</p>
             </div>
+          </details>
 
-            <p class="hint">Когда получил награду — добавь монеты. Когда купил предмет — вычти.</p>
-          </div>
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Боеприпасы и расходники</b>
+                <span>Стрелы, болты, зелья</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
 
-          <div class="card">
-            <h3>Боеприпасы и расходники</h3>
+            <div class="card-inner">
+              <div class="grid two">
+                <div class="field">
+                  <label>Стрелы</label>
+                  <input id="arrows" type="number" min="0">
+                </div>
 
-            <div class="grid two">
-              <div class="field">
-                <label>Стрелы</label>
-                <input id="arrows" type="number" min="0">
+                <div class="field">
+                  <label>Болты</label>
+                  <input id="bolts" type="number" min="0">
+                </div>
               </div>
 
-              <div class="field">
-                <label>Болты</label>
-                <input id="bolts" type="number" min="0">
+              <div class="inline">
+                <button class="small-btn" id="useArrowBtn">−1 стрела</button>
+                <button class="small-btn" id="addArrowBtn">+1 стрела</button>
+                <button class="small-btn" id="useBoltBtn">−1 болт</button>
+                <button class="small-btn" id="addBoltBtn">+1 болт</button>
+              </div>
+
+              <div class="field" style="margin-top:14px;">
+                <label>Зелья / расходники</label>
+                <textarea id="consumables"></textarea>
+                <small>Например: Зелье лечения 1 шт, факелы 3 шт.</small>
               </div>
             </div>
+          </details>
 
-            <div class="inline">
-              <button class="small-btn" id="useArrowBtn">−1 стрела</button>
-              <button class="small-btn" id="addArrowBtn">+1 стрела</button>
-              <button class="small-btn" id="useBoltBtn">−1 болт</button>
-              <button class="small-btn" id="addBoltBtn">+1 болт</button>
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Инвентарь</b>
+                <span>Предметы, количество, заметки</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
+
+            <div class="card-inner">
+              <div id="inventoryView"></div>
+
+              <div class="item-row" style="margin-top:12px;">
+                <input id="newItemName" placeholder="Предмет">
+                <input id="newItemQty" type="number" min="1" value="1">
+                <input id="newItemNote" placeholder="Заметка">
+                <button class="small-btn" id="addItemBtn">+</button>
+              </div>
             </div>
+          </details>
 
-            <div class="field" style="margin-top:14px;">
-              <label>Зелья / расходники</label>
-              <textarea id="consumables"></textarea>
-              <small>Например: Зелье лечения 1 шт, факелы 3 шт.</small>
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Состояния и заметки</b>
+                <span>Отравлен, испуган, заметки по партии</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
+
+            <div class="card-inner">
+              <div class="condition-grid" id="conditionsView"></div>
+
+              <div class="field" style="margin-top:14px;">
+                <label>Заметки по игре</label>
+                <textarea id="sessionNotes"></textarea>
+                <small>NPC, квесты, места, долги, что нашли, куда идти дальше.</small>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div class="grid two" style="margin-top:14px;">
-          <div class="card">
-            <h3>Инвентарь</h3>
-
-            <div id="inventoryView"></div>
-
-            <div class="item-row" style="margin-top:12px;">
-              <input id="newItemName" placeholder="Предмет">
-              <input id="newItemQty" type="number" min="1" value="1">
-              <input id="newItemNote" placeholder="Заметка">
-              <button class="small-btn" id="addItemBtn">+</button>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Состояния и заметки</h3>
-
-            <div class="condition-grid" id="conditionsView"></div>
-
-            <div class="field" style="margin-top:14px;">
-              <label>Заметки по игре</label>
-              <textarea id="sessionNotes"></textarea>
-              <small>NPC, квесты, места, долги, что нашли, куда идти дальше.</small>
-            </div>
-          </div>
+          </details>
         </div>
       </section>
 
       <section class="section" id="sheetSection">
-        <div class="card">
-          <h3>Лист персонажа A4</h3>
-          <p class="hint no-print">Нажми “Печать A4”. В печати можно выбрать “Сохранить в PDF”.</p>
-          <div class="sheet" id="printSheet"></div>
-        </div>
+        <details class="card" open>
+          <summary>
+            <div class="summary-title">
+              <b>Лист персонажа A4</b>
+              <span>Печать или сохранение в PDF</span>
+            </div>
+            <div class="summary-icon">+</div>
+          </summary>
+
+          <div class="card-inner">
+            <p class="hint no-print">Нажми “Печать A4”. В печати можно выбрать “Сохранить в PDF”.</p>
+            <div class="sheet" id="printSheet"></div>
+          </div>
+        </details>
       </section>
 
       <section class="section" id="librarySection">
-        <div class="grid two">
-          <div class="card">
-            <h3>Персонажи</h3>
-            <div class="char-list" id="bigCharacterList"></div>
+        <div class="stack">
+          <details class="card" open>
+            <summary>
+              <div class="summary-title">
+                <b>Персонажи</b>
+                <span>Создание, копирование, удаление</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
 
-            <div class="inline" style="margin-top:14px;">
-              <button class="small-btn" id="duplicateBtn">Дублировать</button>
-              <button class="small-btn" id="deleteBtn">Удалить</button>
+            <div class="card-inner">
+              <div class="char-list" id="bigCharacterList"></div>
+
+              <div class="inline" style="margin-top:14px;">
+                <button class="small-btn" id="duplicateBtn">Дублировать</button>
+                <button class="small-btn" id="deleteBtn">Удалить</button>
+              </div>
             </div>
-          </div>
+          </details>
 
-          <div class="card">
-            <h3>Резервная копия</h3>
-            <p class="hint">Экспортируй JSON, чтобы хранить персонажей отдельно. Потом можно импортировать обратно.</p>
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Резервная копия</b>
+                <span>Экспорт и импорт JSON</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
 
-            <div class="inline" style="margin-top:12px;">
-              <button class="small-btn" id="exportAllBtn">Скачать всех персонажей</button>
+            <div class="card-inner">
+              <p class="hint">Экспортируй JSON, чтобы хранить персонажей отдельно. Потом можно импортировать обратно.</p>
 
-              <label class="small-btn" style="display:block;">
-                Импорт JSON
-                <input id="importFile" type="file" accept="application/json" style="display:none;">
-              </label>
+              <div class="inline" style="margin-top:12px;">
+                <button class="small-btn" id="exportAllBtn">Скачать всех персонажей</button>
+
+                <label class="small-btn" style="display:block;">
+                  Импорт JSON
+                  <input id="importFile" type="file" accept="application/json" style="display:none;">
+                </label>
+              </div>
             </div>
-          </div>
+          </details>
         </div>
       </section>
     </main>
   </div>
 
   <script>
-    const STORAGE_KEY = "dnd_newbie_builder_v3_runtime";
+    const STORAGE_KEY = "dnd_newbie_builder_v4_collapsible";
 
     const ABILITIES = {
       str: ["Сила", "Сил"],
@@ -1705,7 +1964,6 @@
 
     function normalizeCharacter(c) {
       const d = defaultCharacter();
-
       c.base = { ...d.base, ...(c.base || {}) };
       c.rolls = c.rolls || d.rolls;
       c.runtime = { ...defaultRuntime(), ...(c.runtime || {}) };
@@ -1726,9 +1984,17 @@
       return c;
     }
 
-    function cls(c=current()) { return CLASSES[c.classKey] || CLASSES.rogue; }
-    function race(c=current()) { return RACES[c.raceKey] || RACES.lightfootHalfling; }
-    function bg(c=current()) { return BACKGROUNDS[c.backgroundKey] || BACKGROUNDS.criminal; }
+    function cls(c=current()) {
+      return CLASSES[c.classKey] || CLASSES.rogue;
+    }
+
+    function race(c=current()) {
+      return RACES[c.raceKey] || RACES.lightfootHalfling;
+    }
+
+    function bg(c=current()) {
+      return BACKGROUNDS[c.backgroundKey] || BACKGROUNDS.criminal;
+    }
 
     function pb(c=current()) {
       const lvl = Number(c.level || 1);
@@ -1891,6 +2157,8 @@
         <span class="pill">Бонусы: ${bonuses || "нет"}</span>
         <span class="pill">Бонус мастерства: ${fmt(pb(c))}</span>
       `;
+
+      $("baseSummary").textContent = `${c.name || "Без имени"} · ${cl.name} · ${r.name}`;
     }
 
     function renderStats(c) {
@@ -1909,6 +2177,8 @@
           </div>
         `;
       }).join("");
+
+      $("statsSummary").textContent = `Лов ${totalAbility(c,"dex")} ${fmt(abilityMod(c,"dex"))} · Хар ${totalAbility(c,"cha")} ${fmt(abilityMod(c,"cha"))} · Тел ${totalAbility(c,"con")} ${fmt(abilityMod(c,"con"))}`;
     }
 
     function renderSkills(c) {
@@ -1975,20 +2245,20 @@
           <div class="formula">Кинь к20 ${fmt(co.initiative)}</div>
         </details>
 
-        <details class="tip" open>
+        <details class="tip">
           <summary>2. Атака оружием <span>${fmt(main.attack)}</span></summary>
           <p>Скажи, кого и чем атакуешь. Например: “Бью рапирой”.</p>
           <div class="formula">Атака: к20 ${fmt(main.attack)}</div>
           <p>Если результат равен или выше КД врага, ты попал.</p>
         </details>
 
-        <details class="tip" open>
+        <details class="tip">
           <summary>3. Урон <span>${main.w.die}</span></summary>
           <p>Если попал, кидай урон.</p>
           <div class="formula">Урон: ${main.damage}</div>
         </details>
 
-        <details class="tip" open>
+        <details class="tip">
           <summary>4. Скрытая атака <span>+1к6</span></summary>
           <p>Главная штука плута. Добавь +1к6 урона один раз за ход, если есть условие.</p>
           <div class="formula">Урон плута: ${main.damage} + 1к6</div>
@@ -2021,13 +2291,13 @@
           <div class="formula">Скрытность: к20 ${fmt(co.skills.stealth)}</div>
         </details>
 
-        <details class="tip" open>
+        <details class="tip">
           <summary>Украсть / спрятать предмет <span>${fmt(co.skills.sleight)}</span></summary>
           <p>Незаметно взять ключ, спрятать кинжал, подменить предмет.</p>
           <div class="formula">Ловкость рук: к20 ${fmt(co.skills.sleight)}</div>
         </details>
 
-        <details class="tip" open>
+        <details class="tip">
           <summary>Вскрыть замок <span>${fmt(abilityMod(c,"dex") + co.pb)}</span></summary>
           <p>Скажи мастеру: “Пробую вскрыть замок воровскими инструментами”.</p>
           <div class="formula">Воровские инструменты: к20 ${fmt(abilityMod(c,"dex") + co.pb)}</div>
@@ -2083,6 +2353,7 @@
 
       $("currentHpView").textContent = rt.currentHp;
       $("hpText").textContent = `Максимум: ${co.maxHp}. Временные хиты: ${rt.tempHp}.`;
+      $("hpSummary").textContent = `${rt.currentHp}/${co.maxHp} хитов · временные ${rt.tempHp}`;
       $("hpFill").style.width = `${Math.max(0, Math.min(100, (rt.currentHp / co.maxHp) * 100))}%`;
 
       $("tempHp").value = rt.tempHp;
@@ -2107,6 +2378,8 @@
           <b>${rt.coins[k] || 0}</b>
         </div>
       `).join("");
+
+      $("coinsSummary").textContent = `золото ${rt.coins.gp || 0} · серебро ${rt.coins.sp || 0} · медь ${rt.coins.cp || 0}`;
 
       renderDeathButtons();
       renderInventory();
@@ -2326,7 +2599,7 @@
       });
 
       const titles = {
-        builderSection: ["Конструктор персонажа", "Здесь создаёшь персонажа и считаешь постоянные характеристики."],
+        builderSection: ["Конструктор персонажа", "Здесь создаёшь персонажа. Блоки можно раскрывать и сворачивать."],
         playSection: ["Игровой экран", "Открой во время партии. Здесь подсказки: что кидать, куда смотреть, что может плут."],
         trackerSection: ["Трекер игры", "Здесь меняются хиты, деньги, стрелы, предметы, состояния и заметки."],
         sheetSection: ["Лист персонажа A4", "Упрощённый лист для печати или PDF."],
@@ -2469,7 +2742,7 @@
       rt.hitDiceUsed = 0;
       rt.deathSaves.success = 0;
       rt.deathSaves.fail = 0;
-      rt.conditions = rt.conditions.filter(x => false);
+      rt.conditions = [];
 
       save();
       render();
@@ -2530,6 +2803,15 @@
       reader.readAsText(file);
     }
 
+    function collapseAll() {
+      const active = document.querySelector(".section.active");
+      const details = active.querySelectorAll("details.card");
+      const hasOpen = [...details].some(d => d.open);
+
+      details.forEach(d => d.open = !hasOpen);
+      $("collapseBtn").textContent = hasOpen ? "Развернуть всё" : "Свернуть всё";
+    }
+
     function initEvents() {
       $("burger").onclick = () => document.querySelector(".sidebar").classList.toggle("open");
 
@@ -2546,6 +2828,8 @@
           $(tab.dataset.mode).classList.add("active");
         };
       });
+
+      $("collapseBtn").onclick = collapseAll;
 
       $("saveBtn").onclick = () => {
         save();
