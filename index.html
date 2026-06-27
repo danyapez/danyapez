@@ -13,6 +13,7 @@
     :root {
       --bg:#000;
       --panel:#080808;
+      --panel2:#111;
       --text:#fff;
       --muted:#a7a7a7;
       --line:#303030;
@@ -21,13 +22,7 @@
       --font:"Roboto",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     }
 
-    * {
-      box-sizing:border-box;
-    }
-
-    html {
-      scroll-behavior:smooth;
-    }
+    * { box-sizing:border-box; }
 
     body {
       margin:0;
@@ -36,18 +31,11 @@
       font-family:var(--font);
       font-size:16px;
       line-height:1.45;
+      padding-bottom:132px;
     }
 
-    button,
-    input,
-    select,
-    textarea {
-      font:inherit;
-    }
-
-    button {
-      cursor:pointer;
-    }
+    button,input,select,textarea { font:inherit; }
+    button { cursor:pointer; }
 
     .app {
       display:grid;
@@ -98,9 +86,7 @@
       font-size:12px;
     }
 
-    .burger {
-      display:none;
-    }
+    .burger { display:none; }
 
     .btn,
     .small-btn,
@@ -133,12 +119,6 @@
       color:#000;
       border-color:#fff;
       font-weight:900;
-    }
-
-    .btn.white:hover,
-    .small-btn.white:hover {
-      background:#ddd;
-      color:#000;
     }
 
     .small-btn {
@@ -239,43 +219,30 @@
       min-width:280px;
     }
 
-    .section {
-      display:none;
-    }
-
-    .section.active {
-      display:block;
-    }
+    .section { display:none; }
+    .section.active { display:block; }
 
     .grid {
       display:grid;
       gap:14px;
     }
 
-    .grid.two {
-      grid-template-columns:1fr 1fr;
+    .grid.two { grid-template-columns:1fr 1fr; }
+    .grid.three { grid-template-columns:repeat(3,1fr); }
+    .grid.four { grid-template-columns:repeat(4,1fr); }
+
+    .stack {
+      display:grid;
+      gap:14px;
     }
 
-    .grid.three {
-      grid-template-columns:repeat(3,1fr);
-    }
-
-    .grid.four {
-      grid-template-columns:repeat(4,1fr);
-    }
-
-    .card,
-    details.card {
+    details.card,
+    .plain-card {
       border:1px solid var(--line);
       border-radius:var(--radius);
       background:linear-gradient(180deg,#0c0c0c,#050505);
-      padding:0;
-      min-width:0;
       overflow:hidden;
-    }
-
-    .card-inner {
-      padding:16px;
+      min-width:0;
     }
 
     details.card > summary {
@@ -291,6 +258,11 @@
 
     details.card > summary::-webkit-details-marker {
       display:none;
+    }
+
+    .card-inner,
+    .plain-card {
+      padding:16px;
     }
 
     .summary-title {
@@ -325,24 +297,14 @@
       border-color:#fff;
     }
 
-    .plain-card {
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:linear-gradient(180deg,#0c0c0c,#050505);
-      padding:16px;
-      min-width:0;
-    }
-
-    .plain-card h3,
-    .card h3 {
+    h3 {
       margin:0 0 12px;
       font-size:13px;
       text-transform:uppercase;
       letter-spacing:.08em;
     }
 
-    .plain-card h4,
-    .card h4 {
+    h4 {
       margin:14px 0 8px;
       font-size:16px;
     }
@@ -522,7 +484,7 @@
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:10px;
-      margin:12px 0 16px;
+      margin:0 0 16px;
     }
 
     .tab {
@@ -552,13 +514,8 @@
       opacity:.72;
     }
 
-    .mode {
-      display:none;
-    }
-
-    .mode.active {
-      display:block;
-    }
+    .mode { display:none; }
+    .mode.active { display:block; }
 
     details.tip {
       border:1px solid var(--line);
@@ -579,9 +536,7 @@
       font-weight:900;
     }
 
-    details.tip summary::-webkit-details-marker {
-      display:none;
-    }
+    details.tip summary::-webkit-details-marker { display:none; }
 
     details.tip p {
       margin:10px 0 0;
@@ -615,13 +570,7 @@
       letter-spacing:.07em;
     }
 
-    .tracker-hp {
-      display:grid;
-      grid-template-columns:1.2fr 1fr;
-      gap:14px;
-    }
-
-    .hp-big {
+    .hp-box {
       border:1px solid var(--line);
       border-radius:22px;
       background:#050505;
@@ -629,7 +578,7 @@
       text-align:center;
     }
 
-    .hp-big span {
+    .hp-box span {
       display:block;
       color:var(--muted);
       font-size:12px;
@@ -637,9 +586,9 @@
       letter-spacing:.08em;
     }
 
-    .hp-big b {
+    .hp-box b {
       display:block;
-      font-size:62px;
+      font-size:54px;
       line-height:.95;
       letter-spacing:-.06em;
       margin-top:8px;
@@ -735,6 +684,69 @@
       letter-spacing:-.05em;
     }
 
+    .quickdock {
+      position:fixed;
+      left:50%;
+      bottom:12px;
+      transform:translateX(-50%);
+      z-index:99;
+      width:min(960px, calc(100% - 24px));
+      border:1px solid #fff;
+      border-radius:24px;
+      background:rgba(0,0,0,.92);
+      backdrop-filter:blur(14px);
+      overflow:hidden;
+      box-shadow:0 12px 40px rgba(0,0,0,.6);
+    }
+
+    .dock-head {
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      align-items:center;
+      padding:10px;
+    }
+
+    .dock-stats {
+      display:flex;
+      gap:8px;
+      overflow:auto;
+      scrollbar-width:none;
+    }
+
+    .dock-stats::-webkit-scrollbar {
+      display:none;
+    }
+
+    .dock-chip {
+      border:1px solid var(--line2);
+      border-radius:999px;
+      padding:8px 10px;
+      white-space:nowrap;
+      font-size:13px;
+      background:#070707;
+    }
+
+    .dock-chip b {
+      font-weight:900;
+    }
+
+    .dock-body {
+      display:none;
+      border-top:1px solid var(--line);
+      padding:12px;
+    }
+
+    .quickdock.open .dock-body {
+      display:block;
+    }
+
+    .dock-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
     .sheet {
       background:#fff;
       color:#000;
@@ -819,12 +831,11 @@
       color:var(--muted);
     }
 
-    .stack {
-      display:grid;
-      gap:14px;
-    }
-
     @media (max-width:980px) {
+      body {
+        padding-bottom:148px;
+      }
+
       .app {
         display:block;
       }
@@ -969,9 +980,9 @@
       .grid.three,
       .grid.four,
       .mini-grid,
-      .tracker-hp,
       .sheet-grid,
-      .skill-list {
+      .skill-list,
+      .dock-grid {
         grid-template-columns:1fr;
       }
 
@@ -980,7 +991,7 @@
       }
 
       .tabs {
-        grid-template-columns:1fr;
+        grid-template-columns:1fr 1fr;
       }
 
       .money-grid {
@@ -1020,11 +1031,13 @@
       body {
         background:#fff;
         color:#000;
+        padding-bottom:0;
       }
 
       .sidebar,
       .topbar,
       .no-print,
+      .quickdock,
       .section:not(#sheetSection) {
         display:none !important;
       }
@@ -1040,7 +1053,6 @@
         display:block !important;
       }
 
-      .plain-card,
       details.card {
         border:0;
         padding:0;
@@ -1074,11 +1086,10 @@
       <button class="btn white" id="newCharacterBtn">+ Новый персонаж</button>
 
       <div class="nav" id="nav">
-        <button class="active" data-section="builderSection">01 Конструктор</button>
-        <button data-section="playSection">02 Игра</button>
-        <button data-section="trackerSection">03 Трекер</button>
-        <button data-section="sheetSection">04 Лист A4</button>
-        <button data-section="librarySection">05 Персонажи</button>
+        <button class="active" data-section="playSection">01 Игра</button>
+        <button data-section="builderSection">02 Конструктор</button>
+        <button data-section="sheetSection">03 Лист A4</button>
+        <button data-section="librarySection">04 Персонажи</button>
       </div>
 
       <h3 class="side-title">Сохранённые</h3>
@@ -1090,26 +1101,269 @@
     <main class="main">
       <div class="topbar no-print">
         <div class="title">
-          <h2 id="pageTitle">Конструктор персонажа</h2>
-          <p id="pageDesc">Создай персонажа. Большие блоки можно сворачивать, чтобы экран был компактнее.</p>
+          <h2 id="pageTitle">Игровой экран</h2>
+          <p id="pageDesc">Выбирай режим Бой или Вне боя. Самое важное всегда снизу в быстрой панели.</p>
         </div>
 
         <div class="toolbar">
-          <button class="small-btn" id="collapseBtn">Свернуть всё</button>
+          <button class="small-btn" id="toggleDetailsBtn">↕ Блоки</button>
+          <button class="small-btn" id="toggleDockBtn">☷ Параметры</button>
           <button class="small-btn" id="saveBtn">Сохранить</button>
-          <button class="small-btn" id="resetBtn">Сбросить</button>
-          <button class="small-btn" id="exportBtn">Экспорт JSON</button>
-          <button class="small-btn" id="printBtn">Печать A4</button>
+          <button class="small-btn" id="exportBtn">Экспорт</button>
         </div>
       </div>
 
-      <section class="section active" id="builderSection">
+      <section class="section active" id="playSection">
+        <div class="stack">
+          <details class="card" open>
+            <summary>
+              <div class="summary-title">
+                <b>Режим игры</b>
+                <span id="modeSummary">Бой или вне боя</span>
+              </div>
+              <div class="summary-icon">+</div>
+            </summary>
+
+            <div class="card-inner">
+              <div class="tabs">
+                <button class="tab active" id="combatTab" data-mode="combatMode">
+                  <b>Бой</b>
+                  <span>атака, урон, хиты</span>
+                </button>
+
+                <button class="tab" id="exploreTab" data-mode="exploreMode">
+                  <b>Вне боя</b>
+                  <span>скрытность, общение, взлом</span>
+                </button>
+              </div>
+
+              <div class="mini-grid" id="quickStats"></div>
+            </div>
+          </details>
+
+          <div class="mode active" id="combatMode">
+            <div class="stack">
+              <details class="card" open>
+                <summary>
+                  <div class="summary-title">
+                    <b>Бой сейчас</b>
+                    <span>атака, скрытая атака, урон</span>
+                  </div>
+                  <div class="summary-icon">+</div>
+                </summary>
+
+                <div class="card-inner">
+                  <div class="grid two">
+                    <div id="combatTips"></div>
+
+                    <div>
+                      <h4>Быстрый урон / лечение</h4>
+                      <div class="grid two">
+                        <div class="field">
+                          <label>Получил урон</label>
+                          <input id="damageInput" type="number" min="0" placeholder="например 5">
+                        </div>
+
+                        <div class="field">
+                          <label>Вылечился</label>
+                          <input id="healInput" type="number" min="0" placeholder="например 4">
+                        </div>
+                      </div>
+
+                      <div class="inline">
+                        <button class="small-btn" id="damageBtn">Применить урон</button>
+                        <button class="small-btn" id="healBtn">Применить лечение</button>
+                      </div>
+
+                      <div class="field" style="margin-top:12px;">
+                        <label>Временные хиты</label>
+                        <input id="tempHp" type="number" min="0">
+                        <small>Сначала урон снимается с временных хитов.</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="card">
+                <summary>
+                  <div class="summary-title">
+                    <b>Особенности в бою</b>
+                    <span>что не забыть во время драки</span>
+                  </div>
+                  <div class="summary-icon">+</div>
+                </summary>
+
+                <div class="card-inner" id="combatFeatures"></div>
+              </details>
+
+              <details class="card">
+                <summary>
+                  <div class="summary-title">
+                    <b>Спасброски смерти и боеприпасы</b>
+                    <span>если хиты 0, стрелы, болты</span>
+                  </div>
+                  <div class="summary-icon">+</div>
+                </summary>
+
+                <div class="card-inner">
+                  <p class="hint">Если здоровье стало 0: на своём ходу кидаешь к20. 10 или выше — успех. 9 или ниже — неудача.</p>
+
+                  <div class="grid two" style="margin-top:12px;">
+                    <div>
+                      <h4>Успехи</h4>
+                      <div class="inline" id="deathSuccessBtns"></div>
+                    </div>
+
+                    <div>
+                      <h4>Неудачи</h4>
+                      <div class="inline" id="deathFailBtns"></div>
+                    </div>
+                  </div>
+
+                  <div class="inline" style="margin-top:12px;">
+                    <button class="small-btn" id="resetDeathBtn">Сбросить смерть</button>
+                    <button class="small-btn" id="shortRestBtn">Короткий отдых</button>
+                    <button class="small-btn" id="longRestBtn">Долгий отдых</button>
+                  </div>
+
+                  <div class="grid two" style="margin-top:14px;">
+                    <div class="field">
+                      <label>Стрелы</label>
+                      <input id="arrows" type="number" min="0">
+                    </div>
+
+                    <div class="field">
+                      <label>Болты</label>
+                      <input id="bolts" type="number" min="0">
+                    </div>
+                  </div>
+
+                  <div class="inline">
+                    <button class="small-btn" id="useArrowBtn">−1 стрела</button>
+                    <button class="small-btn" id="addArrowBtn">+1 стрела</button>
+                    <button class="small-btn" id="useBoltBtn">−1 болт</button>
+                    <button class="small-btn" id="addBoltBtn">+1 болт</button>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="mode" id="exploreMode">
+            <div class="stack">
+              <details class="card" open>
+                <summary>
+                  <div class="summary-title">
+                    <b>Вне боя сейчас</b>
+                    <span>скрытность, обман, взлом, восприятие</span>
+                  </div>
+                  <div class="summary-icon">+</div>
+                </summary>
+
+                <div class="card-inner">
+                  <div class="grid two">
+                    <div id="exploreTips"></div>
+                    <div id="situationTips"></div>
+                  </div>
+                </div>
+              </details>
+
+              <details class="card">
+                <summary>
+                  <div class="summary-title">
+                    <b>Особенности вне боя</b>
+                    <span>что можно использовать в исследовании и общении</span>
+                  </div>
+                  <div class="summary-icon">+</div>
+                </summary>
+
+                <div class="card-inner" id="exploreFeatures"></div>
+              </details>
+
+              <details class="card">
+                <summary>
+                  <div class="summary-title">
+                    <b>Деньги, предметы, заметки</b>
+                    <span id="coinsSummary">монеты и инвентарь</span>
+                  </div>
+                  <div class="summary-icon">+</div>
+                </summary>
+
+                <div class="card-inner">
+                  <h4>Деньги</h4>
+                  <div class="money-grid" id="coinsView"></div>
+
+                  <div class="grid three" style="margin-top:14px;">
+                    <div class="field">
+                      <label>Монета</label>
+                      <select id="coinType">
+                        <option value="cp">Медь</option>
+                        <option value="sp">Серебро</option>
+                        <option value="ep">Электрум</option>
+                        <option value="gp">Золото</option>
+                        <option value="pp">Платина</option>
+                      </select>
+                    </div>
+
+                    <div class="field">
+                      <label>Количество</label>
+                      <input id="coinAmount" type="number" min="0" placeholder="например 10">
+                    </div>
+
+                    <div class="field">
+                      <label>Действие</label>
+                      <div class="inline">
+                        <button class="small-btn" id="addCoinsBtn">+</button>
+                        <button class="small-btn" id="spendCoinsBtn">−</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h4>Инвентарь</h4>
+                  <div id="inventoryView"></div>
+
+                  <div class="item-row" style="margin-top:12px;">
+                    <input id="newItemName" placeholder="Предмет">
+                    <input id="newItemQty" type="number" min="1" value="1">
+                    <input id="newItemNote" placeholder="Заметка">
+                    <button class="small-btn" id="addItemBtn">+</button>
+                  </div>
+
+                  <h4>Заметки</h4>
+                  <div class="field">
+                    <label>Заметки по игре</label>
+                    <textarea id="sessionNotes"></textarea>
+                    <small>NPC, квесты, места, долги, что нашли, куда идти дальше.</small>
+                  </div>
+                </div>
+              </details>
+
+              <details class="card">
+                <summary>
+                  <div class="summary-title">
+                    <b>Состояния</b>
+                    <span>отравлен, испуган, невидим и другое</span>
+                  </div>
+                  <div class="summary-icon">+</div>
+                </summary>
+
+                <div class="card-inner">
+                  <div class="condition-grid" id="conditionsView"></div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="builderSection">
         <div class="stack">
           <details class="card" open>
             <summary>
               <div class="summary-title">
                 <b>База персонажа</b>
-                <span id="baseSummary">Имя, класс, раса, биография</span>
+                <span id="baseSummary">имя, класс, раса</span>
               </div>
               <div class="summary-icon">+</div>
             </summary>
@@ -1119,7 +1373,6 @@
                 <div class="field">
                   <label>Имя персонажа</label>
                   <input id="name" data-bind="name" placeholder="Например: Мускат">
-                  <small>Имя можно поменять в любой момент.</small>
                 </div>
 
                 <div class="field">
@@ -1132,7 +1385,6 @@
                 <div class="field">
                   <label>Класс</label>
                   <select id="classKey" data-bind="classKey"></select>
-                  <small>По умолчанию стоит плут.</small>
                 </div>
 
                 <div class="field">
@@ -1144,7 +1396,6 @@
                     <option value="4">4 уровень</option>
                     <option value="5">5 уровень</option>
                   </select>
-                  <small>Для новичка лучше начать с 1 уровня.</small>
                 </div>
               </div>
 
@@ -1152,13 +1403,11 @@
                 <div class="field">
                   <label>Раса</label>
                   <select id="raceKey" data-bind="raceKey"></select>
-                  <small>По умолчанию легконогий полурослик.</small>
                 </div>
 
                 <div class="field">
                   <label>Биография</label>
                   <select id="backgroundKey" data-bind="backgroundKey"></select>
-                  <small>Для плута удобно “Преступник”.</small>
                 </div>
               </div>
 
@@ -1172,6 +1421,7 @@
                 <div class="field">
                   <label>Опыт</label>
                   <input id="xp" data-bind="xp" type="number" min="0" placeholder="0">
+                  <small>Опыт нужен только для повышения уровня. Мастер скажет, когда менять.</small>
                 </div>
               </div>
 
@@ -1183,14 +1433,13 @@
             <summary>
               <div class="summary-title">
                 <b>Броски характеристик</b>
-                <span>Впиши 6 чисел с кубиков</span>
+                <span>впиши 6 чисел с кубиков</span>
               </div>
               <div class="summary-icon">+</div>
             </summary>
 
             <div class="card-inner">
-              <p class="hint">Мастер говорит: “Киньте характеристики”. Обычно ты получаешь 6 чисел. Впиши их сюда. Потом нажми “Авто-раскидать”.</p>
-
+              <p class="hint">Мастер говорит: “Киньте характеристики”. Впиши 6 чисел и нажми “Авто-раскидать”.</p>
               <div class="grid three" id="rollFields"></div>
 
               <div class="inline">
@@ -1198,8 +1447,6 @@
                 <button class="small-btn" id="randomRollBtn">Кинуть случайно</button>
                 <button class="small-btn" id="clearRollsBtn">Очистить</button>
               </div>
-
-              <p class="hint">Для плута главное: Ловкость. Потом Харизма и Телосложение.</p>
             </div>
           </details>
 
@@ -1207,14 +1454,14 @@
             <summary>
               <div class="summary-title">
                 <b>Характеристики</b>
-                <span id="statsSummary">Ловкость, Харизма, Телосложение и другие</span>
+                <span id="statsSummary">главные параметры персонажа</span>
               </div>
               <div class="summary-icon">+</div>
             </summary>
 
             <div class="card-inner">
               <div class="stats" id="statsView"></div>
-              <p class="hint">В кружке указан модификатор. Обычно именно его прибавляют к к20.</p>
+              <p class="hint">В кружке указан модификатор. Его чаще всего прибавляют к к20.</p>
             </div>
           </details>
 
@@ -1222,13 +1469,13 @@
             <summary>
               <div class="summary-title">
                 <b>Навыки</b>
-                <span>Скрытность, Ловкость рук, Обман, Восприятие</span>
+                <span>все проверки персонажа</span>
               </div>
               <div class="summary-icon">+</div>
             </summary>
 
             <div class="card-inner">
-              <p class="hint">★ — экспертиза. ● — владение. У плута по умолчанию сильные Скрытность и Ловкость рук.</p>
+              <p class="hint">★ — экспертиза. ● — владение.</p>
               <div class="skill-list" id="skillsView"></div>
             </div>
           </details>
@@ -1237,7 +1484,7 @@
             <summary>
               <div class="summary-title">
                 <b>Оружие и снаряжение</b>
-                <span>Рапира, кинжал, лук, вещи</span>
+                <span>атаки и вещи</span>
               </div>
               <div class="summary-icon">+</div>
             </summary>
@@ -1263,7 +1510,6 @@
               <div class="field">
                 <label>Снаряжение</label>
                 <textarea id="equipment" data-bind="equipment"></textarea>
-                <small>Общий список вещей персонажа.</small>
               </div>
 
               <div id="weaponsView"></div>
@@ -1274,7 +1520,7 @@
             <summary>
               <div class="summary-title">
                 <b>Личность</b>
-                <span>Черты, идеалы, кредо, недостатки</span>
+                <span>характер, идеалы, недостатки</span>
               </div>
               <div class="summary-icon">+</div>
             </summary>
@@ -1285,13 +1531,11 @@
                   <div class="field">
                     <label>Личностные черты</label>
                     <textarea id="personality" data-bind="personality"></textarea>
-                    <small>Например: “Говорю тихо, но всё замечаю”.</small>
                   </div>
 
                   <div class="field">
                     <label>Идеалы</label>
                     <textarea id="ideals" data-bind="ideals"></textarea>
-                    <small>Например: “Свобода важнее правил”.</small>
                   </div>
                 </div>
 
@@ -1299,321 +1543,13 @@
                   <div class="field">
                     <label>Кредо / привязанности</label>
                     <textarea id="bonds" data-bind="bonds"></textarea>
-                    <small>Например: “Я защищаю тех, кто помог мне”.</small>
                   </div>
 
                   <div class="field">
                     <label>Недостатки</label>
                     <textarea id="flaws" data-bind="flaws"></textarea>
-                    <small>Например: “Не могу пройти мимо лёгкой наживы”.</small>
                   </div>
                 </div>
-              </div>
-            </div>
-          </details>
-        </div>
-      </section>
-
-      <section class="section" id="playSection">
-        <div class="stack">
-          <details class="card" open>
-            <summary>
-              <div class="summary-title">
-                <b>Короткие значения</b>
-                <span>КД, хиты, инициатива, скорость</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div class="mini-grid" id="quickStats"></div>
-            </div>
-          </details>
-
-          <details class="card" open>
-            <summary>
-              <div class="summary-title">
-                <b>Бой / вне боя</b>
-                <span>Подсказки, что кидать</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div class="tabs">
-                <button class="tab active" data-mode="combatMode">
-                  <b>Бой</b>
-                  <span>что кидать, атаки, урон</span>
-                </button>
-
-                <button class="tab" data-mode="exploreMode">
-                  <b>Вне боя</b>
-                  <span>общение, скрытность, взлом</span>
-                </button>
-              </div>
-
-              <div class="mode active" id="combatMode">
-                <div class="grid two">
-                  <div>
-                    <h4>Что делать в бою</h4>
-                    <div id="combatTips"></div>
-                  </div>
-
-                  <div>
-                    <h4>Быстрый кубик</h4>
-                    <div class="plain-card">
-                      <div class="field">
-                        <label>Кубик</label>
-                        <select id="diceSelect">
-                          <option value="20">к20 — атака, проверки, спасброски</option>
-                          <option value="12">к12</option>
-                          <option value="10">к10</option>
-                          <option value="8">к8 — рапира</option>
-                          <option value="6">к6 — скрытая атака / лук</option>
-                          <option value="4">к4 — кинжал</option>
-                        </select>
-                      </div>
-
-                      <button class="btn white" id="rollDiceBtn">Кинуть</button>
-                      <div class="dice-result" id="diceResult">—</div>
-                      <p class="hint">На игре можно кидать физические кубики. Это просто быстрый помощник.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mode" id="exploreMode">
-                <div class="grid two">
-                  <div>
-                    <h4>Что я могу делать как плут</h4>
-                    <div id="exploreTips"></div>
-                  </div>
-
-                  <div>
-                    <h4>Какая проверка нужна</h4>
-                    <div id="situationTips"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </details>
-        </div>
-      </section>
-
-      <section class="section" id="trackerSection">
-        <div class="stack">
-          <details class="card" open>
-            <summary>
-              <div class="summary-title">
-                <b>Здоровье</b>
-                <span id="hpSummary">Урон, лечение, отдых</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div class="tracker-hp">
-                <div class="hp-big">
-                  <span>Текущие хиты</span>
-                  <b id="currentHpView">0</b>
-                  <div class="hp-bar"><div class="hp-fill" id="hpFill"></div></div>
-                  <p class="hint" id="hpText"></p>
-                </div>
-
-                <div>
-                  <div class="grid two">
-                    <div class="field">
-                      <label>Получил урон</label>
-                      <input id="damageInput" type="number" min="0" placeholder="например 5">
-                    </div>
-
-                    <div class="field">
-                      <label>Вылечился</label>
-                      <input id="healInput" type="number" min="0" placeholder="например 4">
-                    </div>
-                  </div>
-
-                  <div class="inline">
-                    <button class="small-btn" id="damageBtn">Применить урон</button>
-                    <button class="small-btn" id="healBtn">Применить лечение</button>
-                  </div>
-
-                  <div class="grid two" style="margin-top:12px;">
-                    <div class="field">
-                      <label>Временные хиты</label>
-                      <input id="tempHp" type="number" min="0">
-                      <small>Сначала урон снимается с временных хитов.</small>
-                    </div>
-
-                    <div class="field">
-                      <label>Использовано костей хитов</label>
-                      <input id="hitDiceUsed" type="number" min="0">
-                      <small>На коротком отдыхе можно тратить кости хитов.</small>
-                    </div>
-                  </div>
-
-                  <div class="inline">
-                    <button class="small-btn" id="shortRestBtn">Короткий отдых</button>
-                    <button class="small-btn" id="longRestBtn">Долгий отдых</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Спасброски смерти</b>
-                <span>Когда хиты стали 0</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <p class="hint">Если здоровье стало 0: на своём ходу кидаешь к20. 10 или выше — успех. 9 или ниже — неудача.</p>
-
-              <div class="grid two" style="margin-top:12px;">
-                <div>
-                  <h4>Успехи</h4>
-                  <div class="inline" id="deathSuccessBtns"></div>
-                </div>
-
-                <div>
-                  <h4>Неудачи</h4>
-                  <div class="inline" id="deathFailBtns"></div>
-                </div>
-              </div>
-
-              <button class="small-btn" id="resetDeathBtn" style="margin-top:12px;">Сбросить спасброски смерти</button>
-
-              <div class="field" style="margin-top:14px;">
-                <label>Вдохновение</label>
-                <select id="inspiration">
-                  <option value="false">Нет</option>
-                  <option value="true">Есть</option>
-                </select>
-                <small>Мастер может дать вдохновение за хорошую роль.</small>
-              </div>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Деньги</b>
-                <span id="coinsSummary">Золото и другие монеты</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div class="money-grid" id="coinsView"></div>
-
-              <div class="grid three" style="margin-top:14px;">
-                <div class="field">
-                  <label>Монета</label>
-                  <select id="coinType">
-                    <option value="cp">Медь</option>
-                    <option value="sp">Серебро</option>
-                    <option value="ep">Электрум</option>
-                    <option value="gp">Золото</option>
-                    <option value="pp">Платина</option>
-                  </select>
-                </div>
-
-                <div class="field">
-                  <label>Количество</label>
-                  <input id="coinAmount" type="number" min="0" placeholder="например 10">
-                </div>
-
-                <div class="field">
-                  <label>Действие</label>
-                  <div class="inline">
-                    <button class="small-btn" id="addCoinsBtn">+</button>
-                    <button class="small-btn" id="spendCoinsBtn">−</button>
-                  </div>
-                </div>
-              </div>
-
-              <p class="hint">Когда получил награду — добавь монеты. Когда купил предмет — вычти.</p>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Боеприпасы и расходники</b>
-                <span>Стрелы, болты, зелья</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div class="grid two">
-                <div class="field">
-                  <label>Стрелы</label>
-                  <input id="arrows" type="number" min="0">
-                </div>
-
-                <div class="field">
-                  <label>Болты</label>
-                  <input id="bolts" type="number" min="0">
-                </div>
-              </div>
-
-              <div class="inline">
-                <button class="small-btn" id="useArrowBtn">−1 стрела</button>
-                <button class="small-btn" id="addArrowBtn">+1 стрела</button>
-                <button class="small-btn" id="useBoltBtn">−1 болт</button>
-                <button class="small-btn" id="addBoltBtn">+1 болт</button>
-              </div>
-
-              <div class="field" style="margin-top:14px;">
-                <label>Зелья / расходники</label>
-                <textarea id="consumables"></textarea>
-                <small>Например: Зелье лечения 1 шт, факелы 3 шт.</small>
-              </div>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Инвентарь</b>
-                <span>Предметы, количество, заметки</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div id="inventoryView"></div>
-
-              <div class="item-row" style="margin-top:12px;">
-                <input id="newItemName" placeholder="Предмет">
-                <input id="newItemQty" type="number" min="1" value="1">
-                <input id="newItemNote" placeholder="Заметка">
-                <button class="small-btn" id="addItemBtn">+</button>
-              </div>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Состояния и заметки</b>
-                <span>Отравлен, испуган, заметки по партии</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div class="condition-grid" id="conditionsView"></div>
-
-              <div class="field" style="margin-top:14px;">
-                <label>Заметки по игре</label>
-                <textarea id="sessionNotes"></textarea>
-                <small>NPC, квесты, места, долги, что нашли, куда идти дальше.</small>
               </div>
             </div>
           </details>
@@ -1625,13 +1561,14 @@
           <summary>
             <div class="summary-title">
               <b>Лист персонажа A4</b>
-              <span>Печать или сохранение в PDF</span>
+              <span>печать или PDF</span>
             </div>
             <div class="summary-icon">+</div>
           </summary>
 
           <div class="card-inner">
-            <p class="hint no-print">Нажми “Печать A4”. В печати можно выбрать “Сохранить в PDF”.</p>
+            <button class="small-btn no-print" id="printBtn">Печать A4</button>
+            <p class="hint no-print">В печати можно выбрать “Сохранить в PDF”.</p>
             <div class="sheet" id="printSheet"></div>
           </div>
         </details>
@@ -1643,7 +1580,7 @@
             <summary>
               <div class="summary-title">
                 <b>Персонажи</b>
-                <span>Создание, копирование, удаление</span>
+                <span>создание, копирование, удаление</span>
               </div>
               <div class="summary-icon">+</div>
             </summary>
@@ -1654,6 +1591,7 @@
               <div class="inline" style="margin-top:14px;">
                 <button class="small-btn" id="duplicateBtn">Дублировать</button>
                 <button class="small-btn" id="deleteBtn">Удалить</button>
+                <button class="small-btn" id="resetBtn">Сбросить текущего</button>
               </div>
             </div>
           </details>
@@ -1662,13 +1600,13 @@
             <summary>
               <div class="summary-title">
                 <b>Резервная копия</b>
-                <span>Экспорт и импорт JSON</span>
+                <span>экспорт и импорт JSON</span>
               </div>
               <div class="summary-icon">+</div>
             </summary>
 
             <div class="card-inner">
-              <p class="hint">Экспортируй JSON, чтобы хранить персонажей отдельно. Потом можно импортировать обратно.</p>
+              <p class="hint">Экспортируй JSON, чтобы хранить персонажей отдельно.</p>
 
               <div class="inline" style="margin-top:12px;">
                 <button class="small-btn" id="exportAllBtn">Скачать всех персонажей</button>
@@ -1685,8 +1623,41 @@
     </main>
   </div>
 
+  <div class="quickdock no-print" id="quickDock">
+    <div class="dock-head">
+      <div class="dock-stats" id="dockStats"></div>
+      <button class="small-btn white" id="dockOpenBtn">☷</button>
+    </div>
+
+    <div class="dock-body">
+      <div class="dock-grid">
+        <div id="dockModeInfo"></div>
+
+        <div>
+          <div class="grid two">
+            <div class="field">
+              <label>Урон</label>
+              <input id="dockDamage" type="number" min="0" placeholder="5">
+            </div>
+
+            <div class="field">
+              <label>Лечение</label>
+              <input id="dockHeal" type="number" min="0" placeholder="4">
+            </div>
+          </div>
+
+          <div class="inline">
+            <button class="small-btn" id="dockDamageBtn">Урон</button>
+            <button class="small-btn" id="dockHealBtn">Лечение</button>
+            <button class="small-btn" id="dockModeBtn">Сменить режим</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    const STORAGE_KEY = "dnd_newbie_builder_v4_collapsible";
+    const STORAGE_KEY = "dnd_newbie_builder_v5_gameflow";
 
     const ABILITIES = {
       str: ["Сила", "Сил"],
@@ -1723,53 +1694,45 @@
         name: "Легконогий полурослик",
         size: "Маленький",
         speed: 25,
-        height: "около 90 см",
-        weight: "около 20 кг",
         bonuses: { dex: 2, cha: 1 },
         languages: ["Общий", "Полуросликов"],
         features: [
-          ["Удача", "Если на к20 выпала 1, можешь перебросить кубик. Новый результат нужно принять."],
-          ["Храбрый", "Спасброски от испуга совершаешь с преимуществом."],
-          ["Проворство полуросликов", "Можешь проходить через пространство существ, которые больше тебя."],
-          ["Естественная скрытность", "Можешь пытаться спрятаться за существом, которое больше тебя хотя бы на 1 размер."]
+          { name:"Удача", mode:"both", text:"Если на к20 выпала 1, можешь перебросить кубик. Новый результат нужно принять." },
+          { name:"Храбрый", mode:"combat", text:"Спасброски от испуга совершаешь с преимуществом." },
+          { name:"Проворство полуросликов", mode:"both", text:"Можешь проходить через пространство существ, которые больше тебя." },
+          { name:"Естественная скрытность", mode:"both", text:"Можешь пытаться спрятаться за существом, которое больше тебя хотя бы на 1 размер." }
         ]
       },
       human: {
         name: "Человек",
         size: "Средний",
         speed: 30,
-        height: "любой",
-        weight: "любой",
         bonuses: { str: 1, dex: 1, con: 1, int: 1, wis: 1, cha: 1 },
         languages: ["Общий", "ещё 1 язык"],
         features: [
-          ["Универсальность", "Человек получает небольшие бонусы ко всем характеристикам."]
+          { name:"Универсальность", mode:"both", text:"Человек получает небольшие бонусы ко всем характеристикам." }
         ]
       },
       elf: {
         name: "Эльф",
         size: "Средний",
         speed: 30,
-        height: "около 150-190 см",
-        weight: "стройное телосложение",
         bonuses: { dex: 2 },
         languages: ["Общий", "Эльфийский"],
         features: [
-          ["Тёмное зрение", "Лучше видишь в темноте, чем обычный человек."],
-          ["Острые чувства", "Хорошо подходит для внимательного персонажа."]
+          { name:"Тёмное зрение", mode:"explore", text:"Лучше видишь в темноте, чем обычный человек." },
+          { name:"Острые чувства", mode:"explore", text:"Хорошо подходит для внимательного персонажа." }
         ]
       },
       dwarf: {
         name: "Дварф",
         size: "Средний",
         speed: 25,
-        height: "около 120-150 см",
-        weight: "крепкое телосложение",
         bonuses: { con: 2 },
         languages: ["Общий", "Дварфский"],
         features: [
-          ["Дварфская стойкость", "Крепкий персонаж, хорошо держит урон."],
-          ["Тёмное зрение", "Лучше видишь в темноте, чем обычный человек."]
+          { name:"Дварфская стойкость", mode:"combat", text:"Крепкий персонаж, хорошо держит урон." },
+          { name:"Тёмное зрение", mode:"explore", text:"Лучше видишь в темноте, чем обычный человек." }
         ]
       }
     };
@@ -1779,166 +1742,132 @@
         name: "Плут",
         hitDie: 8,
         saves: ["dex", "int"],
-        armor: "Лёгкие доспехи",
         prof: "Лёгкие доспехи, простое оружие, рапиры, короткие мечи, ручные арбалеты, воровские инструменты",
         defaultSkills: ["stealth", "sleight", "deception", "acrobatics"],
         expertise: ["stealth", "sleight"],
         order: ["dex", "cha", "con", "wis", "int", "str"],
         features: [
-          ["Скрытая атака", "1 раз за ход добавь +1к6 урона, если есть преимущество на атаку или союзник стоит рядом с целью."],
-          ["Экспертиза", "Два навыка получают удвоенный бонус мастерства. Удобно взять Скрытность и Ловкость рук."],
-          ["Воровской жаргон", "Ты понимаешь тайные знаки, намёки и шифры преступников."]
+          { name:"Скрытая атака", mode:"combat", text:"1 раз за ход добавь +1к6 урона, если есть преимущество на атаку или союзник стоит рядом с целью." },
+          { name:"Экспертиза", mode:"both", text:"Два навыка получают удвоенный бонус мастерства. У тебя это Скрытность и Ловкость рук." },
+          { name:"Воровской жаргон", mode:"explore", text:"Ты понимаешь тайные знаки, намёки и шифры преступников." }
         ]
       },
       fighter: {
         name: "Воин",
         hitDie: 10,
         saves: ["str", "con"],
-        armor: "Все доспехи и щиты",
         prof: "Все доспехи, щиты, простое и воинское оружие",
         defaultSkills: ["athletics", "perception", "intimidation", "survival"],
         expertise: [],
         order: ["str", "con", "dex", "wis", "cha", "int"],
         features: [
-          ["Второе дыхание", "Можно немного восстановить здоровье в бою."],
-          ["Боевой стиль", "Выбирается отдельно и задаёт стиль боя."]
+          { name:"Второе дыхание", mode:"combat", text:"Можно немного восстановить здоровье в бою." },
+          { name:"Боевой стиль", mode:"combat", text:"Выбирается отдельно и задаёт стиль боя." }
         ]
       },
       wizard: {
         name: "Волшебник",
         hitDie: 6,
         saves: ["int", "wis"],
-        armor: "Нет",
         prof: "Кинжалы, посохи, дротики, пращи, лёгкие арбалеты",
         defaultSkills: ["arcana", "history", "investigation", "religion"],
         expertise: [],
         order: ["int", "con", "dex", "wis", "cha", "str"],
         features: [
-          ["Заклинания", "Основная сила волшебника. Нужно выбрать заклинания отдельно."],
-          ["Книга заклинаний", "В ней записаны доступные заклинания."]
+          { name:"Заклинания", mode:"both", text:"Основная сила волшебника. Нужно выбрать заклинания отдельно." },
+          { name:"Книга заклинаний", mode:"explore", text:"В ней записаны доступные заклинания." }
         ]
       },
       cleric: {
         name: "Жрец",
         hitDie: 8,
         saves: ["wis", "cha"],
-        armor: "Лёгкие и средние доспехи, щиты",
         prof: "Простое оружие, лёгкие и средние доспехи, щиты",
         defaultSkills: ["insight", "medicine", "persuasion", "religion"],
         expertise: [],
         order: ["wis", "con", "str", "cha", "dex", "int"],
         features: [
-          ["Заклинания", "Жрец умеет лечить, защищать и наносить урон магией."],
-          ["Божественный домен", "Выбирается отдельно и задаёт стиль жреца."]
+          { name:"Заклинания", mode:"both", text:"Жрец умеет лечить, защищать и наносить урон магией." },
+          { name:"Божественный домен", mode:"both", text:"Выбирается отдельно и задаёт стиль жреца." }
         ]
       }
     };
 
     const BACKGROUNDS = {
-      criminal: {
-        name: "Преступник",
-        skills: ["deception", "stealth"],
-        text: "Ты знаешь криминальный мир, тайные встречи, осторожные фразы и обходные пути."
-      },
-      charlatan: {
-        name: "Шарлатан",
-        skills: ["deception", "sleight"],
-        text: "Ты умеешь притворяться, врать, продавать красивую историю и ловко работать руками."
-      },
-      urchin: {
-        name: "Беспризорник",
-        skills: ["sleight", "stealth"],
-        text: "Ты вырос на улицах. Знаешь, где спрятаться, как выжить и как не попасться."
-      },
-      folkHero: {
-        name: "Народный герой",
-        skills: ["animal", "survival"],
-        text: "Ты простой человек, который уже сделал что-то важное для обычных людей."
-      }
+      criminal: { name:"Преступник", skills:["deception","stealth"] },
+      charlatan: { name:"Шарлатан", skills:["deception","sleight"] },
+      urchin: { name:"Беспризорник", skills:["sleight","stealth"] },
+      folkHero: { name:"Народный герой", skills:["animal","survival"] }
     };
 
     const ALIGNMENTS = {
-      lg: ["Законно-добрый", "Делает добро и уважает правила."],
-      ng: ["Нейтрально-добрый", "Старается делать добро, даже если правила мешают."],
-      cg: ["Хаотично-добрый", "Добрый, но свободолюбивый. Может нарушить закон ради правильного дела."],
-      ln: ["Законно-нейтральный", "Важны порядок, договоры, традиции или кодекс."],
-      n: ["Истинно-нейтральный", "Действует по ситуации и личной логике."],
-      cn: ["Хаотично-нейтральный", "Любит свободу, действует непредсказуемо, не любит контроль."],
-      le: ["Законно-злой", "Злодей с правилами. Использует закон, власть или договоры ради себя."],
-      ne: ["Нейтрально-злой", "Думает о выгоде и себе."],
-      ce: ["Хаотично-злой", "Опасный и разрушительный. Для новичка лучше не брать без согласия мастера."]
+      lg:["Законно-добрый","Делает добро и уважает правила."],
+      ng:["Нейтрально-добрый","Старается делать добро, даже если правила мешают."],
+      cg:["Хаотично-добрый","Добрый, но свободолюбивый. Может нарушить закон ради правильного дела."],
+      ln:["Законно-нейтральный","Важны порядок, договоры, традиции или кодекс."],
+      n:["Истинно-нейтральный","Действует по ситуации и личной логике."],
+      cn:["Хаотично-нейтральный","Любит свободу, действует непредсказуемо, не любит контроль."],
+      le:["Законно-злой","Злодей с правилами. Использует закон, власть или договоры ради себя."],
+      ne:["Нейтрально-злой","Думает о выгоде и себе."],
+      ce:["Хаотично-злой","Опасный и разрушительный. Для новичка лучше не брать без согласия мастера."]
     };
 
     const WEAPONS = {
-      rapier: { name: "Рапира", die: "1к8", stat: "dex", type: "колющий" },
-      dagger: { name: "Кинжал", die: "1к4", stat: "dex", type: "колющий", note: "можно метать 20/60 футов" },
-      shortbow: { name: "Короткий лук", die: "1к6", stat: "dex", type: "колющий", note: "дистанция 80/320 футов" },
-      shortsword: { name: "Короткий меч", die: "1к6", stat: "dex", type: "колющий" },
-      club: { name: "Дубинка", die: "1к4", stat: "str", type: "дробящий" },
-      staff: { name: "Посох", die: "1к6", stat: "str", type: "дробящий" }
+      rapier: { name:"Рапира", die:"1к8", stat:"dex", type:"колющий" },
+      dagger: { name:"Кинжал", die:"1к4", stat:"dex", type:"колющий", note:"можно метать 20/60 футов" },
+      shortbow: { name:"Короткий лук", die:"1к6", stat:"dex", type:"колющий", note:"дистанция 80/320 футов" },
+      shortsword: { name:"Короткий меч", die:"1к6", stat:"dex", type:"колющий" },
+      club: { name:"Дубинка", die:"1к4", stat:"str", type:"дробящий" },
+      staff: { name:"Посох", die:"1к6", stat:"str", type:"дробящий" }
     };
 
-    const CONDITIONS = [
-      "Испуган",
-      "Отравлен",
-      "Сбит с ног",
-      "Ослеплён",
-      "Оглушён",
-      "Парализован",
-      "Невидим",
-      "Опутан",
-      "Очарован",
-      "Без сознания",
-      "Ошеломлён",
-      "Недееспособен"
-    ];
+    const CONDITIONS = ["Испуган","Отравлен","Сбит с ног","Ослеплён","Оглушён","Парализован","Невидим","Опутан","Очарован","Без сознания","Ошеломлён","Недееспособен"];
 
     function defaultRuntime() {
       return {
-        currentHp: 9,
-        tempHp: 0,
-        hitDiceUsed: 0,
-        inspiration: false,
-        deathSaves: { success: 0, fail: 0 },
-        ammo: { arrows: 20, bolts: 0 },
-        coins: { cp: 0, sp: 0, ep: 0, gp: 15, pp: 0 },
-        consumables: "Зелье лечения — 1 шт.",
-        inventory: [
-          { name: "Воровские инструменты", qty: 1, note: "вскрытие замков и ловушек" },
-          { name: "Тёмная одежда с капюшоном", qty: 1, note: "для скрытности" }
+        mode:"combat",
+        currentHp:9,
+        tempHp:0,
+        hitDiceUsed:0,
+        inspiration:false,
+        deathSaves:{ success:0, fail:0 },
+        ammo:{ arrows:20, bolts:0 },
+        coins:{ cp:0, sp:0, ep:0, gp:15, pp:0 },
+        inventory:[
+          { name:"Воровские инструменты", qty:1, note:"вскрытие замков и ловушек" },
+          { name:"Тёмная одежда с капюшоном", qty:1, note:"для скрытности" }
         ],
-        conditions: [],
-        notes: ""
+        conditions:[],
+        notes:""
       };
     }
 
     function defaultCharacter() {
       return {
         id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random()),
-        name: "Мускат",
-        player: "",
-        classKey: "rogue",
-        raceKey: "lightfootHalfling",
-        backgroundKey: "criminal",
-        level: 1,
-        xp: 0,
-        alignment: "cg",
-        rolls: [15, 14, 13, 12, 10, 8],
-        base: { str: 8, dex: 15, con: 13, int: 10, wis: 12, cha: 14 },
-        weapon1: "rapier",
-        weapon2: "dagger",
-        weapon3: "shortbow",
-        equipment: "Кожаный доспех, рапира, короткий лук, 20 стрел, 2 кинжала, воровские инструменты, тёмная одежда с капюшоном.",
-        personality: "Я говорю спокойно, но всегда смотрю, где выход и кто за мной наблюдает.",
-        ideals: "Свобода важнее правил. Иногда закон мешает сделать правильно.",
-        bonds: "Я защищаю тех, кто однажды помог мне.",
-        flaws: "Не могу пройти мимо лёгкой наживы.",
-        runtime: defaultRuntime()
+        name:"Мускат",
+        player:"",
+        classKey:"rogue",
+        raceKey:"lightfootHalfling",
+        backgroundKey:"criminal",
+        level:1,
+        xp:0,
+        alignment:"cg",
+        rolls:[15,14,13,12,10,8],
+        base:{ str:8, dex:15, con:13, int:10, wis:12, cha:14 },
+        weapon1:"rapier",
+        weapon2:"dagger",
+        weapon3:"shortbow",
+        equipment:"Кожаный доспех, рапира, короткий лук, 20 стрел, 2 кинжала, воровские инструменты, тёмная одежда с капюшоном.",
+        personality:"Я говорю спокойно, но всегда смотрю, где выход и кто за мной наблюдает.",
+        ideals:"Свобода важнее правил. Иногда закон мешает сделать правильно.",
+        bonds:"Я защищаю тех, кто однажды помог мне.",
+        flaws:"Не могу пройти мимо лёгкой наживы.",
+        runtime:defaultRuntime()
       };
     }
 
-    let state = { currentId: null, characters: [] };
-
+    let state = { currentId:null, characters:[] };
     const $ = id => document.getElementById(id);
 
     function save() {
@@ -1958,7 +1887,7 @@
       } catch(e) {}
 
       const c = defaultCharacter();
-      state = { currentId: c.id, characters: [c] };
+      state = { currentId:c.id, characters:[c] };
       save();
     }
 
@@ -1984,17 +1913,9 @@
       return c;
     }
 
-    function cls(c=current()) {
-      return CLASSES[c.classKey] || CLASSES.rogue;
-    }
-
-    function race(c=current()) {
-      return RACES[c.raceKey] || RACES.lightfootHalfling;
-    }
-
-    function bg(c=current()) {
-      return BACKGROUNDS[c.backgroundKey] || BACKGROUNDS.criminal;
-    }
+    function cls(c=current()) { return CLASSES[c.classKey] || CLASSES.rogue; }
+    function race(c=current()) { return RACES[c.raceKey] || RACES.lightfootHalfling; }
+    function bg(c=current()) { return BACKGROUNDS[c.backgroundKey] || BACKGROUNDS.criminal; }
 
     function pb(c=current()) {
       const lvl = Number(c.level || 1);
@@ -2032,10 +1953,8 @@
     function skillBonus(c,key) {
       const ability = SKILLS[key][1];
       let value = abilityMod(c,ability);
-
       if (profSkills(c).includes(key)) value += pb(c);
       if (cls(c).expertise.includes(key)) value += pb(c);
-
       return value;
     }
 
@@ -2055,13 +1974,13 @@
       if (c.classKey === "cleric") ac = 16;
 
       return {
-        pb: pb(c),
+        pb:pb(c),
         ac,
-        maxHp: Math.max(1, cl.hitDie + con),
-        hitDie: cl.hitDie,
-        initiative: dex,
-        speed: race(c).speed,
-        passivePerception: 10 + skills.perception,
+        maxHp:Math.max(1, cl.hitDie + con),
+        hitDie:cl.hitDie,
+        initiative:dex,
+        speed:race(c).speed,
+        passivePerception:10 + skills.perception,
         skills,
         saves
       };
@@ -2105,9 +2024,7 @@
           const c = current();
           const key = el.dataset.bind;
           c[key] = el.type === "number" ? Number(el.value) : el.value;
-
           if (key === "classKey") autoAssign(false);
-
           save();
           render();
         });
@@ -2240,43 +2157,32 @@
 
       $("combatTips").innerHTML = `
         <details class="tip" open>
-          <summary>1. Начался бой <span>${fmt(co.initiative)}</span></summary>
-          <p>Мастер говорит: “Кидайте инициативу”.</p>
-          <div class="formula">Кинь к20 ${fmt(co.initiative)}</div>
-        </details>
-
-        <details class="tip">
-          <summary>2. Атака оружием <span>${fmt(main.attack)}</span></summary>
+          <summary>Атака оружием <span>${fmt(main.attack)}</span></summary>
           <p>Скажи, кого и чем атакуешь. Например: “Бью рапирой”.</p>
           <div class="formula">Атака: к20 ${fmt(main.attack)}</div>
-          <p>Если результат равен или выше КД врага, ты попал.</p>
         </details>
 
-        <details class="tip">
-          <summary>3. Урон <span>${main.w.die}</span></summary>
+        <details class="tip" open>
+          <summary>Урон <span>${main.w.die}</span></summary>
           <p>Если попал, кидай урон.</p>
           <div class="formula">Урон: ${main.damage}</div>
         </details>
 
-        <details class="tip">
-          <summary>4. Скрытая атака <span>+1к6</span></summary>
-          <p>Главная штука плута. Добавь +1к6 урона один раз за ход, если есть условие.</p>
-          <div class="formula">Урон плута: ${main.damage} + 1к6</div>
-          <p><b>Условие 1:</b> рядом с врагом стоит твой союзник.</p>
-          <p><b>Условие 2:</b> ты атаковал с преимуществом.</p>
-          <p>Фраза за столом: “Могу ли я добавить скрытую атаку?”</p>
+        <details class="tip" open>
+          <summary>Скрытая атака <span>+1к6</span></summary>
+          <p>Добавь +1к6 урона один раз за ход, если рядом с врагом союзник или у тебя преимущество.</p>
+          <div class="formula">${main.damage} + 1к6</div>
         </details>
 
         <details class="tip">
-          <summary>5. Если тебя ударили <span>трекер</span></summary>
-          <p>Открой “Трекер” и введи, сколько урона нанёс враг.</p>
-          <div class="formula">Текущие хиты: ${rt.currentHp}/${co.maxHp}</div>
+          <summary>Инициатива <span>${fmt(co.initiative)}</span></summary>
+          <p>В начале боя мастер говорит: “Кидайте инициативу”.</p>
+          <div class="formula">к20 ${fmt(co.initiative)}</div>
         </details>
 
         <details class="tip">
-          <summary>6. Спасброски <span>к20</span></summary>
-          <p>Если мастер говорит “спасбросок Ловкости”, смотри бонус ниже.</p>
-          <div class="formula">Ловкость: к20 ${fmt(co.saves.dex)} · Интеллект: к20 ${fmt(co.saves.int)}</div>
+          <summary>Если тебя ударили <span>${rt.currentHp}/${co.maxHp}</span></summary>
+          <p>Введи урон справа или в нижней панели.</p>
         </details>
       `;
     }
@@ -2291,33 +2197,16 @@
           <div class="formula">Скрытность: к20 ${fmt(co.skills.stealth)}</div>
         </details>
 
-        <details class="tip">
+        <details class="tip" open>
           <summary>Украсть / спрятать предмет <span>${fmt(co.skills.sleight)}</span></summary>
           <p>Незаметно взять ключ, спрятать кинжал, подменить предмет.</p>
           <div class="formula">Ловкость рук: к20 ${fmt(co.skills.sleight)}</div>
         </details>
 
-        <details class="tip">
+        <details class="tip" open>
           <summary>Вскрыть замок <span>${fmt(abilityMod(c,"dex") + co.pb)}</span></summary>
           <p>Скажи мастеру: “Пробую вскрыть замок воровскими инструментами”.</p>
           <div class="formula">Воровские инструменты: к20 ${fmt(abilityMod(c,"dex") + co.pb)}</div>
-        </details>
-
-        <details class="tip">
-          <summary>Соврать или притвориться <span>${fmt(co.skills.deception)}</span></summary>
-          <p>Обмануть стражника, сыграть роль, придумать легенду.</p>
-          <div class="formula">Обман: к20 ${fmt(co.skills.deception)}</div>
-        </details>
-
-        <details class="tip">
-          <summary>Заметить опасность <span>${fmt(co.skills.perception)}</span></summary>
-          <p>Услышать шаги, увидеть ловушку, заметить слежку.</p>
-          <div class="formula">Восприятие: к20 ${fmt(co.skills.perception)}</div>
-        </details>
-
-        <details class="tip">
-          <summary>Маленький рост <span>${race(c).size}</span></summary>
-          <p>Можно просить мастера использовать размер: пролезть в щель, спрятаться за союзником, пройти под столом.</p>
         </details>
       `;
     }
@@ -2329,8 +2218,6 @@
         ["Стражник спрашивает, я вру", "Обман", co.skills.deception],
         ["Хочу договориться честно", "Убеждение", co.skills.persuasion],
         ["Хочу понять, врёт ли персонаж", "Проницательность", co.skills.insight],
-        ["Хочу пройти по карнизу", "Акробатика", co.skills.acrobatics],
-        ["Хочу залезть на стену", "Атлетика", co.skills.athletics],
         ["Хочу услышать шаги за дверью", "Восприятие", co.skills.perception],
         ["Хочу найти тайник", "Расследование", co.skills.investigation],
         ["Хочу запугать бандита", "Запугивание", co.skills.intimidation]
@@ -2344,6 +2231,24 @@
       `).join("");
     }
 
+    function renderFeatures(c) {
+      const all = [...race(c).features, ...cls(c).features];
+
+      function make(mode) {
+        return all
+          .filter(f => f.mode === mode || f.mode === "both")
+          .map(f => `
+            <details class="tip" open>
+              <summary>${f.name}<span>${f.mode === "both" ? "всегда" : mode === "combat" ? "бой" : "вне боя"}</span></summary>
+              <p>${f.text}</p>
+            </details>
+          `).join("");
+      }
+
+      $("combatFeatures").innerHTML = make("combat");
+      $("exploreFeatures").innerHTML = make("explore");
+    }
+
     function renderTracker(c) {
       const co = computed(c);
       const rt = c.runtime;
@@ -2351,26 +2256,12 @@
       rt.currentHp = Math.max(0, Math.min(Number(rt.currentHp || 0), co.maxHp));
       rt.tempHp = Math.max(0, Number(rt.tempHp || 0));
 
-      $("currentHpView").textContent = rt.currentHp;
-      $("hpText").textContent = `Максимум: ${co.maxHp}. Временные хиты: ${rt.tempHp}.`;
-      $("hpSummary").textContent = `${rt.currentHp}/${co.maxHp} хитов · временные ${rt.tempHp}`;
-      $("hpFill").style.width = `${Math.max(0, Math.min(100, (rt.currentHp / co.maxHp) * 100))}%`;
-
       $("tempHp").value = rt.tempHp;
-      $("hitDiceUsed").value = rt.hitDiceUsed || 0;
-      $("inspiration").value = String(Boolean(rt.inspiration));
       $("arrows").value = rt.ammo.arrows || 0;
       $("bolts").value = rt.ammo.bolts || 0;
-      $("consumables").value = rt.consumables || "";
       $("sessionNotes").value = rt.notes || "";
 
-      const coinNames = {
-        cp: "медь",
-        sp: "серебро",
-        ep: "электрум",
-        gp: "золото",
-        pp: "платина"
-      };
+      const coinNames = { cp:"медь", sp:"серебро", ep:"электрум", gp:"золото", pp:"платина" };
 
       $("coinsView").innerHTML = Object.entries(coinNames).map(([k,name]) => `
         <div class="money">
@@ -2384,6 +2275,7 @@
       renderDeathButtons();
       renderInventory();
       renderConditions();
+      renderDock();
 
       save();
     }
@@ -2474,16 +2366,58 @@
           const name = btn.dataset.condition;
           const arr = c.runtime.conditions;
 
-          if (arr.includes(name)) {
-            c.runtime.conditions = arr.filter(x => x !== name);
-          } else {
-            c.runtime.conditions.push(name);
-          }
+          if (arr.includes(name)) c.runtime.conditions = arr.filter(x => x !== name);
+          else c.runtime.conditions.push(name);
 
           save();
           render();
         };
       });
+    }
+
+    function renderDock() {
+      const c = current();
+      const co = computed(c);
+      const rt = c.runtime;
+      const main = weaponCalc(c,c.weapon1);
+      const mode = rt.mode || "combat";
+
+      const chips = [
+        `режим <b>${mode === "combat" ? "бой" : "вне боя"}</b>`,
+        `хиты <b>${rt.currentHp}/${co.maxHp}</b>`,
+        `КД <b>${co.ac}</b>`,
+        `иниц. <b>${fmt(co.initiative)}</b>`,
+        `лов <b>${fmt(abilityMod(c,"dex"))}</b>`,
+        `мдр <b>${fmt(abilityMod(c,"wis"))}</b>`,
+        `хар <b>${fmt(abilityMod(c,"cha"))}</b>`
+      ];
+
+      if (mode === "combat") {
+        chips.push(`атака <b>${fmt(main.attack)}</b>`);
+        chips.push(`урон <b>${main.w.die}</b>`);
+      } else {
+        chips.push(`скрытн. <b>${fmt(co.skills.stealth)}</b>`);
+        chips.push(`руки <b>${fmt(co.skills.sleight)}</b>`);
+        chips.push(`обман <b>${fmt(co.skills.deception)}</b>`);
+      }
+
+      $("dockStats").innerHTML = chips.map(x => `<div class="dock-chip">${x}</div>`).join("");
+
+      if (mode === "combat") {
+        $("dockModeInfo").innerHTML = `
+          <h3>Быстро в бою</h3>
+          <p class="hint">Атака: к20 ${fmt(main.attack)}. Урон: ${main.damage}. Скрытая атака: +1к6 при условии.</p>
+          <div class="formula">Спасброски: Ловкость к20 ${fmt(co.saves.dex)} · Интеллект к20 ${fmt(co.saves.int)}</div>
+        `;
+      } else {
+        $("dockModeInfo").innerHTML = `
+          <h3>Быстро вне боя</h3>
+          <p class="hint">Скрытность ${fmt(co.skills.stealth)}, Ловкость рук ${fmt(co.skills.sleight)}, Обман ${fmt(co.skills.deception)}, Восприятие ${fmt(co.skills.perception)}.</p>
+          <div class="formula">Замки: к20 ${fmt(abilityMod(c,"dex") + co.pb)}</div>
+        `;
+      }
+
+      $("modeSummary").textContent = mode === "combat" ? "Сейчас показываются боевые параметры" : "Сейчас показываются проверки вне боя";
     }
 
     function renderSheet(c) {
@@ -2506,8 +2440,8 @@
         <div class="paper-row"><span>${w.name} · ${damage}</span><b>${fmt(attack)}</b></div>
       `).join("");
 
-      const features = [...r.features,...cl.features].map(([name,text]) => `
-        <p style="margin:0 0 5px;font-size:11px;"><b>${name}:</b> ${text}</p>
+      const features = [...r.features,...cl.features].map(f => `
+        <p style="margin:0 0 5px;font-size:11px;"><b>${f.name}:</b> ${f.text}</p>
       `).join("");
 
       const coins = `Медь ${rt.coins.cp}, Серебро ${rt.coins.sp}, Электрум ${rt.coins.ep}, Золото ${rt.coins.gp}, Платина ${rt.coins.pp}`;
@@ -2585,9 +2519,11 @@
       renderCombatTips(c);
       renderExploreTips(c);
       renderSituationTips(c);
+      renderFeatures(c);
       renderTracker(c);
       renderSheet(c);
       renderCharacters();
+      applyMode(c.runtime.mode || "combat", false);
     }
 
     function showSection(id) {
@@ -2599,17 +2535,37 @@
       });
 
       const titles = {
-        builderSection: ["Конструктор персонажа", "Здесь создаёшь персонажа. Блоки можно раскрывать и сворачивать."],
-        playSection: ["Игровой экран", "Открой во время партии. Здесь подсказки: что кидать, куда смотреть, что может плут."],
-        trackerSection: ["Трекер игры", "Здесь меняются хиты, деньги, стрелы, предметы, состояния и заметки."],
-        sheetSection: ["Лист персонажа A4", "Упрощённый лист для печати или PDF."],
-        librarySection: ["Персонажи", "Создавай несколько персонажей, экспортируй и импортируй JSON."]
+        playSection:["Игровой экран","Выбирай режим Бой или Вне боя. Самое важное всегда снизу в быстрой панели."],
+        builderSection:["Конструктор персонажа","Здесь создаёшь персонажа. Во время партии сюда обычно не нужно заходить."],
+        sheetSection:["Лист персонажа A4","Упрощённый лист для печати или PDF."],
+        librarySection:["Персонажи","Создавай несколько персонажей, экспортируй и импортируй JSON."]
       };
 
       $("pageTitle").textContent = titles[id][0];
       $("pageDesc").textContent = titles[id][1];
 
       closeMenu();
+    }
+
+    function applyMode(mode, shouldSave = true) {
+      const c = current();
+      c.runtime.mode = mode;
+
+      document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+      document.querySelectorAll(".mode").forEach(x => x.classList.remove("active"));
+
+      if (mode === "combat") {
+        $("combatTab").classList.add("active");
+        $("combatMode").classList.add("active");
+      } else {
+        $("exploreTab").classList.add("active");
+        $("exploreMode").classList.add("active");
+      }
+
+      if (shouldSave) {
+        save();
+        renderDock();
+      }
     }
 
     function closeMenu() {
@@ -2754,7 +2710,7 @@
       c.runtime.deathSaves.fail = 0;
       save();
       render();
-      alert("Короткий отдых отмечен. Если тратишь кости хитов, введи их вручную в поле.");
+      alert("Короткий отдых отмечен. Если тратишь кости хитов, введи их вручную.");
     }
 
     function changeCoins(type, amount) {
@@ -2765,7 +2721,7 @@
     }
 
     function exportJSON(all=false) {
-      const data = all ? state : { currentId: current().id, characters: [current()] };
+      const data = all ? state : { currentId: current().id, characters:[current()] };
       const blob = new Blob([JSON.stringify(data,null,2)], { type:"application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -2803,13 +2759,11 @@
       reader.readAsText(file);
     }
 
-    function collapseAll() {
+    function toggleDetails() {
       const active = document.querySelector(".section.active");
       const details = active.querySelectorAll("details.card");
       const hasOpen = [...details].some(d => d.open);
-
       details.forEach(d => d.open = !hasOpen);
-      $("collapseBtn").textContent = hasOpen ? "Развернуть всё" : "Свернуть всё";
     }
 
     function initEvents() {
@@ -2819,24 +2773,23 @@
         btn.onclick = () => showSection(btn.dataset.section);
       });
 
-      document.querySelectorAll(".tab").forEach(tab => {
-        tab.onclick = () => {
-          document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
-          document.querySelectorAll(".mode").forEach(x => x.classList.remove("active"));
+      $("combatTab").onclick = () => applyMode("combat");
+      $("exploreTab").onclick = () => applyMode("explore");
 
-          tab.classList.add("active");
-          $(tab.dataset.mode).classList.add("active");
-        };
-      });
+      $("toggleDetailsBtn").onclick = toggleDetails;
+      $("toggleDockBtn").onclick = () => $("quickDock").classList.toggle("open");
+      $("dockOpenBtn").onclick = () => $("quickDock").classList.toggle("open");
 
-      $("collapseBtn").onclick = collapseAll;
+      $("dockModeBtn").onclick = () => {
+        const c = current();
+        applyMode(c.runtime.mode === "combat" ? "explore" : "combat");
+      };
 
       $("saveBtn").onclick = () => {
         save();
         alert("Сохранено в браузере.");
       };
 
-      $("resetBtn").onclick = resetCharacter;
       $("newCharacterBtn").onclick = newCharacter;
       $("autoAssignBtn").onclick = () => autoAssign(true);
       $("randomRollBtn").onclick = randomRolls;
@@ -2846,12 +2799,8 @@
       $("printBtn").onclick = () => window.print();
       $("duplicateBtn").onclick = duplicateCharacter;
       $("deleteBtn").onclick = deleteCharacter;
+      $("resetBtn").onclick = resetCharacter;
       $("importFile").onchange = e => importJSON(e.target.files[0]);
-
-      $("rollDiceBtn").onclick = () => {
-        const sides = Number($("diceSelect").value);
-        $("diceResult").textContent = 1 + Math.floor(Math.random() * sides);
-      };
 
       $("damageBtn").onclick = () => {
         takeDamage($("damageInput").value);
@@ -2861,6 +2810,16 @@
       $("healBtn").onclick = () => {
         heal($("healInput").value);
         $("healInput").value = "";
+      };
+
+      $("dockDamageBtn").onclick = () => {
+        takeDamage($("dockDamage").value);
+        $("dockDamage").value = "";
+      };
+
+      $("dockHealBtn").onclick = () => {
+        heal($("dockHeal").value);
+        $("dockHeal").value = "";
       };
 
       $("shortRestBtn").onclick = shortRest;
@@ -2876,18 +2835,6 @@
 
       $("tempHp").oninput = () => {
         current().runtime.tempHp = Math.max(0, Number($("tempHp").value || 0));
-        save();
-        render();
-      };
-
-      $("hitDiceUsed").oninput = () => {
-        current().runtime.hitDiceUsed = Math.max(0, Number($("hitDiceUsed").value || 0));
-        save();
-        render();
-      };
-
-      $("inspiration").oninput = () => {
-        current().runtime.inspiration = $("inspiration").value === "true";
         save();
         render();
       };
@@ -2930,11 +2877,6 @@
         render();
       };
 
-      $("consumables").oninput = () => {
-        current().runtime.consumables = $("consumables").value;
-        save();
-      };
-
       $("sessionNotes").oninput = () => {
         current().runtime.notes = $("sessionNotes").value;
         save();
@@ -2957,8 +2899,8 @@
 
         current().runtime.inventory.push({
           name,
-          qty: Math.max(1, Number($("newItemQty").value || 1)),
-          note: $("newItemNote").value.trim()
+          qty:Math.max(1, Number($("newItemQty").value || 1)),
+          note:$("newItemNote").value.trim()
         });
 
         $("newItemName").value = "";
