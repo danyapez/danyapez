@@ -11,15 +11,16 @@
 
   <style>
     :root{
-      --bg:#000;
-      --card:#0b0b0b;
-      --card2:#141414;
-      --card3:#1c1c1c;
+      --bg:#050505;
+      --panel:#111;
+      --card:#171717;
+      --card2:#202020;
+      --card3:#282828;
       --text:#fff;
-      --muted:#a8a8a8;
-      --line:#2e2e2e;
-      --line2:#565656;
-      --radius:22px;
+      --muted:#a7a7a7;
+      --line:#343434;
+      --line2:#5a5a5a;
+      --radius:24px;
       --font:"Roboto",system-ui,sans-serif;
     }
 
@@ -42,31 +43,31 @@
     button{cursor:pointer}
 
     .app{
-      max-width:1080px;
+      max-width:1100px;
       margin:0 auto;
-      padding:14px;
+      padding:16px;
     }
 
     .header{
       position:sticky;
       top:0;
       z-index:40;
-      background:rgba(0,0,0,.96);
-      backdrop-filter:blur(12px);
+      background:rgba(5,5,5,.96);
+      backdrop-filter:blur(14px);
       border-bottom:1px solid var(--line);
-      margin:-14px -14px 16px;
-      padding:12px 14px;
+      margin:-16px -16px 18px;
+      padding:14px 16px;
     }
 
     .head-row{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap:12px;
     }
 
     .logo{
-      width:44px;
-      height:44px;
+      width:46px;
+      height:46px;
       border:2px solid #fff;
       border-radius:999px;
       display:grid;
@@ -83,11 +84,11 @@
 
     .brand h1{
       margin:0;
-      font-size:18px;
+      font-size:19px;
       line-height:1.05;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.02em;
+      letter-spacing:.015em;
     }
 
     .brand p{
@@ -97,8 +98,8 @@
     }
 
     .burger{
-      width:44px;
-      height:44px;
+      width:46px;
+      height:46px;
       border:2px solid #fff;
       border-radius:999px;
       background:transparent;
@@ -112,7 +113,7 @@
     .burger span::before,
     .burger span::after{
       content:"";
-      width:18px;
+      width:19px;
       height:2px;
       border-radius:99px;
       background:#fff;
@@ -126,8 +127,8 @@
     .main-tabs{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:8px;
-      margin-top:12px;
+      gap:10px;
+      margin-top:14px;
     }
 
     .setup-mode .main-tabs,
@@ -137,10 +138,10 @@
     }
 
     .tab-btn{
-      min-height:44px;
+      min-height:48px;
       border:1px solid var(--line);
       border-radius:18px;
-      background:#080808;
+      background:var(--panel);
       color:#fff;
       padding:10px 8px;
       font-weight:900;
@@ -174,17 +175,17 @@
 
     .menu{
       display:none;
-      gap:8px;
-      margin-top:10px;
+      gap:10px;
+      margin-top:12px;
     }
 
     .menu.open{display:grid}
 
     .menu button{
-      min-height:44px;
+      min-height:46px;
       border:1px solid var(--line);
-      border-radius:16px;
-      background:#080808;
+      border-radius:18px;
+      background:var(--panel);
       color:#fff;
       padding:12px;
       text-align:left;
@@ -201,36 +202,42 @@
     .screen.active{display:block}
 
     .hero{
-      margin-bottom:14px;
+      margin-bottom:16px;
       position:relative;
-      padding-right:44px;
+      padding-right:46px;
     }
 
     .hero h2{
       margin:0;
-      font-size:32px;
+      font-size:34px;
       line-height:1.02;
       letter-spacing:-.03em;
       font-weight:900;
     }
 
     .hero p{
-      margin:7px 0 0;
+      margin:8px 0 0;
       color:var(--muted);
       font-size:16px;
       max-width:780px;
     }
 
-    .grid{display:grid;gap:10px}
+    .grid{display:grid;gap:14px}
     .grid.two{grid-template-columns:1fr 1fr}
     .grid.three{grid-template-columns:repeat(3,1fr)}
+
+    .stack{
+      display:grid;
+      gap:14px;
+    }
 
     .card{
       border:1px solid var(--line);
       border-radius:var(--radius);
       background:var(--card);
-      padding:14px;
+      padding:16px;
       position:relative;
+      box-shadow:0 8px 28px rgba(0,0,0,.18);
     }
 
     .card.soft{
@@ -241,31 +248,31 @@
       display:flex;
       justify-content:space-between;
       align-items:flex-start;
-      gap:10px;
-      margin-bottom:12px;
+      gap:12px;
+      margin-bottom:14px;
     }
 
     .card h3,
     .eyebrow{
       margin:0;
       color:#f5f5f5;
-      font-size:14px;
+      font-size:15px;
       line-height:1.15;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.035em;
+      letter-spacing:.025em;
     }
 
     .sub{
       color:var(--muted);
       font-size:14px;
-      margin:4px 0 0;
+      margin:5px 0 0;
     }
 
     .hint{
       color:var(--muted);
       font-size:14px;
-      margin:6px 0 0;
+      margin:7px 0 0;
     }
 
     details.card{
@@ -276,32 +283,32 @@
     details.card summary{
       list-style:none;
       cursor:pointer;
-      padding:14px;
+      padding:16px;
       display:flex;
       justify-content:space-between;
-      gap:10px;
+      gap:12px;
       align-items:center;
     }
 
     details.card summary::-webkit-details-marker{display:none}
 
     .detail-body{
-      padding:0 14px 14px;
+      padding:0 16px 16px;
     }
 
     .summary-title b{
       display:block;
-      font-size:14px;
+      font-size:15px;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.035em;
+      letter-spacing:.025em;
     }
 
     .summary-title span{
       display:block;
       color:var(--muted);
       font-size:14px;
-      margin-top:3px;
+      margin-top:4px;
     }
 
     .summary-actions{
@@ -312,8 +319,8 @@
     }
 
     .plus{
-      width:32px;
-      height:32px;
+      width:34px;
+      height:34px;
       border:1px solid var(--line2);
       border-radius:999px;
       display:grid;
@@ -328,8 +335,8 @@
     }
 
     .help-btn{
-      width:32px;
-      height:32px;
+      width:34px;
+      height:34px;
       border:1px solid #fff;
       border-radius:999px;
       background:transparent;
@@ -350,32 +357,39 @@
 
     .field{
       display:grid;
-      gap:6px;
-      margin-bottom:11px;
+      gap:7px;
+      margin-bottom:12px;
     }
 
     .field label{
       color:#d0d0d0;
       font-size:12px;
       text-transform:uppercase;
-      letter-spacing:.035em;
+      letter-spacing:.025em;
+    }
+
+    .label-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
     }
 
     .field input,
     .field select,
     .field textarea{
       width:100%;
-      min-height:44px;
+      min-height:46px;
       background:#000;
       border:1px solid var(--line2);
-      border-radius:15px;
+      border-radius:16px;
       color:#fff;
-      padding:10px 12px;
+      padding:11px 13px;
       outline:none;
     }
 
     .field textarea{
-      min-height:96px;
+      min-height:110px;
       resize:vertical;
     }
 
@@ -387,17 +401,17 @@
 
     .btn-row{
       display:flex;
-      gap:8px;
+      gap:10px;
       flex-wrap:wrap;
     }
 
     .btn{
-      min-height:44px;
+      min-height:46px;
       border:1px solid var(--line2);
-      border-radius:15px;
+      border-radius:16px;
       background:transparent;
       color:#fff;
-      padding:10px 13px;
+      padding:10px 14px;
       font-weight:800;
     }
 
@@ -413,14 +427,14 @@
     .stat-row{
       display:grid;
       grid-template-columns:repeat(5,1fr);
-      gap:8px;
+      gap:10px;
     }
 
     .stat{
       border:1px solid var(--line);
-      border-radius:18px;
+      border-radius:19px;
       background:var(--card2);
-      padding:10px 8px;
+      padding:11px 9px;
       text-align:center;
       min-width:0;
     }
@@ -430,7 +444,7 @@
       color:var(--muted);
       font-size:11px;
       text-transform:uppercase;
-      letter-spacing:.035em;
+      letter-spacing:.025em;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -438,25 +452,25 @@
 
     .stat b{
       display:block;
-      font-size:24px;
+      font-size:25px;
       line-height:1;
-      margin-top:5px;
+      margin-top:6px;
       font-weight:900;
     }
 
     .calc-chips{
       display:flex;
-      gap:6px;
+      gap:7px;
       flex-wrap:wrap;
-      margin-top:8px;
+      margin-top:9px;
     }
 
     .chip{
       border:1px solid var(--line);
-      background:#050505;
+      background:#060606;
       color:#ddd;
       border-radius:999px;
-      padding:5px 9px;
+      padding:6px 10px;
       font-size:13px;
       white-space:nowrap;
     }
@@ -468,23 +482,25 @@
       font-weight:900;
     }
 
-    .chip.bad{
-      border-color:#fff;
+    .chip.locked{
+      background:var(--card3);
       color:#fff;
+      border-color:var(--card3);
+      font-weight:800;
     }
 
     .hp-compact{
       display:grid;
       grid-template-columns:auto 1fr;
-      gap:12px;
+      gap:14px;
       align-items:center;
     }
 
     .hp-number{
-      width:92px;
-      height:92px;
+      width:96px;
+      height:96px;
       border:1px solid #fff;
-      border-radius:24px;
+      border-radius:26px;
       display:grid;
       place-items:center;
       text-align:center;
@@ -495,23 +511,23 @@
       color:var(--muted);
       font-size:11px;
       text-transform:uppercase;
-      letter-spacing:.08em;
+      letter-spacing:.06em;
     }
 
     .hp-number b{
       display:block;
-      font-size:38px;
+      font-size:40px;
       line-height:.9;
       letter-spacing:-.04em;
     }
 
     .hp-bar{
-      height:9px;
+      height:10px;
       border:1px solid var(--line2);
       border-radius:999px;
       overflow:hidden;
       background:#000;
-      margin-top:8px;
+      margin-top:9px;
     }
 
     .hp-fill{
@@ -520,8 +536,8 @@
     }
 
     .icon{
-      width:30px;
-      height:30px;
+      width:32px;
+      height:32px;
       margin-bottom:8px;
       color:currentColor;
     }
@@ -534,17 +550,17 @@
 
     .action{
       border:1px solid var(--line);
-      border-radius:18px;
+      border-radius:20px;
       background:var(--card2);
-      padding:12px;
+      padding:14px;
       min-width:0;
       position:relative;
     }
 
     .action .help-btn{
       position:absolute;
-      right:10px;
-      top:10px;
+      right:12px;
+      top:12px;
       width:28px;
       height:28px;
       font-size:13px;
@@ -553,30 +569,30 @@
     .action b{
       display:block;
       font-size:18px;
-      padding-right:30px;
+      padding-right:32px;
     }
 
     .action p{
-      margin:5px 0 0;
+      margin:6px 0 0;
       color:var(--muted);
       font-size:14px;
     }
 
     .formula{
-      margin-top:8px;
+      margin-top:9px;
       border:1px solid var(--line);
       border-radius:14px;
       background:#000;
-      padding:9px;
+      padding:10px;
       font-weight:900;
       font-size:14px;
     }
 
     .feature{
       border:1px solid var(--line);
-      border-radius:17px;
+      border-radius:18px;
       background:var(--card2);
-      padding:12px;
+      padding:14px;
     }
 
     .feature b{
@@ -585,7 +601,7 @@
     }
 
     .feature p{
-      margin:5px 0 0;
+      margin:6px 0 0;
       color:#ddd;
       font-size:14px;
     }
@@ -595,7 +611,7 @@
       grid-template-columns:1fr auto;
       gap:10px;
       border-bottom:1px solid var(--line);
-      padding:8px 0;
+      padding:9px 0;
     }
 
     .line b{font-size:17px}
@@ -604,14 +620,14 @@
     .ability-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:8px;
+      gap:10px;
     }
 
     .ability-card{
       border:1px solid var(--line);
-      border-radius:18px;
+      border-radius:20px;
       background:var(--card2);
-      padding:12px;
+      padding:14px;
     }
 
     .ability-card b{
@@ -620,25 +636,25 @@
     }
 
     .ability-card .big{
-      font-size:30px;
+      font-size:31px;
       line-height:1;
-      margin-top:6px;
+      margin-top:7px;
       font-weight:900;
     }
 
     .skill-list{
       display:grid;
-      gap:8px;
+      gap:10px;
     }
 
     .skill-card{
       border:1px solid var(--line);
-      border-radius:18px;
+      border-radius:20px;
       background:var(--card2);
-      padding:12px;
+      padding:14px;
       display:grid;
       grid-template-columns:1fr auto;
-      gap:10px;
+      gap:12px;
       align-items:start;
     }
 
@@ -650,32 +666,32 @@
     .skill-meta{
       color:var(--muted);
       font-size:14px;
-      margin-top:3px;
+      margin-top:4px;
     }
 
     .skill-total{
       text-align:right;
-      font-size:26px;
+      font-size:27px;
       font-weight:900;
       line-height:1;
     }
 
     .skill-controls{
       display:flex;
-      gap:6px;
+      gap:7px;
       justify-content:flex-end;
-      margin-top:8px;
+      margin-top:9px;
       flex-wrap:wrap;
     }
 
     .tiny-btn{
-      min-height:36px;
+      min-height:38px;
       border:1px solid var(--line2);
       border-radius:999px;
       background:#000;
       color:#fff;
       font-size:13px;
-      padding:7px 10px;
+      padding:8px 11px;
       font-weight:800;
     }
 
@@ -693,18 +709,18 @@
     .recommend{
       border:1px solid var(--line);
       background:var(--card3);
-      border-radius:18px;
-      padding:12px;
-      margin-bottom:10px;
+      border-radius:20px;
+      padding:14px;
+      margin-bottom:12px;
     }
 
     .recommend b{
       display:block;
-      font-size:16px;
+      font-size:17px;
     }
 
     .recommend p{
-      margin:5px 0 0;
+      margin:6px 0 0;
       color:var(--muted);
       font-size:14px;
     }
@@ -712,15 +728,15 @@
     .money{
       display:grid;
       grid-template-columns:repeat(5,1fr);
-      gap:7px;
+      gap:8px;
     }
 
     .coin{
       border:1px solid var(--line);
-      border-radius:15px;
+      border-radius:16px;
       background:var(--card2);
       text-align:center;
-      padding:9px;
+      padding:10px;
     }
 
     .coin span{
@@ -732,25 +748,25 @@
 
     .coin b{
       display:block;
-      margin-top:4px;
-      font-size:23px;
+      margin-top:5px;
+      font-size:24px;
     }
 
     .item{
       display:grid;
-      grid-template-columns:1fr 60px auto;
-      gap:7px;
-      margin-bottom:7px;
+      grid-template-columns:1fr 64px auto;
+      gap:8px;
+      margin-bottom:8px;
     }
 
     .item input{
-      min-height:44px;
+      min-height:46px;
       width:100%;
       background:#000;
       border:1px solid var(--line2);
       color:#fff;
-      border-radius:13px;
-      padding:9px;
+      border-radius:14px;
+      padding:10px;
     }
 
     .danger{border-color:#fff}
@@ -769,26 +785,26 @@
     .help-modal.show{display:flex}
 
     .help-card{
-      width:min(600px,100%);
+      width:min(620px,100%);
       border:1px solid #fff;
-      border-radius:24px;
+      border-radius:26px;
       background:#000;
       color:#fff;
-      padding:16px;
+      padding:18px;
       box-shadow:0 18px 70px rgba(0,0,0,.75);
       margin-top:20px;
     }
 
     .help-card h3{
-      margin:0 0 8px;
-      font-size:24px;
+      margin:0 0 9px;
+      font-size:25px;
       line-height:1.05;
       letter-spacing:-.02em;
       text-transform:none;
     }
 
     .help-card p{
-      margin:0 0 10px;
+      margin:0 0 11px;
       color:#ddd;
       font-size:16px;
     }
@@ -799,7 +815,7 @@
       color:#ddd;
     }
 
-    .help-card li{margin:5px 0}
+    .help-card li{margin:6px 0}
 
     .notice{
       display:none;
@@ -808,70 +824,237 @@
       top:16px;
       transform:translateX(-50%);
       z-index:90;
-      width:min(600px,calc(100% - 28px));
+      width:min(620px,calc(100% - 28px));
       border:1px solid #fff;
-      border-radius:22px;
+      border-radius:24px;
       background:#000;
       color:#fff;
-      padding:16px;
+      padding:18px;
       box-shadow:0 16px 60px rgba(0,0,0,.7);
     }
 
     .notice.show{display:block}
-    .notice b{display:block;font-size:21px;margin-bottom:5px}
+    .notice b{display:block;font-size:22px;margin-bottom:6px}
 
-    .print-sheet{
+    .sheet-wrap{
+      background:#e9e9e9;
+      padding:16px;
+      border-radius:24px;
+      overflow:auto;
+    }
+
+    .sheet-a4{
+      width:210mm;
+      min-height:297mm;
       background:#fff;
       color:#000;
-      border-radius:18px;
-      padding:18px;
-    }
-
-    .print-grid{
+      margin:0 auto;
+      padding:8mm;
+      font-family:Arial, sans-serif;
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
+      grid-template-rows:auto 1fr;
+      gap:4mm;
+      box-shadow:0 10px 40px rgba(0,0,0,.25);
     }
 
-    .paper-box{
-      border:1.5px solid #000;
-      border-radius:12px;
-      padding:10px;
-      margin-bottom:10px;
+    .sheet-top{
+      display:grid;
+      grid-template-columns:1.3fr 2fr;
+      gap:3mm;
     }
 
-    .paper-box h4{
-      margin:0 0 8px;
-      font-size:12px;
+    .sheet-name{
+      border:1.4px solid #000;
+      border-radius:4mm;
+      padding:3mm;
+      min-height:20mm;
+    }
+
+    .sheet-name .value{
+      font-size:18pt;
+      font-weight:700;
+      line-height:1.1;
+    }
+
+    .sheet-meta{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:2mm;
+    }
+
+    .sheet-field{
+      border:1.2px solid #000;
+      border-radius:2.5mm;
+      padding:2mm;
+      min-height:14mm;
+      overflow:hidden;
+    }
+
+    .sheet-label{
+      font-size:6.5pt;
       text-transform:uppercase;
-      letter-spacing:.03em;
-      border-bottom:1px solid #000;
-      padding-bottom:5px;
+      letter-spacing:.04em;
+      color:#333;
+      border-top:1px solid #000;
+      padding-top:1mm;
+      margin-top:1mm;
     }
 
-    .paper-row{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
+    .sheet-value{
+      font-size:9.5pt;
+      font-weight:700;
+      line-height:1.15;
+      min-height:7mm;
+    }
+
+    .sheet-main{
+      display:grid;
+      grid-template-columns:37mm 48mm 1fr 55mm;
+      gap:3mm;
+      align-items:start;
+    }
+
+    .sheet-box{
+      border:1.4px solid #000;
+      border-radius:3mm;
+      padding:2mm;
+      background:#fff;
+      break-inside:avoid;
+    }
+
+    .sheet-box h4{
+      margin:0 0 2mm;
+      font-size:7pt;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      text-align:center;
+      border-bottom:1px solid #000;
+      padding-bottom:1mm;
+    }
+
+    .sheet-ability{
+      border:1.3px solid #000;
+      border-radius:3mm;
+      text-align:center;
+      padding:1.6mm;
+      margin-bottom:2mm;
+    }
+
+    .sheet-ability .name{
+      font-size:6.3pt;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+
+    .sheet-ability .mod{
+      font-size:21pt;
+      font-weight:700;
+      line-height:1;
+      margin-top:1mm;
+    }
+
+    .sheet-ability .score{
+      width:16mm;
+      height:8mm;
+      border:1px solid #000;
+      border-radius:99px;
+      margin:1mm auto 0;
+      display:grid;
+      place-items:center;
+      font-size:9pt;
+      font-weight:700;
+    }
+
+    .sheet-small-stat{
+      border:1.2px solid #000;
+      border-radius:2.5mm;
+      padding:1.5mm;
+      margin-bottom:2mm;
+      text-align:center;
+    }
+
+    .sheet-small-stat .num{
+      font-size:15pt;
+      font-weight:700;
+      line-height:1;
+    }
+
+    .sheet-small-stat .label{
+      font-size:6pt;
+      text-transform:uppercase;
+      margin-top:1mm;
+    }
+
+    .sheet-row{
+      display:grid;
+      grid-template-columns:9mm 1fr 10mm;
+      gap:1mm;
+      align-items:center;
       border-bottom:1px solid #ddd;
-      padding:4px 0;
-      font-size:12px;
+      min-height:5.3mm;
+      font-size:7pt;
+    }
+
+    .sheet-row .bubble{
+      width:3.5mm;
+      height:3.5mm;
+      border:1px solid #000;
+      border-radius:999px;
+      margin:auto;
+    }
+
+    .sheet-row .bubble.on{
+      background:#000;
+    }
+
+    .sheet-row b{
+      text-align:right;
+      font-size:8pt;
+    }
+
+    .sheet-text{
+      font-size:7.2pt;
+      line-height:1.25;
+      white-space:pre-wrap;
+      overflow:hidden;
+    }
+
+    .sheet-attack{
+      display:grid;
+      grid-template-columns:1.2fr .7fr 1fr;
+      gap:1mm;
+      border-bottom:1px solid #ddd;
+      padding:1mm 0;
+      font-size:7pt;
+    }
+
+    .sheet-attack b{
+      font-size:7.5pt;
+    }
+
+    .sheet-features{
+      min-height:66mm;
+      max-height:92mm;
+      overflow:hidden;
+    }
+
+    .sheet-personality{
+      min-height:24mm;
     }
 
     @media(max-width:760px){
       .app{padding:12px}
 
       .header{
-        margin:-12px -12px 14px;
+        margin:-12px -12px 16px;
         padding:12px;
       }
 
-      .hero h2{font-size:28px}
+      .hero h2{font-size:29px}
       .hero p{font-size:15px}
 
       .grid.two,
-      .grid.three,
-      .print-grid{
+      .grid.three{
         grid-template-columns:1fr;
       }
 
@@ -888,7 +1071,7 @@
       }
 
       .item{
-        grid-template-columns:1fr 54px auto;
+        grid-template-columns:1fr 58px auto;
       }
 
       .hp-compact{
@@ -898,7 +1081,7 @@
       .hp-number{
         width:100%;
         height:auto;
-        padding:14px;
+        padding:16px;
       }
 
       .skill-card{
@@ -911,6 +1094,12 @@
 
       .skill-controls{
         justify-content:flex-start;
+      }
+
+      .sheet-wrap{
+        margin-left:-12px;
+        margin-right:-12px;
+        border-radius:0;
       }
     }
 
@@ -938,14 +1127,23 @@
         display:block!important;
       }
 
-      .print-sheet{
+      .sheet-wrap{
+        background:#fff;
+        padding:0;
         border-radius:0;
+        overflow:visible;
+      }
+
+      .sheet-a4{
+        width:100%;
+        min-height:auto;
+        box-shadow:none;
         padding:0;
       }
 
       @page{
         size:A4;
-        margin:12mm;
+        margin:8mm;
       }
     }
   </style>
@@ -973,7 +1171,7 @@
 
         <div class="brand">
           <h1>D&D помощник</h1>
-          <p>для новичков, без путаницы в цифрах</p>
+          <p>сначала персонаж, потом игра</p>
         </div>
 
         <button class="burger" id="burger" type="button" aria-label="Меню">
@@ -1014,95 +1212,104 @@
         <button class="help-btn" data-help="setup">?</button>
       </div>
 
-      <div class="card">
-        <div class="card-head">
-          <div>
-            <h3>Шаг 1. Кто ты?</h3>
-            <p class="sub">Класс, раса, биография и характер.</p>
+      <div class="stack">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3>Шаг 1. Кто ты?</h3>
+              <p class="sub">Класс, раса, предыстория и характер.</p>
+            </div>
+            <button class="help-btn" data-help="identity">?</button>
           </div>
-          <button class="help-btn" data-help="identity">?</button>
+
+          <div class="grid two">
+            <div class="field">
+              <label>Имя персонажа</label>
+              <input id="setupName" placeholder="Например: Мускат">
+            </div>
+
+            <div class="field">
+              <label>Класс</label>
+              <select id="setupClass"></select>
+            </div>
+          </div>
+
+          <div class="grid three">
+            <div class="field">
+              <label>Раса / вид</label>
+              <select id="setupRace"></select>
+            </div>
+
+            <div class="field">
+              <div class="label-row">
+                <label>Предыстория</label>
+                <button class="help-btn" data-help="background" type="button">?</button>
+              </div>
+              <select id="setupBg"></select>
+              <small class="hint" id="setupBgHint"></small>
+            </div>
+
+            <div class="field">
+              <div class="label-row">
+                <label>Мировоззрение</label>
+                <button class="help-btn" data-help="alignment" type="button">?</button>
+              </div>
+              <select id="setupAlignment"></select>
+              <small class="hint" id="setupAlignmentHint"></small>
+            </div>
+          </div>
         </div>
 
-        <div class="grid two">
-          <div class="field">
-            <label>Имя персонажа</label>
-            <input id="setupName" placeholder="Например: Мускат">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3>Шаг 2. Характеристики</h3>
+              <p class="sub">Шесть чисел, из них считаются модификаторы.</p>
+            </div>
+            <button class="help-btn" data-help="abilities">?</button>
           </div>
 
-          <div class="field">
-            <label>Класс</label>
-            <select id="setupClass"></select>
-          </div>
-        </div>
-
-        <div class="grid three">
-          <div class="field">
-            <label>Раса / вид</label>
-            <select id="setupRace"></select>
+          <div class="grid three">
+            <div class="field"><label>Сила</label><input id="setupStr" type="number" inputmode="numeric"></div>
+            <div class="field"><label>Ловкость</label><input id="setupDex" type="number" inputmode="numeric"></div>
+            <div class="field"><label>Телосложение</label><input id="setupCon" type="number" inputmode="numeric"></div>
+            <div class="field"><label>Интеллект</label><input id="setupInt" type="number" inputmode="numeric"></div>
+            <div class="field"><label>Мудрость</label><input id="setupWis" type="number" inputmode="numeric"></div>
+            <div class="field"><label>Харизма</label><input id="setupCha" type="number" inputmode="numeric"></div>
           </div>
 
-          <div class="field">
-            <label>Биография</label>
-            <select id="setupBg"></select>
-          </div>
-
-          <div class="field">
-            <label>Мировоззрение</label>
-            <select id="setupAlignment"></select>
-            <small class="hint" id="setupAlignmentHint"></small>
+          <div class="btn-row">
+            <button class="btn" id="setupDefaultStatsBtn">Пример под класс</button>
+            <button class="btn" id="rollStatsBtn">Кинуть 4к6</button>
           </div>
         </div>
-      </div>
 
-      <div class="card" style="margin-top:10px">
-        <div class="card-head">
-          <div>
-            <h3>Шаг 2. Характеристики</h3>
-            <p class="sub">Шесть чисел, из них считаются модификаторы.</p>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3>Шаг 3. Навыки класса</h3>
+              <p class="sub">Навыки от предыстории уже выбраны и не занимают лимит класса.</p>
+            </div>
+            <button class="help-btn" data-help="skillPick">?</button>
           </div>
-          <button class="help-btn" data-help="abilities">?</button>
+
+          <div id="setupSkillAdvice"></div>
+          <div class="skill-list" id="setupSkillEditor"></div>
         </div>
 
-        <div class="grid three">
-          <div class="field"><label>Сила</label><input id="setupStr" inputmode="numeric" pattern="[0-9]*"></div>
-          <div class="field"><label>Ловкость</label><input id="setupDex" inputmode="numeric" pattern="[0-9]*"></div>
-          <div class="field"><label>Телосложение</label><input id="setupCon" inputmode="numeric" pattern="[0-9]*"></div>
-          <div class="field"><label>Интеллект</label><input id="setupInt" inputmode="numeric" pattern="[0-9]*"></div>
-          <div class="field"><label>Мудрость</label><input id="setupWis" inputmode="numeric" pattern="[0-9]*"></div>
-          <div class="field"><label>Харизма</label><input id="setupCha" inputmode="numeric" pattern="[0-9]*"></div>
-        </div>
-
-        <div class="btn-row">
-          <button class="btn" id="setupDefaultStatsBtn">Пример под класс</button>
-          <button class="btn" id="rollStatsBtn">Кинуть 4к6</button>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:10px">
-        <div class="card-head">
-          <div>
-            <h3>Шаг 3. Навыки</h3>
-            <p class="sub">Выбери ровно столько навыков, сколько даёт класс.</p>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3>Шаг 4. Экспертиза</h3>
+              <p class="sub">Если класс даёт экспертизу, выбери навыки, где герой особенно силён.</p>
+            </div>
+            <button class="help-btn" data-help="expertise">?</button>
           </div>
-          <button class="help-btn" data-help="skillPick">?</button>
+
+          <div id="setupExpertiseEditor"></div>
+
+          <button class="btn main full" style="margin-top:14px" id="startBtn">Готов персонаж</button>
         </div>
-
-        <div id="setupSkillAdvice"></div>
-        <div class="skill-list" id="setupSkillEditor"></div>
-      </div>
-
-      <div class="card" style="margin-top:10px">
-        <div class="card-head">
-          <div>
-            <h3>Шаг 4. Экспертиза</h3>
-            <p class="sub">Если класс даёт экспертизу, выбери навыки, где ты особенно силён.</p>
-          </div>
-          <button class="help-btn" data-help="expertise">?</button>
-        </div>
-
-        <div id="setupExpertiseEditor"></div>
-
-        <button class="btn main full" style="margin-top:12px" id="startBtn">Готов персонаж</button>
       </div>
     </section>
 
@@ -1140,75 +1347,88 @@
         <button class="help-btn" data-help="character">?</button>
       </div>
 
-      <div class="grid two">
-        <div class="card">
-          <div class="card-head">
-            <div>
-              <h3>Кто я</h3>
-              <p class="sub">Класс, раса, биография, характер.</p>
+      <div class="stack">
+        <div class="grid two">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Кто я</h3>
+                <p class="sub">Класс, раса, предыстория, характер.</p>
+              </div>
+              <button class="help-btn" data-help="identity">?</button>
             </div>
-            <button class="help-btn" data-help="identity">?</button>
+
+            <div class="field"><label>Имя</label><input id="nameInput"></div>
+            <div class="field"><label>Класс</label><select id="classInput"></select></div>
+            <div class="field"><label>Раса / вид</label><select id="raceInput"></select></div>
+
+            <div class="field">
+              <div class="label-row">
+                <label>Предыстория</label>
+                <button class="help-btn" data-help="background" type="button">?</button>
+              </div>
+              <select id="bgInput"></select>
+              <small class="hint" id="bgHint"></small>
+            </div>
+
+            <div class="field">
+              <div class="label-row">
+                <label>Мировоззрение</label>
+                <button class="help-btn" data-help="alignment" type="button">?</button>
+              </div>
+              <select id="alignmentInput"></select>
+              <small class="hint" id="alignmentHint"></small>
+            </div>
+
+            <button class="btn main" id="saveCharacterBtn">Сохранить</button>
           </div>
 
-          <div class="field"><label>Имя</label><input id="nameInput"></div>
-          <div class="field"><label>Класс</label><select id="classInput"></select></div>
-          <div class="field"><label>Раса / вид</label><select id="raceInput"></select></div>
-          <div class="field"><label>Биография</label><select id="bgInput"></select></div>
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Характеристики</h3>
+                <p class="sub">База + раса = итог и модификатор.</p>
+              </div>
+              <button class="help-btn" data-help="abilityMath">?</button>
+            </div>
 
-          <div class="field">
-            <label>Мировоззрение</label>
-            <select id="alignmentInput"></select>
-            <small class="hint" id="alignmentHint"></small>
+            <div class="grid two">
+              <div class="field"><label>Сила</label><input id="strInput" type="number" inputmode="numeric"></div>
+              <div class="field"><label>Ловкость</label><input id="dexInput" type="number" inputmode="numeric"></div>
+              <div class="field"><label>Телосложение</label><input id="conInput" type="number" inputmode="numeric"></div>
+              <div class="field"><label>Интеллект</label><input id="intInput" type="number" inputmode="numeric"></div>
+              <div class="field"><label>Мудрость</label><input id="wisInput" type="number" inputmode="numeric"></div>
+              <div class="field"><label>Харизма</label><input id="chaInput" type="number" inputmode="numeric"></div>
+            </div>
+
+            <button class="btn" id="defaultStatsBtn">Пример под класс</button>
           </div>
-
-          <button class="btn main" id="saveCharacterBtn">Сохранить</button>
         </div>
 
         <div class="card">
           <div class="card-head">
             <div>
-              <h3>Характеристики</h3>
-              <p class="sub">База + раса = итог и модификатор.</p>
+              <h3>Как считаются характеристики</h3>
+              <p class="sub">Показывает итог и модификатор.</p>
             </div>
             <button class="help-btn" data-help="abilityMath">?</button>
           </div>
 
-          <div class="grid two">
-            <div class="field"><label>Сила</label><input id="strInput" inputmode="numeric" pattern="[0-9]*"></div>
-            <div class="field"><label>Ловкость</label><input id="dexInput" inputmode="numeric" pattern="[0-9]*"></div>
-            <div class="field"><label>Телосложение</label><input id="conInput" inputmode="numeric" pattern="[0-9]*"></div>
-            <div class="field"><label>Интеллект</label><input id="intInput" inputmode="numeric" pattern="[0-9]*"></div>
-            <div class="field"><label>Мудрость</label><input id="wisInput" inputmode="numeric" pattern="[0-9]*"></div>
-            <div class="field"><label>Харизма</label><input id="chaInput" inputmode="numeric" pattern="[0-9]*"></div>
-          </div>
-
-          <button class="btn" id="defaultStatsBtn">Пример под класс</button>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:10px">
-        <div class="card-head">
-          <div>
-            <h3>Как считаются характеристики</h3>
-            <p class="sub">Показывает итог и модификатор.</p>
-          </div>
-          <button class="help-btn" data-help="abilityMath">?</button>
+          <div class="ability-grid" id="abilitiesBreakdown"></div>
         </div>
 
-        <div class="ability-grid" id="abilitiesBreakdown"></div>
-      </div>
-
-      <div class="card" style="margin-top:10px">
-        <div class="card-head">
-          <div>
-            <h3>Навыки</h3>
-            <p class="sub">Выбор ограничен классом. Биография даёт навыки отдельно.</p>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3>Навыки</h3>
+              <p class="sub">Навыки от предыстории уже стоят. Навыки класса ограничены.</p>
+            </div>
+            <button class="help-btn" data-help="skillMath">?</button>
           </div>
-          <button class="help-btn" data-help="skillMath">?</button>
-        </div>
 
-        <div id="skillAdvice"></div>
-        <div class="skill-list" id="skillEditor"></div>
+          <div id="skillAdvice"></div>
+          <div class="skill-list" id="skillEditor"></div>
+        </div>
       </div>
     </section>
 
@@ -1225,12 +1445,18 @@
     <section class="screen" id="sheetScreen">
       <div class="hero no-print">
         <h2>Лист A4</h2>
-        <p>Упрощённый лист для печати.</p>
+        <p>Аккуратный лист с ячейками под печать. Ниже есть кнопка на официальный PDF 2014.</p>
         <button class="help-btn" data-help="sheet">?</button>
-        <button class="btn main" id="printBtn">Печать</button>
+
+        <div class="btn-row" style="margin-top:12px">
+          <button class="btn main" id="printBtn">Печать</button>
+          <a class="btn" href="https://media.wizards.com/2016/dnd/downloads/5E_CharacterSheet_Fillable.pdf" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center">Официальный PDF 2014</a>
+        </div>
       </div>
 
-      <div class="print-sheet" id="printSheet"></div>
+      <div class="sheet-wrap">
+        <div class="sheet-a4" id="printSheet"></div>
+      </div>
     </section>
 
     <section class="screen" id="dataScreen">
@@ -1264,124 +1490,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "dnd_newbie_bank_ui_v1";
-
-    const HELP = {
-      setup:["Создание персонажа",`
-        <p>На старте игрок не должен видеть боевой экран. Сначала нужно собрать персонажа.</p>
-        <ul>
-          <li><b>Класс</b> говорит, чем ты силён.</li>
-          <li><b>Раса</b> даёт бонусы и особенности.</li>
-          <li><b>Биография</b> даёт прошлое и 2 навыка.</li>
-          <li><b>Навыки</b> показывают, что ты умеешь делать лучше других.</li>
-        </ul>
-      `],
-      identity:["Кто я?",`
-        <p>Это описание героя.</p>
-        <ul>
-          <li><b>Класс</b> — твоя профессия в приключениях: плут, воин, маг и т.д.</li>
-          <li><b>Раса / вид</b> — происхождение героя.</li>
-          <li><b>Биография</b> — кем ты был до приключений.</li>
-          <li><b>Мировоззрение</b> — короткая подсказка, как герой обычно принимает решения.</li>
-        </ul>
-      `],
-      alignment:["Мировоззрение",`
-        <p>Это не строгий закон, а подсказка для роли.</p>
-        <ul>
-          <li><b>Добрый</b> чаще помогает другим.</li>
-          <li><b>Нейтральный</b> действует по ситуации.</li>
-          <li><b>Злой</b> думает о выгоде, власти или себе.</li>
-          <li><b>Законный</b> уважает правила, кодекс или порядок.</li>
-          <li><b>Хаотичный</b> ценит свободу и действует непредсказуемо.</li>
-        </ul>
-      `],
-      abilities:["Характеристики",`
-        <p>Это шесть главных чисел героя. Из них считаются модификаторы для бросков к20.</p>
-        <ul>
-          <li><b>Сила</b> — ломать, тащить, бить тяжёлым оружием.</li>
-          <li><b>Ловкость</b> — скрытность, реакция, точность, инициатива.</li>
-          <li><b>Телосложение</b> — здоровье, яд, болезнь, выносливость.</li>
-          <li><b>Интеллект</b> — знания, магия, расследование.</li>
-          <li><b>Мудрость</b> — внимание, интуиция, выживание.</li>
-          <li><b>Харизма</b> — разговор, обман, давление, уверенность.</li>
-        </ul>
-      `],
-      abilityMath:["Как считается модификатор",`
-        <p>Есть число характеристики. Например Ловкость 17.</p>
-        <p>Из него получается модификатор: 10–11 это +0, 12–13 это +1, 14–15 это +2, 16–17 это +3, 18–19 это +4.</p>
-        <p>Именно модификатор обычно прибавляется к к20.</p>
-      `],
-      skillPick:["Выбор навыков",`
-        <p>Класс даёт выбрать ограниченное число навыков. У плута это 4.</p>
-        <p>Биография даёт 2 навыка отдельно. Они не считаются в лимит класса.</p>
-        <p>Если навык уже есть из биографии, его не надо выбирать второй раз.</p>
-      `],
-      skillMath:["Как считаются навыки",`
-        <p>Формула навыка:</p>
-        <p><b>модификатор характеристики + мастерство + экспертиза</b></p>
-        <ul>
-          <li><b>Характеристика</b> есть всегда.</li>
-          <li><b>Мастерство</b> добавляется, если ты владеешь навыком.</li>
-          <li><b>Экспертиза</b> добавляет мастерство ещё раз.</li>
-        </ul>
-      `],
-      expertise:["Экспертиза",`
-        <p>Экспертиза значит: “я в этом особенно хорош”.</p>
-        <p>Например плут на 1 уровне выбирает 2 экспертизы. Обычно удобно брать Скрытность и Ловкость рук.</p>
-      `],
-      combat:["Бой",`
-        <p>Открывай эту вкладку, когда началась драка.</p>
-        <ul>
-          <li><b>Хиты</b> — сколько здоровья осталось.</li>
-          <li><b>КД</b> — насколько сложно по тебе попасть.</li>
-          <li><b>Атака</b> — что прибавить к к20, когда бьёшь.</li>
-          <li><b>Инициатива</b> — кто ходит раньше.</li>
-        </ul>
-      `],
-      combatStats:["Главные цифры боя",`
-        <p>Атака считается как главная характеристика класса + бонус мастерства.</p>
-        <p>Например у плута атака рапирой обычно: Ловкость + мастерство.</p>
-      `],
-      hp:["Хиты",`
-        <p>Если получил урон, введи число и нажми “Внести урон”.</p>
-        <p>Если вылечили, введи число и нажми “Лечение”.</p>
-        <p>Временные хиты сгорают первыми.</p>
-      `],
-      combatActions:["Мой ход",`
-        <p>Это простые подсказки, что твой класс обычно делает в бою.</p>
-        <p>Если не знаешь, что делать, выбери первое действие и скажи мастеру.</p>
-      `],
-      peace:["Мирное время",`
-        <p>Открывай, когда вы не дерётесь: говорите, крадётесь, ищете, торгуетесь, исследуете.</p>
-      `],
-      bag:["Сумка",`
-        <p>Деньги, предметы и заметки. Это часто меняется во время партии.</p>
-      `],
-      money:["Деньги",`
-        <p>Добавляй деньги после награды, вычитай после покупки.</p>
-      `],
-      notes:["Заметки",`
-        <p>Пиши сюда NPC, квесты, долги, обещания, куда идти дальше.</p>
-      `],
-      items:["Предметы",`
-        <p>Инвентарь: оружие, ключи, зелья, стрелы и всё найденное.</p>
-      `],
-      character:["Персонаж",`
-        <p>Здесь можно поправить всё, что ввели на старте: класс, расу, характеристики, навыки и экспертизу.</p>
-      `],
-      progress:["Опыт и уровни",`
-        <p>Мастер говорит, сколько опыта добавить.</p>
-        <p>Когда уровень вырос, обычно увеличиваются максимальные хиты, иногда бонус мастерства, атака и появляются новые особенности.</p>
-      `],
-      sheet:["Лист A4",`
-        <p>Упрощённый лист для печати. Не заменяет полную книгу, но помогает за столом.</p>
-      `],
-      data:["Сохранение",`
-        <p>Данные сохраняются в этом браузере. JSON нужен, чтобы перенести персонажа на другое устройство.</p>
-      `],
-      export:["Экспорт",`<p>Скачивает файл персонажа.</p>`],
-      import:["Импорт",`<p>Загружает ранее сохранённый файл персонажа.</p>`]
-    };
+    const STORAGE_KEY = "dnd_newbie_clean_v2";
 
     const ICONS = {
       sword:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-9 9-6-6 9-9z"/><path d="M4 20l4-4"/><path d="M12 6l6 6"/></svg>`,
@@ -1429,19 +1538,19 @@
     };
 
     const BACKGROUNDS = {
-      acolyte:{name:"Прислужник",skills:["insight","religion"]},
-      charlatan:{name:"Шарлатан",skills:["deception","sleight"]},
-      criminal:{name:"Преступник",skills:["deception","stealth"]},
-      entertainer:{name:"Артист",skills:["acrobatics","performance"]},
-      folkhero:{name:"Народный герой",skills:["animal","survival"]},
-      guild:{name:"Гильдейский ремесленник",skills:["insight","persuasion"]},
-      hermit:{name:"Отшельник",skills:["medicine","religion"]},
-      noble:{name:"Благородный",skills:["history","persuasion"]},
-      outlander:{name:"Чужеземец",skills:["athletics","survival"]},
-      sage:{name:"Мудрец",skills:["arcana","history"]},
-      sailor:{name:"Моряк",skills:["athletics","perception"]},
-      soldier:{name:"Солдат",skills:["athletics","intimidation"]},
-      urchin:{name:"Беспризорник",skills:["sleight","stealth"]}
+      acolyte:{name:"Прислужник",skills:["insight","religion"],hint:"Жил при храме. Понимает веру, обряды и людей."},
+      charlatan:{name:"Шарлатан",skills:["deception","sleight"],hint:"Мошенник, актёр, фокусник. Хорош в обмане и ловкости рук."},
+      criminal:{name:"Преступник",skills:["deception","stealth"],hint:"Знает подполье. Умеет врать и двигаться незаметно."},
+      entertainer:{name:"Артист",skills:["acrobatics","performance"],hint:"Выступал перед людьми. Хорош в акробатике и сцене."},
+      folkhero:{name:"Народный герой",skills:["animal","survival"],hint:"Простой герой из народа. Выживание и животные."},
+      guild:{name:"Гильдейский ремесленник",skills:["insight","persuasion"],hint:"Ремесло, сделки, гильдия. Понимает людей и умеет договариваться."},
+      hermit:{name:"Отшельник",skills:["medicine","religion"],hint:"Жил вдали от мира. Медицина и духовные знания."},
+      noble:{name:"Благородный",skills:["history","persuasion"],hint:"Высшее общество. История, этикет, убеждение."},
+      outlander:{name:"Чужеземец",skills:["athletics","survival"],hint:"Жил вне городов. Атлетика и выживание."},
+      sage:{name:"Мудрец",skills:["arcana","history"],hint:"Учёный. Магия и история."},
+      sailor:{name:"Моряк",skills:["athletics","perception"],hint:"Море, корабли, опасности. Атлетика и внимание."},
+      soldier:{name:"Солдат",skills:["athletics","intimidation"],hint:"Военная служба. Атлетика и запугивание."},
+      urchin:{name:"Беспризорник",skills:["sleight","stealth"],hint:"Вырос на улице. Скрытность и ловкость рук."}
     };
 
     const SKILLS = {
@@ -1469,7 +1578,8 @@
       barbarian:{
         name:"Варвар",hitDie:12,main:"str",saves:["str","con"],skillLimit:2,
         skillOptions:["animal","athletics","intimidation","nature","perception","survival"],
-        defaultSkills:["athletics","survival"],expertise:{},suggest:"Совет: Атлетика и Выживание. Если хочешь давить людей, возьми Запугивание.",
+        defaultSkills:["athletics","survival"],expertise:{},suggest:"Варвару совет: Атлетика и Выживание. Если хочешь давить людей, возьми Запугивание.",
+        role:"Ты сильный передний боец. Твоя задача: встать рядом с врагом, включить ярость и держать удар.",
         weapon:"Топор",weaponDie:"1к12",acType:"unarmored",
         combat:[["sword","Ярость","Включай в серьёзном бою. Бьёшь сильнее и держишь удар лучше.","rage"],["sword","Бей вблизи","Подходи к врагу и бей оружием.","attack"],["heart","Держи линию","Ты живучий. Можешь стоять впереди.","defense"]],
         peace:[["hand","Сила","Ломать, тащить, держать, толкать.","athletics"],["eye","Выживание","Следы, дорога, охота, опасная природа.","survival"],["talk","Запугать","Можно давить видом и силой.","intimidation"]],
@@ -1478,7 +1588,8 @@
       bard:{
         name:"Бард",hitDie:8,main:"cha",saves:["dex","cha"],skillLimit:3,
         skillOptions:Object.keys(SKILLS),
-        defaultSkills:["performance","persuasion","deception"],expertise:{3:2,10:4},suggest:"Совет: Убеждение, Обман и Выступление. Ты лицо партии.",
+        defaultSkills:["performance","persuasion","deception"],expertise:{3:2,10:4},suggest:"Барду совет: Убеждение, Обман и Выступление. Ты лицо партии.",
+        role:"Ты социальный и магический помощник. В бою поддерживаешь союзников, вне боя разговариваешь и выкручиваешься.",
         weapon:"Рапира",weaponDie:"1к8",acType:"light",
         combat:[["star","Вдохновение","Дай союзнику кубик, чтобы он усилил бросок.","support"],["talk","Заклинания","Поддерживай, лечи, мешай врагам.","cha"],["sword","Атака","Если нечем кастовать, атакуй оружием.","attack"]],
         peace:[["talk","Убедить","Договориться честно и красиво.","persuasion"],["talk","Соврать","Придумать легенду, сыграть роль.","deception"],["star","Выступить","Отвлечь, впечатлить, заработать внимание.","performance"]],
@@ -1487,7 +1598,8 @@
       cleric:{
         name:"Жрец",hitDie:8,main:"wis",saves:["wis","cha"],skillLimit:2,
         skillOptions:["history","insight","medicine","persuasion","religion"],
-        defaultSkills:["insight","medicine"],expertise:{},suggest:"Совет: Проницательность и Медицина. Для храмов и нежити — Религия.",
+        defaultSkills:["insight","medicine"],expertise:{},suggest:"Жрецу совет: Проницательность и Медицина. Для храмов и нежити — Религия.",
+        role:"Ты поддержка и духовная сила партии. Лечишь, защищаешь, понимаешь мотивы людей и религиозные штуки.",
         weapon:"Булава",weaponDie:"1к6",acType:"medium",
         combat:[["heart","Лечение","Если союзник падает, лечи или стабилизируй.","heal"],["star","Поддержка","Защищай и усиливай союзников заклинаниями.","wis"],["sword","Бей, если рядом","Можешь стоять ближе к бою.","attack"]],
         peace:[["eye","Понять мотив","Понять, врёт ли человек.","insight"],["star","Религия","Культы, храмы, нежить, обряды.","religion"],["heart","Медицина","Первая помощь, болезнь, раны.","medicine"]],
@@ -1496,7 +1608,8 @@
       druid:{
         name:"Друид",hitDie:8,main:"wis",saves:["int","wis"],skillLimit:2,
         skillOptions:["arcana","animal","insight","medicine","nature","perception","religion","survival"],
-        defaultSkills:["nature","survival"],expertise:{},suggest:"Совет: Природа и Выживание. Для поддержки партии можно взять Медицину.",
+        defaultSkills:["nature","survival"],expertise:{},suggest:"Друиду совет: Природа и Выживание. Для поддержки партии можно взять Медицину.",
+        role:"Ты персонаж природы. Лечишь, чувствуешь зверей, понимаешь следы, погоду и дикую местность.",
         weapon:"Посох",weaponDie:"1к6",acType:"medium",
         combat:[["star","Магия природы","Лечи, контролируй поле, мешай врагам.","wis"],["heart","Лечение","Помоги союзнику, если он падает.","heal"],["sword","Посох","Если враг рядом, бей посохом.","attack"]],
         peace:[["eye","Природа","Растения, звери, погода, следы.","nature"],["eye","Выживание","Дорога, лагерь, охота, следы.","survival"],["heart","Животные","Успокоить или понять зверя.","animal"]],
@@ -1505,7 +1618,8 @@
       fighter:{
         name:"Воин",hitDie:10,main:"str",saves:["str","con"],skillLimit:2,
         skillOptions:["acrobatics","animal","athletics","history","insight","intimidation","perception","survival"],
-        defaultSkills:["athletics","perception"],expertise:{},suggest:"Совет: Атлетика и Восприятие. Это часто полезно везде.",
+        defaultSkills:["athletics","perception"],expertise:{},suggest:"Воину совет: Атлетика и Восприятие. Это полезно и в бою, и вне боя.",
+        role:"Ты надёжный боец. Твоя задача: попадать, держать позицию и защищать слабых.",
         weapon:"Меч",weaponDie:"1к8",acType:"heavy",
         combat:[["sword","Атакуй","Подходишь и бьёшь. Это твоя база.","attack"],["heart","Второе дыхание","Можешь восстановить немного хитов.","secondWind"],["star","Держи врага","Стой впереди, защищай слабых.","defense"]],
         peace:[["hand","Атлетика","Лезть, ломать, держать дверь, толкать.","athletics"],["eye","Внимание","Заметить засаду или опасность.","perception"],["talk","Запугать","Давить силой и уверенностью.","intimidation"]],
@@ -1514,7 +1628,8 @@
       monk:{
         name:"Монах",hitDie:8,main:"dex",saves:["str","dex"],skillLimit:2,
         skillOptions:["acrobatics","athletics","history","insight","religion","stealth"],
-        defaultSkills:["acrobatics","insight"],expertise:{},suggest:"Совет: Акробатика и Проницательность. Для тихого стиля — Скрытность.",
+        defaultSkills:["acrobatics","insight"],expertise:{},suggest:"Монаху совет: Акробатика и Проницательность. Для тихого стиля — Скрытность.",
+        role:"Ты быстрый и подвижный боец. Играешь от движения, акробатики и точных ударов.",
         weapon:"Безоружный удар",weaponDie:"1к4",acType:"monk",
         combat:[["hand","Безоружный бой","Бей руками, ногами и простым оружием.","attack"],["star","Ки","Со 2 уровня тратишь ки на быстрые приёмы.","ki"],["eye","Движение","Ты быстрый, обходи и выбирай позицию.","speed"]],
         peace:[["hand","Акробатика","Баланс, прыжки, опасные места.","acrobatics"],["eye","Проницательность","Понять человека и намерения.","insight"],["eye","Скрытность","Двигаться тихо и незаметно.","stealth"]],
@@ -1523,7 +1638,8 @@
       paladin:{
         name:"Паладин",hitDie:10,main:"str",saves:["wis","cha"],skillLimit:2,
         skillOptions:["athletics","insight","intimidation","medicine","persuasion","religion"],
-        defaultSkills:["athletics","persuasion"],expertise:{},suggest:"Совет: Атлетика и Убеждение. Паладин часто защищает и говорит от имени группы.",
+        defaultSkills:["athletics","persuasion"],expertise:{},suggest:"Паладину совет: Атлетика и Убеждение. Ты часто защищаешь и говоришь от имени группы.",
+        role:"Ты святой воин. Стоишь впереди, защищаешь, лечишь и усиливаешь удары божественной карой.",
         weapon:"Меч",weaponDie:"1к8",acType:"heavy",
         combat:[["sword","Божественная кара","Когда попал, можешь усилить удар магией.","smite"],["heart","Защищай","Стой впереди и прикрывай союзников.","defense"],["heart","Лечение рук","Можешь лечить запасом лечения.","layHands"]],
         peace:[["talk","Убедить","Говорить честно, давить авторитетом.","persuasion"],["eye","Понять зло","Считывать угрозы и мотивы.","insight"],["star","Религия","Клятвы, храмы, нежить, святыни.","religion"]],
@@ -1532,7 +1648,8 @@
       ranger:{
         name:"Следопыт",hitDie:10,main:"dex",saves:["str","dex"],skillLimit:3,
         skillOptions:["animal","athletics","insight","investigation","nature","perception","stealth","survival"],
-        defaultSkills:["survival","perception","stealth"],expertise:{},suggest:"Совет: Выживание, Восприятие и Скрытность. Ты разведчик и следопыт.",
+        defaultSkills:["survival","perception","stealth"],expertise:{},suggest:"Следопыту совет: Выживание, Восприятие и Скрытность. Ты разведчик и охотник.",
+        role:"Ты разведчик, стрелок и проводник. Хорош в следах, опасностях, скрытности и природе.",
         weapon:"Лук",weaponDie:"1к8",acType:"medium",
         combat:[["sword","Стреляй","Держи дистанцию и бей из лука.","attack"],["eye","Позиция","Ищи укрытие и хороший угол.","perception"],["star","Охота","Заклинания и умения помогают добивать цель.","hunt"]],
         peace:[["eye","Следы","Искать следы и путь.","survival"],["eye","Разведка","Идти впереди и замечать опасность.","perception"],["eye","Природа","Звери, растения, погода, местность.","nature"]],
@@ -1541,7 +1658,8 @@
       rogue:{
         name:"Плут",hitDie:8,main:"dex",saves:["dex","int"],skillLimit:4,
         skillOptions:["acrobatics","athletics","deception","insight","intimidation","investigation","perception","performance","persuasion","sleight","stealth"],
-        defaultSkills:["stealth","sleight","deception","perception"],expertise:{1:2,6:4},suggest:"Совет: Скрытность, Ловкость рук, Обман, Восприятие. Экспертиза: Скрытность и Ловкость рук.",
+        defaultSkills:["stealth","sleight","deception","perception"],expertise:{1:2,6:4},suggest:"Плуту совет: Скрытность, Ловкость рук, Обман, Восприятие. Экспертиза: Скрытность и Ловкость рук.",
+        role:"Ты хитрый и точный. В бою ищешь условие для скрытой атаки. В мирное время крадёшься, врёшь, вскрываешь замки и замечаешь опасность.",
         weapon:"Рапира",weaponDie:"1к8",acType:"light",
         combat:[["sword","Атакуй точно","Бей врага, рядом с которым стоит союзник.","attack"],["star","Скрытая атака","1 раз за ход добавь +1к6 при условии.","sneak"],["eye","Не стой первым","Прячься, обходи, бей из удобной позиции.","stealth"]],
         peace:[["eye","Скрытно пройти","Красться, спрятаться, пройти мимо охраны.","stealth"],["hand","Украсть / спрятать","Взять ключ, спрятать предмет, подменить вещь.","sleight"],["lock","Открыть замок","Используй воровские инструменты.","lock"]],
@@ -1550,7 +1668,8 @@
       sorcerer:{
         name:"Чародей",hitDie:6,main:"cha",saves:["con","cha"],skillLimit:2,
         skillOptions:["arcana","deception","insight","intimidation","persuasion","religion"],
-        defaultSkills:["arcana","persuasion"],expertise:{},suggest:"Совет: Магия и Убеждение. Для хитрого героя — Обман.",
+        defaultSkills:["arcana","persuasion"],expertise:{},suggest:"Чародею совет: Магия и Убеждение. Для хитрого героя — Обман.",
+        role:"Ты врождённый маг. В бою стой сзади, бей заклинаниями и береги хиты.",
         weapon:"Кинжал",weaponDie:"1к4",acType:"none",
         combat:[["star","Заклинания","Стой сзади и бей магией.","cha"],["heart","Береги хиты","Ты хрупкий, не лезь вперёд.","defense"],["talk","Метамагия","С 3 уровня меняешь заклинания особым способом.","meta"]],
         peace:[["talk","Харизма","Разговор, давление, впечатление.","persuasion"],["talk","Обман","Легенда, маска, хитрость.","deception"],["star","Магия","Разобраться в магическом явлении.","arcana"]],
@@ -1559,7 +1678,8 @@
       warlock:{
         name:"Колдун",hitDie:8,main:"cha",saves:["wis","cha"],skillLimit:2,
         skillOptions:["arcana","deception","history","intimidation","investigation","nature","religion"],
-        defaultSkills:["deception","arcana"],expertise:{},suggest:"Совет: Обман и Магия. Если хочешь жёстко давить — Запугивание.",
+        defaultSkills:["deception","arcana"],expertise:{},suggest:"Колдуну совет: Обман и Магия. Если хочешь жёстко давить — Запугивание.",
+        role:"Ты маг сделки и тёмных сил. В бою часто используешь мистический заряд, вне боя работаешь через тайны, обман и харизму.",
         weapon:"Мистический заряд",weaponDie:"1к10",acType:"light",
         combat:[["star","Мистический заряд","Простой и сильный дальний удар.","attack"],["star","Мало ячеек","Заклинания сильные, но их мало.","shortRest"],["talk","Покровитель","Сила идёт от сделки или связи.","role"]],
         peace:[["talk","Обман","Сделка, легенда, тёмные тайны.","deception"],["talk","Запугать","Давить мистикой или угрозой.","intimidation"],["star","Магия","Оккультные знания и ритуалы.","arcana"]],
@@ -1568,7 +1688,8 @@
       wizard:{
         name:"Волшебник",hitDie:6,main:"int",saves:["int","wis"],skillLimit:2,
         skillOptions:["arcana","history","insight","investigation","medicine","religion"],
-        defaultSkills:["arcana","investigation"],expertise:{},suggest:"Совет: Магия и Расследование. Ты решаешь задачи через знания.",
+        defaultSkills:["arcana","investigation"],expertise:{},suggest:"Волшебнику совет: Магия и Расследование. Ты решаешь задачи через знания.",
+        role:"Ты книжный маг. В бою не стой впереди, используй заклинания и контроль. В мире ищи знания, руны, тайники и логику.",
         weapon:"Посох",weaponDie:"1к6",acType:"none",
         combat:[["star","Заклинания","Стой сзади, думай, контролируй поле.","int"],["heart","Ты хрупкий","Не стой рядом с врагом.","defense"],["eye","Выбери цель","Лучше мешать опасному врагу или спасать союзника.","tactic"]],
         peace:[["star","Магия","Руны, артефакты, заклинания.","arcana"],["eye","Расследование","Тайники, механизмы, логика сцены.","investigation"],["star","История","Книги, древности, факты мира.","history"]],
@@ -1651,26 +1772,15 @@
       return String(text ?? "").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
     }
 
-    function icon(name){
-      return `<div class="icon">${ICONS[name]||""}</div>`;
-    }
-
-    function helpButton(key){
-      return `<button class="help-btn" data-help="${key}" type="button">?</button>`;
-    }
+    function icon(name){return `<div class="icon">${ICONS[name]||""}</div>`}
+    function helpButton(key){return `<button class="help-btn" data-help="${key}" type="button">?</button>`}
 
     function klass(){return CLASSES[state.classKey] || CLASSES.rogue}
     function race(){return RACES[state.raceKey] || RACES.halfling}
     function background(){return BACKGROUNDS[state.bgKey] || BACKGROUNDS.criminal}
 
-    function mod(score){
-      return Math.floor((Number(score || 0)-10)/2);
-    }
-
-    function fmt(n){
-      n=Number(n||0);
-      return n>=0 ? "+"+n : String(n);
-    }
+    function mod(score){return Math.floor((Number(score || 0)-10)/2)}
+    function fmt(n){n=Number(n||0);return n>=0 ? "+"+n : String(n)}
 
     function proficiency(level = state.level){
       level=Number(level||1);
@@ -1681,13 +1791,8 @@
       return 2;
     }
 
-    function totalStat(key){
-      return Number(state.stats[key]||0)+Number(race().bonuses[key]||0);
-    }
-
-    function statMod(key){
-      return mod(totalStat(key));
-    }
+    function totalStat(key){return Number(state.stats[key]||0)+Number(race().bonuses[key]||0)}
+    function statMod(key){return mod(totalStat(key))}
 
     function maxHp(level = state.level){
       const hit=klass().hitDie;
@@ -1706,21 +1811,11 @@
       return 10+statMod("dex");
     }
 
-    function attackBonus(){
-      return statMod(klass().main)+proficiency();
-    }
+    function attackBonus(){return statMod(klass().main)+proficiency()}
+    function damageFormula(){return `${klass().weaponDie}${fmt(statMod(klass().main))}`}
 
-    function damageFormula(){
-      return `${klass().weaponDie}${fmt(statMod(klass().main))}`;
-    }
-
-    function bgSkills(){
-      return background().skills || [];
-    }
-
-    function hasProf(key){
-      return state.profSkills.includes(key) || bgSkills().includes(key);
-    }
+    function bgSkills(){return background().skills || []}
+    function hasProf(key){return state.profSkills.includes(key) || bgSkills().includes(key)}
 
     function expertiseLimit(level = state.level){
       const table = klass().expertise || {};
@@ -1731,9 +1826,7 @@
       return limit;
     }
 
-    function hasExpertise(key){
-      return hasProf(key) && state.expertiseSkills.includes(key);
-    }
+    function hasExpertise(key){return hasProf(key) && state.expertiseSkills.includes(key)}
 
     function skillParts(key){
       const skill=SKILLS[key];
@@ -1742,23 +1835,18 @@
       const profValue=hasProf(key) ? proficiency() : 0;
       const expertiseValue=hasExpertise(key) ? proficiency() : 0;
       const total=abilityValue+profValue+expertiseValue;
-
       return {key, ability, abilityValue, profValue, expertiseValue, total};
     }
 
     function skillFormula(key){
       const s=skillParts(key);
       const parts=[`${ABILITIES[s.ability][0]} ${fmt(s.abilityValue)}`];
-
       if(s.profValue) parts.push(`мастерство ${fmt(s.profValue)}`);
       if(s.expertiseValue) parts.push(`экспертиза ${fmt(s.expertiseValue)}`);
-
       return `к20 ${fmt(s.total)} · ${parts.join(" + ")}`;
     }
 
-    function saveBonus(key){
-      return statMod(key)+(klass().saves.includes(key)?proficiency():0);
-    }
+    function saveBonus(key){return statMod(key)+(klass().saves.includes(key)?proficiency():0)}
 
     function levelByXp(xp){
       let lvl=1;
@@ -1801,6 +1889,147 @@
       ["setupAlignment","alignmentInput"].forEach(id=>$(id).innerHTML=alignOptions);
     }
 
+    function dynamicHelp(key){
+      if(key==="background"){
+        return ["Предыстория",`
+          <p>Предыстория это прошлое персонажа: кем он был до приключений.</p>
+          <p>Сейчас выбрано: <b>${background().name}</b>.</p>
+          <ul>
+            <li>${background().hint}</li>
+            <li>Она даёт навыки: <b>${bgSkills().map(k=>SKILLS[k][0]).join(", ")}</b>.</li>
+            <li>Эти навыки уже выбраны автоматически и не занимают лимит класса.</li>
+          </ul>
+        `];
+      }
+
+      if(key==="skillPick"){
+        return ["Навыки класса",`
+          <p>У класса <b>${klass().name}</b> можно выбрать <b>${klass().skillLimit}</b> навыка класса.</p>
+          <p>${klass().suggest}</p>
+          <p>Предыстория <b>${background().name}</b> уже даёт: <b>${bgSkills().map(k=>SKILLS[k][0]).join(", ")}</b>.</p>
+        `];
+      }
+
+      if(key==="expertise"){
+        const limit=expertiseLimit(1);
+        return ["Экспертиза",`
+          <p>Экспертиза значит: “я в этом особенно хорош”. Она добавляет бонус мастерства второй раз.</p>
+          <p>У класса <b>${klass().name}</b> на 1 уровне доступно: <b>${limit}</b>.</p>
+          <p>${limit ? klass().suggest : "У этого класса на 1 уровне экспертизы нет."}</p>
+        `];
+      }
+
+      if(key==="combat"){
+        return [`Бой: ${klass().name}`,`
+          <p>${klass().role}</p>
+          <ul>
+            ${klass().combat.map(a=>`<li><b>${a[1]}</b> — ${a[2]}</li>`).join("")}
+          </ul>
+        `];
+      }
+
+      if(key==="peace"){
+        return [`Мир: ${klass().name}`,`
+          <p>${klass().role}</p>
+          <ul>
+            ${klass().peace.map(a=>`<li><b>${a[1]}</b> — ${a[2]}</li>`).join("")}
+          </ul>
+        `];
+      }
+
+      if(key==="combatActions"){
+        return [`Мой ход: ${klass().name}`,`
+          <p>Это подсказки именно для твоего класса, а не общая инструкция.</p>
+          <ul>
+            ${klass().combat.map(a=>`<li><b>${a[1]}</b> — ${a[2]}</li>`).join("")}
+          </ul>
+        `];
+      }
+
+      return null;
+    }
+
+    const HELP = {
+      setup:["Создание персонажа",`
+        <p>На старте игрок не должен видеть боевой экран. Сначала нужно собрать персонажа.</p>
+        <ul>
+          <li><b>Класс</b> говорит, чем ты силён.</li>
+          <li><b>Раса</b> даёт бонусы и особенности.</li>
+          <li><b>Предыстория</b> даёт прошлое персонажа и 2 навыка.</li>
+          <li><b>Навыки</b> показывают, что ты умеешь делать лучше других.</li>
+        </ul>
+      `],
+      identity:["Кто я?",`
+        <p>Это описание героя.</p>
+        <ul>
+          <li><b>Класс</b> — твоя профессия в приключениях: плут, воин, маг и т.д.</li>
+          <li><b>Раса / вид</b> — происхождение героя.</li>
+          <li><b>Предыстория</b> — кем ты был до приключений.</li>
+          <li><b>Мировоззрение</b> — короткая подсказка, как герой обычно принимает решения.</li>
+        </ul>
+      `],
+      alignment:["Мировоззрение",`
+        <p>Это не строгий закон, а подсказка для роли.</p>
+        <ul>
+          <li><b>Добрый</b> чаще помогает другим.</li>
+          <li><b>Нейтральный</b> действует по ситуации.</li>
+          <li><b>Злой</b> думает о выгоде, власти или себе.</li>
+          <li><b>Законный</b> уважает правила, кодекс или порядок.</li>
+          <li><b>Хаотичный</b> ценит свободу и действует непредсказуемо.</li>
+        </ul>
+      `],
+      abilities:["Характеристики",`
+        <p>Это шесть главных чисел героя. Из них считаются модификаторы для бросков к20.</p>
+        <ul>
+          <li><b>Сила</b> — ломать, тащить, бить тяжёлым оружием.</li>
+          <li><b>Ловкость</b> — скрытность, реакция, точность, инициатива.</li>
+          <li><b>Телосложение</b> — здоровье, яд, болезнь, выносливость.</li>
+          <li><b>Интеллект</b> — знания, магия, расследование.</li>
+          <li><b>Мудрость</b> — внимание, интуиция, выживание.</li>
+          <li><b>Харизма</b> — разговор, обман, давление, уверенность.</li>
+        </ul>
+      `],
+      abilityMath:["Как считается модификатор",`
+        <p>Есть число характеристики. Например Ловкость 17.</p>
+        <p>Из него получается модификатор: 10–11 это +0, 12–13 это +1, 14–15 это +2, 16–17 это +3, 18–19 это +4.</p>
+        <p>Именно модификатор обычно прибавляется к к20.</p>
+      `],
+      skillMath:["Как считаются навыки",`
+        <p>Формула навыка:</p>
+        <p><b>модификатор характеристики + мастерство + экспертиза</b></p>
+        <ul>
+          <li><b>Характеристика</b> есть всегда.</li>
+          <li><b>Мастерство</b> добавляется, если ты владеешь навыком.</li>
+          <li><b>Экспертиза</b> добавляет мастерство ещё раз.</li>
+        </ul>
+      `],
+      combatStats:["Главные цифры боя",`
+        <p>Атака считается как главная характеристика класса + бонус мастерства.</p>
+        <p>Например у плута атака рапирой обычно: Ловкость + мастерство.</p>
+      `],
+      hp:["Хиты",`
+        <p>Если получил урон, введи число и нажми “Внести урон”.</p>
+        <p>Если вылечили, введи число и нажми “Лечение”.</p>
+        <p>Временные хиты сгорают первыми.</p>
+      `],
+      bag:["Сумка",`<p>Деньги, предметы и заметки. Это часто меняется во время партии.</p>`],
+      money:["Деньги",`<p>Добавляй деньги после награды, вычитай после покупки.</p>`],
+      notes:["Заметки",`<p>Пиши сюда NPC, квесты, долги, обещания, куда идти дальше.</p>`],
+      items:["Предметы",`<p>Инвентарь: оружие, ключи, зелья, стрелы и всё найденное.</p>`],
+      character:["Персонаж",`<p>Здесь можно поправить всё, что ввели на старте: класс, расу, характеристики, навыки и экспертизу.</p>`],
+      progress:["Опыт и уровни",`
+        <p>Мастер говорит, сколько опыта добавить.</p>
+        <p>Когда уровень вырос, обычно увеличиваются максимальные хиты, иногда бонус мастерства, атака и появляются новые особенности.</p>
+      `],
+      sheet:["Лист A4",`
+        <p>Это аккуратная печатная версия с зонами как у классического листа: характеристики, навыки, атаки, снаряжение, особенности.</p>
+        <p>Она не пытается рисовать поверх PDF, поэтому текст не налезает на ячейки.</p>
+      `],
+      data:["Сохранение",`<p>Данные сохраняются в этом браузере. JSON нужен, чтобы перенести персонажа на другое устройство.</p>`],
+      export:["Экспорт",`<p>Скачивает файл персонажа.</p>`],
+      import:["Импорт",`<p>Загружает ранее сохранённый файл персонажа.</p>`]
+    };
+
     function render(){
       syncHp();
 
@@ -1836,6 +2065,7 @@
       $("setupBg").value=state.bgKey;
       $("setupAlignment").value=state.alignment;
       $("setupAlignmentHint").textContent=ALIGNMENTS[state.alignment]?.[1]||"";
+      $("setupBgHint").textContent=background().hint;
 
       $("setupStr").value=state.stats.str;
       $("setupDex").value=state.stats.dex;
@@ -1858,7 +2088,7 @@
           <p>${klass().suggest}</p>
           <div class="calc-chips">
             <span class="chip white">класс ${selectedCount}/${limit}</span>
-            <span class="chip">биография: ${bg.map(k=>SKILLS[k][0]).join(", ")}</span>
+            <span class="chip locked">предыстория: ${bg.map(k=>SKILLS[k][0]).join(", ")}</span>
           </div>
         </div>
       `;
@@ -1866,20 +2096,22 @@
       $("setupSkillEditor").innerHTML = klass().skillOptions.map(key=>{
         const fromBg = bg.includes(key);
         const selected = state.profSkills.includes(key);
-        const disabled = fromBg && !selected;
+
         return `
           <div class="skill-card">
             <div>
               <strong>${SKILLS[key][0]}</strong>
               <div class="skill-meta">${ABILITIES[SKILLS[key][1]][0]}</div>
               <div class="calc-chips">
-                ${fromBg ? `<span class="chip white">уже есть из биографии</span>` : `<span class="chip">можно выбрать от класса</span>`}
+                ${fromBg ? `<span class="chip white">уже есть из предыстории</span>` : `<span class="chip">можно выбрать от класса</span>`}
               </div>
             </div>
             <div class="skill-controls">
-              <button class="tiny-btn ${selected ? "active" : ""}" ${disabled ? "disabled" : ""} onclick="toggleProf('${key}')">
-                ${selected ? "выбрано" : "выбрать"}
-              </button>
+              ${
+                fromBg
+                ? `<span class="chip locked">выбрано</span>`
+                : `<button class="tiny-btn ${selected ? "active" : ""}" onclick="toggleProf('${key}')">${selected ? "выбрано" : "выбрать"}</button>`
+              }
             </div>
           </div>
         `;
@@ -1931,167 +2163,169 @@
       const hpPercent=Math.max(0,Math.min(100,state.hp/maxHp()*100));
 
       $("combatContent").innerHTML=`
-        <div class="card">
-          <div class="card-head">
-            <div>
-              <h3>Главные цифры</h3>
-              <p class="sub">То, что чаще всего спрашивают в бою.</p>
-            </div>
-            ${helpButton("combatStats")}
-          </div>
-
-          <div class="stat-row">
-            <div class="stat"><span>Хиты</span><b>${state.hp}/${maxHp()}</b></div>
-            <div class="stat"><span>КД</span><b>${ac()}</b></div>
-            <div class="stat"><span>Иниц.</span><b>${fmt(statMod("dex"))}</b></div>
-            <div class="stat"><span>Атака</span><b>${fmt(attackBonus())}</b></div>
-            <div class="stat"><span>Мастерство</span><b>${fmt(proficiency())}</b></div>
-          </div>
-
-          <div class="calc-chips">
-            <span class="chip white">Атака ${fmt(attackBonus())}</span>
-            <span class="chip">${ABILITIES[klass().main][0]} ${fmt(statMod(klass().main))}</span>
-            <span class="chip">мастерство ${fmt(proficiency())}</span>
-          </div>
-        </div>
-
-        <div class="grid two" style="margin-top:10px">
+        <div class="stack">
           <div class="card">
             <div class="card-head">
               <div>
-                <h3>Здоровье</h3>
-                <p class="sub">ХП уменьшаются от урона и растут от лечения.</p>
+                <h3>Главные цифры</h3>
+                <p class="sub">То, что чаще всего спрашивают в бою.</p>
               </div>
-              ${helpButton("hp")}
-            </div>
-
-            <div class="hp-compact">
-              <div class="hp-number">
-                <div>
-                  <span>ХП</span>
-                  <b>${state.hp}</b>
-                </div>
-              </div>
-
-              <div>
-                <p class="hint">Максимум ${maxHp()} · временные хиты ${state.tempHp}</p>
-                <div class="hp-bar"><div class="hp-fill" style="width:${hpPercent}%"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <h3>Урон / лечение</h3>
-                <p class="sub">Быстро меняй ХП во время боя.</p>
-              </div>
-              ${helpButton("hp")}
-            </div>
-
-            <div class="grid two">
-              <div class="field">
-                <label>Урон</label>
-                <input id="damageInput" inputmode="numeric" pattern="[0-9]*" placeholder="5">
-              </div>
-
-              <div class="field">
-                <label>Лечение</label>
-                <input id="healInput" inputmode="numeric" pattern="[0-9]*" placeholder="4">
-              </div>
-            </div>
-
-            <div class="btn-row">
-              <button class="btn main" onclick="takeDamage()">Внести урон</button>
-              <button class="btn" onclick="heal()">Лечение</button>
-            </div>
-
-            <div class="field" style="margin-top:10px">
-              <label>Временные хиты</label>
-              <input id="tempHpInput" inputmode="numeric" pattern="[0-9]*" value="${state.tempHp}" onchange="setTempHp(this.value)">
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:10px">
-          <div class="card-head">
-            <div>
-              <h3>Мой ход</h3>
-              <p class="sub">Подсказки зависят от класса.</p>
-            </div>
-            ${helpButton("combatActions")}
-          </div>
-
-          <div class="grid three">
-            ${klass().combat.map(([ic,title,text,formula],index)=>`
-              <div class="action">
-                ${helpButton(index === 0 ? "combatActions" : "combat")}
-                ${icon(ic)}
-                <b>${title}</b>
-                <p>${text}</p>
-                <div class="formula">${combatFormula(formula)}</div>
-              </div>
-            `).join("")}
-          </div>
-        </div>
-
-        <details class="card" style="margin-top:10px">
-          <summary>
-            <div class="summary-title">
-              <b>Спасброски и особенности</b>
-              <span>раскрой, если мастер просит уточнить</span>
-            </div>
-            <div class="summary-actions">
               ${helpButton("combatStats")}
-              <div class="plus">+</div>
             </div>
-          </summary>
-          <div class="detail-body">
-            <div class="grid two">
-              <div>
-                <h3>Спасброски</h3>
-                ${["str","dex","con","int","wis","cha"].map(k=>`
-                  <div class="line">
-                    <span>${ABILITIES[k][0]}</span>
-                    <b>${fmt(saveBonus(k))}</b>
-                  </div>
-                `).join("")}
+
+            <div class="stat-row">
+              <div class="stat"><span>Хиты</span><b>${state.hp}/${maxHp()}</b></div>
+              <div class="stat"><span>КД</span><b>${ac()}</b></div>
+              <div class="stat"><span>Иниц.</span><b>${fmt(statMod("dex"))}</b></div>
+              <div class="stat"><span>Атака</span><b>${fmt(attackBonus())}</b></div>
+              <div class="stat"><span>Мастерство</span><b>${fmt(proficiency())}</b></div>
+            </div>
+
+            <div class="calc-chips">
+              <span class="chip white">Атака ${fmt(attackBonus())}</span>
+              <span class="chip">${ABILITIES[klass().main][0]} ${fmt(statMod(klass().main))}</span>
+              <span class="chip">мастерство ${fmt(proficiency())}</span>
+            </div>
+          </div>
+
+          <div class="grid two">
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h3>Здоровье</h3>
+                  <p class="sub">ХП уменьшаются от урона и растут от лечения.</p>
+                </div>
+                ${helpButton("hp")}
               </div>
 
-              <div>
-                <h3>Не забыть</h3>
-                <div class="grid">
-                  ${renderFeatureCards(6)}
+              <div class="hp-compact">
+                <div class="hp-number">
+                  <div>
+                    <span>ХП</span>
+                    <b>${state.hp}</b>
+                  </div>
+                </div>
+
+                <div>
+                  <p class="hint">Максимум ${maxHp()} · временные хиты ${state.tempHp}</p>
+                  <div class="hp-bar"><div class="hp-fill" style="width:${hpPercent}%"></div></div>
                 </div>
               </div>
             </div>
-          </div>
-        </details>
 
-        <details class="card" style="margin-top:10px">
-          <summary>
-            <div class="summary-title">
-              <b>После боя</b>
-              <span>добавить опыт, если мастер дал</span>
-            </div>
-            <div class="summary-actions">
-              ${helpButton("progress")}
-              <div class="plus">+</div>
-            </div>
-          </summary>
-          <div class="detail-body">
-            <div class="grid two">
-              <div class="field">
-                <label>Добавить опыт</label>
-                <input id="quickXpInput" inputmode="numeric" pattern="[0-9]*" placeholder="300">
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h3>Урон / лечение</h3>
+                  <p class="sub">Быстро меняй ХП во время боя.</p>
+                </div>
+                ${helpButton("hp")}
               </div>
-              <div>
-                <button class="btn main full" onclick="addXpFromCombat()">Добавить опыт</button>
-                <p class="hint">Сейчас: ${state.xp} опыта · уровень ${state.level}</p>
+
+              <div class="grid two">
+                <div class="field">
+                  <label>Урон</label>
+                  <input id="damageInput" type="number" inputmode="numeric" placeholder="5">
+                </div>
+
+                <div class="field">
+                  <label>Лечение</label>
+                  <input id="healInput" type="number" inputmode="numeric" placeholder="4">
+                </div>
+              </div>
+
+              <div class="btn-row">
+                <button class="btn main" onclick="takeDamage()">Внести урон</button>
+                <button class="btn" onclick="heal()">Лечение</button>
+              </div>
+
+              <div class="field" style="margin-top:12px">
+                <label>Временные хиты</label>
+                <input id="tempHpInput" type="number" inputmode="numeric" value="${state.tempHp}" onchange="setTempHp(this.value)">
               </div>
             </div>
           </div>
-        </details>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Мой ход</h3>
+                <p class="sub">Подсказки зависят от класса.</p>
+              </div>
+              ${helpButton("combatActions")}
+            </div>
+
+            <div class="grid three">
+              ${klass().combat.map(([ic,title,text,formula],index)=>`
+                <div class="action">
+                  ${helpButton(index === 0 ? "combatActions" : "combat")}
+                  ${icon(ic)}
+                  <b>${title}</b>
+                  <p>${text}</p>
+                  <div class="formula">${combatFormula(formula)}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Спасброски и особенности</b>
+                <span>раскрой, если мастер просит уточнить</span>
+              </div>
+              <div class="summary-actions">
+                ${helpButton("combatStats")}
+                <div class="plus">+</div>
+              </div>
+            </summary>
+            <div class="detail-body">
+              <div class="grid two">
+                <div>
+                  <h3>Спасброски</h3>
+                  ${["str","dex","con","int","wis","cha"].map(k=>`
+                    <div class="line">
+                      <span>${ABILITIES[k][0]}</span>
+                      <b>${fmt(saveBonus(k))}</b>
+                    </div>
+                  `).join("")}
+                </div>
+
+                <div>
+                  <h3>Не забыть</h3>
+                  <div class="grid">
+                    ${renderFeatureCards(6)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>После боя</b>
+                <span>добавить опыт, если мастер дал</span>
+              </div>
+              <div class="summary-actions">
+                ${helpButton("progress")}
+                <div class="plus">+</div>
+              </div>
+            </summary>
+            <div class="detail-body">
+              <div class="grid two">
+                <div class="field">
+                  <label>Добавить опыт</label>
+                  <input id="quickXpInput" type="number" inputmode="numeric" placeholder="300">
+                </div>
+                <div>
+                  <button class="btn main full" onclick="addXpFromCombat()">Добавить опыт</button>
+                  <p class="hint">Сейчас: ${state.xp} опыта · уровень ${state.level}</p>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
       `;
     }
 
@@ -2102,62 +2336,39 @@
       $("peaceSubtitle").textContent=`${klass().name} · ${race().name} · ${ALIGNMENTS[state.alignment]?.[0]||""}`;
 
       $("peaceContent").innerHTML=`
-        <div class="card">
-          <div class="card-head">
-            <div>
-              <h3>Главные проверки</h3>
-              <p class="sub">Цифры показывают итог и из чего он складывается.</p>
-            </div>
-            ${helpButton("skillMath")}
-          </div>
-
-          <div class="stat-row">
-            <div class="stat"><span>Главная</span><b>${fmt(statMod(klass().main))}</b></div>
-            <div class="stat"><span>Воспр.</span><b>${fmt(skillParts("perception").total)}</b></div>
-            <div class="stat"><span>Прониц.</span><b>${fmt(skillParts("insight").total)}</b></div>
-            <div class="stat"><span>Обман</span><b>${fmt(skillParts("deception").total)}</b></div>
-            <div class="stat"><span>Убежд.</span><b>${fmt(skillParts("persuasion").total)}</b></div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:10px">
-          <div class="card-head">
-            <div>
-              <h3>Что я могу делать</h3>
-              <p class="sub">Подсказки зависят от класса.</p>
-            </div>
-            ${helpButton("peace")}
-          </div>
-
-          <div class="grid three">
-            ${klass().peace.map(([ic,title,text,skill],index)=>`
-              <div class="action">
-                ${helpButton(index === 0 ? "peace" : "skillMath")}
-                ${icon(ic)}
-                <b>${title}</b>
-                <p>${text}</p>
-                <div class="formula">${peaceFormula(skill)}</div>
+        <div class="stack">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Главные проверки</h3>
+                <p class="sub">Цифры показывают итог и из чего он складывается.</p>
               </div>
-            `).join("")}
-          </div>
-        </div>
-
-        <details class="card" style="margin-top:10px" open>
-          <summary>
-            <div class="summary-title">
-              <b>Быстрые проверки</b>
-              <span>когда не понимаешь, что кидать</span>
-            </div>
-            <div class="summary-actions">
               ${helpButton("skillMath")}
-              <div class="plus">+</div>
             </div>
-          </summary>
-          <div class="detail-body">
+
+            <div class="stat-row">
+              <div class="stat"><span>Главная</span><b>${fmt(statMod(klass().main))}</b></div>
+              <div class="stat"><span>Воспр.</span><b>${fmt(skillParts("perception").total)}</b></div>
+              <div class="stat"><span>Прониц.</span><b>${fmt(skillParts("insight").total)}</b></div>
+              <div class="stat"><span>Обман</span><b>${fmt(skillParts("deception").total)}</b></div>
+              <div class="stat"><span>Убежд.</span><b>${fmt(skillParts("persuasion").total)}</b></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Что я могу делать</h3>
+                <p class="sub">Подсказки зависят от класса.</p>
+              </div>
+              ${helpButton("peace")}
+            </div>
+
             <div class="grid three">
-              ${quickPeaceChecks().map(([title,text,skill])=>`
+              ${klass().peace.map(([ic,title,text,skill],index)=>`
                 <div class="action">
-                  ${helpButton("skillMath")}
+                  ${helpButton(index === 0 ? "peace" : "skillMath")}
+                  ${icon(ic)}
                   <b>${title}</b>
                   <p>${text}</p>
                   <div class="formula">${peaceFormula(skill)}</div>
@@ -2165,25 +2376,50 @@
               `).join("")}
             </div>
           </div>
-        </details>
 
-        <details class="card" style="margin-top:10px">
-          <summary>
-            <div class="summary-title">
-              <b>Особенности персонажа</b>
-              <span>раса, класс, уровень</span>
+          <details class="card" open>
+            <summary>
+              <div class="summary-title">
+                <b>Быстрые проверки</b>
+                <span>когда не понимаешь, что кидать</span>
+              </div>
+              <div class="summary-actions">
+                ${helpButton("skillMath")}
+                <div class="plus">+</div>
+              </div>
+            </summary>
+            <div class="detail-body">
+              <div class="grid three">
+                ${quickPeaceChecks().map(([title,text,skill])=>`
+                  <div class="action">
+                    ${helpButton("skillMath")}
+                    <b>${title}</b>
+                    <p>${text}</p>
+                    <div class="formula">${peaceFormula(skill)}</div>
+                  </div>
+                `).join("")}
+              </div>
             </div>
-            <div class="summary-actions">
-              ${helpButton("character")}
-              <div class="plus">+</div>
+          </details>
+
+          <details class="card">
+            <summary>
+              <div class="summary-title">
+                <b>Особенности персонажа</b>
+                <span>раса, класс, уровень</span>
+              </div>
+              <div class="summary-actions">
+                ${helpButton("character")}
+                <div class="plus">+</div>
+              </div>
+            </summary>
+            <div class="detail-body">
+              <div class="grid two">
+                ${renderFeatureCards(10)}
+              </div>
             </div>
-          </summary>
-          <div class="detail-body">
-            <div class="grid two">
-              ${renderFeatureCards(10)}
-            </div>
-          </div>
-        </details>
+          </details>
+        </div>
       `;
     }
 
@@ -2191,91 +2427,93 @@
       if(!state.setupDone)return;
 
       $("bagContent").innerHTML=`
-        <div class="grid two">
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <h3>Деньги</h3>
-                <p class="sub">Добавляй награды и траты.</p>
+        <div class="stack">
+          <div class="grid two">
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h3>Деньги</h3>
+                  <p class="sub">Добавляй награды и траты.</p>
+                </div>
+                ${helpButton("money")}
               </div>
-              ${helpButton("money")}
+
+              <div class="money">
+                ${coinBlock("cp","медь")}
+                ${coinBlock("sp","серебро")}
+                ${coinBlock("ep","электрум")}
+                ${coinBlock("gp","золото")}
+                ${coinBlock("pp","платина")}
+              </div>
+
+              <div class="grid two" style="margin-top:14px">
+                <div class="field">
+                  <label>Монета</label>
+                  <select id="coinType">
+                    <option value="cp">Медь</option>
+                    <option value="sp">Серебро</option>
+                    <option value="ep">Электрум</option>
+                    <option value="gp">Золото</option>
+                    <option value="pp">Платина</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label>Количество</label>
+                  <input id="coinAmount" type="number" inputmode="numeric" placeholder="10">
+                </div>
+              </div>
+
+              <div class="btn-row">
+                <button class="btn main" onclick="addCoins()">Добавить</button>
+                <button class="btn" onclick="spendCoins()">Потратить</button>
+              </div>
             </div>
 
-            <div class="money">
-              ${coinBlock("cp","медь")}
-              ${coinBlock("sp","серебро")}
-              ${coinBlock("ep","электрум")}
-              ${coinBlock("gp","золото")}
-              ${coinBlock("pp","платина")}
-            </div>
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h3>Заметки</h3>
+                  <p class="sub">NPC, квесты, обещания, планы.</p>
+                </div>
+                ${helpButton("notes")}
+              </div>
 
-            <div class="grid two" style="margin-top:10px">
               <div class="field">
-                <label>Монета</label>
-                <select id="coinType">
-                  <option value="cp">Медь</option>
-                  <option value="sp">Серебро</option>
-                  <option value="ep">Электрум</option>
-                  <option value="gp">Золото</option>
-                  <option value="pp">Платина</option>
-                </select>
+                <label>Что важно помнить</label>
+                <textarea id="notesInput" oninput="saveNotes(this.value)" placeholder="NPC, квесты, куда идти, что нашли...">${escapeText(state.notes||"")}</textarea>
               </div>
-
-              <div class="field">
-                <label>Количество</label>
-                <input id="coinAmount" inputmode="numeric" pattern="[0-9]*" placeholder="10">
-              </div>
-            </div>
-
-            <div class="btn-row">
-              <button class="btn main" onclick="addCoins()">Добавить</button>
-              <button class="btn" onclick="spendCoins()">Потратить</button>
             </div>
           </div>
 
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <h3>Заметки</h3>
-                <p class="sub">NPC, квесты, обещания, планы.</p>
+          <details class="card" open>
+            <summary>
+              <div class="summary-title">
+                <b>Предметы</b>
+                <span>инвентарь и расходники</span>
               </div>
-              ${helpButton("notes")}
-            </div>
+              <div class="summary-actions">
+                ${helpButton("items")}
+                <div class="plus">+</div>
+              </div>
+            </summary>
+            <div class="detail-body">
+              ${state.items.map((item,i)=>`
+                <div class="item">
+                  <input value="${escapeText(item.name)}" onchange="changeItemName(${i},this.value)">
+                  <input type="number" inputmode="numeric" value="${item.qty}" onchange="changeItemQty(${i},this.value)">
+                  <button class="btn danger" onclick="deleteItem(${i})">×</button>
+                </div>
+              `).join("")}
 
-            <div class="field">
-              <label>Что важно помнить</label>
-              <textarea id="notesInput" oninput="saveNotes(this.value)" placeholder="NPC, квесты, куда идти, что нашли...">${escapeText(state.notes||"")}</textarea>
+              <div class="item" style="margin-top:12px">
+                <input id="newItemName" placeholder="Новый предмет">
+                <input id="newItemQty" type="number" inputmode="numeric" value="1">
+                <button class="btn main" onclick="addItem()">+</button>
+              </div>
             </div>
-          </div>
+          </details>
         </div>
-
-        <details class="card" style="margin-top:10px" open>
-          <summary>
-            <div class="summary-title">
-              <b>Предметы</b>
-              <span>инвентарь и расходники</span>
-            </div>
-            <div class="summary-actions">
-              ${helpButton("items")}
-              <div class="plus">+</div>
-            </div>
-          </summary>
-          <div class="detail-body">
-            ${state.items.map((item,i)=>`
-              <div class="item">
-                <input value="${escapeText(item.name)}" onchange="changeItemName(${i},this.value)">
-                <input inputmode="numeric" pattern="[0-9]*" value="${item.qty}" onchange="changeItemQty(${i},this.value)">
-                <button class="btn danger" onclick="deleteItem(${i})">×</button>
-              </div>
-            `).join("")}
-
-            <div class="item" style="margin-top:10px">
-              <input id="newItemName" placeholder="Новый предмет">
-              <input id="newItemQty" inputmode="numeric" pattern="[0-9]*" value="1">
-              <button class="btn main" onclick="addItem()">+</button>
-            </div>
-          </div>
-        </details>
       `;
     }
 
@@ -2288,6 +2526,7 @@
       $("bgInput").value=state.bgKey;
       $("alignmentInput").value=state.alignment;
       $("alignmentHint").textContent=ALIGNMENTS[state.alignment]?.[1]||"";
+      $("bgHint").textContent=background().hint;
 
       $("strInput").value=state.stats.str;
       $("dexInput").value=state.stats.dex;
@@ -2328,7 +2567,7 @@
           <p>${klass().suggest}</p>
           <div class="calc-chips">
             <span class="chip white">класс ${selectedCount}/${limit}</span>
-            <span class="chip">биография: ${bgSkills().map(k=>SKILLS[k][0]).join(", ")}</span>
+            <span class="chip locked">предыстория: ${bgSkills().map(k=>SKILLS[k][0]).join(", ")}</span>
             <span class="chip">экспертиза ${state.expertiseSkills.length}/${expertiseLimit()}</span>
           </div>
         </div>
@@ -2353,13 +2592,16 @@
                 <span class="chip">${ABILITIES[s.ability][0]} ${fmt(s.abilityValue)}</span>
                 ${hasProf(key) ? `<span class="chip">мастерство ${fmt(s.profValue)}</span>` : `<span class="chip">без мастерства</span>`}
                 ${expert ? `<span class="chip white">экспертиза ${fmt(s.expertiseValue)}</span>` : ""}
-                ${fromBg ? `<span class="chip">из биографии</span>` : ""}
+                ${fromBg ? `<span class="chip locked">из предыстории</span>` : ""}
               </div>
 
               <div class="skill-controls">
-                <button class="tiny-btn ${classSelected ? "active" : ""}" ${!classOption || fromBg ? "disabled" : ""} onclick="toggleProf('${key}')">
-                  ${classOption ? "● владение" : "не для класса"}
-                </button>
+                ${
+                  fromBg
+                  ? `<span class="chip locked">выбрано предысторией</span>`
+                  : `<button class="tiny-btn ${classSelected ? "active" : ""}" ${!classOption ? "disabled" : ""} onclick="toggleProf('${key}')">${classOption ? "● владение" : "не для класса"}</button>`
+                }
+
                 <button class="tiny-btn ${expert ? "active" : ""}" ${!hasProf(key) || expertiseLimit()===0 ? "disabled" : ""} onclick="toggleExpertise('${key}')">
                   ★ экспертиза
                 </button>
@@ -2376,127 +2618,205 @@
       if(!state.setupDone)return;
 
       $("progressContent").innerHTML=`
-        <div class="grid two">
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <h3>Опыт</h3>
-                <p class="sub">Уровень меняет ХП, мастерство и способности.</p>
+        <div class="stack">
+          <div class="grid two">
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h3>Опыт</h3>
+                  <p class="sub">Уровень меняет ХП, мастерство и способности.</p>
+                </div>
+                ${helpButton("progress")}
               </div>
-              ${helpButton("progress")}
-            </div>
 
-            <div class="stat-row" style="grid-template-columns:repeat(3,1fr)">
-              <div class="stat"><span>Уровень</span><b>${state.level}</b></div>
-              <div class="stat"><span>Опыт</span><b>${state.xp}</b></div>
-              <div class="stat"><span>До след.</span><b>${state.level>=20?"макс":nextXp()}</b></div>
-            </div>
-
-            <div class="calc-chips">
-              <span class="chip white">ХП макс. ${maxHp()}</span>
-              <span class="chip">мастерство ${fmt(proficiency())}</span>
-              <span class="chip">атака ${fmt(attackBonus())}</span>
-            </div>
-
-            <div class="field" style="margin-top:10px">
-              <label>Добавить опыт</label>
-              <input id="xpAddInput" inputmode="numeric" pattern="[0-9]*" placeholder="300">
-            </div>
-
-            <button class="btn main" onclick="addXp()">Добавить опыт</button>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <h3>Есть сейчас</h3>
-                <p class="sub">Способности, которые уже получил.</p>
+              <div class="stat-row" style="grid-template-columns:repeat(3,1fr)">
+                <div class="stat"><span>Уровень</span><b>${state.level}</b></div>
+                <div class="stat"><span>Опыт</span><b>${state.xp}</b></div>
+                <div class="stat"><span>До след.</span><b>${state.level>=20?"макс":nextXp()}</b></div>
               </div>
-              ${helpButton("character")}
-            </div>
 
-            ${currentClassFeatures().map(([lvl,name])=>`
-              <div class="line">
-                <span>${name}</span>
-                <b>${lvl} ур.</b>
+              <div class="calc-chips">
+                <span class="chip white">ХП макс. ${maxHp()}</span>
+                <span class="chip">мастерство ${fmt(proficiency())}</span>
+                <span class="chip">атака ${fmt(attackBonus())}</span>
               </div>
-            `).join("")}
-          </div>
-        </div>
 
-        <details class="card" style="margin-top:10px" open>
-          <summary>
-            <div class="summary-title">
-              <b>Следующие уровни</b>
-              <span>что будет расти дальше</span>
+              <div class="field" style="margin-top:14px">
+                <label>Добавить опыт</label>
+                <input id="xpAddInput" type="number" inputmode="numeric" placeholder="300">
+              </div>
+
+              <button class="btn main" onclick="addXp()">Добавить опыт</button>
             </div>
-            <div class="summary-actions">
-              ${helpButton("progress")}
-              <div class="plus">+</div>
-            </div>
-          </summary>
-          <div class="detail-body">
-            <div class="grid two">
-              ${Array.from({length:10},(_,i)=>i+1).map(lvl=>`
-                <div class="feature" style="${lvl>state.level?"opacity:.55":""}">
-                  <b>${lvl} уровень</b>
-                  <p>${(klass().levels[lvl]||["Уточни у мастера"]).join(", ")}</p>
-                  <div class="calc-chips">
-                    <span class="chip">ХП ${maxHp(lvl)}</span>
-                    <span class="chip">мастерство ${fmt(proficiency(lvl))}</span>
-                  </div>
+
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h3>Есть сейчас</h3>
+                  <p class="sub">Способности, которые уже получил.</p>
+                </div>
+                ${helpButton("character")}
+              </div>
+
+              ${currentClassFeatures().map(([lvl,name])=>`
+                <div class="line">
+                  <span>${name}</span>
+                  <b>${lvl} ур.</b>
                 </div>
               `).join("")}
             </div>
           </div>
-        </details>
+
+          <details class="card" open>
+            <summary>
+              <div class="summary-title">
+                <b>Следующие уровни</b>
+                <span>что будет расти дальше</span>
+              </div>
+              <div class="summary-actions">
+                ${helpButton("progress")}
+                <div class="plus">+</div>
+              </div>
+            </summary>
+            <div class="detail-body">
+              <div class="grid two">
+                ${Array.from({length:10},(_,i)=>i+1).map(lvl=>`
+                  <div class="feature" style="${lvl>state.level?"opacity:.55":""}">
+                    <b>${lvl} уровень</b>
+                    <p>${(klass().levels[lvl]||["Уточни у мастера"]).join(", ")}</p>
+                    <div class="calc-chips">
+                      <span class="chip">ХП ${maxHp(lvl)}</span>
+                      <span class="chip">мастерство ${fmt(proficiency(lvl))}</span>
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </details>
+        </div>
       `;
     }
 
     function renderSheet(){
       if(!state.setupDone)return;
 
+      const skillRows = Object.entries(SKILLS).map(([key,[name,ability]])=>{
+        const s=skillParts(key);
+        return `
+          <div class="sheet-row">
+            <div class="bubble ${hasProf(key) ? "on" : ""}"></div>
+            <span>${name} <small>(${ABILITIES[ability][1]})</small></span>
+            <b>${fmt(s.total)}</b>
+          </div>
+        `;
+      }).join("");
+
+      const saveRows = ["str","dex","con","int","wis","cha"].map(k=>`
+        <div class="sheet-row">
+          <div class="bubble ${klass().saves.includes(k) ? "on" : ""}"></div>
+          <span>${ABILITIES[k][0]}</span>
+          <b>${fmt(saveBonus(k))}</b>
+        </div>
+      `).join("");
+
+      const features = [
+        ...race().features.map(([n,t])=>`${n}: ${t}`),
+        ...currentClassFeatures().map(([lvl,name])=>`${name} (${lvl} ур.)`)
+      ].slice(0,18).join("\n");
+
+      const equipment = [
+        ...state.items.map(i=>`${i.name} × ${i.qty}`),
+        `Монеты: ${state.coins.gp} зм, ${state.coins.sp} см, ${state.coins.cp} мм`
+      ].join("\n");
+
       $("printSheet").innerHTML=`
-        <div class="paper-box">
-          <h4>Персонаж</h4>
-          <div class="paper-row"><span>Имя</span><b>${escapeText(state.name)}</b></div>
-          <div class="paper-row"><span>Класс</span><b>${klass().name} ${state.level}</b></div>
-          <div class="paper-row"><span>Раса</span><b>${race().name}</b></div>
-          <div class="paper-row"><span>Биография</span><b>${background().name}</b></div>
-          <div class="paper-row"><span>Мировоззрение</span><b>${ALIGNMENTS[state.alignment]?.[0]||""}</b></div>
-          <div class="paper-row"><span>Опыт</span><b>${state.xp}</b></div>
-        </div>
-
-        <div class="print-grid">
-          <div class="paper-box">
-            <h4>Бой</h4>
-            <div class="paper-row"><span>Хиты</span><b>${state.hp}/${maxHp()}</b></div>
-            <div class="paper-row"><span>КД</span><b>${ac()}</b></div>
-            <div class="paper-row"><span>Инициатива</span><b>${fmt(statMod("dex"))}</b></div>
-            <div class="paper-row"><span>Атака</span><b>${fmt(attackBonus())}</b></div>
-            <div class="paper-row"><span>Урон</span><b>${damageFormula()}</b></div>
+        <div class="sheet-top">
+          <div class="sheet-name">
+            <div class="value">${escapeText(state.name)}</div>
+            <div class="sheet-label">Character Name</div>
           </div>
 
-          <div class="paper-box">
-            <h4>Главные проверки</h4>
-            <div class="paper-row"><span>Скрытность</span><b>${fmt(skillParts("stealth").total)}</b></div>
-            <div class="paper-row"><span>Восприятие</span><b>${fmt(skillParts("perception").total)}</b></div>
-            <div class="paper-row"><span>Проницательность</span><b>${fmt(skillParts("insight").total)}</b></div>
-            <div class="paper-row"><span>Обман</span><b>${fmt(skillParts("deception").total)}</b></div>
-            <div class="paper-row"><span>Убеждение</span><b>${fmt(skillParts("persuasion").total)}</b></div>
+          <div class="sheet-meta">
+            <div class="sheet-field"><div class="sheet-value">${klass().name} ${state.level}</div><div class="sheet-label">Class & Level</div></div>
+            <div class="sheet-field"><div class="sheet-value">${background().name}</div><div class="sheet-label">Background</div></div>
+            <div class="sheet-field"><div class="sheet-value">Игрок</div><div class="sheet-label">Player Name</div></div>
+            <div class="sheet-field"><div class="sheet-value">${race().name}</div><div class="sheet-label">Race</div></div>
+            <div class="sheet-field"><div class="sheet-value">${ALIGNMENTS[state.alignment]?.[0]||""}</div><div class="sheet-label">Alignment</div></div>
+            <div class="sheet-field"><div class="sheet-value">${state.xp}</div><div class="sheet-label">Experience Points</div></div>
           </div>
         </div>
 
-        <div class="paper-box">
-          <h4>Особенности</h4>
-          ${[...race().features,...currentClassFeatures().map(([lvl,name])=>[name,`${lvl} ур.`])].slice(0,14).map(([n,t])=>`
-            <div class="paper-row"><span>${n}</span><b>${t}</b></div>
-          `).join("")}
-        </div>
+        <div class="sheet-main">
+          <div>
+            ${Object.entries(ABILITIES).map(([key,[name]])=>`
+              <div class="sheet-ability">
+                <div class="name">${name}</div>
+                <div class="mod">${fmt(statMod(key))}</div>
+                <div class="score">${totalStat(key)}</div>
+              </div>
+            `).join("")}
+          </div>
 
-        <div class="paper-box">
-          <h4>Заметки</h4>
-          <p>${escapeText(state.notes||"")}</p>
+          <div>
+            <div class="sheet-box">
+              <h4>Saving Throws</h4>
+              ${saveRows}
+            </div>
+
+            <div class="sheet-box" style="margin-top:3mm">
+              <h4>Skills</h4>
+              ${skillRows}
+            </div>
+          </div>
+
+          <div>
+            <div class="sheet-box">
+              <h4>Combat</h4>
+              <div class="sheet-top" style="grid-template-columns:repeat(3,1fr);gap:2mm">
+                <div class="sheet-small-stat"><div class="num">${ac()}</div><div class="label">Armor Class</div></div>
+                <div class="sheet-small-stat"><div class="num">${fmt(statMod("dex"))}</div><div class="label">Initiative</div></div>
+                <div class="sheet-small-stat"><div class="num">${race().speed}</div><div class="label">Speed</div></div>
+              </div>
+              <div class="sheet-top" style="grid-template-columns:repeat(2,1fr);gap:2mm">
+                <div class="sheet-small-stat"><div class="num">${state.hp}/${maxHp()}</div><div class="label">Hit Points</div></div>
+                <div class="sheet-small-stat"><div class="num">${fmt(proficiency())}</div><div class="label">Proficiency Bonus</div></div>
+              </div>
+            </div>
+
+            <div class="sheet-box" style="margin-top:3mm">
+              <h4>Attacks & Spellcasting</h4>
+              <div class="sheet-attack"><b>${klass().weapon}</b><b>${fmt(attackBonus())}</b><b>${damageFormula()}</b></div>
+              <div class="sheet-attack"><span>Проверка атаки</span><span>${fmt(attackBonus())}</span><span>${ABILITIES[klass().main][0]} + маст.</span></div>
+              <div class="sheet-attack"><span>Главная особенность</span><span></span><span>${(klass().combat[1]||klass().combat[0])[1]}</span></div>
+            </div>
+
+            <div class="sheet-box" style="margin-top:3mm">
+              <h4>Equipment</h4>
+              <div class="sheet-text" style="height:53mm">${escapeText(equipment)}</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sheet-box sheet-personality">
+              <h4>Personality Traits</h4>
+              <div class="sheet-text">${escapeText(klass().role)}</div>
+            </div>
+
+            <div class="sheet-box sheet-personality" style="margin-top:3mm">
+              <h4>Ideals / Bonds / Flaws</h4>
+              <div class="sheet-text">${escapeText(ALIGNMENTS[state.alignment]?.[1]||"")}</div>
+            </div>
+
+            <div class="sheet-box sheet-features" style="margin-top:3mm">
+              <h4>Features & Traits</h4>
+              <div class="sheet-text">${escapeText(features)}</div>
+            </div>
+
+            <div class="sheet-box" style="margin-top:3mm">
+              <h4>Notes</h4>
+              <div class="sheet-text" style="height:28mm">${escapeText(state.notes||"")}</div>
+            </div>
+          </div>
         </div>
       `;
     }
@@ -2515,6 +2835,7 @@
       if(label==="shortRest")return "вернётся после короткого отдыха";
       if(label==="rage")return "включи ярость";
       if(label==="ki")return "потрать ки";
+      if(label==="smite")return "после попадания";
       return label;
     }
 
@@ -2684,7 +3005,7 @@
       }
 
       if(bgSkills().includes(key)){
-        showNotice("Навык уже есть", `<p>${SKILLS[key][0]} уже даёт биография. Выбери другой навык класса.</p>`);
+        showNotice("Навык уже есть", `<p>${SKILLS[key][0]} уже даёт предыстория. Его не нужно выбирать второй раз.</p>`);
         return;
       }
 
@@ -2736,7 +3057,8 @@
     }
 
     function showHelp(key){
-      const data=HELP[key];
+      const dynamic = dynamicHelp(key);
+      const data=dynamic || HELP[key];
       if(!data)return;
       $("helpTitle").textContent=data[0];
       $("helpText").innerHTML=data[1];
@@ -2802,11 +3124,9 @@
         return false;
       }
 
-      if(state.expertiseSkills.length !== expLimit){
-        if(expLimit > 0){
-          showNotice("Не выбрана экспертиза", `<p>Нужно выбрать ${expLimit} экспертизы. Сейчас выбрано ${state.expertiseSkills.length}.</p>`);
-          return false;
-        }
+      if(expLimit > 0 && state.expertiseSkills.length !== expLimit){
+        showNotice("Не выбрана экспертиза", `<p>Нужно выбрать ${expLimit} экспертизы. Сейчас выбрано ${state.expertiseSkills.length}.</p>`);
+        return false;
       }
 
       return true;
@@ -2936,6 +3256,7 @@
     $("startBtn").onclick=startGame;
 
     $("alignmentInput").onchange=()=>{$("alignmentHint").textContent=ALIGNMENTS[$("alignmentInput").value]?.[1]||""};
+    $("bgInput").onchange=()=>{$("bgHint").textContent=BACKGROUNDS[$("bgInput").value]?.hint||""};
     $("saveCharacterBtn").onclick=saveCharacter;
     $("defaultStatsBtn").onclick=applyDefaultStats;
     $("printBtn").onclick=()=>window.print();
