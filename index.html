@@ -13,12 +13,12 @@
     :root{
       --bg:#000;
       --card:#0b0b0b;
-      --card2:#121212;
-      --card3:#181818;
+      --card2:#141414;
+      --card3:#1c1c1c;
       --text:#fff;
-      --muted:#a9a9a9;
-      --line:#2c2c2c;
-      --line2:#555;
+      --muted:#a8a8a8;
+      --line:#2e2e2e;
+      --line2:#565656;
       --radius:22px;
       --font:"Roboto",system-ui,sans-serif;
     }
@@ -30,11 +30,15 @@
       background:var(--bg);
       color:var(--text);
       font-family:var(--font);
-      font-size:15px;
-      line-height:1.38;
+      font-size:16px;
+      line-height:1.42;
     }
 
-    button,input,select,textarea{font:inherit}
+    button,input,select,textarea{
+      font:inherit;
+      font-size:16px;
+    }
+
     button{cursor:pointer}
 
     .app{
@@ -61,8 +65,8 @@
     }
 
     .logo{
-      width:42px;
-      height:42px;
+      width:44px;
+      height:44px;
       border:2px solid #fff;
       border-radius:999px;
       display:grid;
@@ -79,28 +83,29 @@
 
     .brand h1{
       margin:0;
-      font-size:17px;
-      line-height:1;
+      font-size:18px;
+      line-height:1.05;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.03em;
+      letter-spacing:.02em;
     }
 
     .brand p{
       margin:4px 0 0;
       color:var(--muted);
-      font-size:12px;
+      font-size:13px;
     }
 
     .burger{
-      width:42px;
-      height:42px;
+      width:44px;
+      height:44px;
       border:2px solid #fff;
       border-radius:999px;
       background:transparent;
       display:grid;
       place-items:center;
       padding:0;
+      color:#fff;
     }
 
     .burger span,
@@ -125,10 +130,17 @@
       margin-top:12px;
     }
 
+    .setup-mode .main-tabs,
+    .setup-mode .burger,
+    .setup-mode .menu{
+      display:none!important;
+    }
+
     .tab-btn{
+      min-height:44px;
       border:1px solid var(--line);
       border-radius:18px;
-      background:#070707;
+      background:#080808;
       color:#fff;
       padding:10px 8px;
       font-weight:900;
@@ -169,6 +181,7 @@
     .menu.open{display:grid}
 
     .menu button{
+      min-height:44px;
       border:1px solid var(--line);
       border-radius:16px;
       background:#080808;
@@ -188,24 +201,24 @@
     .screen.active{display:block}
 
     .hero{
-      margin-bottom:12px;
+      margin-bottom:14px;
       position:relative;
-      padding-right:42px;
+      padding-right:44px;
     }
 
     .hero h2{
       margin:0;
-      font-size:29px;
-      line-height:1;
-      letter-spacing:-.025em;
+      font-size:32px;
+      line-height:1.02;
+      letter-spacing:-.03em;
       font-weight:900;
     }
 
     .hero p{
-      margin:6px 0 0;
+      margin:7px 0 0;
       color:var(--muted);
-      font-size:14px;
-      max-width:760px;
+      font-size:16px;
+      max-width:780px;
     }
 
     .grid{display:grid;gap:10px}
@@ -229,29 +242,29 @@
       justify-content:space-between;
       align-items:flex-start;
       gap:10px;
-      margin-bottom:10px;
+      margin-bottom:12px;
     }
 
-    .eyebrow,
-    .card h3{
+    .card h3,
+    .eyebrow{
       margin:0;
-      color:#f4f4f4;
-      font-size:13px;
-      line-height:1.1;
+      color:#f5f5f5;
+      font-size:14px;
+      line-height:1.15;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.045em;
+      letter-spacing:.035em;
     }
 
     .sub{
       color:var(--muted);
-      font-size:13px;
+      font-size:14px;
       margin:4px 0 0;
     }
 
     .hint{
       color:var(--muted);
-      font-size:13px;
+      font-size:14px;
       margin:6px 0 0;
     }
 
@@ -278,16 +291,16 @@
 
     .summary-title b{
       display:block;
-      font-size:13px;
+      font-size:14px;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:.045em;
+      letter-spacing:.035em;
     }
 
     .summary-title span{
       display:block;
       color:var(--muted);
-      font-size:13px;
+      font-size:14px;
       margin-top:3px;
     }
 
@@ -299,8 +312,8 @@
     }
 
     .plus{
-      width:30px;
-      height:30px;
+      width:32px;
+      height:32px;
       border:1px solid var(--line2);
       border-radius:999px;
       display:grid;
@@ -315,8 +328,8 @@
     }
 
     .help-btn{
-      width:30px;
-      height:30px;
+      width:32px;
+      height:32px;
       border:1px solid #fff;
       border-radius:999px;
       background:transparent;
@@ -337,31 +350,32 @@
 
     .field{
       display:grid;
-      gap:5px;
-      margin-bottom:10px;
+      gap:6px;
+      margin-bottom:11px;
     }
 
     .field label{
       color:#d0d0d0;
-      font-size:11px;
+      font-size:12px;
       text-transform:uppercase;
-      letter-spacing:.04em;
+      letter-spacing:.035em;
     }
 
     .field input,
     .field select,
     .field textarea{
       width:100%;
+      min-height:44px;
       background:#000;
       border:1px solid var(--line2);
-      border-radius:14px;
+      border-radius:15px;
       color:#fff;
-      padding:10px;
+      padding:10px 12px;
       outline:none;
     }
 
     .field textarea{
-      min-height:88px;
+      min-height:96px;
       resize:vertical;
     }
 
@@ -378,11 +392,12 @@
     }
 
     .btn{
+      min-height:44px;
       border:1px solid var(--line2);
-      border-radius:14px;
+      border-radius:15px;
       background:transparent;
       color:#fff;
-      padding:10px 12px;
+      padding:10px 13px;
       font-weight:800;
     }
 
@@ -403,7 +418,7 @@
 
     .stat{
       border:1px solid var(--line);
-      border-radius:17px;
+      border-radius:18px;
       background:var(--card2);
       padding:10px 8px;
       text-align:center;
@@ -413,9 +428,9 @@
     .stat span{
       display:block;
       color:var(--muted);
-      font-size:10px;
+      font-size:11px;
       text-transform:uppercase;
-      letter-spacing:.04em;
+      letter-spacing:.035em;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -423,7 +438,7 @@
 
     .stat b{
       display:block;
-      font-size:22px;
+      font-size:24px;
       line-height:1;
       margin-top:5px;
       font-weight:900;
@@ -441,8 +456,8 @@
       background:#050505;
       color:#ddd;
       border-radius:999px;
-      padding:5px 8px;
-      font-size:12px;
+      padding:5px 9px;
+      font-size:13px;
       white-space:nowrap;
     }
 
@@ -451,6 +466,11 @@
       color:#000;
       border-color:#fff;
       font-weight:900;
+    }
+
+    .chip.bad{
+      border-color:#fff;
+      color:#fff;
     }
 
     .hp-compact{
@@ -473,7 +493,7 @@
     .hp-number span{
       display:block;
       color:var(--muted);
-      font-size:10px;
+      font-size:11px;
       text-transform:uppercase;
       letter-spacing:.08em;
     }
@@ -525,27 +545,27 @@
       position:absolute;
       right:10px;
       top:10px;
-      width:26px;
-      height:26px;
+      width:28px;
+      height:28px;
       font-size:13px;
     }
 
     .action b{
       display:block;
-      font-size:17px;
-      padding-right:28px;
+      font-size:18px;
+      padding-right:30px;
     }
 
     .action p{
       margin:5px 0 0;
       color:var(--muted);
-      font-size:13px;
+      font-size:14px;
     }
 
     .formula{
       margin-top:8px;
       border:1px solid var(--line);
-      border-radius:13px;
+      border-radius:14px;
       background:#000;
       padding:9px;
       font-weight:900;
@@ -554,20 +574,20 @@
 
     .feature{
       border:1px solid var(--line);
-      border-radius:16px;
+      border-radius:17px;
       background:var(--card2);
       padding:12px;
     }
 
     .feature b{
       display:block;
-      font-size:16px;
+      font-size:17px;
     }
 
     .feature p{
       margin:5px 0 0;
       color:#ddd;
-      font-size:13px;
+      font-size:14px;
     }
 
     .line{
@@ -578,7 +598,7 @@
       padding:8px 0;
     }
 
-    .line b{font-size:16px}
+    .line b{font-size:17px}
     .line span{color:var(--muted)}
 
     .ability-grid{
@@ -589,20 +609,20 @@
 
     .ability-card{
       border:1px solid var(--line);
-      border-radius:17px;
+      border-radius:18px;
       background:var(--card2);
       padding:12px;
     }
 
     .ability-card b{
       display:block;
-      font-size:16px;
+      font-size:17px;
     }
 
     .ability-card .big{
-      font-size:28px;
+      font-size:30px;
       line-height:1;
-      margin-top:5px;
+      margin-top:6px;
       font-weight:900;
     }
 
@@ -613,7 +633,7 @@
 
     .skill-card{
       border:1px solid var(--line);
-      border-radius:17px;
+      border-radius:18px;
       background:var(--card2);
       padding:12px;
       display:grid;
@@ -624,18 +644,18 @@
 
     .skill-card strong{
       display:block;
-      font-size:16px;
+      font-size:17px;
     }
 
     .skill-meta{
       color:var(--muted);
-      font-size:13px;
+      font-size:14px;
       margin-top:3px;
     }
 
     .skill-total{
       text-align:right;
-      font-size:24px;
+      font-size:26px;
       font-weight:900;
       line-height:1;
     }
@@ -649,12 +669,13 @@
     }
 
     .tiny-btn{
+      min-height:36px;
       border:1px solid var(--line2);
       border-radius:999px;
       background:#000;
       color:#fff;
-      font-size:12px;
-      padding:6px 8px;
+      font-size:13px;
+      padding:7px 10px;
       font-weight:800;
     }
 
@@ -664,23 +685,28 @@
       border-color:#fff;
     }
 
+    .tiny-btn:disabled{
+      opacity:.45;
+      cursor:not-allowed;
+    }
+
     .recommend{
       border:1px solid var(--line);
       background:var(--card3);
-      border-radius:17px;
+      border-radius:18px;
       padding:12px;
       margin-bottom:10px;
     }
 
     .recommend b{
       display:block;
-      font-size:15px;
+      font-size:16px;
     }
 
     .recommend p{
       margin:5px 0 0;
       color:var(--muted);
-      font-size:13px;
+      font-size:14px;
     }
 
     .money{
@@ -691,7 +717,7 @@
 
     .coin{
       border:1px solid var(--line);
-      border-radius:14px;
+      border-radius:15px;
       background:var(--card2);
       text-align:center;
       padding:9px;
@@ -700,14 +726,14 @@
     .coin span{
       display:block;
       color:var(--muted);
-      font-size:10px;
+      font-size:11px;
       text-transform:uppercase;
     }
 
     .coin b{
       display:block;
       margin-top:4px;
-      font-size:22px;
+      font-size:23px;
     }
 
     .item{
@@ -718,11 +744,12 @@
     }
 
     .item input{
+      min-height:44px;
       width:100%;
       background:#000;
       border:1px solid var(--line2);
       color:#fff;
-      border-radius:12px;
+      border-radius:13px;
       padding:9px;
     }
 
@@ -742,7 +769,7 @@
     .help-modal.show{display:flex}
 
     .help-card{
-      width:min(580px,100%);
+      width:min(600px,100%);
       border:1px solid #fff;
       border-radius:24px;
       background:#000;
@@ -754,8 +781,8 @@
 
     .help-card h3{
       margin:0 0 8px;
-      font-size:22px;
-      line-height:1;
+      font-size:24px;
+      line-height:1.05;
       letter-spacing:-.02em;
       text-transform:none;
     }
@@ -763,7 +790,7 @@
     .help-card p{
       margin:0 0 10px;
       color:#ddd;
-      font-size:15px;
+      font-size:16px;
     }
 
     .help-card ul{
@@ -781,7 +808,7 @@
       top:16px;
       transform:translateX(-50%);
       z-index:90;
-      width:min(580px,calc(100% - 28px));
+      width:min(600px,calc(100% - 28px));
       border:1px solid #fff;
       border-radius:22px;
       background:#000;
@@ -791,7 +818,7 @@
     }
 
     .notice.show{display:block}
-    .notice b{display:block;font-size:20px;margin-bottom:5px}
+    .notice b{display:block;font-size:21px;margin-bottom:5px}
 
     .print-sheet{
       background:#fff;
@@ -815,9 +842,9 @@
 
     .paper-box h4{
       margin:0 0 8px;
-      font-size:11px;
+      font-size:12px;
       text-transform:uppercase;
-      letter-spacing:.04em;
+      letter-spacing:.03em;
       border-bottom:1px solid #000;
       padding-bottom:5px;
     }
@@ -832,7 +859,15 @@
     }
 
     @media(max-width:760px){
-      .hero h2{font-size:27px}
+      .app{padding:12px}
+
+      .header{
+        margin:-12px -12px 14px;
+        padding:12px;
+      }
+
+      .hero h2{font-size:28px}
+      .hero p{font-size:15px}
 
       .grid.two,
       .grid.three,
@@ -938,7 +973,7 @@
 
         <div class="brand">
           <h1>D&D помощник</h1>
-          <p>цифры считаются и объясняются</p>
+          <p>для новичков, без путаницы в цифрах</p>
         </div>
 
         <button class="burger" id="burger" type="button" aria-label="Меню">
@@ -975,7 +1010,7 @@
     <section class="screen" id="setupScreen">
       <div class="hero">
         <h2>Создай персонажа</h2>
-        <p>Выбери класс, расу, характер и характеристики. Потом сайт сам покажет, откуда берутся цифры.</p>
+        <p>Сначала заполни данные, выбери навыки и экспертизу. После этого появятся вкладки Бой, Мир и Сумка.</p>
         <button class="help-btn" data-help="setup">?</button>
       </div>
 
@@ -983,7 +1018,7 @@
         <div class="card-head">
           <div>
             <h3>Шаг 1. Кто ты?</h3>
-            <p class="sub">Это верхняя часть листа персонажа.</p>
+            <p class="sub">Класс, раса, биография и характер.</p>
           </div>
           <button class="help-btn" data-help="identity">?</button>
         </div>
@@ -1023,25 +1058,51 @@
         <div class="card-head">
           <div>
             <h3>Шаг 2. Характеристики</h3>
-            <p class="sub">Шесть чисел, от них считаются почти все броски.</p>
+            <p class="sub">Шесть чисел, из них считаются модификаторы.</p>
           </div>
           <button class="help-btn" data-help="abilities">?</button>
         </div>
 
         <div class="grid three">
-          <div class="field"><label>Сила</label><input id="setupStr" type="number"></div>
-          <div class="field"><label>Ловкость</label><input id="setupDex" type="number"></div>
-          <div class="field"><label>Телосложение</label><input id="setupCon" type="number"></div>
-          <div class="field"><label>Интеллект</label><input id="setupInt" type="number"></div>
-          <div class="field"><label>Мудрость</label><input id="setupWis" type="number"></div>
-          <div class="field"><label>Харизма</label><input id="setupCha" type="number"></div>
+          <div class="field"><label>Сила</label><input id="setupStr" inputmode="numeric" pattern="[0-9]*"></div>
+          <div class="field"><label>Ловкость</label><input id="setupDex" inputmode="numeric" pattern="[0-9]*"></div>
+          <div class="field"><label>Телосложение</label><input id="setupCon" inputmode="numeric" pattern="[0-9]*"></div>
+          <div class="field"><label>Интеллект</label><input id="setupInt" inputmode="numeric" pattern="[0-9]*"></div>
+          <div class="field"><label>Мудрость</label><input id="setupWis" inputmode="numeric" pattern="[0-9]*"></div>
+          <div class="field"><label>Харизма</label><input id="setupCha" inputmode="numeric" pattern="[0-9]*"></div>
         </div>
 
         <div class="btn-row">
           <button class="btn" id="setupDefaultStatsBtn">Пример под класс</button>
           <button class="btn" id="rollStatsBtn">Кинуть 4к6</button>
-          <button class="btn main" id="startBtn">Начать играть</button>
         </div>
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <div class="card-head">
+          <div>
+            <h3>Шаг 3. Навыки</h3>
+            <p class="sub">Выбери ровно столько навыков, сколько даёт класс.</p>
+          </div>
+          <button class="help-btn" data-help="skillPick">?</button>
+        </div>
+
+        <div id="setupSkillAdvice"></div>
+        <div class="skill-list" id="setupSkillEditor"></div>
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <div class="card-head">
+          <div>
+            <h3>Шаг 4. Экспертиза</h3>
+            <p class="sub">Если класс даёт экспертизу, выбери навыки, где ты особенно силён.</p>
+          </div>
+          <button class="help-btn" data-help="expertise">?</button>
+        </div>
+
+        <div id="setupExpertiseEditor"></div>
+
+        <button class="btn main full" style="margin-top:12px" id="startBtn">Готов персонаж</button>
       </div>
     </section>
 
@@ -1051,7 +1112,6 @@
         <p id="combatSubtitle"></p>
         <button class="help-btn" data-help="combat">?</button>
       </div>
-
       <div id="combatContent"></div>
     </section>
 
@@ -1061,7 +1121,6 @@
         <p id="peaceSubtitle"></p>
         <button class="help-btn" data-help="peace">?</button>
       </div>
-
       <div id="peaceContent"></div>
     </section>
 
@@ -1071,14 +1130,13 @@
         <p>Деньги, предметы и заметки партии.</p>
         <button class="help-btn" data-help="bag">?</button>
       </div>
-
       <div id="bagContent"></div>
     </section>
 
     <section class="screen" id="charScreen">
       <div class="hero">
         <h2>Персонаж</h2>
-        <p>Редактирование данных, выбор навыков и объяснение всех цифр.</p>
+        <p>Здесь можно поправить данные, навыки и посмотреть, откуда берутся цифры.</p>
         <button class="help-btn" data-help="character">?</button>
       </div>
 
@@ -1092,25 +1150,10 @@
             <button class="help-btn" data-help="identity">?</button>
           </div>
 
-          <div class="field">
-            <label>Имя</label>
-            <input id="nameInput">
-          </div>
-
-          <div class="field">
-            <label>Класс</label>
-            <select id="classInput"></select>
-          </div>
-
-          <div class="field">
-            <label>Раса / вид</label>
-            <select id="raceInput"></select>
-          </div>
-
-          <div class="field">
-            <label>Биография</label>
-            <select id="bgInput"></select>
-          </div>
+          <div class="field"><label>Имя</label><input id="nameInput"></div>
+          <div class="field"><label>Класс</label><select id="classInput"></select></div>
+          <div class="field"><label>Раса / вид</label><select id="raceInput"></select></div>
+          <div class="field"><label>Биография</label><select id="bgInput"></select></div>
 
           <div class="field">
             <label>Мировоззрение</label>
@@ -1125,18 +1168,18 @@
           <div class="card-head">
             <div>
               <h3>Характеристики</h3>
-              <p class="sub">База + бонус расы = итог и модификатор.</p>
+              <p class="sub">База + раса = итог и модификатор.</p>
             </div>
             <button class="help-btn" data-help="abilityMath">?</button>
           </div>
 
           <div class="grid two">
-            <div class="field"><label>Сила</label><input id="strInput" type="number"></div>
-            <div class="field"><label>Ловкость</label><input id="dexInput" type="number"></div>
-            <div class="field"><label>Телосложение</label><input id="conInput" type="number"></div>
-            <div class="field"><label>Интеллект</label><input id="intInput" type="number"></div>
-            <div class="field"><label>Мудрость</label><input id="wisInput" type="number"></div>
-            <div class="field"><label>Харизма</label><input id="chaInput" type="number"></div>
+            <div class="field"><label>Сила</label><input id="strInput" inputmode="numeric" pattern="[0-9]*"></div>
+            <div class="field"><label>Ловкость</label><input id="dexInput" inputmode="numeric" pattern="[0-9]*"></div>
+            <div class="field"><label>Телосложение</label><input id="conInput" inputmode="numeric" pattern="[0-9]*"></div>
+            <div class="field"><label>Интеллект</label><input id="intInput" inputmode="numeric" pattern="[0-9]*"></div>
+            <div class="field"><label>Мудрость</label><input id="wisInput" inputmode="numeric" pattern="[0-9]*"></div>
+            <div class="field"><label>Харизма</label><input id="chaInput" inputmode="numeric" pattern="[0-9]*"></div>
           </div>
 
           <button class="btn" id="defaultStatsBtn">Пример под класс</button>
@@ -1147,7 +1190,7 @@
         <div class="card-head">
           <div>
             <h3>Как считаются характеристики</h3>
-            <p class="sub">Это основа всех модификаторов.</p>
+            <p class="sub">Показывает итог и модификатор.</p>
           </div>
           <button class="help-btn" data-help="abilityMath">?</button>
         </div>
@@ -1158,8 +1201,8 @@
       <div class="card" style="margin-top:10px">
         <div class="card-head">
           <div>
-            <h3>Выбор навыков</h3>
-            <p class="sub">Нажми “владение” или “экспертиза”. Формула видна сразу.</p>
+            <h3>Навыки</h3>
+            <p class="sub">Выбор ограничен классом. Биография даёт навыки отдельно.</p>
           </div>
           <button class="help-btn" data-help="skillMath">?</button>
         </div>
@@ -1172,7 +1215,7 @@
     <section class="screen" id="progressScreen">
       <div class="hero">
         <h2>Опыт и уровни</h2>
-        <p>Добавляй опыт после боя или задания. Если уровень вырос, сайт покажет, что изменилось.</p>
+        <p>Добавляй опыт после боя или задания. При новом уровне сайт покажет, что изменилось.</p>
         <button class="help-btn" data-help="progress">?</button>
       </div>
 
@@ -1193,7 +1236,7 @@
     <section class="screen" id="dataScreen">
       <div class="hero">
         <h2>Сохранение</h2>
-        <p>Данные хранятся в браузере. JSON нужен, чтобы перенести персонажа.</p>
+        <p>Персонаж хранится в браузере. JSON нужен для переноса на другое устройство.</p>
         <button class="help-btn" data-help="data">?</button>
       </div>
 
@@ -1221,107 +1264,120 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "dnd_party_helper_skill_math_v1";
+    const STORAGE_KEY = "dnd_newbie_bank_ui_v1";
 
     const HELP = {
       setup:["Создание персонажа",`
-        <p>Это первый экран. Здесь игрок выбирает, кто он в игре.</p>
+        <p>На старте игрок не должен видеть боевой экран. Сначала нужно собрать персонажа.</p>
         <ul>
-          <li><b>Класс</b> — чем персонаж занимается: дерётся, колдует, лечит, крадётся.</li>
-          <li><b>Раса / вид</b> — происхождение. Даёт скорость, бонусы и особенности.</li>
-          <li><b>Характеристики</b> — шесть главных чисел. От них считаются броски.</li>
+          <li><b>Класс</b> говорит, чем ты силён.</li>
+          <li><b>Раса</b> даёт бонусы и особенности.</li>
+          <li><b>Биография</b> даёт прошлое и 2 навыка.</li>
+          <li><b>Навыки</b> показывают, что ты умеешь делать лучше других.</li>
         </ul>
       `],
-      identity:["Класс, раса, биография",`
-        <p>Это отвечает на вопрос: “кто мой герой?”</p>
+      identity:["Кто я?",`
+        <p>Это описание героя.</p>
         <ul>
-          <li><b>Класс</b> даёт хиты, навыки, оружие и способности по уровням.</li>
-          <li><b>Раса</b> добавляет бонусы к характеристикам и особые правила.</li>
-          <li><b>Биография</b> даёт прошлое персонажа и часть владений.</li>
-          <li><b>Мировоззрение</b> это подсказка характера, а не клетка.</li>
+          <li><b>Класс</b> — твоя профессия в приключениях: плут, воин, маг и т.д.</li>
+          <li><b>Раса / вид</b> — происхождение героя.</li>
+          <li><b>Биография</b> — кем ты был до приключений.</li>
+          <li><b>Мировоззрение</b> — короткая подсказка, как герой обычно принимает решения.</li>
         </ul>
       `],
-      abilities:["Шесть характеристик",`
-        <p>Почти каждый бросок начинается с одной из шести характеристик.</p>
+      alignment:["Мировоззрение",`
+        <p>Это не строгий закон, а подсказка для роли.</p>
         <ul>
-          <li><b>Сила</b> — ломать, тащить, драться тяжёлым оружием.</li>
-          <li><b>Ловкость</b> — скрытность, уклонение, инициатива, точные атаки.</li>
+          <li><b>Добрый</b> чаще помогает другим.</li>
+          <li><b>Нейтральный</b> действует по ситуации.</li>
+          <li><b>Злой</b> думает о выгоде, власти или себе.</li>
+          <li><b>Законный</b> уважает правила, кодекс или порядок.</li>
+          <li><b>Хаотичный</b> ценит свободу и действует непредсказуемо.</li>
+        </ul>
+      `],
+      abilities:["Характеристики",`
+        <p>Это шесть главных чисел героя. Из них считаются модификаторы для бросков к20.</p>
+        <ul>
+          <li><b>Сила</b> — ломать, тащить, бить тяжёлым оружием.</li>
+          <li><b>Ловкость</b> — скрытность, реакция, точность, инициатива.</li>
           <li><b>Телосложение</b> — здоровье, яд, болезнь, выносливость.</li>
           <li><b>Интеллект</b> — знания, магия, расследование.</li>
           <li><b>Мудрость</b> — внимание, интуиция, выживание.</li>
-          <li><b>Харизма</b> — разговор, обман, давление, сила некоторых заклинателей.</li>
+          <li><b>Харизма</b> — разговор, обман, давление, уверенность.</li>
         </ul>
       `],
-      abilityMath:["Откуда берётся модификатор",`
-        <p>Сначала есть число характеристики: например Ловкость 17.</p>
-        <p>Из него считается модификатор: 10–11 это +0, 12–13 это +1, 14–15 это +2, 16–17 это +3.</p>
-        <p>Именно модификатор чаще всего прибавляется к к20.</p>
+      abilityMath:["Как считается модификатор",`
+        <p>Есть число характеристики. Например Ловкость 17.</p>
+        <p>Из него получается модификатор: 10–11 это +0, 12–13 это +1, 14–15 это +2, 16–17 это +3, 18–19 это +4.</p>
+        <p>Именно модификатор обычно прибавляется к к20.</p>
+      `],
+      skillPick:["Выбор навыков",`
+        <p>Класс даёт выбрать ограниченное число навыков. У плута это 4.</p>
+        <p>Биография даёт 2 навыка отдельно. Они не считаются в лимит класса.</p>
+        <p>Если навык уже есть из биографии, его не надо выбирать второй раз.</p>
       `],
       skillMath:["Как считаются навыки",`
-        <p>Навык считается так:</p>
+        <p>Формула навыка:</p>
         <p><b>модификатор характеристики + мастерство + экспертиза</b></p>
         <ul>
-          <li><b>Характеристика</b> есть всегда. Например Скрытность идёт от Ловкости.</li>
+          <li><b>Характеристика</b> есть всегда.</li>
           <li><b>Мастерство</b> добавляется, если ты владеешь навыком.</li>
-          <li><b>Экспертиза</b> добавляет мастерство ещё раз. Чаще всего это есть у плута и барда.</li>
+          <li><b>Экспертиза</b> добавляет мастерство ещё раз.</li>
         </ul>
       `],
-      combat:["Вкладка Бой",`
-        <p>Открывай, когда началась драка.</p>
+      expertise:["Экспертиза",`
+        <p>Экспертиза значит: “я в этом особенно хорош”.</p>
+        <p>Например плут на 1 уровне выбирает 2 экспертизы. Обычно удобно брать Скрытность и Ловкость рук.</p>
+      `],
+      combat:["Бой",`
+        <p>Открывай эту вкладку, когда началась драка.</p>
         <ul>
           <li><b>Хиты</b> — сколько здоровья осталось.</li>
           <li><b>КД</b> — насколько сложно по тебе попасть.</li>
           <li><b>Атака</b> — что прибавить к к20, когда бьёшь.</li>
-          <li><b>Спасброски</b> — когда тебя уже задела опасность: ловушка, магия, яд.</li>
+          <li><b>Инициатива</b> — кто ходит раньше.</li>
         </ul>
       `],
       combatStats:["Главные цифры боя",`
-        <p>Это числа, которые чаще всего нужны в бою.</p>
-        <ul>
-          <li><b>Атака</b> = главная характеристика класса + бонус мастерства.</li>
-          <li><b>КД</b> зависит от брони и Ловкости.</li>
-          <li><b>Хиты</b> растут с уровнем и зависят от Телосложения.</li>
-        </ul>
+        <p>Атака считается как главная характеристика класса + бонус мастерства.</p>
+        <p>Например у плута атака рапирой обычно: Ловкость + мастерство.</p>
       `],
-      hp:["Здоровье",`
-        <p>Если получил урон — впиши число и нажми “Внести урон”.</p>
-        <p>Если вылечили — впиши число и нажми “Лечение”.</p>
+      hp:["Хиты",`
+        <p>Если получил урон, введи число и нажми “Внести урон”.</p>
+        <p>Если вылечили, введи число и нажми “Лечение”.</p>
         <p>Временные хиты сгорают первыми.</p>
       `],
       combatActions:["Мой ход",`
-        <p>Это подсказки, что твой класс обычно делает в бою.</p>
+        <p>Это простые подсказки, что твой класс обычно делает в бою.</p>
         <p>Если не знаешь, что делать, выбери первое действие и скажи мастеру.</p>
       `],
-      peace:["Вкладка Мир",`
-        <p>Открывай, когда вы не дерётесь: говорите, ищете, крадётесь, торгуетесь, исследуете.</p>
-      `],
-      peaceChecks:["Быстрые проверки",`
-        <p>Если мастер просит “кинь Восприятие” или “кинь Обман”, найди нужную проверку и прибавь число к к20.</p>
+      peace:["Мирное время",`
+        <p>Открывай, когда вы не дерётесь: говорите, крадётесь, ищете, торгуетесь, исследуете.</p>
       `],
       bag:["Сумка",`
-        <p>Сюда заносится всё, что меняется во время игры: деньги, предметы, заметки.</p>
+        <p>Деньги, предметы и заметки. Это часто меняется во время партии.</p>
       `],
       money:["Деньги",`
-        <p>Чаще всего используется золото. Добавляй монеты после награды, убирай после покупки.</p>
+        <p>Добавляй деньги после награды, вычитай после покупки.</p>
       `],
       notes:["Заметки",`
-        <p>Пиши сюда NPC, квесты, обещания, долги и куда идти дальше.</p>
+        <p>Пиши сюда NPC, квесты, долги, обещания, куда идти дальше.</p>
       `],
       items:["Предметы",`
-        <p>Инвентарь персонажа: оружие, ключи, зелья, стрелы, странные находки.</p>
+        <p>Инвентарь: оружие, ключи, зелья, стрелы и всё найденное.</p>
       `],
-      character:["Редактирование персонажа",`
-        <p>Здесь можно поменять данные и выбрать навыки. Во время игры обычно нужны вкладки “Бой”, “Мир”, “Сумка”.</p>
+      character:["Персонаж",`
+        <p>Здесь можно поправить всё, что ввели на старте: класс, расу, характеристики, навыки и экспертизу.</p>
       `],
       progress:["Опыт и уровни",`
-        <p>Мастер скажет, сколько опыта добавить. Когда опыта хватает, уровень растёт.</p>
-        <p>При новом уровне обычно растут хиты, иногда бонус мастерства, атака и появляются новые особенности класса.</p>
+        <p>Мастер говорит, сколько опыта добавить.</p>
+        <p>Когда уровень вырос, обычно увеличиваются максимальные хиты, иногда бонус мастерства, атака и появляются новые особенности.</p>
       `],
       sheet:["Лист A4",`
-        <p>Упрощённый лист для печати. Основные числа и подсказки будут на бумаге.</p>
+        <p>Упрощённый лист для печати. Не заменяет полную книгу, но помогает за столом.</p>
       `],
       data:["Сохранение",`
-        <p>Персонаж сохраняется в браузере. JSON нужен, чтобы перенести его на другой телефон или компьютер.</p>
+        <p>Данные сохраняются в этом браузере. JSON нужен, чтобы перенести персонажа на другое устройство.</p>
       `],
       export:["Экспорт",`<p>Скачивает файл персонажа.</p>`],
       import:["Импорт",`<p>Загружает ранее сохранённый файл персонажа.</p>`]
@@ -1349,15 +1405,15 @@
     const XP_TABLE = [0,0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
 
     const ALIGNMENTS = {
-      lg:["Законно-добрый","Делает добро и уважает правила. Подходит честному защитнику."],
-      ng:["Нейтрально-добрый","Делает добро, даже если правила мешают."],
-      cg:["Хаотично-добрый","Свободолюбивый добряк. Может нарушить закон ради правильного дела."],
-      ln:["Законно-нейтральный","Главное порядок, кодекс, договоры, традиции."],
-      n:["Истинно-нейтральный","Действует по ситуации. Не герой и не злодей."],
-      cn:["Хаотично-нейтральный","Любит свободу и действует непредсказуемо."],
+      lg:["Законно-добрый","Добрый и уважает правила. Защищает людей, верит в порядок."],
+      ng:["Нейтрально-добрый","Помогает другим, даже если правила иногда мешают."],
+      cg:["Хаотично-добрый","Свободный герой. Может нарушить закон ради хорошего дела."],
+      ln:["Законно-нейтральный","Главное порядок, кодекс, долг, правила."],
+      n:["Истинно-нейтральный","Действует по ситуации. Не фанатик добра, зла, закона или хаоса."],
+      cn:["Хаотично-нейтральный","Ценит свободу. Непредсказуемый, делает как чувствует."],
       le:["Законно-злой","Использует правила, власть и договоры ради выгоды."],
-      ne:["Нейтрально-злой","Думает о себе и выгоде."],
-      ce:["Хаотично-злой","Опасный разрушитель. Новичку лучше не брать без мастера."]
+      ne:["Нейтрально-злой","Думает о себе. Может вредить другим ради цели."],
+      ce:["Хаотично-злой","Разрушительный и опасный. Новичку лучше брать только с разрешения мастера."]
     };
 
     const RACES = {
@@ -1412,15 +1468,17 @@
     const CLASSES = {
       barbarian:{
         name:"Варвар",hitDie:12,main:"str",saves:["str","con"],skillLimit:2,
-        defaultSkills:["athletics","survival"],expertiseDefault:[],suggest:"Бери Атлетику и Выживание. Если хочешь давить людей — Запугивание.",
+        skillOptions:["animal","athletics","intimidation","nature","perception","survival"],
+        defaultSkills:["athletics","survival"],expertise:{},suggest:"Совет: Атлетика и Выживание. Если хочешь давить людей, возьми Запугивание.",
         weapon:"Топор",weaponDie:"1к12",acType:"unarmored",
-        combat:[["sword","Ярость","Включай в серьёзном бою. Бьёшь сильнее и держишь удар лучше.","Ярость"],["sword","Бей вблизи","Подходи к врагу и бей оружием.","attack"],["heart","Держи линию","Ты живучий. Можешь стоять впереди.","defense"]],
+        combat:[["sword","Ярость","Включай в серьёзном бою. Бьёшь сильнее и держишь удар лучше.","rage"],["sword","Бей вблизи","Подходи к врагу и бей оружием.","attack"],["heart","Держи линию","Ты живучий. Можешь стоять впереди.","defense"]],
         peace:[["hand","Сила","Ломать, тащить, держать, толкать.","athletics"],["eye","Выживание","Следы, дорога, охота, опасная природа.","survival"],["talk","Запугать","Можно давить видом и силой.","intimidation"]],
         levels:{1:["Ярость","Защита без доспехов"],2:["Безрассудная атака","Чувство опасности"],3:["Путь варвара"],4:["Улучшение характеристик"],5:["Дополнительная атака"]}
       },
       bard:{
         name:"Бард",hitDie:8,main:"cha",saves:["dex","cha"],skillLimit:3,
-        defaultSkills:["performance","persuasion","deception"],expertiseDefault:[],suggest:"Бери Убеждение, Обман и Выступление. Ты лицо партии.",
+        skillOptions:Object.keys(SKILLS),
+        defaultSkills:["performance","persuasion","deception"],expertise:{3:2,10:4},suggest:"Совет: Убеждение, Обман и Выступление. Ты лицо партии.",
         weapon:"Рапира",weaponDie:"1к8",acType:"light",
         combat:[["star","Вдохновение","Дай союзнику кубик, чтобы он усилил бросок.","support"],["talk","Заклинания","Поддерживай, лечи, мешай врагам.","cha"],["sword","Атака","Если нечем кастовать, атакуй оружием.","attack"]],
         peace:[["talk","Убедить","Договориться честно и красиво.","persuasion"],["talk","Соврать","Придумать легенду, сыграть роль.","deception"],["star","Выступить","Отвлечь, впечатлить, заработать внимание.","performance"]],
@@ -1428,43 +1486,93 @@
       },
       cleric:{
         name:"Жрец",hitDie:8,main:"wis",saves:["wis","cha"],skillLimit:2,
-        defaultSkills:["insight","medicine"],expertiseDefault:[],suggest:"Бери Проницательность и Медицину. Если много храмов и нежити — Религию.",
+        skillOptions:["history","insight","medicine","persuasion","religion"],
+        defaultSkills:["insight","medicine"],expertise:{},suggest:"Совет: Проницательность и Медицина. Для храмов и нежити — Религия.",
         weapon:"Булава",weaponDie:"1к6",acType:"medium",
         combat:[["heart","Лечение","Если союзник падает, лечи или стабилизируй.","heal"],["star","Поддержка","Защищай и усиливай союзников заклинаниями.","wis"],["sword","Бей, если рядом","Можешь стоять ближе к бою.","attack"]],
         peace:[["eye","Понять мотив","Понять, врёт ли человек.","insight"],["star","Религия","Культы, храмы, нежить, обряды.","religion"],["heart","Медицина","Первая помощь, болезнь, раны.","medicine"]],
         levels:{1:["Заклинания","Божественный домен"],2:["Божественный канал"],3:["Заклинания 2 круга"],4:["Улучшение характеристик"],5:["Уничтожение нежити"]}
       },
+      druid:{
+        name:"Друид",hitDie:8,main:"wis",saves:["int","wis"],skillLimit:2,
+        skillOptions:["arcana","animal","insight","medicine","nature","perception","religion","survival"],
+        defaultSkills:["nature","survival"],expertise:{},suggest:"Совет: Природа и Выживание. Для поддержки партии можно взять Медицину.",
+        weapon:"Посох",weaponDie:"1к6",acType:"medium",
+        combat:[["star","Магия природы","Лечи, контролируй поле, мешай врагам.","wis"],["heart","Лечение","Помоги союзнику, если он падает.","heal"],["sword","Посох","Если враг рядом, бей посохом.","attack"]],
+        peace:[["eye","Природа","Растения, звери, погода, следы.","nature"],["eye","Выживание","Дорога, лагерь, охота, следы.","survival"],["heart","Животные","Успокоить или понять зверя.","animal"]],
+        levels:{1:["Заклинания","Друидский язык"],2:["Дикий облик","Круг друида"],3:["Заклинания 2 круга"],4:["Улучшение характеристик"],5:["Заклинания 3 круга"]}
+      },
       fighter:{
         name:"Воин",hitDie:10,main:"str",saves:["str","con"],skillLimit:2,
-        defaultSkills:["athletics","perception"],expertiseDefault:[],suggest:"Бери Атлетику и Восприятие. Это часто помогает и в бою, и вне боя.",
+        skillOptions:["acrobatics","animal","athletics","history","insight","intimidation","perception","survival"],
+        defaultSkills:["athletics","perception"],expertise:{},suggest:"Совет: Атлетика и Восприятие. Это часто полезно везде.",
         weapon:"Меч",weaponDie:"1к8",acType:"heavy",
         combat:[["sword","Атакуй","Подходишь и бьёшь. Это твоя база.","attack"],["heart","Второе дыхание","Можешь восстановить немного хитов.","secondWind"],["star","Держи врага","Стой впереди, защищай слабых.","defense"]],
         peace:[["hand","Атлетика","Лезть, ломать, держать дверь, толкать.","athletics"],["eye","Внимание","Заметить засаду или опасность.","perception"],["talk","Запугать","Давить силой и уверенностью.","intimidation"]],
         levels:{1:["Боевой стиль","Второе дыхание"],2:["Всплеск действий"],3:["Воинский архетип"],4:["Улучшение характеристик"],5:["Дополнительная атака"]}
       },
+      monk:{
+        name:"Монах",hitDie:8,main:"dex",saves:["str","dex"],skillLimit:2,
+        skillOptions:["acrobatics","athletics","history","insight","religion","stealth"],
+        defaultSkills:["acrobatics","insight"],expertise:{},suggest:"Совет: Акробатика и Проницательность. Для тихого стиля — Скрытность.",
+        weapon:"Безоружный удар",weaponDie:"1к4",acType:"monk",
+        combat:[["hand","Безоружный бой","Бей руками, ногами и простым оружием.","attack"],["star","Ки","Со 2 уровня тратишь ки на быстрые приёмы.","ki"],["eye","Движение","Ты быстрый, обходи и выбирай позицию.","speed"]],
+        peace:[["hand","Акробатика","Баланс, прыжки, опасные места.","acrobatics"],["eye","Проницательность","Понять человека и намерения.","insight"],["eye","Скрытность","Двигаться тихо и незаметно.","stealth"]],
+        levels:{1:["Боевые искусства","Защита без доспехов"],2:["Ки","Быстрое движение"],3:["Традиция монаха"],4:["Улучшение характеристик"],5:["Дополнительная атака","Ошеломляющий удар"]}
+      },
+      paladin:{
+        name:"Паладин",hitDie:10,main:"str",saves:["wis","cha"],skillLimit:2,
+        skillOptions:["athletics","insight","intimidation","medicine","persuasion","religion"],
+        defaultSkills:["athletics","persuasion"],expertise:{},suggest:"Совет: Атлетика и Убеждение. Паладин часто защищает и говорит от имени группы.",
+        weapon:"Меч",weaponDie:"1к8",acType:"heavy",
+        combat:[["sword","Божественная кара","Когда попал, можешь усилить удар магией.","smite"],["heart","Защищай","Стой впереди и прикрывай союзников.","defense"],["heart","Лечение рук","Можешь лечить запасом лечения.","layHands"]],
+        peace:[["talk","Убедить","Говорить честно, давить авторитетом.","persuasion"],["eye","Понять зло","Считывать угрозы и мотивы.","insight"],["star","Религия","Клятвы, храмы, нежить, святыни.","religion"]],
+        levels:{1:["Божественное чувство","Наложение рук"],2:["Боевой стиль","Заклинания","Божественная кара"],3:["Священная клятва"],4:["Улучшение характеристик"],5:["Дополнительная атака"]}
+      },
+      ranger:{
+        name:"Следопыт",hitDie:10,main:"dex",saves:["str","dex"],skillLimit:3,
+        skillOptions:["animal","athletics","insight","investigation","nature","perception","stealth","survival"],
+        defaultSkills:["survival","perception","stealth"],expertise:{},suggest:"Совет: Выживание, Восприятие и Скрытность. Ты разведчик и следопыт.",
+        weapon:"Лук",weaponDie:"1к8",acType:"medium",
+        combat:[["sword","Стреляй","Держи дистанцию и бей из лука.","attack"],["eye","Позиция","Ищи укрытие и хороший угол.","perception"],["star","Охота","Заклинания и умения помогают добивать цель.","hunt"]],
+        peace:[["eye","Следы","Искать следы и путь.","survival"],["eye","Разведка","Идти впереди и замечать опасность.","perception"],["eye","Природа","Звери, растения, погода, местность.","nature"]],
+        levels:{1:["Избранный враг","Исследователь природы"],2:["Боевой стиль","Заклинания"],3:["Архетип следопыта"],4:["Улучшение характеристик"],5:["Дополнительная атака"]}
+      },
       rogue:{
         name:"Плут",hitDie:8,main:"dex",saves:["dex","int"],skillLimit:4,
-        defaultSkills:["stealth","sleight","deception","perception"],expertiseDefault:["stealth","sleight"],suggest:"Плуту совет: Скрытность, Ловкость рук, Обман, Восприятие. Экспертиза: Скрытность и Ловкость рук.",
+        skillOptions:["acrobatics","athletics","deception","insight","intimidation","investigation","perception","performance","persuasion","sleight","stealth"],
+        defaultSkills:["stealth","sleight","deception","perception"],expertise:{1:2,6:4},suggest:"Совет: Скрытность, Ловкость рук, Обман, Восприятие. Экспертиза: Скрытность и Ловкость рук.",
         weapon:"Рапира",weaponDie:"1к8",acType:"light",
         combat:[["sword","Атакуй точно","Бей врага, рядом с которым стоит союзник.","attack"],["star","Скрытая атака","1 раз за ход добавь +1к6 при условии.","sneak"],["eye","Не стой первым","Прячься, обходи, бей из удобной позиции.","stealth"]],
         peace:[["eye","Скрытно пройти","Красться, спрятаться, пройти мимо охраны.","stealth"],["hand","Украсть / спрятать","Взять ключ, спрятать предмет, подменить вещь.","sleight"],["lock","Открыть замок","Используй воровские инструменты.","lock"]],
         levels:{1:["Экспертиза","Скрытая атака","Воровской жаргон"],2:["Хитрое действие"],3:["Архетип плута","Скрытая атака 2к6"],4:["Улучшение характеристик"],5:["Невероятное уклонение","Скрытая атака 3к6"]}
       },
-      wizard:{
-        name:"Волшебник",hitDie:6,main:"int",saves:["int","wis"],skillLimit:2,
-        defaultSkills:["arcana","investigation"],expertiseDefault:[],suggest:"Бери Магию и Расследование. Ты решаешь задачи через знания и заклинания.",
-        weapon:"Посох",weaponDie:"1к6",acType:"none",
-        combat:[["star","Заклинания","Стой сзади, думай, контролируй поле.","int"],["heart","Ты хрупкий","Не стой рядом с врагом.","defense"],["eye","Выбери цель","Лучше мешать опасному врагу или спасать союзника.","tactic"]],
-        peace:[["star","Магия","Руны, артефакты, заклинания.","arcana"],["eye","Расследование","Тайники, механизмы, логика сцены.","investigation"],["star","История","Книги, древности, факты мира.","history"]],
-        levels:{1:["Заклинания","Магическое восстановление"],2:["Магическая традиция"],3:["Заклинания 2 круга"],4:["Улучшение характеристик"],5:["Заклинания 3 круга"]}
+      sorcerer:{
+        name:"Чародей",hitDie:6,main:"cha",saves:["con","cha"],skillLimit:2,
+        skillOptions:["arcana","deception","insight","intimidation","persuasion","religion"],
+        defaultSkills:["arcana","persuasion"],expertise:{},suggest:"Совет: Магия и Убеждение. Для хитрого героя — Обман.",
+        weapon:"Кинжал",weaponDie:"1к4",acType:"none",
+        combat:[["star","Заклинания","Стой сзади и бей магией.","cha"],["heart","Береги хиты","Ты хрупкий, не лезь вперёд.","defense"],["talk","Метамагия","С 3 уровня меняешь заклинания особым способом.","meta"]],
+        peace:[["talk","Харизма","Разговор, давление, впечатление.","persuasion"],["talk","Обман","Легенда, маска, хитрость.","deception"],["star","Магия","Разобраться в магическом явлении.","arcana"]],
+        levels:{1:["Заклинания","Происхождение чародея"],2:["Источник магии"],3:["Метамагия"],4:["Улучшение характеристик"],5:["Заклинания 3 круга"]}
       },
       warlock:{
         name:"Колдун",hitDie:8,main:"cha",saves:["wis","cha"],skillLimit:2,
-        defaultSkills:["deception","arcana"],expertiseDefault:[],suggest:"Бери Обман и Магию. Если хочешь жёстко давить — Запугивание.",
+        skillOptions:["arcana","deception","history","intimidation","investigation","nature","religion"],
+        defaultSkills:["deception","arcana"],expertise:{},suggest:"Совет: Обман и Магия. Если хочешь жёстко давить — Запугивание.",
         weapon:"Мистический заряд",weaponDie:"1к10",acType:"light",
         combat:[["star","Мистический заряд","Простой и сильный дальний удар.","attack"],["star","Мало ячеек","Заклинания сильные, но их мало.","shortRest"],["talk","Покровитель","Сила идёт от сделки или связи.","role"]],
         peace:[["talk","Обман","Сделка, легенда, тёмные тайны.","deception"],["talk","Запугать","Давить мистикой или угрозой.","intimidation"],["star","Магия","Оккультные знания и ритуалы.","arcana"]],
         levels:{1:["Покровитель","Магия договора"],2:["Таинственные воззвания"],3:["Договор"],4:["Улучшение характеристик"],5:["Новые воззвания"]}
+      },
+      wizard:{
+        name:"Волшебник",hitDie:6,main:"int",saves:["int","wis"],skillLimit:2,
+        skillOptions:["arcana","history","insight","investigation","medicine","religion"],
+        defaultSkills:["arcana","investigation"],expertise:{},suggest:"Совет: Магия и Расследование. Ты решаешь задачи через знания.",
+        weapon:"Посох",weaponDie:"1к6",acType:"none",
+        combat:[["star","Заклинания","Стой сзади, думай, контролируй поле.","int"],["heart","Ты хрупкий","Не стой рядом с врагом.","defense"],["eye","Выбери цель","Лучше мешать опасному врагу или спасать союзника.","tactic"]],
+        peace:[["star","Магия","Руны, артефакты, заклинания.","arcana"],["eye","Расследование","Тайники, механизмы, логика сцены.","investigation"],["star","История","Книги, древности, факты мира.","history"]],
+        levels:{1:["Заклинания","Магическое восстановление"],2:["Магическая традиция"],3:["Заклинания 2 круга"],4:["Улучшение характеристик"],5:["Заклинания 3 круга"]}
       }
     };
 
@@ -1472,10 +1580,15 @@
       barbarian:{str:15,dex:13,con:14,int:8,wis:12,cha:10},
       bard:{str:8,dex:14,con:13,int:10,wis:12,cha:15},
       cleric:{str:12,dex:10,con:14,int:8,wis:15,cha:13},
+      druid:{str:8,dex:13,con:14,int:10,wis:15,cha:12},
       fighter:{str:15,dex:13,con:14,int:8,wis:12,cha:10},
+      monk:{str:10,dex:15,con:13,int:8,wis:14,cha:12},
+      paladin:{str:15,dex:10,con:13,int:8,wis:12,cha:14},
+      ranger:{str:10,dex:15,con:13,int:8,wis:14,cha:12},
       rogue:{str:8,dex:15,con:13,int:10,wis:12,cha:14},
-      wizard:{str:8,dex:14,con:13,int:15,wis:12,cha:10},
-      warlock:{str:8,dex:14,con:13,int:10,wis:12,cha:15}
+      sorcerer:{str:8,dex:14,con:13,int:10,wis:12,cha:15},
+      warlock:{str:8,dex:14,con:13,int:10,wis:12,cha:15},
+      wizard:{str:8,dex:14,con:13,int:15,wis:12,cha:10}
     };
 
     const DEFAULT_STATE = {
@@ -1588,6 +1701,7 @@
       if(c.acType==="heavy")return 16;
       if(c.acType==="medium")return 14+Math.min(2,statMod("dex"));
       if(c.acType==="light")return 11+statMod("dex");
+      if(c.acType==="monk")return 10+statMod("dex")+statMod("wis");
       if(c.acType==="unarmored")return 10+statMod("dex")+statMod("con");
       return 10+statMod("dex");
     }
@@ -1606,6 +1720,15 @@
 
     function hasProf(key){
       return state.profSkills.includes(key) || bgSkills().includes(key);
+    }
+
+    function expertiseLimit(level = state.level){
+      const table = klass().expertise || {};
+      let limit = 0;
+      Object.entries(table).forEach(([lvl,count])=>{
+        if(level >= Number(lvl)) limit = count;
+      });
+      return limit;
     }
 
     function hasExpertise(key){
@@ -1659,7 +1782,11 @@
     function setDefaultSkillsForClass(key){
       const c = CLASSES[key] || CLASSES.rogue;
       state.profSkills = [...c.defaultSkills];
-      state.expertiseSkills = [...c.expertiseDefault];
+      state.expertiseSkills = [];
+      const limit = expertiseLimit(1);
+      if(limit > 0){
+        state.expertiseSkills = c.defaultSkills.slice(0, limit);
+      }
     }
 
     function populateSelects(){
@@ -1676,6 +1803,8 @@
 
     function render(){
       syncHp();
+
+      document.body.classList.toggle("setup-mode", !state.setupDone);
 
       document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
 
@@ -1714,6 +1843,83 @@
       $("setupInt").value=state.stats.int;
       $("setupWis").value=state.stats.wis;
       $("setupCha").value=state.stats.cha;
+
+      renderSetupSkillPickers();
+    }
+
+    function renderSetupSkillPickers(){
+      const selectedCount = state.profSkills.length;
+      const limit = klass().skillLimit;
+      const bg = bgSkills();
+
+      $("setupSkillAdvice").innerHTML=`
+        <div class="recommend">
+          <b>${klass().name}: выбери ${limit} навыка класса</b>
+          <p>${klass().suggest}</p>
+          <div class="calc-chips">
+            <span class="chip white">класс ${selectedCount}/${limit}</span>
+            <span class="chip">биография: ${bg.map(k=>SKILLS[k][0]).join(", ")}</span>
+          </div>
+        </div>
+      `;
+
+      $("setupSkillEditor").innerHTML = klass().skillOptions.map(key=>{
+        const fromBg = bg.includes(key);
+        const selected = state.profSkills.includes(key);
+        const disabled = fromBg && !selected;
+        return `
+          <div class="skill-card">
+            <div>
+              <strong>${SKILLS[key][0]}</strong>
+              <div class="skill-meta">${ABILITIES[SKILLS[key][1]][0]}</div>
+              <div class="calc-chips">
+                ${fromBg ? `<span class="chip white">уже есть из биографии</span>` : `<span class="chip">можно выбрать от класса</span>`}
+              </div>
+            </div>
+            <div class="skill-controls">
+              <button class="tiny-btn ${selected ? "active" : ""}" ${disabled ? "disabled" : ""} onclick="toggleProf('${key}')">
+                ${selected ? "выбрано" : "выбрать"}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const expLimit = expertiseLimit(1);
+      const available = Array.from(new Set([...state.profSkills, ...bgSkills()]));
+
+      if(expLimit === 0){
+        $("setupExpertiseEditor").innerHTML = `
+          <div class="recommend">
+            <b>У ${klass().name} на 1 уровне экспертизы нет</b>
+            <p>Просто нажми “Готов персонаж”, если всё заполнено.</p>
+          </div>
+        `;
+        return;
+      }
+
+      $("setupExpertiseEditor").innerHTML = `
+        <div class="recommend">
+          <b>Выбери экспертизу: ${state.expertiseSkills.length}/${expLimit}</b>
+          <p>Экспертиза удваивает мастерство. Для плута обычно удобно: Скрытность и Ловкость рук.</p>
+        </div>
+
+        <div class="skill-list">
+          ${available.map(key=>`
+            <div class="skill-card">
+              <div>
+                <strong>${SKILLS[key][0]}</strong>
+                <div class="skill-meta">${skillFormula(key)}</div>
+              </div>
+              <div class="skill-controls">
+                <button class="tiny-btn ${state.expertiseSkills.includes(key) ? "active" : ""}" onclick="toggleExpertise('${key}')">
+                  ★ экспертиза
+                </button>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      `;
     }
 
     function renderCombat(){
@@ -1786,12 +1992,12 @@
             <div class="grid two">
               <div class="field">
                 <label>Урон</label>
-                <input id="damageInput" type="number" placeholder="5">
+                <input id="damageInput" inputmode="numeric" pattern="[0-9]*" placeholder="5">
               </div>
 
               <div class="field">
                 <label>Лечение</label>
-                <input id="healInput" type="number" placeholder="4">
+                <input id="healInput" inputmode="numeric" pattern="[0-9]*" placeholder="4">
               </div>
             </div>
 
@@ -1802,7 +2008,7 @@
 
             <div class="field" style="margin-top:10px">
               <label>Временные хиты</label>
-              <input id="tempHpInput" type="number" value="${state.tempHp}" onchange="setTempHp(this.value)">
+              <input id="tempHpInput" inputmode="numeric" pattern="[0-9]*" value="${state.tempHp}" onchange="setTempHp(this.value)">
             </div>
           </div>
         </div>
@@ -1832,7 +2038,7 @@
         <details class="card" style="margin-top:10px">
           <summary>
             <div class="summary-title">
-              <b>Особенности и спасброски</b>
+              <b>Спасброски и особенности</b>
               <span>раскрой, если мастер просит уточнить</span>
             </div>
             <div class="summary-actions">
@@ -1877,7 +2083,7 @@
             <div class="grid two">
               <div class="field">
                 <label>Добавить опыт</label>
-                <input id="quickXpInput" type="number" placeholder="300">
+                <input id="quickXpInput" inputmode="numeric" pattern="[0-9]*" placeholder="300">
               </div>
               <div>
                 <button class="btn main full" onclick="addXpFromCombat()">Добавить опыт</button>
@@ -2017,7 +2223,7 @@
 
               <div class="field">
                 <label>Количество</label>
-                <input id="coinAmount" type="number" placeholder="10">
+                <input id="coinAmount" inputmode="numeric" pattern="[0-9]*" placeholder="10">
               </div>
             </div>
 
@@ -2058,14 +2264,14 @@
             ${state.items.map((item,i)=>`
               <div class="item">
                 <input value="${escapeText(item.name)}" onchange="changeItemName(${i},this.value)">
-                <input type="number" value="${item.qty}" min="0" onchange="changeItemQty(${i},this.value)">
+                <input inputmode="numeric" pattern="[0-9]*" value="${item.qty}" onchange="changeItemQty(${i},this.value)">
                 <button class="btn danger" onclick="deleteItem(${i})">×</button>
               </div>
             `).join("")}
 
             <div class="item" style="margin-top:10px">
               <input id="newItemName" placeholder="Новый предмет">
-              <input id="newItemQty" type="number" value="1" min="1">
+              <input id="newItemQty" inputmode="numeric" pattern="[0-9]*" value="1">
               <button class="btn main" onclick="addItem()">+</button>
             </div>
           </div>
@@ -2109,44 +2315,54 @@
         `;
       }).join("");
 
+      renderSkillEditor("skillAdvice", "skillEditor");
+    }
+
+    function renderSkillEditor(adviceId, editorId){
       const selectedCount = state.profSkills.length;
       const limit = klass().skillLimit;
 
-      $("skillAdvice").innerHTML=`
+      $(adviceId).innerHTML=`
         <div class="recommend">
-          <b>Совет для класса: ${klass().name}</b>
+          <b>${klass().name}: выбрано навыков класса ${selectedCount}/${limit}</b>
           <p>${klass().suggest}</p>
           <div class="calc-chips">
-            <span class="chip white">выбрано ${selectedCount}</span>
-            <span class="chip">обычно нужно ${limit}</span>
-            <span class="chip">биография: ${bgSkills().map(k=>SKILLS[k][0]).join(", ") || "нет"}</span>
+            <span class="chip white">класс ${selectedCount}/${limit}</span>
+            <span class="chip">биография: ${bgSkills().map(k=>SKILLS[k][0]).join(", ")}</span>
+            <span class="chip">экспертиза ${state.expertiseSkills.length}/${expertiseLimit()}</span>
           </div>
         </div>
       `;
 
-      $("skillEditor").innerHTML=Object.entries(SKILLS).map(([key,[name,ability]])=>{
+      const allKeys = Object.keys(SKILLS);
+
+      $(editorId).innerHTML=allKeys.map(key=>{
         const s=skillParts(key);
         const fromBg=bgSkills().includes(key);
+        const classOption=klass().skillOptions.includes(key);
         const classSelected=state.profSkills.includes(key);
-        const prof=hasProf(key);
         const expert=hasExpertise(key);
 
         return `
           <div class="skill-card">
             <div>
-              <strong>${name}</strong>
-              <div class="skill-meta">${ABILITIES[ability][0]} · итог ${fmt(s.total)}</div>
+              <strong>${SKILLS[key][0]}</strong>
+              <div class="skill-meta">${ABILITIES[s.ability][0]} · итог ${fmt(s.total)}</div>
 
               <div class="calc-chips">
-                <span class="chip">${ABILITIES[ability][0]} ${fmt(s.abilityValue)}</span>
-                ${prof ? `<span class="chip">мастерство ${fmt(s.profValue)}</span>` : `<span class="chip">без мастерства</span>`}
+                <span class="chip">${ABILITIES[s.ability][0]} ${fmt(s.abilityValue)}</span>
+                ${hasProf(key) ? `<span class="chip">мастерство ${fmt(s.profValue)}</span>` : `<span class="chip">без мастерства</span>`}
                 ${expert ? `<span class="chip white">экспертиза ${fmt(s.expertiseValue)}</span>` : ""}
                 ${fromBg ? `<span class="chip">из биографии</span>` : ""}
               </div>
 
               <div class="skill-controls">
-                <button class="tiny-btn ${classSelected ? "active" : ""}" onclick="toggleProf('${key}')">● владение</button>
-                <button class="tiny-btn ${expert ? "active" : ""}" onclick="toggleExpertise('${key}')">★ экспертиза</button>
+                <button class="tiny-btn ${classSelected ? "active" : ""}" ${!classOption || fromBg ? "disabled" : ""} onclick="toggleProf('${key}')">
+                  ${classOption ? "● владение" : "не для класса"}
+                </button>
+                <button class="tiny-btn ${expert ? "active" : ""}" ${!hasProf(key) || expertiseLimit()===0 ? "disabled" : ""} onclick="toggleExpertise('${key}')">
+                  ★ экспертиза
+                </button>
               </div>
             </div>
 
@@ -2165,7 +2381,7 @@
             <div class="card-head">
               <div>
                 <h3>Опыт</h3>
-                <p class="sub">Уровень меняет хиты, мастерство и способности.</p>
+                <p class="sub">Уровень меняет ХП, мастерство и способности.</p>
               </div>
               ${helpButton("progress")}
             </div>
@@ -2184,7 +2400,7 @@
 
             <div class="field" style="margin-top:10px">
               <label>Добавить опыт</label>
-              <input id="xpAddInput" type="number" placeholder="300">
+              <input id="xpAddInput" inputmode="numeric" pattern="[0-9]*" placeholder="300">
             </div>
 
             <button class="btn main" onclick="addXp()">Добавить опыт</button>
@@ -2297,6 +2513,8 @@
       if(label==="cha")return `${ABILITIES.cha[0]} ${fmt(statMod("cha"))}`;
       if(label==="int")return `${ABILITIES.int[0]} ${fmt(statMod("int"))}`;
       if(label==="shortRest")return "вернётся после короткого отдыха";
+      if(label==="rage")return "включи ярость";
+      if(label==="ki")return "потрать ки";
       return label;
     }
 
@@ -2461,19 +2679,49 @@
       if(state.profSkills.includes(key)){
         state.profSkills=state.profSkills.filter(x=>x!==key);
         state.expertiseSkills=state.expertiseSkills.filter(x=>x!==key);
-      }else{
-        state.profSkills.push(key);
+        render();
+        return;
       }
+
+      if(bgSkills().includes(key)){
+        showNotice("Навык уже есть", `<p>${SKILLS[key][0]} уже даёт биография. Выбери другой навык класса.</p>`);
+        return;
+      }
+
+      if(state.profSkills.length >= klass().skillLimit){
+        showNotice("Лимит навыков", `<p>${klass().name} может выбрать ${klass().skillLimit} навыка класса. Сначала убери один выбранный навык.</p>`);
+        return;
+      }
+
+      state.profSkills.push(key);
       render();
     }
 
     function toggleExpertise(key){
+      const limit = expertiseLimit();
+
+      if(limit === 0){
+        showNotice("Экспертизы нет", `<p>У ${klass().name} на этом уровне нет выбора экспертизы.</p>`);
+        return;
+      }
+
       if(state.expertiseSkills.includes(key)){
         state.expertiseSkills=state.expertiseSkills.filter(x=>x!==key);
-      }else{
-        if(!hasProf(key))state.profSkills.push(key);
-        state.expertiseSkills.push(key);
+        render();
+        return;
       }
+
+      if(!hasProf(key)){
+        showNotice("Нужен навык", `<p>Экспертизу можно поставить только на навык, которым ты уже владеешь.</p>`);
+        return;
+      }
+
+      if(state.expertiseSkills.length >= limit){
+        showNotice("Лимит экспертизы", `<p>Сейчас можно выбрать только ${limit} экспертизы. Сначала убери одну.</p>`);
+        return;
+      }
+
+      state.expertiseSkills.push(key);
       render();
     }
 
@@ -2507,6 +2755,7 @@
       $("setupInt").value=stats.int;
       $("setupWis").value=stats.wis;
       $("setupCha").value=stats.cha;
+      captureSetupInputs();
     }
 
     function randomStat(){
@@ -2525,11 +2774,10 @@
       };
       const order=orderByClass[CLASSES[$("setupClass").value].main]||orderByClass.dex;
       order.forEach((id,i)=>$(id).value=vals[i]);
+      captureSetupInputs();
     }
 
-    function startGame(){
-      state.setupDone=true;
-      state.screen="combatScreen";
+    function captureSetupInputs(){
       state.name=$("setupName").value||"Без имени";
       state.classKey=$("setupClass").value;
       state.raceKey=$("setupRace").value;
@@ -2543,9 +2791,36 @@
         wis:Number($("setupWis").value||10),
         cha:Number($("setupCha").value||10)
       };
+    }
+
+    function validateStart(){
+      const skillLimit = klass().skillLimit;
+      const expLimit = expertiseLimit(1);
+
+      if(state.profSkills.length !== skillLimit){
+        showNotice("Не выбраны навыки", `<p>Для класса ${klass().name} нужно выбрать ${skillLimit} навыка класса. Сейчас выбрано ${state.profSkills.length}.</p>`);
+        return false;
+      }
+
+      if(state.expertiseSkills.length !== expLimit){
+        if(expLimit > 0){
+          showNotice("Не выбрана экспертиза", `<p>Нужно выбрать ${expLimit} экспертизы. Сейчас выбрано ${state.expertiseSkills.length}.</p>`);
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    function startGame(){
+      captureSetupInputs();
+
+      if(!validateStart())return;
+
+      state.setupDone=true;
+      state.screen="combatScreen";
       state.level=1;
       state.xp=0;
-      setDefaultSkillsForClass(state.classKey);
       state.hp=maxHp();
       render();
       goTop();
@@ -2640,8 +2915,22 @@
       };
     });
 
-    $("setupClass").onchange=applyDefaultStatsToSetup;
-    $("setupAlignment").onchange=()=>{$("setupAlignmentHint").textContent=ALIGNMENTS[$("setupAlignment").value]?.[1]||""};
+    ["setupName","setupStr","setupDex","setupCon","setupInt","setupWis","setupCha"].forEach(id=>{
+      $(id).addEventListener("input",captureSetupInputs);
+    });
+
+    $("setupClass").onchange=()=>{
+      captureSetupInputs();
+      state.classKey=$("setupClass").value;
+      setDefaultSkillsForClass(state.classKey);
+      applyDefaultStatsToSetup();
+      render();
+    };
+
+    $("setupRace").onchange=()=>{captureSetupInputs();render()};
+    $("setupBg").onchange=()=>{captureSetupInputs();render()};
+    $("setupAlignment").onchange=()=>{captureSetupInputs();render()};
+
     $("setupDefaultStatsBtn").onclick=applyDefaultStatsToSetup;
     $("rollStatsBtn").onclick=rollSetupStats;
     $("startBtn").onclick=startGame;
