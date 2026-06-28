@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D&D помощник новичка</title>
+  <title>D&D помощник</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,1061 +11,607 @@
 
   <style>
     :root {
-      --bg:#000;
-      --panel:#080808;
-      --panel2:#111;
-      --text:#fff;
-      --muted:#a7a7a7;
-      --line:#303030;
-      --line2:#555;
-      --radius:22px;
-      --font:"Roboto",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --bg: #000;
+      --card: #080808;
+      --card2: #111;
+      --text: #fff;
+      --muted: #a7a7a7;
+      --line: #333;
+      --line2: #555;
+      --radius: 22px;
+      --font: "Roboto", system-ui, sans-serif;
     }
 
-    * { box-sizing:border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:var(--font);
-      font-size:16px;
-      line-height:1.45;
-      padding-bottom:132px;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.4;
     }
 
-    button,input,select,textarea { font:inherit; }
-    button { cursor:pointer; }
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
 
     .app {
-      display:grid;
-      grid-template-columns:300px 1fr;
-      min-height:100vh;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 16px;
     }
 
-    .sidebar {
-      position:sticky;
-      top:0;
-      height:100vh;
-      overflow:auto;
-      padding:18px;
-      border-right:1px solid var(--line);
-      background:#020202;
-      z-index:20;
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(0, 0, 0, .95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      margin: -16px -16px 18px;
+      padding: 14px 16px;
+    }
+
+    .head-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 18px;
+      flex: 0 0 auto;
     }
 
     .brand {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:18px;
-    }
-
-    .mark {
-      width:46px;
-      height:46px;
-      border:1.5px solid #fff;
-      border-radius:999px;
-      display:grid;
-      place-items:center;
-      font-weight:900;
-      flex:0 0 auto;
+      flex: 1;
+      min-width: 0;
     }
 
     .brand h1 {
-      margin:0;
-      font-size:16px;
-      line-height:1.08;
-      letter-spacing:.08em;
-      text-transform:uppercase;
+      margin: 0;
+      font-size: 19px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: .06em;
     }
 
     .brand p {
-      margin:4px 0 0;
-      color:var(--muted);
-      font-size:12px;
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .burger { display:none; }
-
-    .btn,
-    .small-btn,
-    .nav button {
-      border:1px solid var(--line);
-      background:transparent;
-      color:var(--text);
-      border-radius:999px;
-      padding:11px 13px;
-      transition:.15s;
+    .burger {
+      width: 48px;
+      height: 48px;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      background: transparent;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      padding: 0;
     }
 
-    .btn:hover,
-    .small-btn:hover,
-    .nav button:hover,
-    .nav button.active {
-      border-color:#fff;
-      background:#171717;
+    .burger span,
+    .burger span::before,
+    .burger span::after {
+      content: "";
+      width: 20px;
+      height: 2px;
+      border-radius: 99px;
+      background: #fff;
+      display: block;
+      position: relative;
     }
 
-    .btn {
-      width:100%;
-      text-align:center;
-      font-weight:900;
+    .burger span::before {
+      position: absolute;
+      top: -7px;
     }
 
-    .btn.white,
-    .small-btn.white {
-      background:#fff;
-      color:#000;
-      border-color:#fff;
-      font-weight:900;
-    }
-
-    .small-btn {
-      border-radius:13px;
-      padding:9px 11px;
-      font-size:13px;
-      text-align:center;
+    .burger span::after {
+      position: absolute;
+      top: 7px;
     }
 
     .nav {
-      display:grid;
-      gap:8px;
-      margin:18px 0;
+      display: none;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .nav.open {
+      display: grid;
     }
 
     .nav button {
-      width:100%;
-      text-align:left;
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #050505;
+      color: #fff;
+      padding: 14px;
+      text-align: left;
+      font-weight: 700;
     }
 
-    .side-title {
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:var(--muted);
-      margin:20px 0 8px;
+    .nav button.active {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
     }
 
-    .char-list {
-      display:grid;
-      gap:8px;
+    .screen {
+      display: none;
     }
 
-    .char-card {
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:12px;
-      background:#070707;
-      cursor:pointer;
+    .screen.active {
+      display: block;
     }
 
-    .char-card.active {
-      border-color:#fff;
+    .hero {
+      margin-bottom: 16px;
     }
 
-    .char-card b {
-      display:block;
-      font-size:15px;
+    .hero h2 {
+      margin: 0;
+      font-size: 34px;
+      line-height: .95;
+      letter-spacing: -.04em;
+      font-weight: 900;
     }
 
-    .char-card span {
-      display:block;
-      color:var(--muted);
-      font-size:12px;
-      margin-top:2px;
+    .hero p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 15px;
     }
 
-    .side-note {
-      color:var(--muted);
-      font-size:12px;
-      margin-top:18px;
+    .mode-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
     }
 
-    .main {
-      width:100%;
-      max-width:1280px;
-      margin:0 auto;
-      padding:22px;
+    .mode-btn {
+      border: 1px solid var(--line2);
+      border-radius: 22px;
+      background: #060606;
+      color: #fff;
+      padding: 16px;
+      text-align: left;
     }
 
-    .topbar {
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:18px;
-      margin-bottom:18px;
+    .mode-btn.active {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
     }
 
-    .title h2 {
-      margin:0 0 7px;
-      font-size:34px;
-      line-height:.95;
-      letter-spacing:-.04em;
-      font-weight:900;
+    .mode-btn b {
+      display: block;
+      font-size: 22px;
+      line-height: 1;
     }
 
-    .title p {
-      margin:0;
-      max-width:760px;
-      color:var(--muted);
+    .mode-btn span {
+      display: block;
+      margin-top: 5px;
+      font-size: 13px;
+      opacity: .72;
     }
-
-    .toolbar {
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      min-width:280px;
-    }
-
-    .section { display:none; }
-    .section.active { display:block; }
 
     .grid {
-      display:grid;
-      gap:14px;
+      display: grid;
+      gap: 12px;
     }
 
-    .grid.two { grid-template-columns:1fr 1fr; }
-    .grid.three { grid-template-columns:repeat(3,1fr); }
-    .grid.four { grid-template-columns:repeat(4,1fr); }
-
-    .stack {
-      display:grid;
-      gap:14px;
+    .grid.two {
+      grid-template-columns: 1fr 1fr;
     }
 
-    details.card,
-    .plain-card {
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:linear-gradient(180deg,#0c0c0c,#050505);
-      overflow:hidden;
-      min-width:0;
+    .grid.three {
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    details.card > summary {
-      list-style:none;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:16px;
-      cursor:pointer;
-      user-select:none;
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #0b0b0b, #050505);
+      padding: 16px;
     }
 
-    details.card > summary::-webkit-details-marker {
-      display:none;
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
     }
 
-    .card-inner,
-    .plain-card {
-      padding:16px;
-    }
-
-    .summary-title {
-      display:grid;
-      gap:3px;
-    }
-
-    .summary-title b {
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .summary-title span {
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .summary-icon {
-      width:34px;
-      height:34px;
-      border:1px solid var(--line2);
-      border-radius:999px;
-      display:grid;
-      place-items:center;
-      flex:0 0 auto;
-      transition:.18s;
-    }
-
-    details[open] .summary-icon {
-      transform:rotate(45deg);
-      border-color:#fff;
-    }
-
-    h3 {
-      margin:0 0 12px;
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    h4 {
-      margin:14px 0 8px;
-      font-size:16px;
+    .card h4 {
+      margin: 14px 0 8px;
+      font-size: 16px;
     }
 
     .hint {
-      color:var(--muted);
-      font-size:13px;
-      margin:6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      margin: 6px 0 0;
+    }
+
+    .icon {
+      width: 34px;
+      height: 34px;
+      margin-bottom: 10px;
+      color: currentColor;
+    }
+
+    .icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 11px 8px;
+      text-align: center;
+      background: #070707;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 23px;
+      line-height: 1;
+      margin-top: 6px;
+      font-weight: 900;
+    }
+
+    .big-hp {
+      text-align: center;
+    }
+
+    .big-hp span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .big-hp b {
+      display: block;
+      font-size: 68px;
+      line-height: .9;
+      letter-spacing: -.06em;
+      margin-top: 8px;
+    }
+
+    .hp-bar {
+      height: 10px;
+      border: 1px solid var(--line2);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 14px;
+      background: #000;
+    }
+
+    .hp-fill {
+      height: 100%;
+      background: #fff;
+      width: 100%;
+    }
+
+    .quick-action {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      background: #070707;
+    }
+
+    .quick-action b {
+      display: block;
+      font-size: 20px;
+    }
+
+    .quick-action p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .formula {
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 10px;
+      background: #000;
+      font-weight: 900;
     }
 
     .field {
-      display:grid;
-      gap:6px;
-      margin-bottom:12px;
+      display: grid;
+      gap: 6px;
+      margin-bottom: 12px;
     }
 
     .field label {
-      color:#d4d4d4;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.06em;
+      color: #d0d0d0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
     }
 
     .field input,
     .field select,
     .field textarea {
-      width:100%;
-      color:#fff;
-      background:#000;
-      border:1px solid var(--line2);
-      border-radius:13px;
-      padding:11px 12px;
-      outline:none;
+      width: 100%;
+      background: #000;
+      border: 1px solid var(--line2);
+      border-radius: 14px;
+      color: #fff;
+      padding: 12px;
+      outline: none;
     }
 
     .field textarea {
-      min-height:86px;
-      resize:vertical;
+      min-height: 90px;
+      resize: vertical;
     }
 
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
-      border-color:#fff;
+      border-color: #fff;
     }
 
-    .field small {
-      color:var(--muted);
-      font-size:12px;
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .inline {
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
+    .btn {
+      border: 1px solid var(--line2);
+      border-radius: 14px;
+      background: transparent;
+      color: #fff;
+      padding: 11px 12px;
+      font-weight: 700;
     }
 
-    .pillrow {
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
+    .btn.main {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      font-weight: 900;
     }
 
-    .pill {
-      border:1px solid var(--line2);
-      border-radius:999px;
-      padding:7px 10px;
-      font-size:13px;
-      color:#ddd;
-      background:#090909;
+    .feature {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #070707;
+      padding: 14px;
     }
 
-    .stats {
-      display:grid;
-      grid-template-columns:repeat(6,1fr);
-      gap:10px;
+    .feature b {
+      display: block;
+      font-size: 18px;
     }
 
-    .stat {
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:12px 8px;
-      background:#070707;
-      text-align:center;
+    .feature p {
+      margin: 6px 0 0;
+      color: #ddd;
+      font-size: 14px;
     }
 
-    .stat .name {
-      color:var(--muted);
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.07em;
+    .skill-line {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      border-bottom: 1px solid var(--line);
+      padding: 10px 0;
     }
 
-    .stat .score {
-      font-size:32px;
-      font-weight:900;
-      line-height:1;
-      margin-top:7px;
+    .skill-line b {
+      font-size: 18px;
     }
 
-    .stat .mod {
-      display:inline-block;
-      margin-top:8px;
-      border:1px solid var(--line2);
-      border-radius:999px;
-      padding:3px 10px;
-      background:#000;
-      font-weight:900;
-    }
-
-    .stat .base {
-      color:var(--muted);
-      font-size:12px;
-      margin-top:5px;
-    }
-
-    .mini-grid {
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:10px;
-    }
-
-    .mini {
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:14px;
-      background:#070707;
-    }
-
-    .mini span {
-      display:block;
-      color:var(--muted);
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.07em;
-    }
-
-    .mini b {
-      display:block;
-      font-size:30px;
-      line-height:1;
-      margin-top:5px;
-      font-weight:900;
-    }
-
-    .skill-list {
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:8px;
-    }
-
-    .skill {
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:8px;
-      align-items:center;
-      border:1px solid var(--line);
-      border-radius:13px;
-      background:#080808;
-      padding:9px;
-      min-width:0;
-    }
-
-    .skill span {
-      overflow:hidden;
-      white-space:nowrap;
-      text-overflow:ellipsis;
-      font-size:13px;
-    }
-
-    .skill b {
-      font-weight:900;
-    }
-
-    .tabs {
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-      margin:0 0 16px;
-    }
-
-    .tab {
-      border:1px solid var(--line2);
-      border-radius:18px;
-      background:#090909;
-      color:#fff;
-      padding:15px;
-      text-align:left;
-    }
-
-    .tab.active {
-      background:#fff;
-      color:#000;
-      border-color:#fff;
-    }
-
-    .tab b {
-      display:block;
-      font-size:20px;
-    }
-
-    .tab span {
-      display:block;
-      font-size:13px;
-      margin-top:2px;
-      opacity:.72;
-    }
-
-    .mode { display:none; }
-    .mode.active { display:block; }
-
-    details.tip {
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:#080808;
-      padding:14px;
-    }
-
-    details.tip + details.tip {
-      margin-top:10px;
-    }
-
-    details.tip summary {
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      cursor:pointer;
-      font-weight:900;
-    }
-
-    details.tip summary::-webkit-details-marker { display:none; }
-
-    details.tip p {
-      margin:10px 0 0;
-      color:#ddd;
-    }
-
-    .formula {
-      margin-top:10px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:#000;
-      padding:10px;
-      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-      overflow:auto;
-    }
-
-    .weapon-row {
-      display:grid;
-      grid-template-columns:1.1fr .7fr 1fr;
-      gap:8px;
-      align-items:center;
-      border-bottom:1px solid var(--line);
-      padding:8px 0;
-      font-size:14px;
-    }
-
-    .weapon-row.head {
-      color:var(--muted);
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.07em;
-    }
-
-    .hp-box {
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:#050505;
-      padding:18px;
-      text-align:center;
-    }
-
-    .hp-box span {
-      display:block;
-      color:var(--muted);
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .hp-box b {
-      display:block;
-      font-size:54px;
-      line-height:.95;
-      letter-spacing:-.06em;
-      margin-top:8px;
-    }
-
-    .hp-bar {
-      height:10px;
-      border:1px solid var(--line2);
-      border-radius:999px;
-      overflow:hidden;
-      margin-top:14px;
-      background:#000;
-    }
-
-    .hp-fill {
-      height:100%;
-      background:#fff;
-      width:50%;
-    }
-
-    .money-grid {
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:8px;
+    .skill-line span {
+      color: var(--muted);
     }
 
     .money {
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:10px;
-      background:#070707;
-      text-align:center;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
     }
 
-    .money span {
-      display:block;
-      color:var(--muted);
-      font-size:11px;
-      text-transform:uppercase;
+    .coin {
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: #070707;
+      text-align: center;
+      padding: 10px;
     }
 
-    .money b {
-      display:block;
-      font-size:24px;
-      margin-top:4px;
+    .coin span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
     }
 
-    .item-row {
-      display:grid;
-      grid-template-columns:1fr 70px 1fr auto;
-      gap:8px;
-      align-items:center;
-      margin-bottom:8px;
+    .coin b {
+      display: block;
+      margin-top: 4px;
+      font-size: 24px;
     }
 
-    .item-row input {
-      width:100%;
-      color:#fff;
-      background:#000;
-      border:1px solid var(--line2);
-      border-radius:12px;
-      padding:10px;
+    .item {
+      display: grid;
+      grid-template-columns: 1fr 64px auto;
+      gap: 8px;
+      margin-bottom: 8px;
     }
 
-    .condition-grid {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
+    .item input {
+      background: #000;
+      border: 1px solid var(--line2);
+      color: #fff;
+      border-radius: 12px;
+      padding: 10px;
+      width: 100%;
     }
 
-    .condition {
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:9px 10px;
-      background:#060606;
-      color:#fff;
-      text-align:center;
-      font-size:13px;
+    .danger {
+      border-color: #fff;
     }
 
-    .condition.active {
-      background:#fff;
-      color:#000;
-      border-color:#fff;
-      font-weight:900;
+    .print-sheet {
+      background: #fff;
+      color: #000;
+      border-radius: 18px;
+      padding: 18px;
     }
 
-    .dice-result {
-      margin:8px 0;
-      font-size:46px;
-      line-height:1;
-      font-weight:900;
-      letter-spacing:-.05em;
-    }
-
-    .quickdock {
-      position:fixed;
-      left:50%;
-      bottom:12px;
-      transform:translateX(-50%);
-      z-index:99;
-      width:min(960px, calc(100% - 24px));
-      border:1px solid #fff;
-      border-radius:24px;
-      background:rgba(0,0,0,.92);
-      backdrop-filter:blur(14px);
-      overflow:hidden;
-      box-shadow:0 12px 40px rgba(0,0,0,.6);
-    }
-
-    .dock-head {
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:10px;
-      align-items:center;
-      padding:10px;
-    }
-
-    .dock-stats {
-      display:flex;
-      gap:8px;
-      overflow:auto;
-      scrollbar-width:none;
-    }
-
-    .dock-stats::-webkit-scrollbar {
-      display:none;
-    }
-
-    .dock-chip {
-      border:1px solid var(--line2);
-      border-radius:999px;
-      padding:8px 10px;
-      white-space:nowrap;
-      font-size:13px;
-      background:#070707;
-    }
-
-    .dock-chip b {
-      font-weight:900;
-    }
-
-    .dock-body {
-      display:none;
-      border-top:1px solid var(--line);
-      padding:12px;
-    }
-
-    .quickdock.open .dock-body {
-      display:block;
-    }
-
-    .dock-grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-
-    .sheet {
-      background:#fff;
-      color:#000;
-      border-radius:18px;
-      padding:18px;
-    }
-
-    .sheet-grid {
-      display:grid;
-      grid-template-columns:1fr 1fr 1.2fr;
-      gap:10px;
+    .print-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
     .paper-box {
-      border:1.5px solid #111;
-      border-radius:12px;
-      padding:10px;
-      margin-bottom:8px;
-      min-height:58px;
+      border: 1.5px solid #000;
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 10px;
     }
 
     .paper-box h4 {
-      margin:0 0 8px;
-      padding-bottom:4px;
-      border-bottom:1px solid #111;
-      font-size:11px;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-    }
-
-    .paper-title b {
-      display:block;
-      font-size:25px;
-    }
-
-    .paper-title span {
-      font-size:10px;
-      text-transform:uppercase;
+      margin: 0 0 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      border-bottom: 1px solid #000;
+      padding-bottom: 5px;
     }
 
     .paper-row {
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:6px;
-      border-bottom:1px solid #ddd;
-      padding:4px 0;
-      font-size:12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid #ddd;
+      padding: 4px 0;
+      font-size: 12px;
     }
 
-    .paper-row b {
-      font-size:15px;
+    .save-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .paper-chips {
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:6px;
-      margin-bottom:8px;
-    }
-
-    .paper-chip {
-      border:1.5px solid #111;
-      border-radius:10px;
-      padding:8px;
-      text-align:center;
-    }
-
-    .paper-chip span {
-      display:block;
-      font-size:9px;
-      text-transform:uppercase;
-    }
-
-    .paper-chip b {
-      font-size:17px;
-    }
-
-    .empty {
-      border:1px dashed var(--line2);
-      border-radius:14px;
-      padding:14px;
-      color:var(--muted);
-    }
-
-    @media (max-width:980px) {
-      body {
-        padding-bottom:148px;
-      }
-
+    @media (max-width: 760px) {
       .app {
-        display:block;
+        padding: 14px;
       }
 
-      .sidebar {
-        position:sticky;
-        top:0;
-        height:auto;
-        max-height:100vh;
-        overflow:hidden;
-        padding:12px 14px;
-        border-right:0;
-        border-bottom:1px solid #252525;
-        background:#000;
+      .header {
+        margin: -14px -14px 16px;
+        padding: 12px 14px;
       }
 
-      .sidebar.open {
-        overflow:auto;
-      }
-
-      .brand {
-        margin:0;
-        justify-content:space-between;
-      }
-
-      .brand > div:not(.mark) {
-        flex:1;
-        min-width:0;
-      }
-
-      .brand p {
-        display:none;
-      }
-
-      .mark {
-        width:38px;
-        height:38px;
-        font-size:14px;
-      }
-
-      .brand h1 {
-        font-size:15px;
-      }
-
-      .burger {
-        width:42px;
-        height:42px;
-        display:grid;
-        place-items:center;
-        border:1px solid #fff;
-        border-radius:999px;
-        background:transparent;
-        color:#fff;
-        padding:0;
-        flex:0 0 auto;
-      }
-
-      .burger span,
-      .burger span::before,
-      .burger span::after {
-        display:block;
-        width:18px;
-        height:2px;
-        background:#fff;
-        border-radius:99px;
-        position:relative;
-        content:"";
-        transition:.2s;
-      }
-
-      .burger span::before {
-        position:absolute;
-        top:-6px;
-      }
-
-      .burger span::after {
-        position:absolute;
-        top:6px;
-      }
-
-      .sidebar.open .burger span {
-        background:transparent;
-      }
-
-      .sidebar.open .burger span::before {
-        top:0;
-        transform:rotate(45deg);
-      }
-
-      .sidebar.open .burger span::after {
-        top:0;
-        transform:rotate(-45deg);
-      }
-
-      .sidebar > .btn,
-      .sidebar > .nav,
-      .sidebar > .side-title,
-      .sidebar > .char-list,
-      .sidebar > .side-note {
-        display:none;
-      }
-
-      .sidebar.open > .btn {
-        display:block;
-        margin-top:14px;
-      }
-
-      .sidebar.open > .nav {
-        display:grid;
-        gap:7px;
-        margin:12px 0;
-      }
-
-      .sidebar.open > .side-title {
-        display:block;
-        margin:16px 0 8px;
-      }
-
-      .sidebar.open > .char-list {
-        display:grid;
-      }
-
-      .main {
-        padding:14px;
-      }
-
-      .topbar {
-        display:grid;
-        margin-bottom:14px;
-      }
-
-      .toolbar {
-        justify-content:stretch;
-        min-width:0;
-      }
-
-      .toolbar .small-btn {
-        flex:1;
+      .hero h2 {
+        font-size: 30px;
       }
 
       .grid.two,
       .grid.three,
-      .grid.four,
-      .mini-grid,
-      .sheet-grid,
-      .skill-list,
-      .dock-grid {
-        grid-template-columns:1fr;
+      .print-grid {
+        grid-template-columns: 1fr;
       }
 
-      .stats {
-        grid-template-columns:repeat(2,1fr);
+      .stat-row {
+        grid-template-columns: repeat(3, 1fr);
       }
 
-      .tabs {
-        grid-template-columns:1fr 1fr;
+      .money {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .money-grid {
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .condition-grid {
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .item-row {
-        grid-template-columns:1fr 64px;
-      }
-
-      .item-row input:nth-child(3) {
-        grid-column:1 / -1;
-      }
-
-      .title h2 {
-        font-size:28px;
-      }
-
-      .title p {
-        font-size:14px;
-      }
-
-      details.card > summary {
-        padding:14px;
-      }
-
-      .card-inner {
-        padding:14px;
+      .item {
+        grid-template-columns: 1fr 56px auto;
       }
     }
 
     @media print {
       body {
-        background:#fff;
-        color:#000;
-        padding-bottom:0;
+        background: #fff;
+        color: #000;
       }
 
-      .sidebar,
-      .topbar,
+      .header,
+      .hero,
       .no-print,
-      .quickdock,
-      .section:not(#sheetSection) {
-        display:none !important;
+      .screen:not(#sheetScreen) {
+        display: none !important;
       }
 
-      .app,
-      .main {
-        display:block;
-        padding:0;
-        max-width:none;
+      .app {
+        max-width: none;
+        padding: 0;
       }
 
-      #sheetSection {
-        display:block !important;
+      #sheetScreen {
+        display: block !important;
       }
 
-      details.card {
-        border:0;
-        padding:0;
-      }
-
-      .sheet {
-        border-radius:0;
-        padding:0;
+      .print-sheet {
+        border-radius: 0;
+        padding: 0;
       }
 
       @page {
-        size:A4;
-        margin:12mm;
+        size: A4;
+        margin: 12mm;
       }
     }
   </style>
@@ -1073,667 +619,266 @@
 
 <body>
   <div class="app">
-    <aside class="sidebar no-print">
-      <div class="brand">
-        <div class="mark">d20</div>
-        <div>
-          <h1>D&D<br>помощник</h1>
-          <p>конструктор для новичка</p>
+    <header class="header no-print">
+      <div class="head-row">
+        <div class="logo">d20</div>
+
+        <div class="brand">
+          <h1>D&D помощник</h1>
+          <p>простой лист игрока</p>
         </div>
-        <button class="burger" id="burger" type="button" aria-label="Меню"><span></span></button>
+
+        <button class="burger" id="burger" type="button" aria-label="Меню">
+          <span></span>
+        </button>
       </div>
 
-      <button class="btn white" id="newCharacterBtn">+ Новый персонаж</button>
+      <nav class="nav" id="nav">
+        <button class="active" data-screen="gameScreen">Играть</button>
+        <button data-screen="charScreen">Персонаж</button>
+        <button data-screen="bagScreen">Сумка</button>
+        <button data-screen="sheetScreen">Лист A4</button>
+      </nav>
+    </header>
 
-      <div class="nav" id="nav">
-        <button class="active" data-section="playSection">01 Игра</button>
-        <button data-section="builderSection">02 Конструктор</button>
-        <button data-section="sheetSection">03 Лист A4</button>
-        <button data-section="librarySection">04 Персонажи</button>
+    <section class="screen active" id="gameScreen">
+      <div class="hero">
+        <h2>Что сейчас?</h2>
+        <p>Выбери ситуацию. Всё лишнее спрятано.</p>
       </div>
 
-      <h3 class="side-title">Сохранённые</h3>
-      <div class="char-list" id="characterList"></div>
+      <div class="mode-tabs no-print">
+        <button class="mode-btn active" id="combatBtn">
+          <b>Бой</b>
+          <span>атака, урон, хиты</span>
+        </button>
 
-      <p class="side-note">Данные хранятся в браузере. Можно экспортировать JSON и потом импортировать обратно.</p>
-    </aside>
-
-    <main class="main">
-      <div class="topbar no-print">
-        <div class="title">
-          <h2 id="pageTitle">Игровой экран</h2>
-          <p id="pageDesc">Выбирай режим Бой или Вне боя. Самое важное всегда снизу в быстрой панели.</p>
-        </div>
-
-        <div class="toolbar">
-          <button class="small-btn" id="toggleDetailsBtn">↕ Блоки</button>
-          <button class="small-btn" id="toggleDockBtn">☷ Параметры</button>
-          <button class="small-btn" id="saveBtn">Сохранить</button>
-          <button class="small-btn" id="exportBtn">Экспорт</button>
-        </div>
+        <button class="mode-btn" id="peaceBtn">
+          <b>Мир</b>
+          <span>скрытность, разговор, взлом</span>
+        </button>
       </div>
 
-      <section class="section active" id="playSection">
-        <div class="stack">
-          <details class="card" open>
-            <summary>
-              <div class="summary-title">
-                <b>Режим игры</b>
-                <span id="modeSummary">Бой или вне боя</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
+      <div id="gameContent"></div>
+    </section>
 
-            <div class="card-inner">
-              <div class="tabs">
-                <button class="tab active" id="combatTab" data-mode="combatMode">
-                  <b>Бой</b>
-                  <span>атака, урон, хиты</span>
-                </button>
+    <section class="screen" id="charScreen">
+      <div class="hero">
+        <h2>Персонаж</h2>
+        <p>Тут меняешь базовые данные. Во время игры смотри экран “Играть”.</p>
+      </div>
 
-                <button class="tab" id="exploreTab" data-mode="exploreMode">
-                  <b>Вне боя</b>
-                  <span>скрытность, общение, взлом</span>
-                </button>
-              </div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Кто я</h3>
 
-              <div class="mini-grid" id="quickStats"></div>
-            </div>
-          </details>
-
-          <div class="mode active" id="combatMode">
-            <div class="stack">
-              <details class="card" open>
-                <summary>
-                  <div class="summary-title">
-                    <b>Бой сейчас</b>
-                    <span>атака, скрытая атака, урон</span>
-                  </div>
-                  <div class="summary-icon">+</div>
-                </summary>
-
-                <div class="card-inner">
-                  <div class="grid two">
-                    <div id="combatTips"></div>
-
-                    <div>
-                      <h4>Быстрый урон / лечение</h4>
-                      <div class="grid two">
-                        <div class="field">
-                          <label>Получил урон</label>
-                          <input id="damageInput" type="number" min="0" placeholder="например 5">
-                        </div>
-
-                        <div class="field">
-                          <label>Вылечился</label>
-                          <input id="healInput" type="number" min="0" placeholder="например 4">
-                        </div>
-                      </div>
-
-                      <div class="inline">
-                        <button class="small-btn" id="damageBtn">Применить урон</button>
-                        <button class="small-btn" id="healBtn">Применить лечение</button>
-                      </div>
-
-                      <div class="field" style="margin-top:12px;">
-                        <label>Временные хиты</label>
-                        <input id="tempHp" type="number" min="0">
-                        <small>Сначала урон снимается с временных хитов.</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </details>
-
-              <details class="card">
-                <summary>
-                  <div class="summary-title">
-                    <b>Особенности в бою</b>
-                    <span>что не забыть во время драки</span>
-                  </div>
-                  <div class="summary-icon">+</div>
-                </summary>
-
-                <div class="card-inner" id="combatFeatures"></div>
-              </details>
-
-              <details class="card">
-                <summary>
-                  <div class="summary-title">
-                    <b>Спасброски смерти и боеприпасы</b>
-                    <span>если хиты 0, стрелы, болты</span>
-                  </div>
-                  <div class="summary-icon">+</div>
-                </summary>
-
-                <div class="card-inner">
-                  <p class="hint">Если здоровье стало 0: на своём ходу кидаешь к20. 10 или выше — успех. 9 или ниже — неудача.</p>
-
-                  <div class="grid two" style="margin-top:12px;">
-                    <div>
-                      <h4>Успехи</h4>
-                      <div class="inline" id="deathSuccessBtns"></div>
-                    </div>
-
-                    <div>
-                      <h4>Неудачи</h4>
-                      <div class="inline" id="deathFailBtns"></div>
-                    </div>
-                  </div>
-
-                  <div class="inline" style="margin-top:12px;">
-                    <button class="small-btn" id="resetDeathBtn">Сбросить смерть</button>
-                    <button class="small-btn" id="shortRestBtn">Короткий отдых</button>
-                    <button class="small-btn" id="longRestBtn">Долгий отдых</button>
-                  </div>
-
-                  <div class="grid two" style="margin-top:14px;">
-                    <div class="field">
-                      <label>Стрелы</label>
-                      <input id="arrows" type="number" min="0">
-                    </div>
-
-                    <div class="field">
-                      <label>Болты</label>
-                      <input id="bolts" type="number" min="0">
-                    </div>
-                  </div>
-
-                  <div class="inline">
-                    <button class="small-btn" id="useArrowBtn">−1 стрела</button>
-                    <button class="small-btn" id="addArrowBtn">+1 стрела</button>
-                    <button class="small-btn" id="useBoltBtn">−1 болт</button>
-                    <button class="small-btn" id="addBoltBtn">+1 болт</button>
-                  </div>
-                </div>
-              </details>
-            </div>
+          <div class="field">
+            <label>Имя</label>
+            <input id="nameInput">
           </div>
 
-          <div class="mode" id="exploreMode">
-            <div class="stack">
-              <details class="card" open>
-                <summary>
-                  <div class="summary-title">
-                    <b>Вне боя сейчас</b>
-                    <span>скрытность, обман, взлом, восприятие</span>
-                  </div>
-                  <div class="summary-icon">+</div>
-                </summary>
-
-                <div class="card-inner">
-                  <div class="grid two">
-                    <div id="exploreTips"></div>
-                    <div id="situationTips"></div>
-                  </div>
-                </div>
-              </details>
-
-              <details class="card">
-                <summary>
-                  <div class="summary-title">
-                    <b>Особенности вне боя</b>
-                    <span>что можно использовать в исследовании и общении</span>
-                  </div>
-                  <div class="summary-icon">+</div>
-                </summary>
-
-                <div class="card-inner" id="exploreFeatures"></div>
-              </details>
-
-              <details class="card">
-                <summary>
-                  <div class="summary-title">
-                    <b>Деньги, предметы, заметки</b>
-                    <span id="coinsSummary">монеты и инвентарь</span>
-                  </div>
-                  <div class="summary-icon">+</div>
-                </summary>
-
-                <div class="card-inner">
-                  <h4>Деньги</h4>
-                  <div class="money-grid" id="coinsView"></div>
-
-                  <div class="grid three" style="margin-top:14px;">
-                    <div class="field">
-                      <label>Монета</label>
-                      <select id="coinType">
-                        <option value="cp">Медь</option>
-                        <option value="sp">Серебро</option>
-                        <option value="ep">Электрум</option>
-                        <option value="gp">Золото</option>
-                        <option value="pp">Платина</option>
-                      </select>
-                    </div>
-
-                    <div class="field">
-                      <label>Количество</label>
-                      <input id="coinAmount" type="number" min="0" placeholder="например 10">
-                    </div>
-
-                    <div class="field">
-                      <label>Действие</label>
-                      <div class="inline">
-                        <button class="small-btn" id="addCoinsBtn">+</button>
-                        <button class="small-btn" id="spendCoinsBtn">−</button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <h4>Инвентарь</h4>
-                  <div id="inventoryView"></div>
-
-                  <div class="item-row" style="margin-top:12px;">
-                    <input id="newItemName" placeholder="Предмет">
-                    <input id="newItemQty" type="number" min="1" value="1">
-                    <input id="newItemNote" placeholder="Заметка">
-                    <button class="small-btn" id="addItemBtn">+</button>
-                  </div>
-
-                  <h4>Заметки</h4>
-                  <div class="field">
-                    <label>Заметки по игре</label>
-                    <textarea id="sessionNotes"></textarea>
-                    <small>NPC, квесты, места, долги, что нашли, куда идти дальше.</small>
-                  </div>
-                </div>
-              </details>
-
-              <details class="card">
-                <summary>
-                  <div class="summary-title">
-                    <b>Состояния</b>
-                    <span>отравлен, испуган, невидим и другое</span>
-                  </div>
-                  <div class="summary-icon">+</div>
-                </summary>
-
-                <div class="card-inner">
-                  <div class="condition-grid" id="conditionsView"></div>
-                </div>
-              </details>
-            </div>
+          <div class="field">
+            <label>Класс</label>
+            <select id="classInput">
+              <option value="rogue">Плут</option>
+              <option value="fighter">Воин</option>
+              <option value="wizard">Волшебник</option>
+              <option value="cleric">Жрец</option>
+            </select>
           </div>
-        </div>
-      </section>
 
-      <section class="section" id="builderSection">
-        <div class="stack">
-          <details class="card" open>
-            <summary>
-              <div class="summary-title">
-                <b>База персонажа</b>
-                <span id="baseSummary">имя, класс, раса</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div class="grid two">
-                <div class="field">
-                  <label>Имя персонажа</label>
-                  <input id="name" data-bind="name" placeholder="Например: Мускат">
-                </div>
-
-                <div class="field">
-                  <label>Имя игрока</label>
-                  <input id="player" data-bind="player" placeholder="Твоё имя">
-                </div>
-              </div>
-
-              <div class="grid two">
-                <div class="field">
-                  <label>Класс</label>
-                  <select id="classKey" data-bind="classKey"></select>
-                </div>
-
-                <div class="field">
-                  <label>Уровень</label>
-                  <select id="level" data-bind="level">
-                    <option value="1">1 уровень</option>
-                    <option value="2">2 уровень</option>
-                    <option value="3">3 уровень</option>
-                    <option value="4">4 уровень</option>
-                    <option value="5">5 уровень</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="grid two">
-                <div class="field">
-                  <label>Раса</label>
-                  <select id="raceKey" data-bind="raceKey"></select>
-                </div>
-
-                <div class="field">
-                  <label>Биография</label>
-                  <select id="backgroundKey" data-bind="backgroundKey"></select>
-                </div>
-              </div>
-
-              <div class="grid two">
-                <div class="field">
-                  <label>Мировоззрение</label>
-                  <select id="alignment" data-bind="alignment"></select>
-                  <small id="alignmentHint"></small>
-                </div>
-
-                <div class="field">
-                  <label>Опыт</label>
-                  <input id="xp" data-bind="xp" type="number" min="0" placeholder="0">
-                  <small>Опыт нужен только для повышения уровня. Мастер скажет, когда менять.</small>
-                </div>
-              </div>
-
-              <div class="pillrow" id="raceClassPills"></div>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Броски характеристик</b>
-                <span>впиши 6 чисел с кубиков</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <p class="hint">Мастер говорит: “Киньте характеристики”. Впиши 6 чисел и нажми “Авто-раскидать”.</p>
-              <div class="grid three" id="rollFields"></div>
-
-              <div class="inline">
-                <button class="small-btn" id="autoAssignBtn">Авто-раскидать</button>
-                <button class="small-btn" id="randomRollBtn">Кинуть случайно</button>
-                <button class="small-btn" id="clearRollsBtn">Очистить</button>
-              </div>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Характеристики</b>
-                <span id="statsSummary">главные параметры персонажа</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div class="stats" id="statsView"></div>
-              <p class="hint">В кружке указан модификатор. Его чаще всего прибавляют к к20.</p>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Навыки</b>
-                <span>все проверки персонажа</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <p class="hint">★ — экспертиза. ● — владение.</p>
-              <div class="skill-list" id="skillsView"></div>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Оружие и снаряжение</b>
-                <span>атаки и вещи</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div class="grid three">
-                <div class="field">
-                  <label>Оружие 1</label>
-                  <select id="weapon1" data-bind="weapon1"></select>
-                </div>
-
-                <div class="field">
-                  <label>Оружие 2</label>
-                  <select id="weapon2" data-bind="weapon2"></select>
-                </div>
-
-                <div class="field">
-                  <label>Оружие 3</label>
-                  <select id="weapon3" data-bind="weapon3"></select>
-                </div>
-              </div>
-
-              <div class="field">
-                <label>Снаряжение</label>
-                <textarea id="equipment" data-bind="equipment"></textarea>
-              </div>
-
-              <div id="weaponsView"></div>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Личность</b>
-                <span>характер, идеалы, недостатки</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <div class="grid two">
-                <div>
-                  <div class="field">
-                    <label>Личностные черты</label>
-                    <textarea id="personality" data-bind="personality"></textarea>
-                  </div>
-
-                  <div class="field">
-                    <label>Идеалы</label>
-                    <textarea id="ideals" data-bind="ideals"></textarea>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="field">
-                    <label>Кредо / привязанности</label>
-                    <textarea id="bonds" data-bind="bonds"></textarea>
-                  </div>
-
-                  <div class="field">
-                    <label>Недостатки</label>
-                    <textarea id="flaws" data-bind="flaws"></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </details>
-        </div>
-      </section>
-
-      <section class="section" id="sheetSection">
-        <details class="card" open>
-          <summary>
-            <div class="summary-title">
-              <b>Лист персонажа A4</b>
-              <span>печать или PDF</span>
-            </div>
-            <div class="summary-icon">+</div>
-          </summary>
-
-          <div class="card-inner">
-            <button class="small-btn no-print" id="printBtn">Печать A4</button>
-            <p class="hint no-print">В печати можно выбрать “Сохранить в PDF”.</p>
-            <div class="sheet" id="printSheet"></div>
+          <div class="field">
+            <label>Раса</label>
+            <select id="raceInput">
+              <option value="halfling">Легконогий полурослик</option>
+              <option value="human">Человек</option>
+              <option value="elf">Эльф</option>
+              <option value="dwarf">Дварф</option>
+            </select>
           </div>
-        </details>
-      </section>
 
-      <section class="section" id="librarySection">
-        <div class="stack">
-          <details class="card" open>
-            <summary>
-              <div class="summary-title">
-                <b>Персонажи</b>
-                <span>создание, копирование, удаление</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
+          <div class="field">
+            <label>Биография</label>
+            <select id="bgInput">
+              <option value="criminal">Преступник</option>
+              <option value="charlatan">Шарлатан</option>
+              <option value="urchin">Беспризорник</option>
+              <option value="folk">Народный герой</option>
+            </select>
+          </div>
 
-            <div class="card-inner">
-              <div class="char-list" id="bigCharacterList"></div>
-
-              <div class="inline" style="margin-top:14px;">
-                <button class="small-btn" id="duplicateBtn">Дублировать</button>
-                <button class="small-btn" id="deleteBtn">Удалить</button>
-                <button class="small-btn" id="resetBtn">Сбросить текущего</button>
-              </div>
-            </div>
-          </details>
-
-          <details class="card">
-            <summary>
-              <div class="summary-title">
-                <b>Резервная копия</b>
-                <span>экспорт и импорт JSON</span>
-              </div>
-              <div class="summary-icon">+</div>
-            </summary>
-
-            <div class="card-inner">
-              <p class="hint">Экспортируй JSON, чтобы хранить персонажей отдельно.</p>
-
-              <div class="inline" style="margin-top:12px;">
-                <button class="small-btn" id="exportAllBtn">Скачать всех персонажей</button>
-
-                <label class="small-btn" style="display:block;">
-                  Импорт JSON
-                  <input id="importFile" type="file" accept="application/json" style="display:none;">
-                </label>
-              </div>
-            </div>
-          </details>
+          <button class="btn main" id="saveCharacterBtn">Сохранить</button>
+          <p class="save-note">Сохраняется в браузере автоматически.</p>
         </div>
-      </section>
-    </main>
-  </div>
 
-  <div class="quickdock no-print" id="quickDock">
-    <div class="dock-head">
-      <div class="dock-stats" id="dockStats"></div>
-      <button class="small-btn white" id="dockOpenBtn">☷</button>
-    </div>
+        <div class="card">
+          <h3>Характеристики</h3>
+          <p class="hint">Впиши числа с кубиков. Для плута главное — Ловкость.</p>
 
-    <div class="dock-body">
-      <div class="dock-grid">
-        <div id="dockModeInfo"></div>
-
-        <div>
           <div class="grid two">
+            <div class="field"><label>Сила</label><input id="strInput" type="number"></div>
+            <div class="field"><label>Ловкость</label><input id="dexInput" type="number"></div>
+            <div class="field"><label>Телосложение</label><input id="conInput" type="number"></div>
+            <div class="field"><label>Интеллект</label><input id="intInput" type="number"></div>
+            <div class="field"><label>Мудрость</label><input id="wisInput" type="number"></div>
+            <div class="field"><label>Харизма</label><input id="chaInput" type="number"></div>
+          </div>
+
+          <button class="btn" id="defaultStatsBtn">Вернуть пример плута</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="bagScreen">
+      <div class="hero">
+        <h2>Сумка</h2>
+        <p>Деньги, предметы и заметки партии.</p>
+      </div>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Деньги</h3>
+
+          <div class="money" id="moneyView"></div>
+
+          <div class="grid two" style="margin-top:14px;">
             <div class="field">
-              <label>Урон</label>
-              <input id="dockDamage" type="number" min="0" placeholder="5">
+              <label>Монета</label>
+              <select id="coinType">
+                <option value="cp">Медь</option>
+                <option value="sp">Серебро</option>
+                <option value="ep">Электрум</option>
+                <option value="gp">Золото</option>
+                <option value="pp">Платина</option>
+              </select>
             </div>
 
             <div class="field">
-              <label>Лечение</label>
-              <input id="dockHeal" type="number" min="0" placeholder="4">
+              <label>Количество</label>
+              <input id="coinAmount" type="number" placeholder="10">
             </div>
           </div>
 
-          <div class="inline">
-            <button class="small-btn" id="dockDamageBtn">Урон</button>
-            <button class="small-btn" id="dockHealBtn">Лечение</button>
-            <button class="small-btn" id="dockModeBtn">Сменить режим</button>
+          <div class="btn-row">
+            <button class="btn main" id="addCoinBtn">Добавить</button>
+            <button class="btn" id="spendCoinBtn">Потратить</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Заметки</h3>
+          <div class="field">
+            <label>Что важно помнить</label>
+            <textarea id="notesInput" placeholder="NPC, квесты, куда идти, что нашли..."></textarea>
           </div>
         </div>
       </div>
-    </div>
+
+      <div class="card" style="margin-top:12px;">
+        <h3>Предметы</h3>
+
+        <div id="itemsView"></div>
+
+        <div class="item" style="margin-top:12px;">
+          <input id="newItemName" placeholder="Новый предмет">
+          <input id="newItemQty" type="number" value="1" min="1">
+          <button class="btn main" id="addItemBtn">+</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="sheetScreen">
+      <div class="hero no-print">
+        <h2>Лист A4</h2>
+        <p>Можно распечатать или сохранить в PDF.</p>
+        <button class="btn main" id="printBtn">Печать</button>
+      </div>
+
+      <div class="print-sheet" id="printSheet"></div>
+    </section>
   </div>
 
   <script>
-    const STORAGE_KEY = "dnd_newbie_builder_v5_gameflow";
+    const STORAGE_KEY = "dnd_super_simple_v2";
 
-    const ABILITIES = {
-      str: ["Сила", "Сил"],
-      dex: ["Ловкость", "Лов"],
-      con: ["Телосложение", "Тел"],
-      int: ["Интеллект", "Инт"],
-      wis: ["Мудрость", "Муд"],
-      cha: ["Харизма", "Хар"]
-    };
-
-    const SKILLS = {
-      acrobatics: ["Акробатика", "dex"],
-      animal: ["Дрессировка", "wis"],
-      arcana: ["Магия", "int"],
-      athletics: ["Атлетика", "str"],
-      deception: ["Обман", "cha"],
-      history: ["История", "int"],
-      insight: ["Проницательность", "wis"],
-      intimidation: ["Запугивание", "cha"],
-      investigation: ["Расследование", "int"],
-      medicine: ["Медицина", "wis"],
-      nature: ["Природа", "int"],
-      perception: ["Восприятие", "wis"],
-      performance: ["Выступление", "cha"],
-      persuasion: ["Убеждение", "cha"],
-      religion: ["Религия", "int"],
-      sleight: ["Ловкость рук", "dex"],
-      stealth: ["Скрытность", "dex"],
-      survival: ["Выживание", "wis"]
+    const ICONS = {
+      sword: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 4l6 6-9 9-6-6 9-9z"/>
+          <path d="M4 20l4-4"/>
+          <path d="M12 6l6 6"/>
+        </svg>
+      `,
+      heart: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20s-7-4.6-9-9.2C1.7 7.8 3.4 5 6.4 5c1.8 0 3.1 1 3.8 2.1C10.9 6 12.2 5 14 5c3 0 4.7 2.8 3.4 5.8C15.4 15.4 12 20 12 20z"/>
+        </svg>
+      `,
+      eye: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/>
+          <circle cx="12" cy="12" r="2.5"/>
+        </svg>
+      `,
+      lock: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="10" width="14" height="10" rx="2"/>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+          <path d="M12 14v2"/>
+        </svg>
+      `,
+      hand: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 12V6a1.5 1.5 0 0 1 3 0v5"/>
+          <path d="M10 11V5a1.5 1.5 0 0 1 3 0v6"/>
+          <path d="M13 11V6a1.5 1.5 0 0 1 3 0v7"/>
+          <path d="M7 12l-1.5-1.5a1.7 1.7 0 0 0-2.4 2.4l4.5 4.5A6 6 0 0 0 18 13"/>
+        </svg>
+      `,
+      talk: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16v10H8l-4 4V5z"/>
+          <path d="M8 9h8"/>
+          <path d="M8 12h5"/>
+        </svg>
+      `,
+      bag: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 8h10l1.5 12h-13L7 8z"/>
+          <path d="M9 8a3 3 0 0 1 6 0"/>
+        </svg>
+      `
     };
 
     const RACES = {
-      lightfootHalfling: {
+      halfling: {
         name: "Легконогий полурослик",
-        size: "Маленький",
         speed: 25,
         bonuses: { dex: 2, cha: 1 },
-        languages: ["Общий", "Полуросликов"],
         features: [
-          { name:"Удача", mode:"both", text:"Если на к20 выпала 1, можешь перебросить кубик. Новый результат нужно принять." },
-          { name:"Храбрый", mode:"combat", text:"Спасброски от испуга совершаешь с преимуществом." },
-          { name:"Проворство полуросликов", mode:"both", text:"Можешь проходить через пространство существ, которые больше тебя." },
-          { name:"Естественная скрытность", mode:"both", text:"Можешь пытаться спрятаться за существом, которое больше тебя хотя бы на 1 размер." }
+          ["Удача", "Если на к20 выпала 1, можешь перебросить кубик."],
+          ["Естественная скрытность", "Можешь прятаться за существом больше тебя."],
+          ["Проворство", "Можешь проходить через пространство существ больше тебя."],
+          ["Храбрый", "Спасброски от страха с преимуществом."]
         ]
       },
       human: {
         name: "Человек",
-        size: "Средний",
         speed: 30,
         bonuses: { str: 1, dex: 1, con: 1, int: 1, wis: 1, cha: 1 },
-        languages: ["Общий", "ещё 1 язык"],
-        features: [
-          { name:"Универсальность", mode:"both", text:"Человек получает небольшие бонусы ко всем характеристикам." }
-        ]
+        features: [["Универсальность", "Понемногу хорош во всём."]]
       },
       elf: {
         name: "Эльф",
-        size: "Средний",
         speed: 30,
         bonuses: { dex: 2 },
-        languages: ["Общий", "Эльфийский"],
-        features: [
-          { name:"Тёмное зрение", mode:"explore", text:"Лучше видишь в темноте, чем обычный человек." },
-          { name:"Острые чувства", mode:"explore", text:"Хорошо подходит для внимательного персонажа." }
-        ]
+        features: [["Тёмное зрение", "Лучше видишь в темноте."], ["Острые чувства", "Хорошо замечаешь детали."]]
       },
       dwarf: {
         name: "Дварф",
-        size: "Средний",
         speed: 25,
         bonuses: { con: 2 },
-        languages: ["Общий", "Дварфский"],
-        features: [
-          { name:"Дварфская стойкость", mode:"combat", text:"Крепкий персонаж, хорошо держит урон." },
-          { name:"Тёмное зрение", mode:"explore", text:"Лучше видишь в темноте, чем обычный человек." }
-        ]
+        features: [["Стойкость", "Крепкий и живучий."], ["Тёмное зрение", "Лучше видишь в темноте."]]
       }
     };
 
@@ -1742,1180 +887,588 @@
         name: "Плут",
         hitDie: 8,
         saves: ["dex", "int"],
-        prof: "Лёгкие доспехи, простое оружие, рапиры, короткие мечи, ручные арбалеты, воровские инструменты",
-        defaultSkills: ["stealth", "sleight", "deception", "acrobatics"],
+        skills: ["stealth", "sleight", "deception", "acrobatics"],
         expertise: ["stealth", "sleight"],
-        order: ["dex", "cha", "con", "wis", "int", "str"],
+        weapon: "Рапира",
+        weaponDie: "1к8",
         features: [
-          { name:"Скрытая атака", mode:"combat", text:"1 раз за ход добавь +1к6 урона, если есть преимущество на атаку или союзник стоит рядом с целью." },
-          { name:"Экспертиза", mode:"both", text:"Два навыка получают удвоенный бонус мастерства. У тебя это Скрытность и Ловкость рук." },
-          { name:"Воровской жаргон", mode:"explore", text:"Ты понимаешь тайные знаки, намёки и шифры преступников." }
+          ["Скрытая атака", "Если попал и есть условие, добавь +1к6 урона."],
+          ["Экспертиза", "Скрытность и Ловкость рук считаются очень хорошо."],
+          ["Воровской жаргон", "Понимаешь тайные знаки преступников."]
         ]
       },
       fighter: {
         name: "Воин",
         hitDie: 10,
         saves: ["str", "con"],
-        prof: "Все доспехи, щиты, простое и воинское оружие",
-        defaultSkills: ["athletics", "perception", "intimidation", "survival"],
+        skills: ["athletics", "perception"],
         expertise: [],
-        order: ["str", "con", "dex", "wis", "cha", "int"],
-        features: [
-          { name:"Второе дыхание", mode:"combat", text:"Можно немного восстановить здоровье в бою." },
-          { name:"Боевой стиль", mode:"combat", text:"Выбирается отдельно и задаёт стиль боя." }
-        ]
+        weapon: "Меч",
+        weaponDie: "1к8",
+        features: [["Второе дыхание", "Можешь восстановить немного хитов."]]
       },
       wizard: {
         name: "Волшебник",
         hitDie: 6,
         saves: ["int", "wis"],
-        prof: "Кинжалы, посохи, дротики, пращи, лёгкие арбалеты",
-        defaultSkills: ["arcana", "history", "investigation", "religion"],
+        skills: ["arcana", "investigation"],
         expertise: [],
-        order: ["int", "con", "dex", "wis", "cha", "str"],
-        features: [
-          { name:"Заклинания", mode:"both", text:"Основная сила волшебника. Нужно выбрать заклинания отдельно." },
-          { name:"Книга заклинаний", mode:"explore", text:"В ней записаны доступные заклинания." }
-        ]
+        weapon: "Посох",
+        weaponDie: "1к6",
+        features: [["Заклинания", "Основная сила — магия."]]
       },
       cleric: {
         name: "Жрец",
         hitDie: 8,
         saves: ["wis", "cha"],
-        prof: "Простое оружие, лёгкие и средние доспехи, щиты",
-        defaultSkills: ["insight", "medicine", "persuasion", "religion"],
+        skills: ["insight", "medicine"],
         expertise: [],
-        order: ["wis", "con", "str", "cha", "dex", "int"],
-        features: [
-          { name:"Заклинания", mode:"both", text:"Жрец умеет лечить, защищать и наносить урон магией." },
-          { name:"Божественный домен", mode:"both", text:"Выбирается отдельно и задаёт стиль жреца." }
-        ]
+        weapon: "Булава",
+        weaponDie: "1к6",
+        features: [["Лечение", "Можешь помогать союзникам и лечить."]]
       }
     };
 
     const BACKGROUNDS = {
-      criminal: { name:"Преступник", skills:["deception","stealth"] },
-      charlatan: { name:"Шарлатан", skills:["deception","sleight"] },
-      urchin: { name:"Беспризорник", skills:["sleight","stealth"] },
-      folkHero: { name:"Народный герой", skills:["animal","survival"] }
+      criminal: "Преступник",
+      charlatan: "Шарлатан",
+      urchin: "Беспризорник",
+      folk: "Народный герой"
     };
 
-    const ALIGNMENTS = {
-      lg:["Законно-добрый","Делает добро и уважает правила."],
-      ng:["Нейтрально-добрый","Старается делать добро, даже если правила мешают."],
-      cg:["Хаотично-добрый","Добрый, но свободолюбивый. Может нарушить закон ради правильного дела."],
-      ln:["Законно-нейтральный","Важны порядок, договоры, традиции или кодекс."],
-      n:["Истинно-нейтральный","Действует по ситуации и личной логике."],
-      cn:["Хаотично-нейтральный","Любит свободу, действует непредсказуемо, не любит контроль."],
-      le:["Законно-злой","Злодей с правилами. Использует закон, власть или договоры ради себя."],
-      ne:["Нейтрально-злой","Думает о выгоде и себе."],
-      ce:["Хаотично-злой","Опасный и разрушительный. Для новичка лучше не брать без согласия мастера."]
+    const SKILLS = {
+      stealth: ["Скрытность", "dex"],
+      sleight: ["Ловкость рук", "dex"],
+      deception: ["Обман", "cha"],
+      acrobatics: ["Акробатика", "dex"],
+      perception: ["Восприятие", "wis"],
+      investigation: ["Расследование", "int"],
+      insight: ["Проницательность", "wis"],
+      persuasion: ["Убеждение", "cha"],
+      intimidation: ["Запугивание", "cha"],
+      athletics: ["Атлетика", "str"],
+      medicine: ["Медицина", "wis"],
+      arcana: ["Магия", "int"]
     };
 
-    const WEAPONS = {
-      rapier: { name:"Рапира", die:"1к8", stat:"dex", type:"колющий" },
-      dagger: { name:"Кинжал", die:"1к4", stat:"dex", type:"колющий", note:"можно метать 20/60 футов" },
-      shortbow: { name:"Короткий лук", die:"1к6", stat:"dex", type:"колющий", note:"дистанция 80/320 футов" },
-      shortsword: { name:"Короткий меч", die:"1к6", stat:"dex", type:"колющий" },
-      club: { name:"Дубинка", die:"1к4", stat:"str", type:"дробящий" },
-      staff: { name:"Посох", die:"1к6", stat:"str", type:"дробящий" }
+    const stateDefault = {
+      screen: "gameScreen",
+      mode: "combat",
+      name: "Мускат",
+      classKey: "rogue",
+      raceKey: "halfling",
+      bgKey: "criminal",
+      hp: 9,
+      tempHp: 0,
+      stats: {
+        str: 8,
+        dex: 15,
+        con: 13,
+        int: 10,
+        wis: 12,
+        cha: 14
+      },
+      coins: {
+        cp: 0,
+        sp: 0,
+        ep: 0,
+        gp: 15,
+        pp: 0
+      },
+      items: [
+        { name: "Воровские инструменты", qty: 1 },
+        { name: "Кинжал", qty: 2 },
+        { name: "Стрелы", qty: 20 }
+      ],
+      notes: ""
     };
 
-    const CONDITIONS = ["Испуган","Отравлен","Сбит с ног","Ослеплён","Оглушён","Парализован","Невидим","Опутан","Очарован","Без сознания","Ошеломлён","Недееспособен"];
+    let state = load();
 
-    function defaultRuntime() {
-      return {
-        mode:"combat",
-        currentHp:9,
-        tempHp:0,
-        hitDiceUsed:0,
-        inspiration:false,
-        deathSaves:{ success:0, fail:0 },
-        ammo:{ arrows:20, bolts:0 },
-        coins:{ cp:0, sp:0, ep:0, gp:15, pp:0 },
-        inventory:[
-          { name:"Воровские инструменты", qty:1, note:"вскрытие замков и ловушек" },
-          { name:"Тёмная одежда с капюшоном", qty:1, note:"для скрытности" }
-        ],
-        conditions:[],
-        notes:""
-      };
+    function load() {
+      try {
+        return { ...stateDefault, ...JSON.parse(localStorage.getItem(STORAGE_KEY)) };
+      } catch {
+        return structuredClone(stateDefault);
+      }
     }
-
-    function defaultCharacter() {
-      return {
-        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random()),
-        name:"Мускат",
-        player:"",
-        classKey:"rogue",
-        raceKey:"lightfootHalfling",
-        backgroundKey:"criminal",
-        level:1,
-        xp:0,
-        alignment:"cg",
-        rolls:[15,14,13,12,10,8],
-        base:{ str:8, dex:15, con:13, int:10, wis:12, cha:14 },
-        weapon1:"rapier",
-        weapon2:"dagger",
-        weapon3:"shortbow",
-        equipment:"Кожаный доспех, рапира, короткий лук, 20 стрел, 2 кинжала, воровские инструменты, тёмная одежда с капюшоном.",
-        personality:"Я говорю спокойно, но всегда смотрю, где выход и кто за мной наблюдает.",
-        ideals:"Свобода важнее правил. Иногда закон мешает сделать правильно.",
-        bonds:"Я защищаю тех, кто однажды помог мне.",
-        flaws:"Не могу пройти мимо лёгкой наживы.",
-        runtime:defaultRuntime()
-      };
-    }
-
-    let state = { currentId:null, characters:[] };
-    const $ = id => document.getElementById(id);
 
     function save() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
-    function load() {
-      try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-        if (saved && saved.characters && saved.characters.length) {
-          state = saved;
-          state.characters.forEach(normalizeCharacter);
-          if (!state.currentId) state.currentId = state.characters[0].id;
-          save();
-          return;
-        }
-      } catch(e) {}
-
-      const c = defaultCharacter();
-      state = { currentId:c.id, characters:[c] };
-      save();
-    }
-
-    function normalizeCharacter(c) {
-      const d = defaultCharacter();
-      c.base = { ...d.base, ...(c.base || {}) };
-      c.rolls = c.rolls || d.rolls;
-      c.runtime = { ...defaultRuntime(), ...(c.runtime || {}) };
-      c.runtime.deathSaves = { ...defaultRuntime().deathSaves, ...(c.runtime.deathSaves || {}) };
-      c.runtime.ammo = { ...defaultRuntime().ammo, ...(c.runtime.ammo || {}) };
-      c.runtime.coins = { ...defaultRuntime().coins, ...(c.runtime.coins || {}) };
-      c.runtime.inventory = c.runtime.inventory || [];
-      c.runtime.conditions = c.runtime.conditions || [];
-    }
-
-    function current() {
-      let c = state.characters.find(x => x.id === state.currentId);
-      if (!c) {
-        c = state.characters[0] || defaultCharacter();
-        state.currentId = c.id;
-      }
-      normalizeCharacter(c);
-      return c;
-    }
-
-    function cls(c=current()) { return CLASSES[c.classKey] || CLASSES.rogue; }
-    function race(c=current()) { return RACES[c.raceKey] || RACES.lightfootHalfling; }
-    function bg(c=current()) { return BACKGROUNDS[c.backgroundKey] || BACKGROUNDS.criminal; }
-
-    function pb(c=current()) {
-      const lvl = Number(c.level || 1);
-      if (lvl >= 17) return 6;
-      if (lvl >= 13) return 5;
-      if (lvl >= 9) return 4;
-      if (lvl >= 5) return 3;
-      return 2;
+    function $(id) {
+      return document.getElementById(id);
     }
 
     function mod(score) {
-      return Math.floor((Number(score || 0) - 10) / 2);
+      return Math.floor((Number(score) - 10) / 2);
     }
 
     function fmt(n) {
-      n = Number(n || 0);
+      n = Number(n);
       return n >= 0 ? "+" + n : String(n);
     }
 
-    function totalAbility(c,key) {
-      return Number(c.base[key] || 0) + Number(race(c).bonuses[key] || 0);
+    function race() {
+      return RACES[state.raceKey] || RACES.halfling;
     }
 
-    function abilityMod(c,key) {
-      return mod(totalAbility(c,key));
+    function klass() {
+      return CLASSES[state.classKey] || CLASSES.rogue;
     }
 
-    function profSkills(c) {
-      const s = new Set();
-      cls(c).defaultSkills.forEach(x => s.add(x));
-      bg(c).skills.forEach(x => s.add(x));
-      return [...s];
+    function totalStat(key) {
+      return Number(state.stats[key] || 0) + Number(race().bonuses[key] || 0);
     }
 
-    function skillBonus(c,key) {
-      const ability = SKILLS[key][1];
-      let value = abilityMod(c,ability);
-      if (profSkills(c).includes(key)) value += pb(c);
-      if (cls(c).expertise.includes(key)) value += pb(c);
-      return value;
+    function statMod(key) {
+      return mod(totalStat(key));
     }
 
-    function computed(c=current()) {
-      const cl = cls(c);
-      const dex = abilityMod(c,"dex");
-      const con = abilityMod(c,"con");
-      const skills = {};
-      const saves = {};
-
-      Object.keys(SKILLS).forEach(k => skills[k] = skillBonus(c,k));
-      Object.keys(ABILITIES).forEach(k => saves[k] = abilityMod(c,k) + (cl.saves.includes(k) ? pb(c) : 0));
-
-      let ac = 10 + dex;
-      if (c.classKey === "rogue") ac = 11 + dex;
-      if (c.classKey === "fighter") ac = 16;
-      if (c.classKey === "cleric") ac = 16;
-
-      return {
-        pb:pb(c),
-        ac,
-        maxHp:Math.max(1, cl.hitDie + con),
-        hitDie:cl.hitDie,
-        initiative:dex,
-        speed:race(c).speed,
-        passivePerception:10 + skills.perception,
-        skills,
-        saves
-      };
+    function proficiency() {
+      return 2;
     }
 
-    function weaponCalc(c,key) {
-      const w = WEAPONS[key] || WEAPONS.rapier;
-      const co = computed(c);
-      const m = abilityMod(c,w.stat);
-      const attack = m + co.pb;
-      const damage = `${w.die}${fmt(m)} ${w.type}`;
-      const sneak = c.classKey === "rogue" ? " + 1к6 скрытая атака" : "";
-      return { w, attack, damage, sneak };
+    function maxHp() {
+      return Math.max(1, klass().hitDie + statMod("con"));
     }
 
-    function escapeHTML(str) {
-      return String(str ?? "").replace(/[&<>"']/g, m => ({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
+    function ac() {
+      if (state.classKey === "rogue") return 11 + statMod("dex");
+      if (state.classKey === "fighter") return 16;
+      if (state.classKey === "cleric") return 16;
+      return 10 + statMod("dex");
+    }
+
+    function attackBonus() {
+      return statMod("dex") + proficiency();
+    }
+
+    function skillBonus(key) {
+      const skill = SKILLS[key];
+      if (!skill) return 0;
+
+      let bonus = statMod(skill[1]);
+
+      if (klass().skills.includes(key)) bonus += proficiency();
+      if (klass().expertise.includes(key)) bonus += proficiency();
+
+      return bonus;
+    }
+
+    function syncHp() {
+      state.hp = Math.max(0, Math.min(Number(state.hp || 0), maxHp()));
+      state.tempHp = Math.max(0, Number(state.tempHp || 0));
+    }
+
+    function icon(name) {
+      return `<div class="icon">${ICONS[name] || ""}</div>`;
+    }
+
+    function escapeText(text) {
+      return String(text ?? "").replace(/[&<>"']/g, m => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
       }[m]));
     }
 
-    function setupSelects() {
-      $("classKey").innerHTML = Object.entries(CLASSES).map(([k,v]) => `<option value="${k}">${v.name}</option>`).join("");
-      $("raceKey").innerHTML = Object.entries(RACES).map(([k,v]) => `<option value="${k}">${v.name}</option>`).join("");
-      $("backgroundKey").innerHTML = Object.entries(BACKGROUNDS).map(([k,v]) => `<option value="${k}">${v.name}</option>`).join("");
-      $("alignment").innerHTML = Object.entries(ALIGNMENTS).map(([k,v]) => `<option value="${k}">${v[0]}</option>`).join("");
+    function render() {
+      syncHp();
 
-      const weapons = Object.entries(WEAPONS).map(([k,v]) => `<option value="${k}">${v.name}</option>`).join("");
-      $("weapon1").innerHTML = weapons;
-      $("weapon2").innerHTML = weapons;
-      $("weapon3").innerHTML = weapons;
-    }
+      document.querySelectorAll(".screen").forEach(el => el.classList.remove("active"));
+      $(state.screen).classList.add("active");
 
-    function hydrateInputs() {
-      document.querySelectorAll("[data-bind]").forEach(el => {
-        el.addEventListener("input", () => {
-          const c = current();
-          const key = el.dataset.bind;
-          c[key] = el.type === "number" ? Number(el.value) : el.value;
-          if (key === "classKey") autoAssign(false);
-          save();
-          render();
-        });
-      });
-    }
-
-    function renderInputs(c) {
-      document.querySelectorAll("[data-bind]").forEach(el => {
-        const key = el.dataset.bind;
-        el.value = c[key] ?? "";
+      document.querySelectorAll(".nav button").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.screen === state.screen);
       });
 
-      $("alignmentHint").textContent = ALIGNMENTS[c.alignment]?.[1] || "";
-    }
-
-    function renderRolls(c) {
-      const labels = ["Бросок 1","Бросок 2","Бросок 3","Бросок 4","Бросок 5","Бросок 6"];
-
-      $("rollFields").innerHTML = labels.map((label,i) => `
-        <div class="field">
-          <label>${label}</label>
-          <input type="number" min="3" max="18" value="${c.rolls[i] || ""}" data-roll="${i}" placeholder="например 15">
-          <small>Впиши число с кубиков.</small>
-        </div>
-      `).join("");
-
-      document.querySelectorAll("[data-roll]").forEach(input => {
-        input.addEventListener("input", () => {
-          const c = current();
-          c.rolls[Number(input.dataset.roll)] = Number(input.value || 0);
-          save();
-          render();
-        });
-      });
-    }
-
-    function renderPills(c) {
-      const r = race(c);
-      const cl = cls(c);
-      const bonuses = Object.entries(r.bonuses).map(([k,v]) => `${ABILITIES[k][0]} +${v}`).join(", ");
-
-      $("raceClassPills").innerHTML = `
-        <span class="pill">Раса: ${r.name}</span>
-        <span class="pill">Класс: ${cl.name}</span>
-        <span class="pill">Размер: ${r.size}</span>
-        <span class="pill">Скорость: ${r.speed} футов</span>
-        <span class="pill">Бонусы: ${bonuses || "нет"}</span>
-        <span class="pill">Бонус мастерства: ${fmt(pb(c))}</span>
-      `;
-
-      $("baseSummary").textContent = `${c.name || "Без имени"} · ${cl.name} · ${r.name}`;
-    }
-
-    function renderStats(c) {
-      $("statsView").innerHTML = Object.entries(ABILITIES).map(([k,v]) => {
-        const base = Number(c.base[k] || 0);
-        const rb = Number(race(c).bonuses[k] || 0);
-        const total = totalAbility(c,k);
-        const m = abilityMod(c,k);
-
-        return `
-          <div class="stat">
-            <div class="name">${v[0]}</div>
-            <div class="score">${total}</div>
-            <div class="mod">${fmt(m)}</div>
-            <div class="base">база ${base}${rb ? ` + раса ${rb}` : ""}</div>
-          </div>
-        `;
-      }).join("");
-
-      $("statsSummary").textContent = `Лов ${totalAbility(c,"dex")} ${fmt(abilityMod(c,"dex"))} · Хар ${totalAbility(c,"cha")} ${fmt(abilityMod(c,"cha"))} · Тел ${totalAbility(c,"con")} ${fmt(abilityMod(c,"con"))}`;
-    }
-
-    function renderSkills(c) {
-      const prof = profSkills(c);
-      const exp = cls(c).expertise;
-
-      $("skillsView").innerHTML = Object.entries(SKILLS).map(([k,v]) => {
-        let mark = "○";
-        if (prof.includes(k)) mark = "●";
-        if (exp.includes(k)) mark = "★";
-
-        return `
-          <div class="skill">
-            <span>${mark} ${v[0]} <small style="color:#888;">(${ABILITIES[v[1]][1]})</small></span>
-            <b>${fmt(skillBonus(c,k))}</b>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function renderWeapons(c) {
-      const list = [c.weapon1,c.weapon2,c.weapon3].map(k => weaponCalc(c,k));
-
-      $("weaponsView").innerHTML = `
-        <div class="weapon-row head">
-          <div>Оружие</div>
-          <div>Атака</div>
-          <div>Урон</div>
-        </div>
-        ${list.map(({w,attack,damage,sneak}) => `
-          <div class="weapon-row">
-            <div>
-              <b>${w.name}</b>
-              <div class="hint">${w.note || ""}</div>
-            </div>
-            <div><b>${fmt(attack)}</b></div>
-            <div>${damage}${sneak ? `<div class="hint">${sneak}</div>` : ""}</div>
-          </div>
-        `).join("")}
-      `;
-    }
-
-    function renderQuick(c) {
-      const co = computed(c);
-      const rt = c.runtime;
-
-      $("quickStats").innerHTML = `
-        <div class="mini"><span>КД</span><b>${co.ac}</b></div>
-        <div class="mini"><span>Хиты</span><b>${rt.currentHp}/${co.maxHp}</b></div>
-        <div class="mini"><span>Инициатива</span><b>${fmt(co.initiative)}</b></div>
-        <div class="mini"><span>Скорость</span><b>${co.speed}</b></div>
-      `;
-    }
-
-    function renderCombatTips(c) {
-      const co = computed(c);
-      const rt = c.runtime;
-      const main = weaponCalc(c,c.weapon1);
-
-      $("combatTips").innerHTML = `
-        <details class="tip" open>
-          <summary>Атака оружием <span>${fmt(main.attack)}</span></summary>
-          <p>Скажи, кого и чем атакуешь. Например: “Бью рапирой”.</p>
-          <div class="formula">Атака: к20 ${fmt(main.attack)}</div>
-        </details>
-
-        <details class="tip" open>
-          <summary>Урон <span>${main.w.die}</span></summary>
-          <p>Если попал, кидай урон.</p>
-          <div class="formula">Урон: ${main.damage}</div>
-        </details>
-
-        <details class="tip" open>
-          <summary>Скрытая атака <span>+1к6</span></summary>
-          <p>Добавь +1к6 урона один раз за ход, если рядом с врагом союзник или у тебя преимущество.</p>
-          <div class="formula">${main.damage} + 1к6</div>
-        </details>
-
-        <details class="tip">
-          <summary>Инициатива <span>${fmt(co.initiative)}</span></summary>
-          <p>В начале боя мастер говорит: “Кидайте инициативу”.</p>
-          <div class="formula">к20 ${fmt(co.initiative)}</div>
-        </details>
-
-        <details class="tip">
-          <summary>Если тебя ударили <span>${rt.currentHp}/${co.maxHp}</span></summary>
-          <p>Введи урон справа или в нижней панели.</p>
-        </details>
-      `;
-    }
-
-    function renderExploreTips(c) {
-      const co = computed(c);
-
-      $("exploreTips").innerHTML = `
-        <details class="tip" open>
-          <summary>Скрытно пройти <span>${fmt(co.skills.stealth)}</span></summary>
-          <p>Красться, спрятаться, следить за кем-то, пройти незаметно.</p>
-          <div class="formula">Скрытность: к20 ${fmt(co.skills.stealth)}</div>
-        </details>
-
-        <details class="tip" open>
-          <summary>Украсть / спрятать предмет <span>${fmt(co.skills.sleight)}</span></summary>
-          <p>Незаметно взять ключ, спрятать кинжал, подменить предмет.</p>
-          <div class="formula">Ловкость рук: к20 ${fmt(co.skills.sleight)}</div>
-        </details>
-
-        <details class="tip" open>
-          <summary>Вскрыть замок <span>${fmt(abilityMod(c,"dex") + co.pb)}</span></summary>
-          <p>Скажи мастеру: “Пробую вскрыть замок воровскими инструментами”.</p>
-          <div class="formula">Воровские инструменты: к20 ${fmt(abilityMod(c,"dex") + co.pb)}</div>
-        </details>
-      `;
-    }
-
-    function renderSituationTips(c) {
-      const co = computed(c);
-
-      const rows = [
-        ["Стражник спрашивает, я вру", "Обман", co.skills.deception],
-        ["Хочу договориться честно", "Убеждение", co.skills.persuasion],
-        ["Хочу понять, врёт ли персонаж", "Проницательность", co.skills.insight],
-        ["Хочу услышать шаги за дверью", "Восприятие", co.skills.perception],
-        ["Хочу найти тайник", "Расследование", co.skills.investigation],
-        ["Хочу запугать бандита", "Запугивание", co.skills.intimidation]
-      ];
-
-      $("situationTips").innerHTML = rows.map(([text,skill,bonus]) => `
-        <details class="tip">
-          <summary>${text} <span>${fmt(bonus)}</span></summary>
-          <div class="formula">${skill}: к20 ${fmt(bonus)}</div>
-        </details>
-      `).join("");
-    }
-
-    function renderFeatures(c) {
-      const all = [...race(c).features, ...cls(c).features];
-
-      function make(mode) {
-        return all
-          .filter(f => f.mode === mode || f.mode === "both")
-          .map(f => `
-            <details class="tip" open>
-              <summary>${f.name}<span>${f.mode === "both" ? "всегда" : mode === "combat" ? "бой" : "вне боя"}</span></summary>
-              <p>${f.text}</p>
-            </details>
-          `).join("");
-      }
-
-      $("combatFeatures").innerHTML = make("combat");
-      $("exploreFeatures").innerHTML = make("explore");
-    }
-
-    function renderTracker(c) {
-      const co = computed(c);
-      const rt = c.runtime;
-
-      rt.currentHp = Math.max(0, Math.min(Number(rt.currentHp || 0), co.maxHp));
-      rt.tempHp = Math.max(0, Number(rt.tempHp || 0));
-
-      $("tempHp").value = rt.tempHp;
-      $("arrows").value = rt.ammo.arrows || 0;
-      $("bolts").value = rt.ammo.bolts || 0;
-      $("sessionNotes").value = rt.notes || "";
-
-      const coinNames = { cp:"медь", sp:"серебро", ep:"электрум", gp:"золото", pp:"платина" };
-
-      $("coinsView").innerHTML = Object.entries(coinNames).map(([k,name]) => `
-        <div class="money">
-          <span>${name}</span>
-          <b>${rt.coins[k] || 0}</b>
-        </div>
-      `).join("");
-
-      $("coinsSummary").textContent = `золото ${rt.coins.gp || 0} · серебро ${rt.coins.sp || 0} · медь ${rt.coins.cp || 0}`;
-
-      renderDeathButtons();
-      renderInventory();
-      renderConditions();
-      renderDock();
+      renderGame();
+      renderCharacter();
+      renderBag();
+      renderSheet();
 
       save();
     }
 
-    function renderDeathButtons() {
-      const c = current();
-      const ds = c.runtime.deathSaves;
+    function renderGame() {
+      $("combatBtn").classList.toggle("active", state.mode === "combat");
+      $("peaceBtn").classList.toggle("active", state.mode === "peace");
 
-      $("deathSuccessBtns").innerHTML = [1,2,3].map(n => `
-        <button class="small-btn ${ds.success >= n ? "white" : ""}" data-death-success="${n}">${n}</button>
-      `).join("");
+      const hpPercent = Math.max(0, Math.min(100, state.hp / maxHp() * 100));
 
-      $("deathFailBtns").innerHTML = [1,2,3].map(n => `
-        <button class="small-btn ${ds.fail >= n ? "white" : ""}" data-death-fail="${n}">${n}</button>
-      `).join("");
+      if (state.mode === "combat") {
+        $("gameContent").innerHTML = `
+          <div class="stat-row">
+            <div class="stat"><span>Хиты</span><b>${state.hp}/${maxHp()}</b></div>
+            <div class="stat"><span>КД</span><b>${ac()}</b></div>
+            <div class="stat"><span>Иниц.</span><b>${fmt(statMod("dex"))}</b></div>
+            <div class="stat"><span>Атака</span><b>${fmt(attackBonus())}</b></div>
+            <div class="stat"><span>Скорость</span><b>${race().speed}</b></div>
+          </div>
 
-      document.querySelectorAll("[data-death-success]").forEach(btn => {
-        btn.onclick = () => {
-          current().runtime.deathSaves.success = Number(btn.dataset.deathSuccess);
-          save();
-          render();
-        };
-      });
+          <div class="grid two">
+            <div class="card big-hp">
+              ${icon("heart")}
+              <span>Моё здоровье</span>
+              <b>${state.hp}</b>
+              <div class="hp-bar"><div class="hp-fill" style="width:${hpPercent}%"></div></div>
+              <p class="hint">Максимум ${maxHp()} · временные хиты ${state.tempHp}</p>
+            </div>
 
-      document.querySelectorAll("[data-death-fail]").forEach(btn => {
-        btn.onclick = () => {
-          current().runtime.deathSaves.fail = Number(btn.dataset.deathFail);
-          save();
-          render();
-        };
-      });
+            <div class="card">
+              <h3>Если меня ударили</h3>
+
+              <div class="field">
+                <label>Сколько урона</label>
+                <input id="damageInput" type="number" placeholder="например 5">
+              </div>
+
+              <button class="btn main" onclick="takeDamage()">Внести урон</button>
+
+              <div class="field" style="margin-top:14px;">
+                <label>Сколько вылечили</label>
+                <input id="healInput" type="number" placeholder="например 4">
+              </div>
+
+              <button class="btn" onclick="heal()">Внести лечение</button>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>Мой ход в бою</h3>
+
+            <div class="grid three">
+              <div class="quick-action">
+                ${icon("sword")}
+                <b>1. Атакую</b>
+                <p>Кидай к20 и прибавь бонус атаки.</p>
+                <div class="formula">к20 ${fmt(attackBonus())}</div>
+              </div>
+
+              <div class="quick-action">
+                ${icon("sword")}
+                <b>2. Если попал</b>
+                <p>Кидай урон оружия.</p>
+                <div class="formula">${klass().weapon}: ${klass().weaponDie}${fmt(statMod("dex"))}</div>
+              </div>
+
+              <div class="quick-action">
+                ${icon("eye")}
+                <b>3. Скрытая атака</b>
+                <p>Если рядом с врагом союзник или есть преимущество.</p>
+                <div class="formula">+1к6 урона</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>Не забыть</h3>
+            <div class="grid two">
+              ${renderFeatureCards()}
+            </div>
+          </div>
+        `;
+      } else {
+        $("gameContent").innerHTML = `
+          <div class="stat-row">
+            <div class="stat"><span>Скрытность</span><b>${fmt(skillBonus("stealth"))}</b></div>
+            <div class="stat"><span>Руки</span><b>${fmt(skillBonus("sleight"))}</b></div>
+            <div class="stat"><span>Обман</span><b>${fmt(skillBonus("deception"))}</b></div>
+            <div class="stat"><span>Восприятие</span><b>${fmt(skillBonus("perception"))}</b></div>
+            <div class="stat"><span>Замки</span><b>${fmt(statMod("dex") + proficiency())}</b></div>
+          </div>
+
+          <div class="card">
+            <h3>Что я могу делать</h3>
+
+            <div class="grid three">
+              <div class="quick-action">
+                ${icon("eye")}
+                <b>Скрытно пройти</b>
+                <p>Красться, спрятаться, пройти мимо охраны.</p>
+                <div class="formula">Скрытность: к20 ${fmt(skillBonus("stealth"))}</div>
+              </div>
+
+              <div class="quick-action">
+                ${icon("hand")}
+                <b>Украсть / спрятать</b>
+                <p>Взять ключ, спрятать предмет, подменить вещь.</p>
+                <div class="formula">Ловкость рук: к20 ${fmt(skillBonus("sleight"))}</div>
+              </div>
+
+              <div class="quick-action">
+                ${icon("lock")}
+                <b>Открыть замок</b>
+                <p>Используй воровские инструменты.</p>
+                <div class="formula">к20 ${fmt(statMod("dex") + proficiency())}</div>
+              </div>
+
+              <div class="quick-action">
+                ${icon("talk")}
+                <b>Соврать</b>
+                <p>Обмануть стражника или придумать легенду.</p>
+                <div class="formula">Обман: к20 ${fmt(skillBonus("deception"))}</div>
+              </div>
+
+              <div class="quick-action">
+                ${icon("eye")}
+                <b>Заметить</b>
+                <p>Ловушка, шаги за дверью, слежка, опасность.</p>
+                <div class="formula">Восприятие: к20 ${fmt(skillBonus("perception"))}</div>
+              </div>
+
+              <div class="quick-action">
+                ${icon("talk")}
+                <b>Понять человека</b>
+                <p>Врёт он или говорит правду.</p>
+                <div class="formula">Проницательность: к20 ${fmt(skillBonus("insight"))}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>Не забыть</h3>
+            <div class="grid two">
+              ${renderFeatureCards()}
+            </div>
+          </div>
+        `;
+      }
     }
 
-    function renderInventory() {
-      const c = current();
-      const inv = c.runtime.inventory || [];
+    function renderFeatureCards() {
+      const all = [...race().features, ...klass().features];
 
-      $("inventoryView").innerHTML = inv.length ? inv.map((item,i) => `
-        <div class="item-row">
-          <input value="${escapeHTML(item.name)}" data-item-name="${i}">
-          <input type="number" min="0" value="${Number(item.qty || 1)}" data-item-qty="${i}">
-          <input value="${escapeHTML(item.note || "")}" data-item-note="${i}">
-          <button class="small-btn" data-item-delete="${i}">×</button>
+      return all.map(([name, text]) => `
+        <div class="feature">
+          <b>${name}</b>
+          <p>${text}</p>
         </div>
-      `).join("") : `<div class="empty">Пока нет предметов.</div>`;
-
-      document.querySelectorAll("[data-item-name]").forEach(input => {
-        input.oninput = () => {
-          c.runtime.inventory[Number(input.dataset.itemName)].name = input.value;
-          save();
-        };
-      });
-
-      document.querySelectorAll("[data-item-qty]").forEach(input => {
-        input.oninput = () => {
-          c.runtime.inventory[Number(input.dataset.itemQty)].qty = Number(input.value || 0);
-          save();
-          renderSheet(c);
-        };
-      });
-
-      document.querySelectorAll("[data-item-note]").forEach(input => {
-        input.oninput = () => {
-          c.runtime.inventory[Number(input.dataset.itemNote)].note = input.value;
-          save();
-        };
-      });
-
-      document.querySelectorAll("[data-item-delete]").forEach(btn => {
-        btn.onclick = () => {
-          c.runtime.inventory.splice(Number(btn.dataset.itemDelete),1);
-          save();
-          render();
-        };
-      });
+      `).join("");
     }
 
-    function renderConditions() {
-      const c = current();
+    function renderCharacter() {
+      $("nameInput").value = state.name;
+      $("classInput").value = state.classKey;
+      $("raceInput").value = state.raceKey;
+      $("bgInput").value = state.bgKey;
 
-      $("conditionsView").innerHTML = CONDITIONS.map(name => {
-        const active = c.runtime.conditions.includes(name);
-        return `<button class="condition ${active ? "active" : ""}" data-condition="${name}">${name}</button>`;
-      }).join("");
-
-      document.querySelectorAll("[data-condition]").forEach(btn => {
-        btn.onclick = () => {
-          const name = btn.dataset.condition;
-          const arr = c.runtime.conditions;
-
-          if (arr.includes(name)) c.runtime.conditions = arr.filter(x => x !== name);
-          else c.runtime.conditions.push(name);
-
-          save();
-          render();
-        };
-      });
+      $("strInput").value = state.stats.str;
+      $("dexInput").value = state.stats.dex;
+      $("conInput").value = state.stats.con;
+      $("intInput").value = state.stats.int;
+      $("wisInput").value = state.stats.wis;
+      $("chaInput").value = state.stats.cha;
     }
 
-    function renderDock() {
-      const c = current();
-      const co = computed(c);
-      const rt = c.runtime;
-      const main = weaponCalc(c,c.weapon1);
-      const mode = rt.mode || "combat";
+    function renderBag() {
+      const coinNames = {
+        cp: "медь",
+        sp: "серебро",
+        ep: "электрум",
+        gp: "золото",
+        pp: "платина"
+      };
 
-      const chips = [
-        `режим <b>${mode === "combat" ? "бой" : "вне боя"}</b>`,
-        `хиты <b>${rt.currentHp}/${co.maxHp}</b>`,
-        `КД <b>${co.ac}</b>`,
-        `иниц. <b>${fmt(co.initiative)}</b>`,
-        `лов <b>${fmt(abilityMod(c,"dex"))}</b>`,
-        `мдр <b>${fmt(abilityMod(c,"wis"))}</b>`,
-        `хар <b>${fmt(abilityMod(c,"cha"))}</b>`
+      $("moneyView").innerHTML = Object.entries(coinNames).map(([key, label]) => `
+        <div class="coin">
+          <span>${label}</span>
+          <b>${state.coins[key] || 0}</b>
+        </div>
+      `).join("");
+
+      $("itemsView").innerHTML = state.items.map((item, index) => `
+        <div class="item">
+          <input value="${escapeText(item.name)}" onchange="changeItemName(${index}, this.value)">
+          <input type="number" value="${item.qty}" min="0" onchange="changeItemQty(${index}, this.value)">
+          <button class="btn danger" onclick="deleteItem(${index})">×</button>
+        </div>
+      `).join("");
+
+      $("notesInput").value = state.notes || "";
+    }
+
+    function renderSheet() {
+      const skills = [
+        ["Скрытность", skillBonus("stealth")],
+        ["Ловкость рук", skillBonus("sleight")],
+        ["Обман", skillBonus("deception")],
+        ["Восприятие", skillBonus("perception")],
+        ["Взлом", statMod("dex") + proficiency()]
       ];
-
-      if (mode === "combat") {
-        chips.push(`атака <b>${fmt(main.attack)}</b>`);
-        chips.push(`урон <b>${main.w.die}</b>`);
-      } else {
-        chips.push(`скрытн. <b>${fmt(co.skills.stealth)}</b>`);
-        chips.push(`руки <b>${fmt(co.skills.sleight)}</b>`);
-        chips.push(`обман <b>${fmt(co.skills.deception)}</b>`);
-      }
-
-      $("dockStats").innerHTML = chips.map(x => `<div class="dock-chip">${x}</div>`).join("");
-
-      if (mode === "combat") {
-        $("dockModeInfo").innerHTML = `
-          <h3>Быстро в бою</h3>
-          <p class="hint">Атака: к20 ${fmt(main.attack)}. Урон: ${main.damage}. Скрытая атака: +1к6 при условии.</p>
-          <div class="formula">Спасброски: Ловкость к20 ${fmt(co.saves.dex)} · Интеллект к20 ${fmt(co.saves.int)}</div>
-        `;
-      } else {
-        $("dockModeInfo").innerHTML = `
-          <h3>Быстро вне боя</h3>
-          <p class="hint">Скрытность ${fmt(co.skills.stealth)}, Ловкость рук ${fmt(co.skills.sleight)}, Обман ${fmt(co.skills.deception)}, Восприятие ${fmt(co.skills.perception)}.</p>
-          <div class="formula">Замки: к20 ${fmt(abilityMod(c,"dex") + co.pb)}</div>
-        `;
-      }
-
-      $("modeSummary").textContent = mode === "combat" ? "Сейчас показываются боевые параметры" : "Сейчас показываются проверки вне боя";
-    }
-
-    function renderSheet(c) {
-      const co = computed(c);
-      const rt = c.runtime;
-      const r = race(c);
-      const cl = cls(c);
-      const b = bg(c);
-      const weapons = [c.weapon1,c.weapon2,c.weapon3].map(k => weaponCalc(c,k));
-
-      const stats = Object.entries(ABILITIES).map(([k,v]) => `
-        <div class="paper-row"><span>${v[0]}</span><b>${totalAbility(c,k)} (${fmt(abilityMod(c,k))})</b></div>
-      `).join("");
-
-      const skills = Object.entries(SKILLS).map(([k,v]) => `
-        <div class="paper-row"><span>${v[0]}</span><b>${fmt(co.skills[k])}</b></div>
-      `).join("");
-
-      const attacks = weapons.map(({w,attack,damage}) => `
-        <div class="paper-row"><span>${w.name} · ${damage}</span><b>${fmt(attack)}</b></div>
-      `).join("");
-
-      const features = [...r.features,...cl.features].map(f => `
-        <p style="margin:0 0 5px;font-size:11px;"><b>${f.name}:</b> ${f.text}</p>
-      `).join("");
-
-      const coins = `Медь ${rt.coins.cp}, Серебро ${rt.coins.sp}, Электрум ${rt.coins.ep}, Золото ${rt.coins.gp}, Платина ${rt.coins.pp}`;
 
       $("printSheet").innerHTML = `
-        <div class="paper-box paper-title">
-          <span>Имя персонажа</span>
-          <b>${escapeHTML(c.name || "Безымянный")}</b>
-          <p style="margin:6px 0 0;font-size:12px;">${cl.name} ${c.level} · ${r.name} · ${b.name}</p>
+        <div class="paper-box">
+          <h4>Персонаж</h4>
+          <div class="paper-row"><span>Имя</span><b>${escapeText(state.name)}</b></div>
+          <div class="paper-row"><span>Класс</span><b>${klass().name}</b></div>
+          <div class="paper-row"><span>Раса</span><b>${race().name}</b></div>
+          <div class="paper-row"><span>Биография</span><b>${BACKGROUNDS[state.bgKey]}</b></div>
         </div>
 
-        <div class="paper-chips">
-          <div class="paper-chip"><span>КД</span><b>${co.ac}</b></div>
-          <div class="paper-chip"><span>Хиты</span><b>${rt.currentHp}/${co.maxHp}</b></div>
-          <div class="paper-chip"><span>Иниц.</span><b>${fmt(co.initiative)}</b></div>
-          <div class="paper-chip"><span>Скорость</span><b>${co.speed}</b></div>
+        <div class="print-grid">
+          <div class="paper-box">
+            <h4>Бой</h4>
+            <div class="paper-row"><span>Хиты</span><b>${state.hp}/${maxHp()}</b></div>
+            <div class="paper-row"><span>КД</span><b>${ac()}</b></div>
+            <div class="paper-row"><span>Инициатива</span><b>${fmt(statMod("dex"))}</b></div>
+            <div class="paper-row"><span>Атака</span><b>${fmt(attackBonus())}</b></div>
+            <div class="paper-row"><span>Урон</span><b>${klass().weaponDie}${fmt(statMod("dex"))}</b></div>
+            <div class="paper-row"><span>Скрытая атака</span><b>+1к6</b></div>
+          </div>
+
+          <div class="paper-box">
+            <h4>Навыки</h4>
+            ${skills.map(([name, bonus]) => `
+              <div class="paper-row"><span>${name}</span><b>${fmt(bonus)}</b></div>
+            `).join("")}
+          </div>
         </div>
 
-        <div class="sheet-grid">
-          <div>
-            <div class="paper-box"><h4>Характеристики</h4>${stats}</div>
-            <div class="paper-box"><h4>Деньги</h4><p style="font-size:11px;margin:0;">${coins}</p></div>
-          </div>
+        <div class="paper-box">
+          <h4>Особенности</h4>
+          ${[...race().features, ...klass().features].map(([name, text]) => `
+            <div class="paper-row"><span>${name}</span><b>${text}</b></div>
+          `).join("")}
+        </div>
 
-          <div>
-            <div class="paper-box"><h4>Навыки</h4>${skills}</div>
-          </div>
-
-          <div>
-            <div class="paper-box"><h4>Атаки</h4>${attacks}<p style="font-size:11px;"><b>Скрытая атака:</b> +1к6 один раз за ход при условии.</p></div>
-            <div class="paper-box"><h4>Особенности</h4>${features}</div>
-            <div class="paper-box">
-              <h4>Трекер</h4>
-              <p style="font-size:11px;margin:0 0 5px;"><b>Временные хиты:</b> ${rt.tempHp}</p>
-              <p style="font-size:11px;margin:0 0 5px;"><b>Стрелы:</b> ${rt.ammo.arrows}, <b>болты:</b> ${rt.ammo.bolts}</p>
-              <p style="font-size:11px;margin:0 0 5px;"><b>Состояния:</b> ${rt.conditions.length ? rt.conditions.join(", ") : "нет"}</p>
-              <p style="font-size:11px;margin:0;"><b>Заметки:</b> ${escapeHTML(rt.notes || "")}</p>
-            </div>
-          </div>
+        <div class="paper-box">
+          <h4>Заметки</h4>
+          <p>${escapeText(state.notes || "")}</p>
         </div>
       `;
     }
 
-    function renderCharacters() {
-      const html = state.characters.map(c => `
-        <div class="char-card ${c.id === state.currentId ? "active" : ""}" data-id="${c.id}">
-          <b>${escapeHTML(c.name || "Безымянный")}</b>
-          <span>${CLASSES[c.classKey]?.name || "Класс"} · ${RACES[c.raceKey]?.name || "Раса"}</span>
-        </div>
-      `).join("");
+    function takeDamage() {
+      let amount = Number($("damageInput")?.value || 0);
+      if (amount <= 0) return;
 
-      $("characterList").innerHTML = html || `<div class="empty">Пока нет персонажей.</div>`;
-      $("bigCharacterList").innerHTML = html || `<div class="empty">Пока нет персонажей.</div>`;
-
-      document.querySelectorAll(".char-card").forEach(card => {
-        card.onclick = () => {
-          state.currentId = card.dataset.id;
-          save();
-          render();
-          closeMenu();
-        };
-      });
-    }
-
-    function render() {
-      const c = current();
-
-      renderInputs(c);
-      renderRolls(c);
-      renderPills(c);
-      renderStats(c);
-      renderSkills(c);
-      renderWeapons(c);
-      renderQuick(c);
-      renderCombatTips(c);
-      renderExploreTips(c);
-      renderSituationTips(c);
-      renderFeatures(c);
-      renderTracker(c);
-      renderSheet(c);
-      renderCharacters();
-      applyMode(c.runtime.mode || "combat", false);
-    }
-
-    function showSection(id) {
-      document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-      $(id).classList.add("active");
-
-      document.querySelectorAll("#nav button").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.section === id);
-      });
-
-      const titles = {
-        playSection:["Игровой экран","Выбирай режим Бой или Вне боя. Самое важное всегда снизу в быстрой панели."],
-        builderSection:["Конструктор персонажа","Здесь создаёшь персонажа. Во время партии сюда обычно не нужно заходить."],
-        sheetSection:["Лист персонажа A4","Упрощённый лист для печати или PDF."],
-        librarySection:["Персонажи","Создавай несколько персонажей, экспортируй и импортируй JSON."]
-      };
-
-      $("pageTitle").textContent = titles[id][0];
-      $("pageDesc").textContent = titles[id][1];
-
-      closeMenu();
-    }
-
-    function applyMode(mode, shouldSave = true) {
-      const c = current();
-      c.runtime.mode = mode;
-
-      document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
-      document.querySelectorAll(".mode").forEach(x => x.classList.remove("active"));
-
-      if (mode === "combat") {
-        $("combatTab").classList.add("active");
-        $("combatMode").classList.add("active");
-      } else {
-        $("exploreTab").classList.add("active");
-        $("exploreMode").classList.add("active");
+      if (state.tempHp > 0) {
+        const used = Math.min(state.tempHp, amount);
+        state.tempHp -= used;
+        amount -= used;
       }
 
-      if (shouldSave) {
-        save();
-        renderDock();
-      }
-    }
-
-    function closeMenu() {
-      document.querySelector(".sidebar").classList.remove("open");
-    }
-
-    function autoAssign(shouldRender=true) {
-      const c = current();
-      const nums = (c.rolls || []).map(Number).filter(n => n > 0).sort((a,b) => b - a);
-
-      if (nums.length < 6) {
-        if (shouldRender) alert("Сначала впиши 6 бросков.");
-        return;
-      }
-
-      cls(c).order.forEach((ability,i) => {
-        c.base[ability] = nums[i];
-      });
-
-      const co = computed(c);
-      if (!c.runtime.currentHp || c.runtime.currentHp > co.maxHp) c.runtime.currentHp = co.maxHp;
-
-      save();
-      if (shouldRender) render();
-    }
-
-    function roll4d6DropLowest() {
-      const rolls = Array.from({ length:4 }, () => 1 + Math.floor(Math.random() * 6));
-      rolls.sort((a,b) => a - b);
-      return rolls.slice(1).reduce((a,b) => a + b, 0);
-    }
-
-    function randomRolls() {
-      const c = current();
-      c.rolls = Array.from({ length:6 }, roll4d6DropLowest);
-      autoAssign(false);
-      save();
+      state.hp = Math.max(0, state.hp - amount);
       render();
     }
 
-    function clearRolls() {
-      const c = current();
-      c.rolls = [0,0,0,0,0,0];
-      save();
+    function heal() {
+      const amount = Number($("healInput")?.value || 0);
+      if (amount <= 0) return;
+
+      state.hp = Math.min(maxHp(), state.hp + amount);
       render();
     }
 
-    function newCharacter() {
-      const c = defaultCharacter();
-      c.name = "Новый персонаж";
-      state.characters.push(c);
-      state.currentId = c.id;
-      save();
-      render();
-      closeMenu();
-    }
-
-    function resetCharacter() {
-      const id = state.currentId;
-      const c = defaultCharacter();
-      c.id = id;
-      const index = state.characters.findIndex(x => x.id === id);
-      state.characters[index] = c;
-      save();
+    function changeItemName(index, value) {
+      state.items[index].name = value;
       render();
     }
 
-    function duplicateCharacter() {
-      const c = JSON.parse(JSON.stringify(current()));
-      c.id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random());
-      c.name = (c.name || "Персонаж") + " копия";
-      state.characters.push(c);
-      state.currentId = c.id;
-      save();
+    function changeItemQty(index, value) {
+      state.items[index].qty = Number(value || 0);
       render();
     }
 
-    function deleteCharacter() {
-      if (state.characters.length <= 1) {
-        resetCharacter();
-        return;
-      }
-
-      state.characters = state.characters.filter(c => c.id !== state.currentId);
-      state.currentId = state.characters[0].id;
-      save();
+    function deleteItem(index) {
+      state.items.splice(index, 1);
       render();
     }
 
-    function takeDamage(amount) {
-      const c = current();
-      const rt = c.runtime;
-      let dmg = Math.max(0, Number(amount || 0));
+    $("burger").onclick = () => {
+      $("nav").classList.toggle("open");
+    };
 
-      if (rt.tempHp > 0) {
-        const used = Math.min(rt.tempHp, dmg);
-        rt.tempHp -= used;
-        dmg -= used;
-      }
-
-      rt.currentHp = Math.max(0, rt.currentHp - dmg);
-      save();
-      render();
-    }
-
-    function heal(amount) {
-      const c = current();
-      const rt = c.runtime;
-      const co = computed(c);
-      const val = Math.max(0, Number(amount || 0));
-
-      rt.currentHp = Math.min(co.maxHp, rt.currentHp + val);
-
-      if (rt.currentHp > 0) {
-        rt.deathSaves.success = 0;
-        rt.deathSaves.fail = 0;
-      }
-
-      save();
-      render();
-    }
-
-    function longRest() {
-      const c = current();
-      const rt = c.runtime;
-      const co = computed(c);
-
-      rt.currentHp = co.maxHp;
-      rt.tempHp = 0;
-      rt.hitDiceUsed = 0;
-      rt.deathSaves.success = 0;
-      rt.deathSaves.fail = 0;
-      rt.conditions = [];
-
-      save();
-      render();
-    }
-
-    function shortRest() {
-      const c = current();
-      c.runtime.deathSaves.success = 0;
-      c.runtime.deathSaves.fail = 0;
-      save();
-      render();
-      alert("Короткий отдых отмечен. Если тратишь кости хитов, введи их вручную.");
-    }
-
-    function changeCoins(type, amount) {
-      const c = current();
-      c.runtime.coins[type] = Math.max(0, Number(c.runtime.coins[type] || 0) + Number(amount || 0));
-      save();
-      render();
-    }
-
-    function exportJSON(all=false) {
-      const data = all ? state : { currentId: current().id, characters:[current()] };
-      const blob = new Blob([JSON.stringify(data,null,2)], { type:"application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = all ? "dnd-characters.json" : `${(current().name || "character").replace(/[^a-zа-я0-9]+/gi,"-")}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
-    function importJSON(file) {
-      if (!file) return;
-
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        try {
-          const data = JSON.parse(reader.result);
-
-          if (Array.isArray(data.characters)) {
-            data.characters.forEach(c => {
-              if (!c.id) c.id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random());
-              normalizeCharacter(c);
-            });
-
-            state = data;
-            if (!state.currentId && state.characters[0]) state.currentId = state.characters[0].id;
-            save();
-            render();
-          }
-        } catch(e) {
-          alert("Не получилось прочитать JSON.");
-        }
-      };
-
-      reader.readAsText(file);
-    }
-
-    function toggleDetails() {
-      const active = document.querySelector(".section.active");
-      const details = active.querySelectorAll("details.card");
-      const hasOpen = [...details].some(d => d.open);
-      details.forEach(d => d.open = !hasOpen);
-    }
-
-    function initEvents() {
-      $("burger").onclick = () => document.querySelector(".sidebar").classList.toggle("open");
-
-      $("nav").querySelectorAll("button").forEach(btn => {
-        btn.onclick = () => showSection(btn.dataset.section);
-      });
-
-      $("combatTab").onclick = () => applyMode("combat");
-      $("exploreTab").onclick = () => applyMode("explore");
-
-      $("toggleDetailsBtn").onclick = toggleDetails;
-      $("toggleDockBtn").onclick = () => $("quickDock").classList.toggle("open");
-      $("dockOpenBtn").onclick = () => $("quickDock").classList.toggle("open");
-
-      $("dockModeBtn").onclick = () => {
-        const c = current();
-        applyMode(c.runtime.mode === "combat" ? "explore" : "combat");
-      };
-
-      $("saveBtn").onclick = () => {
-        save();
-        alert("Сохранено в браузере.");
-      };
-
-      $("newCharacterBtn").onclick = newCharacter;
-      $("autoAssignBtn").onclick = () => autoAssign(true);
-      $("randomRollBtn").onclick = randomRolls;
-      $("clearRollsBtn").onclick = clearRolls;
-      $("exportBtn").onclick = () => exportJSON(false);
-      $("exportAllBtn").onclick = () => exportJSON(true);
-      $("printBtn").onclick = () => window.print();
-      $("duplicateBtn").onclick = duplicateCharacter;
-      $("deleteBtn").onclick = deleteCharacter;
-      $("resetBtn").onclick = resetCharacter;
-      $("importFile").onchange = e => importJSON(e.target.files[0]);
-
-      $("damageBtn").onclick = () => {
-        takeDamage($("damageInput").value);
-        $("damageInput").value = "";
-      };
-
-      $("healBtn").onclick = () => {
-        heal($("healInput").value);
-        $("healInput").value = "";
-      };
-
-      $("dockDamageBtn").onclick = () => {
-        takeDamage($("dockDamage").value);
-        $("dockDamage").value = "";
-      };
-
-      $("dockHealBtn").onclick = () => {
-        heal($("dockHeal").value);
-        $("dockHeal").value = "";
-      };
-
-      $("shortRestBtn").onclick = shortRest;
-      $("longRestBtn").onclick = longRest;
-
-      $("resetDeathBtn").onclick = () => {
-        const c = current();
-        c.runtime.deathSaves.success = 0;
-        c.runtime.deathSaves.fail = 0;
-        save();
+    document.querySelectorAll(".nav button").forEach(button => {
+      button.onclick = () => {
+        state.screen = button.dataset.screen;
+        $("nav").classList.remove("open");
         render();
       };
+    });
 
-      $("tempHp").oninput = () => {
-        current().runtime.tempHp = Math.max(0, Number($("tempHp").value || 0));
-        save();
-        render();
+    $("combatBtn").onclick = () => {
+      state.mode = "combat";
+      render();
+    };
+
+    $("peaceBtn").onclick = () => {
+      state.mode = "peace";
+      render();
+    };
+
+    $("saveCharacterBtn").onclick = () => {
+      state.name = $("nameInput").value || "Без имени";
+      state.classKey = $("classInput").value;
+      state.raceKey = $("raceInput").value;
+      state.bgKey = $("bgInput").value;
+
+      state.stats.str = Number($("strInput").value || 8);
+      state.stats.dex = Number($("dexInput").value || 15);
+      state.stats.con = Number($("conInput").value || 13);
+      state.stats.int = Number($("intInput").value || 10);
+      state.stats.wis = Number($("wisInput").value || 12);
+      state.stats.cha = Number($("chaInput").value || 14);
+
+      state.hp = Math.min(state.hp, maxHp());
+      render();
+    };
+
+    $("defaultStatsBtn").onclick = () => {
+      state.stats = {
+        str: 8,
+        dex: 15,
+        con: 13,
+        int: 10,
+        wis: 12,
+        cha: 14
       };
+      state.hp = maxHp();
+      render();
+    };
 
-      $("arrows").oninput = () => {
-        current().runtime.ammo.arrows = Math.max(0, Number($("arrows").value || 0));
-        save();
-        render();
-      };
+    $("addCoinBtn").onclick = () => {
+      const type = $("coinType").value;
+      const amount = Number($("coinAmount").value || 0);
+      state.coins[type] += amount;
+      $("coinAmount").value = "";
+      render();
+    };
 
-      $("bolts").oninput = () => {
-        current().runtime.ammo.bolts = Math.max(0, Number($("bolts").value || 0));
-        save();
-        render();
-      };
+    $("spendCoinBtn").onclick = () => {
+      const type = $("coinType").value;
+      const amount = Number($("coinAmount").value || 0);
+      state.coins[type] = Math.max(0, state.coins[type] - amount);
+      $("coinAmount").value = "";
+      render();
+    };
 
-      $("useArrowBtn").onclick = () => {
-        const rt = current().runtime;
-        rt.ammo.arrows = Math.max(0, Number(rt.ammo.arrows || 0) - 1);
-        save();
-        render();
-      };
+    $("addItemBtn").onclick = () => {
+      const name = $("newItemName").value.trim();
+      const qty = Number($("newItemQty").value || 1);
 
-      $("addArrowBtn").onclick = () => {
-        current().runtime.ammo.arrows = Number(current().runtime.ammo.arrows || 0) + 1;
-        save();
-        render();
-      };
+      if (!name) return;
 
-      $("useBoltBtn").onclick = () => {
-        const rt = current().runtime;
-        rt.ammo.bolts = Math.max(0, Number(rt.ammo.bolts || 0) - 1);
-        save();
-        render();
-      };
+      state.items.push({ name, qty });
+      $("newItemName").value = "";
+      $("newItemQty").value = 1;
+      render();
+    };
 
-      $("addBoltBtn").onclick = () => {
-        current().runtime.ammo.bolts = Number(current().runtime.ammo.bolts || 0) + 1;
-        save();
-        render();
-      };
+    $("notesInput").oninput = () => {
+      state.notes = $("notesInput").value;
+      save();
+    };
 
-      $("sessionNotes").oninput = () => {
-        current().runtime.notes = $("sessionNotes").value;
-        save();
-        renderSheet(current());
-      };
+    $("printBtn").onclick = () => {
+      window.print();
+    };
 
-      $("addCoinsBtn").onclick = () => {
-        changeCoins($("coinType").value, Math.max(0, Number($("coinAmount").value || 0)));
-        $("coinAmount").value = "";
-      };
-
-      $("spendCoinsBtn").onclick = () => {
-        changeCoins($("coinType").value, -Math.max(0, Number($("coinAmount").value || 0)));
-        $("coinAmount").value = "";
-      };
-
-      $("addItemBtn").onclick = () => {
-        const name = $("newItemName").value.trim();
-        if (!name) return;
-
-        current().runtime.inventory.push({
-          name,
-          qty:Math.max(1, Number($("newItemQty").value || 1)),
-          note:$("newItemNote").value.trim()
-        });
-
-        $("newItemName").value = "";
-        $("newItemQty").value = 1;
-        $("newItemNote").value = "";
-
-        save();
-        render();
-      };
-    }
-
-    setupSelects();
-    load();
-    hydrateInputs();
-    initEvents();
     render();
   </script>
 </body>
